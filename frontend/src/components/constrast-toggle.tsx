@@ -11,7 +11,7 @@ const COLLAPSE_KEY = "a11y-collapsed";
 export default function ContrastToggle() {
   const [mode, setMode] = useState<Mode>("regular");
   const [scale, setScale] = useState<number>(1);
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed, setCollapsed] = useState<boolean>(true);
 
   /* --- Load user settings --- */
   useEffect(() => {

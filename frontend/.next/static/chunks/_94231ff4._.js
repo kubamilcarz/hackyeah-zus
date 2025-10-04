@@ -21,7 +21,7 @@ function ContrastToggle() {
     _s();
     const [mode, setMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("regular");
     const [scale, setScale] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
-    const [collapsed, setCollapsed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [collapsed, setCollapsed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     /* --- Load user settings --- */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ContrastToggle.useEffect": ()=>{
             const savedMode = localStorage.getItem(CONTRAST_KEY) || "regular";
@@ -278,7 +278,7 @@ function ContrastToggle() {
         columnNumber: 5
     }, this);
 }
-_s(ContrastToggle, "X31heA7LwQqPRVwle3qT+iUtclw=");
+_s(ContrastToggle, "Fh3lRjksZlj9g3Vkvpb9Jef+07Q=");
 _c = ContrastToggle;
 /* --- Sub-button component --- */ function ToggleBtn(param) {
     let { label, title, active, onClick, style, disabled } = param;
