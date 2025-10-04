@@ -71,7 +71,7 @@ export default function ExtraDataPage() {
       fundsSource: useEstimatedFunds ? "estimated" : "user",
       sickDays12m: String(Number(sickDays12m || 0)),
     });
-    router.push(`/simulator?${q.toString()}`);
+    router.push(`/addSources?${q.toString()}`);
   }
 
   function skipAndUseEstimates() {
@@ -86,7 +86,7 @@ export default function ExtraDataPage() {
       fundsSource: "estimated",
       sickDays12m: "0",
     });
-    router.push(`/simulator?${q.toString()}`);
+    router.push(`/addSources?${q.toString()}`);
   }
 
   return (

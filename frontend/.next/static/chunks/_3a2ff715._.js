@@ -746,7 +746,7 @@ function ExtraDataPage() {
             fundsSource: useEstimatedFunds ? "estimated" : "user",
             sickDays12m: String(Number(sickDays12m || 0))
         });
-        router.push("/simulator?".concat(q.toString()));
+        router.push("/addSources?".concat(q.toString()));
     }
     function skipAndUseEstimates() {
         // Force estimates + zero sick days if user wants to skip
@@ -760,7 +760,7 @@ function ExtraDataPage() {
             fundsSource: "estimated",
             sickDays12m: "0"
         });
-        router.push("/simulator?".concat(q.toString()));
+        router.push("/addSources?".concat(q.toString()));
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen max-w-3xl mx-auto py-12 px-4",
