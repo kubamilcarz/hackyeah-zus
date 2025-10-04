@@ -257,6 +257,14 @@ export default function DashboardPage() {
 
         <CustomDataEntrySection />
 
+        {/* Detailed Retirement Analysis Section */}
+        <DetailedRetirementAnalysisSection 
+          retirementYear={2060}
+          currentSalary={5200}
+          projectedPension={adjustedSalary}
+          targetPension={pensionData.targetPension}
+        />
+
         {/* Additional Retirement Savings Section - PPK + IKZE + PPE */}
         <AdditionalRetirementSavingsSection 
           ppkContribution={ppkContribution}
@@ -795,6 +803,506 @@ function StickyTile({ icon, title, value, tone, progress }: StickyTileProps) {
             />
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+// Detailed Retirement Analysis Section Component
+interface DetailedRetirementAnalysisSectionProps {
+  retirementYear: number;
+  currentSalary: number;
+  projectedPension: number;
+  targetPension: number;
+}
+
+function DetailedRetirementAnalysisSection({
+  retirementYear,
+  currentSalary,
+  projectedPension,
+  targetPension,
+}: DetailedRetirementAnalysisSectionProps) {
+  // Mock calculations - in real app these would come from backend
+  const averageBenefitAtRetirement = 2137;
+  const salaryWithoutSickLeave = currentSalary * 1.05; // 5% higher without sick leave periods
+  const sickLeaveImpact = salaryWithoutSickLeave - currentSalary;
+
+  return (
+    <div className="bg-zus-card rounded-2xl">
+      <div className="p-6 md:p-8 flex flex-col gap-6">
+        <header className="space-y-3">
+          <h1
+            className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+            style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
+          >
+            Szczegółowa analiza emerytalna
+          </h1>
+          <ZusText variant="body" className="text-neutral-600 max-w-2xl">
+            Poznaj szczegóły swojej przyszłej emerytury, wpływ chorobowego oraz scenariusze 
+            opóźnienia przejścia na emeryturę.
+          </ZusText>
+        </header>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Current Projections Card */}
+          <div className="space-y-4 p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">📊</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-blue-800">Aktualne prognozy</h3>
+                <ZusText variant="small" className="text-blue-600">
+                  Stan na {retirementYear} rok
+                </ZusText>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white/60 p-4 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-neutral-600">Średnie świadczenie w roku przejścia</span>
+                  <span className="font-bold text-lg text-blue-700">
+                    {averageBenefitAtRetirement.toLocaleString()} zł
+                  </span>
+                </div>
+                <ZusText variant="small" className="text-neutral-500 mt-1">
+                  Średnia emerytura w {retirementYear} roku
+                </ZusText>
+              </div>
+
+              <div className="bg-white/60 p-4 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-neutral-600">Twoja prognoza ZUS</span>
+                  <span className="font-bold text-lg text-blue-700">
+                    {projectedPension.toLocaleString()} zł
+                  </span>
+                </div>
+                <div className="mt-2 text-xs">
+                  {projectedPension > averageBenefitAtRetirement ? (
+                    <span className="text-green-600 flex items-center gap-1">
+                      <span>✓</span>
+                      <span>O {(projectedPension - averageBenefitAtRetirement).toLocaleString()} zł wyższa od średniej</span>
+                    </span>
+                  ) : (
+                    <span className="text-orange-600 flex items-center gap-1">
+                      <span>⚠️</span>
+                      <span>O {(averageBenefitAtRetirement - projectedPension).toLocaleString()} zł niższa od średniej</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sick Leave Impact Card */}
+          <div className="space-y-4 p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">🏥</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-green-800">Wpływ chorobowego</h3>
+                <ZusText variant="small" className="text-green-600">
+                  Analiza nieobecności chorobowych
+                </ZusText>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white/60 p-4 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-neutral-600">Wynagrodzenie bez chorobowego</span>
+                  <span className="font-bold text-lg text-green-700">
+                    {salaryWithoutSickLeave.toLocaleString()} zł
+                  </span>
+                </div>
+                <ZusText variant="small" className="text-neutral-500 mt-1">
+                  Potencjalne wynagrodzenie bez okresów choroby
+                </ZusText>
+              </div>
+
+              <div className="bg-white/60 p-4 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-neutral-600">Wpływ na emeryturę</span>
+                  <span className="font-bold text-lg text-green-700">
+                    +{Math.round(sickLeaveImpact * 0.25).toLocaleString()} zł
+                  </span>
+                </div>
+                <ZusText variant="small" className="text-neutral-500 mt-1">
+                  Szacowany wzrost emerytury bez chorobowego
+                </ZusText>
+              </div>
+
+              <div className="p-3 bg-green-100 rounded-lg border border-green-300">
+                <ZusText variant="small" className="text-green-800">
+                  💡 Każdy dzień chorobowy może wpłynąć na wysokość przyszłej emerytury. 
+                  Dbaj o zdrowie i minimalizuj nieobecności.
+                </ZusText>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Retirement Delay Scenarios - Interactive Chart */}
+        <InteractiveRetirementChart 
+          baseRetirementYear={retirementYear}
+          basePension={projectedPension}
+          targetPension={targetPension}
+        />
+
+        {/* Target Achievement Analysis - Now integrated into the chart above */}
+      </div>
+    </div>
+  );
+}
+
+// Interactive Retirement Chart Component
+interface InteractiveRetirementChartProps {
+  baseRetirementYear: number;
+  basePension: number;
+  targetPension: number;
+}
+
+function InteractiveRetirementChart({ 
+  baseRetirementYear, 
+  basePension, 
+  targetPension 
+}: InteractiveRetirementChartProps) {
+  const [selectedYear, setSelectedYear] = useState(baseRetirementYear);
+  const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
+
+  // Generate chart data points (mock realistic data)
+  const generateChartData = () => {
+    const data = [];
+    const startYear = baseRetirementYear;
+    const endYear = baseRetirementYear + 25;
+    
+    for (let year = startYear; year <= endYear; year++) {
+      const yearsDelay = year - baseRetirementYear;
+      // Pension increase formula: diminishing returns over time
+      const pensionIncrease = yearsDelay * 68 * (1 - yearsDelay * 0.005);
+      const totalPension = basePension + Math.max(0, pensionIncrease);
+      
+      data.push({
+        year,
+        yearsDelay,
+        pension: totalPension,
+        pensionIncrease: Math.max(0, pensionIncrease)
+      });
+    }
+    return data;
+  };
+
+  const chartData = generateChartData();
+  const maxPension = Math.max(...chartData.map(d => d.pension));
+  const minPension = Math.min(...chartData.map(d => d.pension));
+  const pensionRange = maxPension - minPension;
+
+  // Calculate target achievement
+  const yearlyIncrease = 68;
+  const pensionGap = Math.max(0, targetPension - basePension);
+  const extraYearsNeeded = Math.ceil(pensionGap / yearlyIncrease);
+  const targetRetirementYear = baseRetirementYear + extraYearsNeeded;
+  const targetAchievable = targetRetirementYear <= baseRetirementYear + 25;
+
+  // Find selected data point
+  const selectedData = chartData.find(d => d.year === selectedYear) || chartData[0];
+
+  // Generate SVG path for the curve (smooth curve using Bezier curves)
+  const generatePath = () => {
+    const width = 800;
+    const height = 300;
+    const padding = 40;
+    
+    const points = chartData.map((d, i) => {
+      const x = padding + (i / (chartData.length - 1)) * (width - 2 * padding);
+      const y = height - padding - ((d.pension - minPension) / pensionRange) * (height - 2 * padding);
+      return { x, y };
+    });
+    
+    if (points.length < 2) return '';
+    
+    // Create smooth curve using quadratic Bezier curves
+    let path = `M ${points[0].x},${points[0].y}`;
+    
+    for (let i = 1; i < points.length; i++) {
+      const current = points[i];
+      const previous = points[i - 1];
+      
+      if (i === 1) {
+        // First curve point
+        const controlX = previous.x + (current.x - previous.x) * 0.5;
+        const controlY = previous.y;
+        path += ` Q ${controlX},${controlY} ${current.x},${current.y}`;
+      } else {
+        // Smooth transition between points
+        const controlX = previous.x + (current.x - previous.x) * 0.5;
+        const controlY = previous.y + (current.y - previous.y) * 0.3;
+        path += ` Q ${controlX},${controlY} ${current.x},${current.y}`;
+      }
+    }
+    
+    return path;
+  };
+
+  return (
+    <div className="bg-zus-card rounded-2xl">
+      <div className="p-6 md:p-8 flex flex-col gap-6">
+        <header className="space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">📈</span>
+            </div>
+            <div>
+              <h1
+                className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+                style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
+              >
+                Interaktywne scenariusze emerytalne
+              </h1>
+              <ZusText variant="body" className="text-neutral-600">
+                Przesuń suwak aby zobaczyć jak opóźnienie emerytury wpłynie na wysokość świadczenia
+              </ZusText>
+            </div>
+          </div>
+        </header>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Interactive Chart */}
+          <div className="lg:col-span-2 space-y-4">
+            <div className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl border border-purple-200">
+              {/* Chart SVG */}
+              <div className="relative">
+                <svg
+                  width="100%"
+                  height="300"
+                  viewBox="0 0 800 300"
+                  className="overflow-visible"
+                >
+                  {/* Grid lines */}
+                  <defs>
+                    <pattern id="grid" width="80" height="30" patternUnits="userSpaceOnUse">
+                      <path d="M 80 0 L 0 0 0 30" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                    </pattern>
+                  </defs>
+                  <rect width="800" height="300" fill="url(#grid)" />
+                  
+                  {/* Chart curve */}
+                  <path
+                    d={generatePath()}
+                    fill="none"
+                    stroke="url(#gradient)"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    className="transition-all duration-300"
+                  />
+                  
+                  {/* Chart area fill */}
+                  <path
+                    d={`${generatePath()} L 760,260 L 40,260 Z`}
+                    fill="url(#areaGradient)"
+                    opacity="0.1"
+                    className="transition-all duration-300"
+                  />
+                  
+                  {/* Gradient definition */}
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#8b5cf6" />
+                      <stop offset="50%" stopColor="#06b6d4" />
+                      <stop offset="100%" stopColor="#10b981" />
+                    </linearGradient>
+                    <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Data points */}
+                  {chartData.map((d, i) => {
+                    const x = 40 + (i / (chartData.length - 1)) * 720;
+                    const y = 260 - ((d.pension - minPension) / pensionRange) * 220;
+                    const isSelected = d.year === selectedYear;
+                    const isHovered = hoveredPoint === i;
+                    
+                    return (
+                      <g key={d.year}>
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r={isSelected ? 8 : isHovered ? 6 : 4}
+                          fill={isSelected ? "#8b5cf6" : isHovered ? "#06b6d4" : "#ffffff"}
+                          stroke={isSelected ? "#ffffff" : "#8b5cf6"}
+                          strokeWidth="2"
+                          className="cursor-pointer transition-all duration-200"
+                          onClick={() => setSelectedYear(d.year)}
+                          onMouseEnter={() => setHoveredPoint(i)}
+                          onMouseLeave={() => setHoveredPoint(null)}
+                        />
+                        {isSelected && (
+                          <text
+                            x={x}
+                            y={y - 15}
+                            textAnchor="middle"
+                            className="text-xs font-semibold fill-purple-700"
+                          >
+                            {d.pension.toLocaleString()} zł
+                          </text>
+                        )}
+                      </g>
+                    );
+                  })}
+                  
+                  {/* Target line */}
+                  {targetAchievable && (
+                    <line
+                      x1="40"
+                      y1={260 - ((targetPension - minPension) / pensionRange) * 220}
+                      x2="760"
+                      y2={260 - ((targetPension - minPension) / pensionRange) * 220}
+                      stroke="#f59e0b"
+                      strokeWidth="2"
+                      strokeDasharray="5,5"
+                    />
+                  )}
+                  
+                  {/* Axis labels */}
+                  <text x="40" y="295" className="text-xs fill-gray-600">{baseRetirementYear}</text>
+                  <text x="760" y="295" className="text-xs fill-gray-600" textAnchor="end">
+                    {baseRetirementYear + 25}
+                  </text>
+                  <text x="15" y="260" className="text-xs fill-gray-600" textAnchor="end">
+                    {minPension.toLocaleString()}
+                  </text>
+                  <text x="15" y="50" className="text-xs fill-gray-600" textAnchor="end">
+                    {maxPension.toLocaleString()}
+                  </text>
+                </svg>
+              </div>
+              
+              {/* Year Slider */}
+              <div className="mt-6 space-y-3">
+                <label className="text-sm font-medium text-purple-700">
+                  Rok przejścia na emeryturę: {selectedYear}
+                </label>
+                <input
+                  type="range"
+                  min={baseRetirementYear}
+                  max={baseRetirementYear + 25}
+                  step="1"
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(Number(e.target.value))}
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-purple-200"
+                />
+                <div className="flex justify-between text-xs text-purple-600">
+                  <span>{baseRetirementYear}</span>
+                  <span className="font-medium">Wybrany: {selectedYear}</span>
+                  <span>{baseRetirementYear + 25}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Selected Year Details */}
+          <div className="space-y-4">
+            <div className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200">
+              <div className="space-y-4">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-700">
+                    {selectedYear}
+                  </div>
+                  <div className="text-sm text-neutral-600">
+                    {selectedData.yearsDelay === 0 ? 'Planowany rok emerytury' : `+${selectedData.yearsDelay} lat pracy`}
+                  </div>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="bg-white/60 p-3 rounded-lg">
+                    <div className="text-xs text-neutral-600">Miesięczna emerytura</div>
+                    <div className="text-xl font-bold text-purple-700">
+                      {selectedData.pension.toLocaleString()} zł
+                    </div>
+                  </div>
+                  
+                  {selectedData.yearsDelay > 0 && (
+                    <div className="bg-white/60 p-3 rounded-lg">
+                      <div className="text-xs text-neutral-600">Wzrost emerytury</div>
+                      <div className="text-lg font-semibold text-green-600">
+                        +{selectedData.pensionIncrease.toLocaleString()} zł
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="bg-white/60 p-3 rounded-lg">
+                    <div className="text-xs text-neutral-600">Wzrost roczny</div>
+                    <div className="text-sm font-medium text-blue-600">
+                      ~{selectedData.yearsDelay > 0 ? Math.round(selectedData.pensionIncrease / selectedData.yearsDelay) : 68} zł/rok
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Target Achievement Card - INTEGRATED HERE */}
+            <div className={`p-6 rounded-xl border-2 ${
+              selectedData.pension >= targetPension 
+                ? 'bg-gradient-to-br from-green-50 to-green-100 border-green-300' 
+                : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300'
+            }`}>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">
+                    {selectedData.pension >= targetPension ? '🎯' : '⏳'}
+                  </span>
+                  <h4 className={`font-semibold ${
+                    selectedData.pension >= targetPension ? 'text-green-800' : 'text-orange-800'
+                  }`}>
+                    {selectedData.pension >= targetPension ? 'Cel osiągnięty!' : 'Ile dłużej pracować aby osiągnąć cel?'}
+                  </h4>
+                </div>
+                
+                {selectedData.pension >= targetPension ? (
+                  <div className="space-y-2">
+                    <div className="text-sm text-green-700">
+                      Przekroczysz swój cel o {(selectedData.pension - targetPension).toLocaleString()} zł miesięcznie!
+                    </div>
+                    <div className="text-xs text-green-600">
+                      💡 Możesz rozważyć wcześniejszą emeryturę lub zwiększenie celów oszczędnościowych.
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="text-sm text-orange-700">
+                      Brakuje: {(targetPension - selectedData.pension).toLocaleString()} zł miesięcznie
+                    </div>
+                    {targetAchievable && (
+                      <div className="text-xs text-orange-600">
+                        💡 Pracuj do {targetRetirementYear} roku aby osiągnąć cel {targetPension.toLocaleString()} zł/mies.
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Interactive Legend */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded"></div>
+            <span className="text-sm text-neutral-600">Prognoza emerytalna</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-1 bg-amber-500 rounded border-dashed border-2 border-amber-500"></div>
+            <span className="text-sm text-neutral-600">Cel emerytalny ({targetPension.toLocaleString()} zł)</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-purple-500 rounded-full border-2 border-white"></div>
+            <span className="text-sm text-neutral-600">Wybrana opcja</span>
+          </div>
+        </div>
       </div>
     </div>
   );
