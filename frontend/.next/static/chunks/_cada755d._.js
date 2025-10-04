@@ -689,7 +689,6 @@ function ResultPage() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
                                 variant: "ghost",
-                                size: "small",
                                 type: "button",
                                 className: "px-8",
                                 onClick: ()=>router.push("/"),
@@ -709,7 +708,7 @@ function ResultPage() {
                                         children: "Pobierz raport PDF"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/result/page.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 98,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
@@ -719,13 +718,13 @@ function ResultPage() {
                                         children: "Sprawdź inne prognozy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/result/page.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 102,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/result/page.tsx",
-                                lineNumber: 98,
+                                lineNumber: 97,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -789,7 +788,7 @@ _c = ResultPage;
                         className: circleColor
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 155,
+                        lineNumber: 154,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -799,13 +798,13 @@ _c = ResultPage;
                         className: circleColor
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 156,
+                        lineNumber: 155,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/result/page.tsx",
-                lineNumber: 149,
+                lineNumber: 148,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -820,7 +819,7 @@ _c = ResultPage;
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 160,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -832,7 +831,7 @@ _c = ResultPage;
                         children: value
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 169,
+                        lineNumber: 168,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -844,19 +843,19 @@ _c = ResultPage;
                         children: subtitle
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 178,
+                        lineNumber: 177,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/result/page.tsx",
-                lineNumber: 159,
+                lineNumber: 158,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/result/page.tsx",
-        lineNumber: 145,
+        lineNumber: 144,
         columnNumber: 5
     }, this);
 }

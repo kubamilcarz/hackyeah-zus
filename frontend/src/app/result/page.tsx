@@ -87,7 +87,6 @@ export default function ResultPage() {
           <div className="flex flex-col md:flex-row gap-3 justify-between pt-4">
             <ZusButton 
               variant="ghost" 
-              size="small"
               type="button" 
               className="px-8" 
               onClick={() => router.push("/")}

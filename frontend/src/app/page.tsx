@@ -4,8 +4,6 @@ import React, { useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   ZusButton,
-  ZusCard,
-  ZusCardBody,
   ZusText,
   ZusInput,
   ZusHeading,
@@ -85,7 +83,7 @@ export default function WelcomeStart() {
                   {/* Input Section */}
                   <div className="text-center space-y-6">
                     <div>
-                      <ZusHeading level={2} className="mb-4">
+                      <ZusHeading level={2} className="mb-4 text-zus-navy">
                         Zacznij od swojego celu
                       </ZusHeading>
                       <ZusText variant="body-large">
@@ -146,8 +144,9 @@ export default function WelcomeStart() {
                             className={`px-3 py-1.5 rounded transition-colors ${!netto ? "shadow-sm" : ""}`}
                             style={{
                               fontSize: `calc(0.875rem * var(--font-scale))`,
-                              backgroundColor: !netto ? 'rgb(var(--color-accent))' : 'transparent',
-                              color: !netto ? 'rgb(var(--color-bg))' : 'rgb(var(--color-text) / 0.7)'
+                              backgroundColor: !netto ? 'rgb(0, 65, 110)' : 'transparent',
+                              color: !netto ? 'white' : 'rgb(var(--color-text))',
+                              border: !netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
                             }}
                             onClick={() => setNetto(false)}
                           >
@@ -158,8 +157,9 @@ export default function WelcomeStart() {
                             className={`px-3 py-1.5 rounded transition-colors ${netto ? "shadow-sm" : ""}`}
                             style={{
                               fontSize: `calc(0.875rem * var(--font-scale))`,
-                              backgroundColor: netto ? 'rgb(var(--color-accent))' : 'transparent',
-                              color: netto ? 'rgb(var(--color-bg))' : 'rgb(var(--color-text) / 0.7)'
+                              backgroundColor: netto ? 'rgb(0, 65, 110)' : 'transparent',
+                              color: netto ? 'white' : 'rgb(var(--color-text))',
+                              border: netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
                             }}
                             onClick={() => setNetto(true)}
                           >
@@ -362,23 +362,23 @@ function ComparisonBar({
   const getBarStyle = () => {
     if (tone === "primary") {
       return {
-        backgroundColor: `rgb(var(--color-primary))`,
+        backgroundColor: `rgb(0, 65, 110)`, // ZUS Navy
       };
     } else if (tone === "soft") {
       return {
-        backgroundColor: `rgb(var(--color-neutral) / 0.6)`,
+        backgroundColor: `rgba(146, 150, 158, 0.6)`, // ZUS Gray with opacity
       };
     } else {
       return {
-        backgroundColor: `rgb(var(--color-neutral) / 0.8)`,
+        backgroundColor: `rgba(146, 150, 158, 0.8)`, // ZUS Gray with opacity
       };
     }
   };
 
   // Container style using CSS variables
   const containerStyle = {
-    backgroundColor: `rgb(var(--color-neutral) / 0.1)`,
-    borderColor: `rgb(var(--color-neutral) / 0.3)`,
+    backgroundColor: `rgba(146, 150, 158, 0.1)`, // ZUS Gray with opacity
+    borderColor: `rgba(146, 150, 158, 0.3)`, // ZUS Gray with opacity
   };
 
   return (

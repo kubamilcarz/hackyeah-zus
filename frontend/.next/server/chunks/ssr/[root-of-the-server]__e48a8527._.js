@@ -542,11 +542,11 @@ function WelcomeStart() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ZusHeading"], {
                                                         level: 2,
-                                                        className: "mb-4",
+                                                        className: "mb-4 text-zus-navy",
                                                         children: "Zacznij od swojego celu"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 88,
+                                                        lineNumber: 86,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ZusText"], {
@@ -554,13 +554,13 @@ function WelcomeStart() {
                                                         children: "Podaj kwotę emerytury, o której marzysz. Sprawdzimy, jak ją osiągnąć."
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 91,
+                                                        lineNumber: 89,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 85,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -583,18 +583,18 @@ function WelcomeStart() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/page.tsx",
-                                                    lineNumber: 97,
+                                                    lineNumber: 95,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 96,
+                                                lineNumber: 94,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 86,
+                                        lineNumber: 84,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -613,7 +613,7 @@ function WelcomeStart() {
                                                         children: "Jak to wygląda w porównaniu?"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 127,
+                                                        lineNumber: 125,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -627,7 +627,7 @@ function WelcomeStart() {
                                                                 children: "Widok:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/page.tsx",
-                                                                lineNumber: 129,
+                                                                lineNumber: 127,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -642,14 +642,15 @@ function WelcomeStart() {
                                                                         className: `px-3 py-1.5 rounded transition-colors ${!netto ? "shadow-sm" : ""}`,
                                                                         style: {
                                                                             fontSize: `calc(0.875rem * var(--font-scale))`,
-                                                                            backgroundColor: !netto ? 'rgb(var(--color-accent))' : 'transparent',
-                                                                            color: !netto ? 'rgb(var(--color-bg))' : 'rgb(var(--color-text) / 0.7)'
+                                                                            backgroundColor: !netto ? 'rgb(0, 65, 110)' : 'transparent',
+                                                                            color: !netto ? 'white' : 'rgb(var(--color-text))',
+                                                                            border: !netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
                                                                         },
                                                                         onClick: ()=>setNetto(false),
                                                                         children: "Brutto"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/page.tsx",
-                                                                        lineNumber: 144,
+                                                                        lineNumber: 142,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -657,32 +658,33 @@ function WelcomeStart() {
                                                                         className: `px-3 py-1.5 rounded transition-colors ${netto ? "shadow-sm" : ""}`,
                                                                         style: {
                                                                             fontSize: `calc(0.875rem * var(--font-scale))`,
-                                                                            backgroundColor: netto ? 'rgb(var(--color-accent))' : 'transparent',
-                                                                            color: netto ? 'rgb(var(--color-bg))' : 'rgb(var(--color-text) / 0.7)'
+                                                                            backgroundColor: netto ? 'rgb(0, 65, 110)' : 'transparent',
+                                                                            color: netto ? 'white' : 'rgb(var(--color-text))',
+                                                                            border: netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
                                                                         },
                                                                         onClick: ()=>setNetto(true),
                                                                         children: "Netto"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/page.tsx",
-                                                                        lineNumber: 156,
+                                                                        lineNumber: 155,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/page.tsx",
-                                                                lineNumber: 137,
+                                                                lineNumber: 135,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 128,
+                                                        lineNumber: 126,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 124,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -737,7 +739,7 @@ function WelcomeStart() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 118,
+                                        lineNumber: 116,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -778,12 +780,12 @@ function WelcomeStart() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 77,
+                                lineNumber: 75,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 76,
+                            lineNumber: 74,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -945,7 +947,7 @@ function WelcomeStart() {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 74,
+                    lineNumber: 72,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -966,12 +968,12 @@ function WelcomeStart() {
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/page.tsx",
-            lineNumber: 71,
+            lineNumber: 69,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 64,
+        lineNumber: 62,
         columnNumber: 5
     }, this);
 }
@@ -992,22 +994,22 @@ function WelcomeStart() {
     const getBarStyle = ()=>{
         if (tone === "primary") {
             return {
-                backgroundColor: `rgb(var(--color-primary))`
+                backgroundColor: `rgb(0, 65, 110)`
             };
         } else if (tone === "soft") {
             return {
-                backgroundColor: `rgb(var(--color-neutral) / 0.6)`
+                backgroundColor: `rgba(146, 150, 158, 0.6)`
             };
         } else {
             return {
-                backgroundColor: `rgb(var(--color-neutral) / 0.8)`
+                backgroundColor: `rgba(146, 150, 158, 0.8)`
             };
         }
     };
     // Container style using CSS variables
     const containerStyle = {
-        backgroundColor: `rgb(var(--color-neutral) / 0.1)`,
-        borderColor: `rgb(var(--color-neutral) / 0.3)`
+        backgroundColor: `rgba(146, 150, 158, 0.1)`,
+        borderColor: `rgba(146, 150, 158, 0.3)`
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "w-full",
