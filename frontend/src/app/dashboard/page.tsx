@@ -1,30 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ZusText } from "@/components/ui/zus-text";
 import CustomDataEntrySection from "@/components/dashboard/custom-data-entry-section";
 
-// Types for data structure - ensure all components receive properly typed data
-interface UserData {
-  personalInfo: {
-    name: string;
-    age: number;
-    currentSalary: number;
-    retirementAge: number;
-  };
-  pensionData: {
-    currentContributions: number;
-    projectedPension: number;
-    additionalSavings: number;
-  };
-  riskProfile: {
-    level: "conservative" | "moderate" | "aggressive";
-    scenarios: Array<{
-      name: string;
-      probability: number;
-      impact: number;
-    }>;
-  };
-}
 import React from "react";
 import { KnowledgeQuizTile } from "@/components/dashboard/knowledge-quiz";
 
@@ -41,7 +19,28 @@ const fmtPLN = (amount: number) => `${amount.toLocaleString()} zł`;
 export default function DashboardPage() {
   const [salaryAdjustment, setSalaryAdjustment] = useState(0);
   const [inflationSlider, setInflationSlider] = useState(3.0);
-  const [additionalSavings, setAdditionalSavings] = useState(0);
+  const additionalSavings = 0; // Currently not used but kept for future functionality
+  // PPK + IKZE, PPE additional savings states
+  const [ppkContribution, setPpkContribution] = useState(0);
+  const [ikzeContribution, setIkzeContribution] = useState(0);
+  const [ppeContribution, setPpeContribution] = useState(0);
+  
+  // Sticky bar state
+  const [isSticky, setIsSticky] = useState(false);
+  const tilesRef = useRef<HTMLDivElement>(null);
+
+  // Scroll detection for sticky bar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (tilesRef.current) {
+        const rect = tilesRef.current.getBoundingClientRect();
+        setIsSticky(rect.bottom <= 0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Calculations
   const adjustedSalary =
@@ -50,6 +49,10 @@ export default function DashboardPage() {
     pensionData.nominalPension /
     Math.pow(1 + inflationSlider / 100, pensionData.yearsToRetirement);
   const savingsImpact = additionalSavings * 0.3; // simplified calculation
+  
+  // Additional retirement savings impact (PPK + IKZE + PPE)
+  const totalAdditionalSavings = ppkContribution + ikzeContribution + ppeContribution;
+  const additionalRetirementImpact = totalAdditionalSavings * 0.85; // Higher impact for dedicated retirement products
 
   return (
     <div
@@ -59,6 +62,46 @@ export default function DashboardPage() {
         color: "rgb(var(--color-text))",
       }}
     >
+      {/* Sticky Top Bar */}
+      {isSticky && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-lg transition-all duration-300">
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="grid grid-cols-3 gap-4">
+              <StickyTile
+                icon="🏛️"
+                title="Prognoza ZUS"
+                value={fmtPLN(adjustedSalary)}
+                tone="primary"
+              />
+              <StickyTile
+                icon="💰"
+                title="Siła nabywcza dziś"
+                value={fmtPLN(adjustedRealValue)}
+                tone="success"
+              />
+              <StickyTile
+                icon={
+                  adjustedSalary + savingsImpact + additionalRetirementImpact >= pensionData.targetPension
+                    ? "🎯"
+                    : "📈"
+                }
+                title={
+                  adjustedSalary + savingsImpact + additionalRetirementImpact >= pensionData.targetPension
+                    ? "Cel osiągnięty!"
+                    : "Cel emerytalny"
+                }
+                value={fmtPLN(pensionData.targetPension)}
+                tone="accent"
+                progress={Math.round(
+                  ((adjustedSalary + savingsImpact + additionalRetirementImpact) /
+                    pensionData.targetPension) *
+                    100
+                )}
+              />
+            </div>
+          </div>
+        </div>
+      )}
       {/* Slider Styles */}
       <style jsx>{`
         .slider::-webkit-slider-thumb {
@@ -101,7 +144,7 @@ export default function DashboardPage() {
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto py-8 px-4 flex flex-col gap-8">
+      <div className={`max-w-7xl mx-auto py-8 px-4 flex flex-col gap-8 ${isSticky ? 'pt-24' : ''}`}>
         <div className="bg-zus-card rounded-2xl">
           <div className="p-6 md:p-8 flex flex-col gap-6">
             {/* Header */}
@@ -118,7 +161,7 @@ export default function DashboardPage() {
                 opcje ich zwiększenia.
               </ZusText>
             </header>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" ref={tilesRef}>
               <OverviewTile
                 tone="primary"
                 icon="🏛️"
@@ -170,37 +213,40 @@ export default function DashboardPage() {
               <OverviewTile
                 tone="accent"
                 icon={
-                  adjustedSalary + savingsImpact >= pensionData.targetPension
+                  adjustedSalary + savingsImpact + additionalRetirementImpact >= pensionData.targetPension
                     ? "🎯"
                     : "📈"
                 }
                 title={
-                  adjustedSalary + savingsImpact >= pensionData.targetPension
+                  adjustedSalary + savingsImpact + additionalRetirementImpact >= pensionData.targetPension
                     ? "Cel osiągnięty!"
                     : "Cel emerytalny"
                 }
                 subtitle="Twoja oczekiwana emerytura"
                 value={fmtPLN(pensionData.targetPension)}
                 description={
-                  adjustedSalary + savingsImpact >= pensionData.targetPension
+                  adjustedSalary + savingsImpact + additionalRetirementImpact >= pensionData.targetPension
                     ? `Gratulacje! Osiągniesz swój cel z dodatkową oszczędnością!`
                     : `Brakuje: ${fmtPLN(
                         Math.max(
                           0,
                           pensionData.targetPension -
                             adjustedSalary -
-                            savingsImpact
+                            savingsImpact -
+                            additionalRetirementImpact
                         )
                       )} miesięcznie`
                 }
                 progress={Math.round(
-                  ((adjustedSalary + savingsImpact) /
+                  ((adjustedSalary + savingsImpact + additionalRetirementImpact) /
                     pensionData.targetPension) *
                     100
                 )}
                 insight={{
                   type: "info",
-                  text: "Aby osiągnąć swój cel emerytalny, zwiększ swoje wynagrodzenie brutto lub zacznij oszczędzać innymi metodami",
+                  text: totalAdditionalSavings > 0 
+                    ? `Uwzględniono dodatkowe oszczędności emerytalne: ${fmtPLN(additionalRetirementImpact)} miesięcznie`
+                    : "Aby osiągnąć swój cel emerytalny, zwiększ swoje wynagrodzenie brutto lub zacznij oszczędzać innymi metodami",
                 }}
               />
             </div>
@@ -210,6 +256,268 @@ export default function DashboardPage() {
         <KnowledgeQuizTile />
 
         <CustomDataEntrySection />
+
+        {/* Additional Retirement Savings Section - PPK + IKZE + PPE */}
+        <AdditionalRetirementSavingsSection 
+          ppkContribution={ppkContribution}
+          setPpkContribution={setPpkContribution}
+          ikzeContribution={ikzeContribution}
+          setIkzeContribution={setIkzeContribution}
+          ppeContribution={ppeContribution}
+          setPpeContribution={setPpeContribution}
+          totalImpact={additionalRetirementImpact}
+        />
+      </div>
+    </div>
+  );
+}
+
+// Additional Retirement Savings Section Component for PPK + IKZE + PPE
+interface AdditionalRetirementSavingsSectionProps {
+  ppkContribution: number;
+  setPpkContribution: (value: number) => void;
+  ikzeContribution: number;
+  setIkzeContribution: (value: number) => void;
+  ppeContribution: number;
+  setPpeContribution: (value: number) => void;
+  totalImpact: number;
+}
+
+function AdditionalRetirementSavingsSection({
+  ppkContribution,
+  setPpkContribution,
+  ikzeContribution,
+  setIkzeContribution,
+  ppeContribution,
+  setPpeContribution,
+  totalImpact,
+}: AdditionalRetirementSavingsSectionProps) {
+  const totalContributions = ppkContribution + ikzeContribution + ppeContribution;
+
+  return (
+    <div className="bg-zus-card rounded-2xl">
+      <div className="p-6 md:p-8 flex flex-col gap-6">
+        <header className="space-y-3">
+          <h1
+            className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+            style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
+          >
+            Dodatkowe oszczędności emerytalne
+          </h1>
+          <ZusText variant="body" className="text-neutral-600 max-w-2xl">
+            Zwiększ swoją przyszłą emeryturę dzięki dodatkowym produktom emerytalnym. 
+            Te składki będą bezpośrednio wpływać na Twoją prognozę emerytalną w pierwszym rzędzie.
+          </ZusText>
+        </header>
+
+        {/* Impact Summary */}
+        <div className="p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+              <span className="text-purple-600 font-bold">💰</span>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-neutral-800">
+                Wpływ na prognozę emerytalną
+              </h4>
+              <ZusText variant="small" className="text-neutral-600">
+                Dodatkowe produkty emerytalne zwiększą Twoją miesięczną emeryturę o około{" "}
+                <span className="font-semibold text-purple-600">
+                  {totalImpact.toLocaleString()} zł
+                </span>{" "}
+                miesięcznie przy obecnych ustawieniach.
+              </ZusText>
+              <div className="flex gap-4 text-sm">
+                <div className="flex items-center gap-1">
+                  <span className="text-purple-600">💵</span>
+                  <span>Łączne składki: {totalContributions.toLocaleString()} zł/mies.</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-green-600">📈</span>
+                  <span>Szacowany zwrot: {(totalImpact / Math.max(totalContributions, 1) * 100).toFixed(0)}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* PPK Section */}
+          <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <span className="text-blue-600 font-bold">🏢</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-blue-800">PPK</h3>
+                <ZusText variant="small" className="text-blue-600">
+                  Pracownicze Plany Kapitałowe
+                </ZusText>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <ZusText variant="small" className="text-neutral-600">
+                Automatyczne składki od pracodawcy + Twoje składki
+              </ZusText>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-neutral-700">
+                  Miesięczna składka PPK: {ppkContribution} zł
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  step="50"
+                  value={ppkContribution}
+                  onChange={(e) => setPpkContribution(Number(e.target.value))}
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-blue-200"
+                />
+                <div className="flex justify-between text-xs text-blue-600">
+                  <span>0 zł</span>
+                  <span>1000 zł</span>
+                </div>
+              </div>
+              
+              <div className="p-2 bg-blue-100 rounded text-xs text-blue-800">
+                💡 Pracodawca dokłada minimalnie 1.5% Twojego wynagrodzenia
+              </div>
+            </div>
+          </div>
+
+          {/* IKZE Section */}
+          <div className="space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <span className="text-green-600 font-bold">🎯</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-green-800">IKZE</h3>
+                <ZusText variant="small" className="text-green-600">
+                  Indywidualne Konto Zabezpieczenia Emerytalnego
+                </ZusText>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <ZusText variant="small" className="text-neutral-600">
+                Ulga podatkowa do 19% od wpłat
+              </ZusText>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-neutral-700">
+                  Miesięczna wpłata IKZE: {ikzeContribution} zł
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  step="50"
+                  value={ikzeContribution}
+                  onChange={(e) => setIkzeContribution(Number(e.target.value))}
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-green-200"
+                />
+                <div className="flex justify-between text-xs text-green-600">
+                  <span>0 zł</span>
+                  <span>1000 zł</span>
+                </div>
+              </div>
+              
+              <div className="p-2 bg-green-100 rounded text-xs text-green-800">
+                💰 Limit roczny: 6760 zł (2024)
+              </div>
+            </div>
+          </div>
+
+          {/* PPE Section */}
+          <div className="space-y-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                <span className="text-orange-600 font-bold">🛡️</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-orange-800">PPE</h3>
+                <ZusText variant="small" className="text-orange-600">
+                  Pracownicze Programy Emerytalne
+                </ZusText>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <ZusText variant="small" className="text-neutral-600">
+                Dodatkowe korzyści od pracodawcy
+              </ZusText>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-neutral-700">
+                  Miesięczna składka PPE: {ppeContribution} zł
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="800"
+                  step="50"
+                  value={ppeContribution}
+                  onChange={(e) => setPpeContribution(Number(e.target.value))}
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-orange-200"
+                />
+                <div className="flex justify-between text-xs text-orange-600">
+                  <span>0 zł</span>
+                  <span>800 zł</span>
+                </div>
+              </div>
+              
+              <div className="p-2 bg-orange-100 rounded text-xs text-orange-800">
+                🏢 Sprawdź dostępność w swoim zakładzie pracy
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Summary */}
+        {totalContributions > 0 && (
+          <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🚀</span>
+              <div className="space-y-1">
+                <h4 className="font-semibold text-neutral-800">
+                  Świetny wybór! Twoje dodatkowe oszczędności emerytalne:
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <span className="text-neutral-600">Miesięczne składki:</span>
+                    <br />
+                    <span className="font-semibold text-green-600">
+                      {totalContributions.toLocaleString()} zł
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-600">Roczne oszczędności:</span>
+                    <br />
+                    <span className="font-semibold text-blue-600">
+                      {(totalContributions * 12).toLocaleString()} zł
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-600">Dodatkowa emerytura:</span>
+                    <br />
+                    <span className="font-semibold text-purple-600">
+                      +{totalImpact.toLocaleString()} zł/mies.
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-600">Łączny czas:</span>
+                    <br />
+                    <span className="font-semibold text-orange-600">
+                      {pensionData.yearsToRetirement} lat
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -430,6 +738,61 @@ function OverviewTile({
         {insight && (
           <div className={`p-3 rounded-lg border text-sm ${getInsightBg()}`}>
             {insight.text}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Sticky Tile Component for the top bar
+interface StickyTileProps {
+  icon: string;
+  title: string;
+  value: string;
+  tone: "primary" | "success" | "accent";
+  progress?: number;
+}
+
+function StickyTile({ icon, title, value, tone, progress }: StickyTileProps) {
+  const getValueColor = () => {
+    switch (tone) {
+      case "success":
+        return "text-green-600";
+      case "accent":
+        return "text-orange-600";
+      default:
+        return "text-blue-600";
+    }
+  };
+
+  const getBgColor = () => {
+    switch (tone) {
+      case "success":
+        return "hover:bg-green-50";
+      case "accent":
+        return "hover:bg-orange-50";
+      default:
+        return "hover:bg-blue-50";
+    }
+  };
+
+  return (
+    <div className={`flex items-center gap-3 p-4 bg-white/80 backdrop-blur rounded-xl border border-gray-200 ${getBgColor()} hover:shadow-md transition-all duration-200 cursor-pointer`}>
+      <span className="text-2xl">{icon}</span>
+      <div className="flex-1 min-w-0">
+        <div className="text-sm font-medium text-neutral-700 truncate">
+          {title}
+        </div>
+        <div className={`text-xl font-bold ${getValueColor()} truncate`}>
+          {value}
+        </div>
+        {progress !== undefined && (
+          <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+            <div
+              className={`bg-current h-1.5 rounded-full transition-all duration-500 ${getValueColor()}`}
+              style={{ width: `${Math.min(progress, 100)}%` }}
+            />
           </div>
         )}
       </div>
