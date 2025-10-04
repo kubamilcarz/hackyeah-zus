@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ZusButton } from "@/components/ui/zus-button";
 import clsx from "clsx";
+import Image from "next/image";
 
 interface ChatMessage {
   id: string;
@@ -114,10 +115,7 @@ export function EmaChat() {
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-sm"
               style={{ backgroundColor: "var(--zus-green)" }}>
-              {/* TODO: Replace with actual Ema SVG icon */}
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-white">
-                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1L9 7V9C9 14 13 16 13 16S17 14 17 9H21Z" fill="currentColor"/>
-              </svg>
+              <Image src="/ema-wiewior.svg" alt="Ema" width={68} height={68} />
             </div>
             <div>
               <h3 className="font-semibold text-base" style={{ color: "rgb(var(--color-text))" }}>
@@ -236,19 +234,7 @@ export function EmaChat() {
           boxShadow: "0 8px 32px rgba(0, 153, 63, 0.3)"
         }}
       >
-        {isOpen ? (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        ) : (
-          <div className="flex flex-col items-center">
-            {/* TODO: Replace with actual Ema SVG icon */}
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white mb-0.5">
-              <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1L9 7V9C9 14 13 16 13 16S17 14 17 9H21Z" fill="currentColor"/>
-            </svg>
-            <span className="text-xs font-bold text-white">EMA</span>
-          </div>
-        )}
+        <Image src="/ema-wiewior.svg" alt="Ema" width={68} height={68} />
       </button>
 
       {/* Notification badge with message count */}
