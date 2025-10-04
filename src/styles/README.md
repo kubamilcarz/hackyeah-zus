@@ -1,122 +1,143 @@
-# ZUS Brand Colors
+# ZUS Design System
 
-This directory contains the ZUS brand color definitions based on the official ZUS Brand Guidelines.
+Kompletny system projektowania zgodny z wytycznymi ZUS zawierający kolory, komponenty UI i style.
 
-## Color Palette
+## Pliki w systemie
 
-The following colors are defined according to the ZUS Brand Guidelines:
+- `zus-colors.css` - Kolory ZUS i zmienne CSS
+- `zus-design-system.css` - Komponenty UI i style
+- `colors.ts` - Definicje kolorów dla JavaScript/TypeScript
+- `README.md` - Ta dokumentacja
 
-1. **Yellow** - RGB(255, 179, 79) - `#FFB34F` - Primary accent color
-2. **Green** - RGB(0, 153, 63) - `#00993F` - Success, positive actions
-3. **Gray** - RGB(190, 195, 206) - `#BEC3CE` - Neutral, secondary text
-4. **Blue** - RGB(63, 132, 210) - `#3F84D2` - Information, links
-5. **Navy** - RGB(0, 65, 110) - `#00416E` - Primary brand color
-6. **Red** - RGB(240, 94, 94) - `#F05E5E` - Errors, warnings
-7. **Black** - RGB(0, 0, 0) - `#000000` - Text, high contrast
+## Kolory ZUS
 
-## Usage
+Następujące kolory są zdefiniowane zgodnie z Księgą Znaku ZUS:
 
-### CSS Variables
+1. **Navy** - RGB(0, 65, 110) - `#00416E` - Główny kolor marki
+2. **Yellow** - RGB(255, 179, 79) - `#FFB34F` - Kolor akcentu
+3. **Blue** - RGB(63, 132, 210) - `#3F84D2` - Informacje, linki
+4. **Green** - RGB(0, 153, 63) - `#00993F` - Sukces, pozytywne akcje
+5. **Red** - RGB(240, 94, 94) - `#F05E5E` - Błędy, ostrzeżenia
+6. **Gray** - RGB(190, 195, 206) - `#BEC3CE` - Neutralny, tekst pomocniczy
+7. **Black** - RGB(0, 0, 0) - `#000000` - Tekst, wysoki kontrast
 
-The colors are available as CSS custom properties:
+## Komponenty UI
 
-```css
-/* Direct ZUS colors */
-background-color: var(--zus-navy);
-color: var(--zus-yellow);
-
-/* Semantic colors */
-background-color: var(--color-primary);
-color: var(--color-secondary);
-```
-
-### CSS Classes
-
-Use predefined utility classes:
-
+### Karty (Cards)
 ```html
-<!-- Background colors -->
-<div class="bg-primary">Primary background</div>
-<div class="zus-bg-navy">ZUS Navy background</div>
-
-<!-- Text colors -->
-<p class="text-success">Success message</p>
-<p class="zus-text-green">Green text</p>
-
-<!-- Border colors -->
-<div class="border-accent border-2">Accent border</div>
+<div class="zus-card">
+  <div class="zus-card-header">Nagłówek</div>
+  <div class="zus-card-body">Treść</div>
+  <div class="zus-card-footer">Stopka</div>
+</div>
 ```
 
-### JavaScript/TypeScript
+Warianty: `zus-card-primary`, `zus-card-secondary`, `zus-card-accent`, `zus-card-success`, `zus-card-warning`, `zus-card-error`, `zus-card-featured`
 
-Import colors for programmatic use:
-
-```typescript
-import { zusColors, semanticColors, chartColors } from '@/styles/colors';
-
-// Use in Chart.js
-const chartConfig = {
-  backgroundColor: chartColors,
-  borderColor: zusColors.navy,
-};
-
-// Use with opacity
-import { withOpacity } from '@/styles/colors';
-const transparentNavy = withOpacity(zusColors.navy, 0.5);
+### Przyciski
+```html
+<button class="zus-btn zus-btn-primary">Przycisk główny</button>
+<button class="zus-btn zus-btn-secondary">Przycisk pomocniczy</button>
+<button class="zus-btn zus-btn-outline">Przycisk obrysowany</button>
 ```
 
-## Semantic Mapping
+Rozmiary: `zus-btn-small`, `zus-btn-large`
 
-- **Primary**: Navy (main brand color)
-- **Secondary**: Yellow (accent color)
-- **Accent**: Blue (interactive elements)
-- **Success**: Green (positive feedback)
-- **Warning**: Yellow (caution)
-- **Error**: Red (negative feedback)
-- **Neutral**: Gray (secondary information)
-
-## Files
-
-- `zus-colors.css` - CSS custom properties and utility classes
-- `colors.ts` - TypeScript/JavaScript color definitions
-- `README.md` - This documentation file
-
-## Examples
-
-### Button Styles
-```css
-.btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--color-primary-medium);
-}
+### Typografia
+```html
+<h1 class="zus-text-display">Display</h1>
+<h1 class="zus-text-h1">Heading 1</h1>
+<h2 class="zus-text-h2">Heading 2</h2>
+<p class="zus-text-body">Tekst podstawowy</p>
+<p class="zus-text-small">Mały tekst</p>
 ```
 
-### Chart Usage
+### Etykiety (Badges)
+```html
+<span class="zus-badge zus-badge-primary">Primary</span>
+<span class="zus-badge zus-badge-success">Sukces</span>
+```
+
+### Alerty
+```html
+<div class="zus-alert zus-alert-info">
+  <div class="zus-alert-title">Tytuł</div>
+  Treść alertu
+</div>
+```
+
+### Formularze
+```html
+<label class="zus-label">Etykieta</label>
+<input class="zus-input" type="text" placeholder="Pole tekstowe">
+<select class="zus-select">...</select>
+<textarea class="zus-textarea">...</textarea>
+```
+
+### Tabele
+```html
+<table class="zus-table">
+  <thead>
+    <tr><th>Nagłówek</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Komórka</td></tr>
+  </tbody>
+</table>
+```
+
+## Komponenty React
+
+System zawiera również kompletny zestaw komponentów React:
+
+```tsx
+import {
+  ZusCard,
+  ZusCardHeader,
+  ZusCardBody,
+  ZusButton,
+  ZusBadge,
+  ZusAlert,
+  ZusInput,
+  ZusHeading,
+  ZusText
+} from '@/components';
+
+// Przykład użycia
+<ZusCard variant="primary">
+  <ZusCardHeader>
+    <ZusHeading level={2}>Tytuł karty</ZusHeading>
+  </ZusCardHeader>
+  <ZusCardBody>
+    <ZusText>Treść karty</ZusText>
+    <ZusButton variant="primary">Akcja</ZusButton>
+  </ZusCardBody>
+</ZusCard>
+```
+
+## Warianty semantyczne
+
+- **Primary**: Navy (główny kolor marki)
+- **Secondary**: Yellow (kolor akcentu)
+- **Accent**: Blue (elementy interaktywne)
+- **Success**: Green (pozytywne informacje)
+- **Warning**: Yellow (ostrzeżenia)
+- **Error**: Red (błędy)
+- **Neutral**: Gray (informacje pomocnicze)
+
+## Wykorzystanie z Chart.js
+
 ```typescript
 import { chartColorsHex } from '@/styles/colors';
 
 const chartData = {
   datasets: [{
     backgroundColor: chartColorsHex,
-    // ... other config
+    borderColor: chartColorsHex[0],
   }]
 };
 ```
 
-### Conditional Styling
-```typescript
-import { semanticColors } from '@/styles/colors';
+## Demo
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case 'success': return semanticColors.success;
-    case 'error': return semanticColors.error;
-    case 'warning': return semanticColors.warning;
-    default: return semanticColors.neutral;
-  }
-};
-```
+Pełne demo wszystkich komponentów znajduje się w `ZusDesignSystemDemo.tsx`.
