@@ -531,24 +531,57 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist
 ;
 ;
 function ZusSelect(param) {
-    let { id, value, onChange, options, className } = param;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-        id: id,
-        value: value,
-        onChange: (e)=>onChange(e.target.value),
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("zus-select w-full h-11 rounded-md border border-[#2E6AA2] focus:ring-2 focus:ring-[#2E6AA2] focus:outline-none px-3 text-[15px]", className),
-        children: options.map((opt)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                value: opt.value,
-                children: opt.label
-            }, opt.value, false, {
+    let { id, label, value, onChange, options, className, hintText } = param;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(className),
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                htmlFor: id,
+                className: "block text-[14px] font-medium text-neutral-800",
+                children: label
+            }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-select.tsx",
-                lineNumber: 28,
-                columnNumber: 9
-            }, this))
-    }, void 0, false, {
+                lineNumber: 21,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "mt-2 relative",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                    id: id,
+                    value: value,
+                    onChange: (e)=>onChange(e.target.value),
+                    className: "w-full h-11 rounded-md border border-[#2E6AA2] focus:ring-2 focus:ring-[#2E6AA2] focus:outline-none px-3 pr-2 text-[15px]",
+                    children: options.map((opt)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                            value: opt.value,
+                            children: opt.label
+                        }, opt.value, false, {
+                            fileName: "[project]/src/components/ui/zus-select.tsx",
+                            lineNumber: 32,
+                            columnNumber: 25
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/zus-select.tsx",
+                    lineNumber: 25,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/zus-select.tsx",
+                lineNumber: 24,
+                columnNumber: 13
+            }, this),
+            hintText && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "mt-1 text-[13px] font-medium text-neutral-600 text-right",
+                children: hintText
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/zus-select.tsx",
+                lineNumber: 39,
+                columnNumber: 17
+            }, this)
+        ]
+    }, void 0, true, {
         fileName: "[project]/src/components/ui/zus-select.tsx",
-        lineNumber: 18,
-        columnNumber: 5
+        lineNumber: 20,
+        columnNumber: 9
     }, this);
 }
 _c = ZusSelect;
@@ -973,50 +1006,51 @@ function SignUpFormPage() {
             workStartYear: String(startYear),
             retireYear: String(retireYear)
         });
-        router.push("/simulator?".concat(q.toString()));
+        router.push("/missingData?".concat(q.toString()));
     }
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-        onSubmit: onSubmit,
-        noValidate: true,
-        className: "bg-white rounded-2xl",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "grid grid-cols-1 md:grid-cols-17",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "p-6 md:p-8 flex flex-col gap-4 md:col-span-8",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col mb-4",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]",
-                                    children: "Twoje dane"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 73,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$text$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
-                                    className: "mt-2 text-neutral-700",
-                                    children: "Wypełnij podstawowe informacje demograficzne. Te dane pomogą nam lepiej dopasować prognozę i porównania kontekstowe."
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 77,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 72,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-row gap-6",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex flex-col",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "min-h-screen max-w-6xl mx-auto py-12 px-4",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+            onSubmit: onSubmit,
+            noValidate: true,
+            className: "bg-white rounded-2xl",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "grid grid-cols-1 md:grid-cols-17",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "p-6 md:p-8 flex flex-col gap-8 md:col-span-8",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-col",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]",
+                                        children: "Twoje dane"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 74,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$text$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
+                                        className: "mt-2 text-neutral-700",
+                                        children: "Wypełnij podstawowe informacje demograficzne. Te dane pomogą nam lepiej dopasować prognozę i porównania kontekstowe."
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 78,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 73,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-row gap-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col items-stretch flex-1",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
                                             id: "age",
                                             label: "Wiek",
                                             type: "number",
@@ -1025,234 +1059,193 @@ function SignUpFormPage() {
                                             step: 1,
                                             value: age,
                                             onChange: (e)=>setAge(parseInt(e.target.value || "0", 10)),
-                                            className: "w-40",
-                                            required: true
+                                            required: true,
+                                            hintAction: {
+                                                label: "Minimalny wiek: 16 lat.",
+                                                onClick: (e)=>e.preventDefault()
+                                            }
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/signup/page.tsx",
-                                            lineNumber: 86,
-                                            columnNumber: 13
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "zus-text-small mt-1 text-gray-700",
-                                            children: "Minimalny wiek: 16 lat."
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/signup/page.tsx",
-                                            lineNumber: 98,
-                                            columnNumber: 13
+                                            lineNumber: 87,
+                                            columnNumber: 17
                                         }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 84,
-                                    columnNumber: 9
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex flex-col items-stretch",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            htmlFor: "sex",
-                                            className: "block text-[14px] font-medium text-neutral-800",
-                                            children: "Płeć"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/signup/page.tsx",
-                                            lineNumber: 104,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
-                                            options: [
-                                                {
-                                                    value: "F",
-                                                    label: "Kobieta"
-                                                },
-                                                {
-                                                    value: "M",
-                                                    label: "Mężczyzna"
-                                                }
-                                            ],
-                                            value: sex,
-                                            onChange: setSex,
-                                            className: "zus-select w-48 mt-2"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/signup/page.tsx",
-                                            lineNumber: 107,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 103,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 83,
-                            columnNumber: 1
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
-                                    id: "salary",
-                                    label: "Pensja brutto (PLN / m-c)",
-                                    type: "number",
-                                    min: 0,
-                                    step: 500,
-                                    value: Number.isFinite(salary) ? salary : 0,
-                                    onChange: onSalaryChange,
-                                    onKeyDown: onSalaryKeyDown,
-                                    className: "w-56",
-                                    "aria-describedby": "salary-help",
-                                    required: true
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 121,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    id: "salary-help",
-                                    className: "zus-text-small mt-1 text-gray-700",
-                                    children: "Strzałki ↑/↓ zmieniają kwotę o 500."
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 134,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 120,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                    htmlFor: "startYear",
-                                    className: "block text-[14px] font-medium text-neutral-800",
-                                    children: "Rok rozpoczęcia pracy"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 144,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
-                                    options: YEARS.map((y)=>({
-                                            value: y.toString(),
-                                            label: y.toString()
-                                        })),
-                                    id: "startYear",
-                                    value: startYear,
-                                    onChange: (value)=>setStartYear(parseInt(value, 10)),
-                                    className: "zus-select w-48 mt-2"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 147,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 143,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                    htmlFor: "retireYear",
-                                    className: "block text-[14px] font-medium text-neutral-800",
-                                    children: "Planowany rok przejścia na emeryturę"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 158,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
-                                    options: RETIRE_YEARS.map((y)=>({
-                                            value: y.toString(),
-                                            label: y.toString()
-                                        })),
-                                    id: "retireYear",
-                                    value: retireYear,
-                                    onChange: (value)=>setRetireYear(parseInt(value, 10)),
-                                    className: "zus-select w-56 mt-2"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 161,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "zus-text-small mt-1 text-neutral-600",
-                                    children: "Musi być później niż rok rozpoczęcia pracy."
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/signup/page.tsx",
-                                    lineNumber: 169,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 157,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
-                            type: "submit",
-                            className: "mt-6 w-40 ml-auto",
-                            children: "Kontynuuj"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 174,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/app/signup/page.tsx",
-                    lineNumber: 71,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col items-center justify-center my-6 md:col-span-1",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-px h-20 bg-gray-300"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 181,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "py-4 text-sm text-gray-500 font-medium",
-                            children: "LUB"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 182,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-px h-20 bg-gray-300"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 183,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/app/signup/page.tsx",
-                    lineNumber: 180,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "md:col-span-8",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$pue$2f$pue$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PueLoginPanel"], {}, void 0, false, {
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 85,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
+                                        options: [
+                                            {
+                                                value: "F",
+                                                label: "Kobieta"
+                                            },
+                                            {
+                                                value: "M",
+                                                label: "Mężczyzna"
+                                            }
+                                        ],
+                                        label: "Płeć",
+                                        value: sex,
+                                        onChange: setSex,
+                                        className: "flex-1"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 104,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 84,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
+                                id: "salary",
+                                label: "Pensja brutto (PLN / m-c)",
+                                type: "number",
+                                min: 0,
+                                step: 500,
+                                value: Number.isFinite(salary) ? salary : 0,
+                                onChange: onSalaryChange,
+                                onKeyDown: onSalaryKeyDown,
+                                "aria-describedby": "salary-help",
+                                required: true,
+                                hintAction: {
+                                    label: "trzałki ↑/↓ zmieniają kwotę o 500.",
+                                    onClick: (e)=>e.preventDefault()
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 117,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                        htmlFor: "startYear",
+                                        className: "block text-[14px] font-medium text-neutral-800",
+                                        children: "Rok rozpoczęcia pracy"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 136,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
+                                        options: YEARS.map((y)=>({
+                                                value: y.toString(),
+                                                label: y.toString()
+                                            })),
+                                        id: "startYear",
+                                        value: startYear,
+                                        onChange: (value)=>setStartYear(parseInt(value, 10))
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 142,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 135,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                        htmlFor: "retireYear",
+                                        className: "block text-[14px] font-medium text-neutral-800",
+                                        children: "Planowany rok przejścia na emeryturę"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 155,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
+                                        options: RETIRE_YEARS.map((y)=>({
+                                                value: y.toString(),
+                                                label: y.toString()
+                                            })),
+                                        id: "retireYear",
+                                        value: retireYear,
+                                        onChange: (value)=>setRetireYear(parseInt(value, 10)),
+                                        hintText: "Musi być później niż rok rozpoczęcia pracy."
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/signup/page.tsx",
+                                        lineNumber: 161,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 154,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
+                                type: "submit",
+                                className: "mt-6 w-40 ml-auto",
+                                children: "Kontynuuj"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 173,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/signup/page.tsx",
-                        lineNumber: 188,
-                        columnNumber: 9
+                        lineNumber: 72,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col items-center justify-center my-6 md:col-span-1",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-px h-20 bg-gray-300"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 180,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "py-4 text-sm text-gray-500 font-medium",
+                                children: "LUB"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 181,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-px h-20 bg-gray-300"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/signup/page.tsx",
+                                lineNumber: 182,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/signup/page.tsx",
+                        lineNumber: 179,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "md:col-span-8",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$pue$2f$pue$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PueLoginPanel"], {}, void 0, false, {
+                            fileName: "[project]/src/app/signup/page.tsx",
+                            lineNumber: 186,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/signup/page.tsx",
+                        lineNumber: 185,
+                        columnNumber: 11
                     }, this)
-                }, void 0, false, {
-                    fileName: "[project]/src/app/signup/page.tsx",
-                    lineNumber: 187,
-                    columnNumber: 1
-                }, this)
-            ]
-        }, void 0, true, {
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/signup/page.tsx",
+                lineNumber: 70,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
             fileName: "[project]/src/app/signup/page.tsx",
             lineNumber: 69,
             columnNumber: 7

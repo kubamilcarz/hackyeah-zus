@@ -28,9 +28,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="bg-gray-50 m-0">
-          <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
-            {children}
-          </div>
+          
+          {children}
 
           <footer className="text-center py-4 text-sm text-gray-500">
           &copy; Trap Stars for ZUS 2025
