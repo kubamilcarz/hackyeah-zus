@@ -69,20 +69,32 @@ if (next !== "regular") document.documentElement.classList.add(next);
   /* --- Render --- */
   if (collapsed) {
     return (
-      <button
-        type="button"
-        onClick={toggleCollapse}
-        className="fixed top-3 right-3 z-50 border shadow-sm px-3 py-1.5 rounded-full text-sm font-medium focus-visible:ring-2"
-        style={{
-          backgroundColor: `rgb(var(--color-card) / 0.9)`,
-          color: `rgb(var(--color-text))`,
-          borderColor: `rgb(var(--color-text) / 0.2)`,
-        }}
-        aria-label="Pokaż ustawienia dostępności"
-      >
-        ⚙ Dostępność
-      </button>
-    );
+  <button
+    type="button"
+    onClick={toggleCollapse}
+    className={clsx(
+      "fixed top-3 right-3 z-50 flex items-center gap-2 border font-semibold transition-all",
+      "rounded-md px-3.5 py-2 text-[15px] focus-visible:ring-2 focus-visible:ring-offset-2",
+      "shadow-sm hover:shadow-md active:scale-[0.98]"
+    )}
+    style={{
+      backgroundColor: `rgb(var(--color-card))`,
+      color: `rgb(var(--color-text))`,
+      borderColor: `rgb(var(--color-accent) / 0.8)`,
+      fontSize: `calc(14px * var(--font-scale))`,
+    }}
+    aria-label="Pokaż ustawienia dostępności"
+  >
+    <span
+      className="text-[18px]"
+      aria-hidden
+      style={{ color: `rgb(var(--color-accent))` }}
+    >
+      ⚙
+    </span>
+    <span className="tracking-tight">Dostępność</span>
+  </button>
+);
   }
 
   return (

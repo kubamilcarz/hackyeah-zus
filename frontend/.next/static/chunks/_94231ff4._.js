@@ -70,18 +70,40 @@ function ContrastToggle() {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
             type: "button",
             onClick: toggleCollapse,
-            className: "fixed top-3 right-3 z-50 border shadow-sm px-3 py-1.5 rounded-full text-sm font-medium focus-visible:ring-2",
+            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("fixed top-3 right-3 z-50 flex items-center gap-2 border font-semibold transition-all", "rounded-md px-3.5 py-2 text-[15px] focus-visible:ring-2 focus-visible:ring-offset-2", "shadow-sm hover:shadow-md active:scale-[0.98]"),
             style: {
-                backgroundColor: "rgb(var(--color-card) / 0.9)",
+                backgroundColor: "rgb(var(--color-card))",
                 color: "rgb(var(--color-text))",
-                borderColor: "rgb(var(--color-text) / 0.2)"
+                borderColor: "rgb(var(--color-accent) / 0.8)",
+                fontSize: "calc(14px * var(--font-scale))"
             },
             "aria-label": "Pokaż ustawienia dostępności",
-            children: "⚙ Dostępność"
-        }, void 0, false, {
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-[18px]",
+                    "aria-hidden": true,
+                    style: {
+                        color: "rgb(var(--color-accent))"
+                    },
+                    children: "⚙"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/constrast-toggle.tsx",
+                    lineNumber: 88,
+                    columnNumber: 5
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "tracking-tight",
+                    children: "Dostępność"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/constrast-toggle.tsx",
+                    lineNumber: 95,
+                    columnNumber: 5
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/src/components/constrast-toggle.tsx",
             lineNumber: 72,
-            columnNumber: 7
+            columnNumber: 3
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -104,7 +126,7 @@ function ContrastToggle() {
                         children: "Dostępność"
                     }, void 0, false, {
                         fileName: "[project]/src/components/constrast-toggle.tsx",
-                        lineNumber: 98,
+                        lineNumber: 110,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -118,13 +140,13 @@ function ContrastToggle() {
                         children: "✕"
                     }, void 0, false, {
                         fileName: "[project]/src/components/constrast-toggle.tsx",
-                        lineNumber: 107,
+                        lineNumber: 119,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                lineNumber: 97,
+                lineNumber: 109,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -140,7 +162,7 @@ function ContrastToggle() {
                                 onClick: ()=>setAndStoreMode("regular")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 123,
+                                lineNumber: 135,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ToggleBtn, {
@@ -154,7 +176,7 @@ function ContrastToggle() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 124,
+                                lineNumber: 136,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ToggleBtn, {
@@ -168,7 +190,7 @@ function ContrastToggle() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 125,
+                                lineNumber: 137,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -179,7 +201,7 @@ function ContrastToggle() {
                                 "aria-hidden": true
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 127,
+                                lineNumber: 139,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ToggleBtn, {
@@ -189,7 +211,7 @@ function ContrastToggle() {
                                 disabled: scale <= 0.6
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 134,
+                                lineNumber: 146,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ToggleBtn, {
@@ -199,7 +221,7 @@ function ContrastToggle() {
                                 onClick: resetFont
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 140,
+                                lineNumber: 152,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ToggleBtn, {
@@ -209,13 +231,13 @@ function ContrastToggle() {
                                 disabled: scale >= 2.5
                             }, void 0, false, {
                                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                                lineNumber: 146,
+                                lineNumber: 158,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/constrast-toggle.tsx",
-                        lineNumber: 121,
+                        lineNumber: 133,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -235,24 +257,24 @@ function ContrastToggle() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/constrast-toggle.tsx",
-                            lineNumber: 156,
+                            lineNumber: 168,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/constrast-toggle.tsx",
-                        lineNumber: 155,
+                        lineNumber: 167,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/constrast-toggle.tsx",
-                lineNumber: 120,
+                lineNumber: 132,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/constrast-toggle.tsx",
-        lineNumber: 89,
+        lineNumber: 101,
         columnNumber: 5
     }, this);
 }
@@ -281,7 +303,7 @@ _c = ContrastToggle;
         children: label
     }, void 0, false, {
         fileName: "[project]/src/components/constrast-toggle.tsx",
-        lineNumber: 195,
+        lineNumber: 207,
         columnNumber: 5
     }, this);
 }

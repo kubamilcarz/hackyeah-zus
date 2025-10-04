@@ -31,17 +31,24 @@ function PreloadContrast() {
   );
 }
 
-
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="pl">
       <head>
         <PreloadContrast />
       </head>
       <body className="antialiased">
-        <ContrastToggle />
         <div className="min-h-screen bg-zus-bg text-zus-text transition-colors duration-300">
+          <div className="bg-white border-b border-gray-200">
+            <div className="max-w-6xl ml-auto px-4 py-9">
+              <ContrastToggle />
+            </div>
+          </div>
+
           {children}
         </div>
         <EmaChat />
