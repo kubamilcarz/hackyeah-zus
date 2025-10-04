@@ -25,16 +25,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-amber-600`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-            <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-zus-black mb-2">Kalkulator Emerytalny ZUS</h1>
-          <p className="text-zus-gray">
-            Zaplanuj swoją przyszłość finansową i dowiedz się, jaka będzie Twoja emerytura
-          </p>
-        </div>
-        {children}
+        <div className="bg-gray-50 m-0">
+          <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
+            {children}
+          </div>
+
+          <footer className="text-center py-4 text-sm text-gray-500">
+          &copy; Trap Stars for ZUS 2025
+        </footer>
         </div>
       </body>
     </html>
