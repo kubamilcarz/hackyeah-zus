@@ -1715,6 +1715,10 @@
     color: var(--color-yellow-600);
   }
 
+  .text-zus-navy {
+    color: var(--zus-navy);
+  }
+
   .underline {
     -webkit-text-decoration-line: underline;
     text-decoration-line: underline;

@@ -12,7 +12,6 @@ import {
   ZusBadge,
   ZusAlert,
 } from "@/components/zus-ui";
-import { ZusBrandBar } from "@/components/ui/zus-brand-bar";
 
 function fmtPLN(n: number) {
   return new Intl.NumberFormat("pl-PL", {
@@ -67,9 +66,6 @@ export default function WelcomeStart() {
       <div className="max-w-6xl mx-auto py-8 px-4">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <ZusBadge variant="primary" className="mb-4">
-            Oficjalny symulator ZUS
-          </ZusBadge>
           <ZusHeading level={1} className="mb-4">
             Symulator Emerytury ZUS
           </ZusHeading>
@@ -99,16 +95,19 @@ export default function WelcomeStart() {
         <div className="max-w-4xl mx-auto">
           {/* Primary Calculator Section */}
           <div className="mb-8">
-            <ZusCard variant="featured">
-              <ZusCardBody>
-                <div className="p-8 space-y-8">
+                <div 
+                  className="p-8 space-y-8 rounded-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0, 65, 110, 0.1) 0%, rgba(63, 132, 210, 0.05) 100%)',
+                  }}
+                >
                   {/* Input Section */}
                   <div className="text-center space-y-6">
                     <div>
-                      <ZusHeading level={2} className="text-white mb-4">
+                      <ZusHeading level={2} className="mb-4 text-zus-navy">
                         Zacznij od swojego celu
                       </ZusHeading>
-                      <ZusText className="text-blue-100 text-lg">
+                      <ZusText className="text-lg text-gray-700">
                         Podaj kwotę emerytury, o której marzysz. Sprawdzimy, jak ją osiągnąć.
                       </ZusText>
                     </div>
@@ -131,31 +130,6 @@ export default function WelcomeStart() {
                           onClick: (e) => e.preventDefault(),
                         }}
                       />
-                    </div>
-
-                    {/* Quick presets using ZUS colors */}
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {[2000, 3000, 4000, 5000, 6000].map((preset) => (
-                        <button
-                          key={preset}
-                          type="button"
-                          className="px-4 py-2 text-sm rounded-full transition-colors"
-                          style={{
-                            backgroundColor: 'rgba(255, 179, 79, 0.2)',
-                            color: 'rgb(0, 65, 110)',
-                            border: '1px solid rgba(255, 179, 79, 0.4)'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(255, 179, 79, 0.3)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(255, 179, 79, 0.2)';
-                          }}
-                          onClick={() => setValue(preset)}
-                        >
-                          {fmtPLN(preset)}
-                        </button>
-                      ))}
                     </div>
                   </div>
 
@@ -193,7 +167,7 @@ export default function WelcomeStart() {
                     </div>
 
                     {/* Insight */}
-                    <ZusAlert variant="info" title="Wskazówka eksperta">
+                    <ZusAlert variant="info" title="💡 Wskazówka eksperta">
                       {ciekawostkaText}
                     </ZusAlert>
                   </div>
@@ -201,7 +175,7 @@ export default function WelcomeStart() {
                   {/* CTA */}
                   <div className="text-center">
                     <ZusButton
-                      variant="secondary"
+                      variant="primary"
                       size="large"
                       type="button"
                       className="w-full max-w-md font-semibold"
@@ -211,13 +185,11 @@ export default function WelcomeStart() {
                     >
                       Rozpocznij szczegółową symulację
                     </ZusButton>
-                    <p className="text-sm text-blue-100 mt-3">
+                    <p className="text-sm text-gray-600 mt-3">
                       Bezpłatne • Zabiera 5 minut • Natychmiastowe wyniki
                     </p>
                   </div>
                 </div>
-              </ZusCardBody>
-            </ZusCard>
           </div>
 
           {/* Subtle Benefits Section - Less Overwhelming */}
