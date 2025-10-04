@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { useSearchParams } from "next/navigation";
-import { ZusCard, ZusText, ZusButton } from "@/components/zus-ui";
+import { useSearchParams, useRouter } from "next/navigation";
+import { ZusText, ZusButton } from "@/components/zus-ui";
 
 function fmtPLN(n: number) {
   return new Intl.NumberFormat("pl-PL", {
@@ -14,6 +14,7 @@ function fmtPLN(n: number) {
 
 export default function ResultPage() {
   const params = useSearchParams();
+  const router = useRouter();
 
   const zusPension = Number(params.get("zusPension") ?? 2964);
   const realToday = Number(params.get("realPowerToday") ?? 2075);
@@ -24,7 +25,7 @@ export default function ResultPage() {
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto py-12 px-4">
-    <div className="bg-white rounded-2xl">
+    <div className="bg-zus-card rounded-2xl">
         <div className="p-8 md:p-10 space-y-10">
           {/* Header */}
           <header className="space-y-2 text-center">
@@ -59,8 +60,8 @@ export default function ResultPage() {
           </div>
 
           {/* Conclusions / Wnioski */}
-          <section className="bg-gray-50 rounded-xl p-6 space-y-4">
-            <h2 className="text-[18px] md:text-[20px] font-semibold text-neutral-900">
+          <section className="bg-zus-bg rounded-xl p-6 space-y-4">
+            <h2 className="text-[18px] md:text-[20px] font-semibold text-neutral-700">
               Wnioski
             </h2>
 
@@ -86,7 +87,12 @@ export default function ResultPage() {
             <ZusButton variant="primary" type="button" className="px-8">
               Pobierz raport PDF
             </ZusButton>
-            <ZusButton variant="ghost" type="button" className="px-8">
+            <ZusButton 
+              variant="ghost" 
+              type="button" 
+              className="px-8" 
+              onClick={() => router.push("/")}
+            >
               Zacznij od nowa
             </ZusButton>
           </div>
@@ -112,8 +118,8 @@ function Tile({
     tone === "success"
       ? "bg-[var(--color-zus-green-bg)]"
       : tone === "neutral"
-      ? "bg-neutral-100"
-      : "bg-[#F3F6FA]";
+      ? "bg-card/20"
+      : "bg-zus-bg";
   const titleColor =
     tone === "success"
       ? "text-[var(--zus-green)]"

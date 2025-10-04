@@ -22,7 +22,7 @@ export function ZusInput({
 }: BaseProps & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className={clsx(className)}>
-      <label htmlFor={id} className="block text-[14px] font-medium text-neutral-800">
+      <label htmlFor={id} className="block text-[14px] font-medium text-neutral-700">
         {label}
       </label>
       <div className="mt-2 relative">
@@ -36,7 +36,7 @@ export function ZusInput({
         {hintAction ? (
           <a
             href={hintAction.href ?? "#"}
-            className="absolute -right-1 -bottom-6 text-[13px] font-medium"
+            className="absolute -right-1 -bottom-6 text-[13px] font-medium text-neutral-600"
             style={{ color: "rgb(var(--zus-blue))" }}
             onClick={(e) => {
               if (!hintAction.href) e.preventDefault();

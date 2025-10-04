@@ -40,7 +40,7 @@ function CertIcon() {
 
 export function PueLoginPanel() {
   return (
-    <ZusCard className="p-6 md:p-8 bg-white">
+    <ZusCard className="p-6 md:p-8 bg-zus-card">
       {/* Top brand line */}
       <ZusCardHeader>
         <ZusBrandBar />

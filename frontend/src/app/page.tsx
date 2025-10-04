@@ -4,7 +4,6 @@ import React, { useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   ZusButton,
-  ZusCard,
   ZusCardBody,
   ZusText,
   ZusInput,
@@ -60,15 +59,15 @@ export default function WelcomeStart() {
   const maxForScale = Math.max(minVal, avgVal, yourVal) || 1;
 
   return (
-    <div className="min-h-screen max-w-5xl mx-auto py-14 px-5">
-      <ZusCard className="rounded-2xl overflow-hidden">
+    <div className="min-h-screen max-w-3xl mx-auto py-12 px-4">
+    <div className="bg-zus-card rounded-2xl">
         <div className="p-8 md:p-12 space-y-8">
           {/* Headline */}
           <div className="text-center space-y-3">
             <h1 className="text-[28px] md:text-[32px] leading-tight font-semibold text-[rgb(var(--zus-black))]">
               Zbuduj spokojny obraz swojej emerytury
             </h1>
-            <ZusText className="text-neutral-700">
+            <ZusText className="text-zus-secondary">
               Zaczniemy od Twoich oczekiwań — później dopasujemy plan i pokażemy, jak do nich dojść.
             </ZusText>
           </div>
@@ -107,22 +106,22 @@ export default function WelcomeStart() {
 
           {/* Interactive comparison (replaces chart) */}
           <ZusCardBody>
-            <div className="bg-gray-50 rounded-xl p-6 md:p-7 space-y-5">
+            <div className="bg-zus rounded-xl p-6 md:p-7 space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-3">
-                <h3 className="text-[16px] font-semibold text-neutral-900">Jak to wygląda w porównaniu?</h3>
+                <h3 className="text-[16px] font-semibold text-neutral-700">Jak to wygląda w porównaniu?</h3>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-neutral-700">Widok:</span>
-                  <div className="flex items-center gap-1 bg-white border rounded-md p-1">
+                  <span className="text-sm text-zus-secondary">Widok:</span>
+                  <div className="flex items-center gap-1 bg-zus-bg border rounded-md p-1">
                     <button
                       type="button"
-                      className={`px-3 py-1.5 rounded ${!netto ? "bg-[#EBF2F9] text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-100"}`}
+                      className={`px-3 py-1.5 rounded ${!netto ? "bg-zus-card text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-600"}`}
                       onClick={() => setNetto(false)}
                     >
                       Brutto
                     </button>
                     <button
                       type="button"
-                      className={`px-3 py-1.5 rounded ${netto ? "bg-[#EBF2F9] text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-100"}`}
+                      className={`px-3 py-1.5 rounded ${netto ? "bg-zus-card text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-600"}`}
                       onClick={() => setNetto(true)}
                     >
                       Netto
@@ -162,7 +161,7 @@ export default function WelcomeStart() {
             </ZusButton>
           </div>
         </div>
-      </ZusCard>
+      </div>
     </div>
   );
 }
@@ -181,13 +180,13 @@ function InfoChip({
   const base = "rounded-lg p-4 text-center";
   const styles =
     tone === "primary"
-      ? "bg-[#F3F6FA] text-[rgb(var(--zus-black))]"
+      ? "bg-zus-green-bg text-[rgb(var(--zus-black))]"
       : tone === "soft"
-      ? "bg-[#EBF7EE] text-neutral-800"
-      : "bg-neutral-100 text-neutral-800";
+      ? "bg-zus-bg text-neutral-700"
+      : "bg-zus-bg text-neutral-700";
   return (
     <div className={`${base} ${styles}`}>
-      <div className="text-[13px] font-medium text-neutral-700">{label}</div>
+      <div className="text-[13px] font-medium text-zus-secondary">{label}</div>
       <div className="mt-1 text-xl font-semibold">{value}</div>
     </div>
   );
@@ -221,7 +220,7 @@ function ComparisonBar({
         <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-neutral-800"}`}>
           {label}
         </span>
-        <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-neutral-700"}`}>
+        <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-zus-secondary"}`}>
           {fmtPLN(value)}
         </span>
       </div>

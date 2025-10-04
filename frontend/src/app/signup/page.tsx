@@ -66,7 +66,7 @@ export default function SignUpFormPage() {
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto py-12 px-4">
-      <form onSubmit={onSubmit} noValidate className="bg-white rounded-2xl">
+      <form onSubmit={onSubmit} noValidate className="bg-zus-card rounded-2xl">
         <div className="grid grid-cols-1 md:grid-cols-17">
           {/* LEFT: Demographics */}
           <div className="p-6 md:p-8 flex flex-col gap-8 md:col-span-8">
@@ -75,7 +75,7 @@ export default function SignUpFormPage() {
                 Twoje dane
               </h2>
 
-              <ZusText className="mt-2 text-neutral-700">
+              <ZusText className="mt-2 text-neutral-600">
                 Wypełnij podstawowe informacje demograficzne. Te dane pomogą nam
                 lepiej dopasować prognozę i porównania kontekstowe.
               </ZusText>

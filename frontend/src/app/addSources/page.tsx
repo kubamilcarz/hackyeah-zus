@@ -80,7 +80,7 @@ export default function SavingsScreen() {
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto py-12 px-4">
-    <div className="bg-white rounded-2xl">
+    <div className="bg-zus-card rounded-2xl">
         <div className="p-6 md:p-8 lg:p-10 space-y-8">
           <header className="space-y-2 text-center">
             <h1 className="text-[24px] md:text-[28px] font-semibold text-[rgb(var(--zus-black))]">
@@ -99,7 +99,7 @@ export default function SavingsScreen() {
           </div>
 
           {/* Savings section */}
-          <section className="mt-2 bg-gray-50 p-6 rounded-xl">
+          <section className="mt-2 bg-zus-bg p-6 rounded-xl">
             <h2 className="text-center text-[18px] md:text-[20px] font-semibold text-neutral-900">
               Czy oszczędzasz dodatkowo na emeryturę?
             </h2>
@@ -209,7 +209,7 @@ function Tile({
   tone?: "primary" | "success";
 }) {
   const isSuccess = tone === "success";
-  const bgColor = isSuccess ? "bg-[var(--color-zus-green-bg)]" : "bg-[#F3F6FA]";
+  const bgColor = isSuccess ? "bg-[var(--color-zus-green-bg)]" : "bg-zus-bg";
   const titleColor = isSuccess ? "text-[var(--zus-green)]" : "text-[#2E6AA2]";
 
   const circlesColor = isSuccess ? "fill-[var(--zus-green)]/5" : "fill-[#2E6AA2]/5";
@@ -258,14 +258,14 @@ function SavingsCard({
 }) {
   return (
     <div 
-      className={`rounded-xl border p-5 cursor-pointer transition-colors ${
-        checked ? 'border-[#2E6AA2] bg-blue-50' : 'hover:bg-gray-50 bg-white'
+      className={`rounded-xl border border-zus p-5 cursor-pointer transition-colors ${
+        checked ? 'border-[#2E6AA2] bg-blue/100' : 'hover:bg-zus-card bg-zus-bg'
       }`}
       onClick={() => onToggle(!checked)}
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <div className="text-[15px] font-semibold text-neutral-900">{title}</div>
+          <div className="text-[15px] font-semibold text-neutral-700">{title}</div>
           <p className="zus-text-small mt-1 text-neutral-700">{description}</p>
         </div>
 

@@ -10,8 +10,10 @@ const config: Config = {
         serif: ["var(--font-serif)", "serif"],
       },
       colors: {
-        "bookie-bg": "rgb(var(--bookie-bg) / <alpha-value>)",
-        "bookie-orange": "rgb(var(--bookie-orange) / <alpha-value>)",
+        'zus-bg': 'rgb(var(--color-bg) / <alpha-value>)',
+        'zus-text': 'rgb(var(--color-text) / <alpha-value>)',
+        'zus-accent': 'rgb(var(--color-accent) / <alpha-value>)',
+        'zus-card': 'rgb(var(--color-card) / <alpha-value>)',
       },
     },
   },

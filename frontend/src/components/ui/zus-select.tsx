@@ -18,7 +18,7 @@ type Props = {
 export function ZusSelect({ id, label, value, onChange, options, className, hintText }: Props) {
     return (
         <div className={clsx(className)}>
-            <label htmlFor={id} className="block text-[14px] font-medium text-neutral-800">
+            <label htmlFor={id} className="block text-[14px] font-medium text-neutral-700">
                 {label}
             </label>
             <div className="mt-2 relative">

@@ -143,6 +143,7 @@ export const ZusAlert: React.FC<ZusAlertProps> = ({ children, variant = 'info', 
 };
 
 export interface ZusInputProps {
+  id?: string;
   label?: string;
   placeholder?: string;
   value?: string;
@@ -155,6 +156,7 @@ export interface ZusInputProps {
 }
 
 export const ZusInput: React.FC<ZusInputProps> = ({ 
+  id,
   label, 
   placeholder, 
   value, 
@@ -174,6 +176,7 @@ export const ZusInput: React.FC<ZusInputProps> = ({
         </label>
       )}
       <input
+        id={id}
         type={type}
         placeholder={placeholder}
         value={value}

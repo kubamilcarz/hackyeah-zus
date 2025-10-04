@@ -91,7 +91,7 @@ export default function ExtraDataPage() {
 
   return (
     <div className="min-h-screen max-w-3xl mx-auto py-12 px-4">
-    <div className="bg-white rounded-2xl">
+    <div className="bg-zus-card rounded-2xl">
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <div>
           <h2 className="mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]">
@@ -105,7 +105,7 @@ export default function ExtraDataPage() {
         </div>
 
         {/* Funds now – progressive disclosure, unified button styles */}
-        <div className="bg-gray-50 p-4 rounded-md space-y-3">
+        <div className="bg-zus-bg p-4 rounded-md space-y-3">
           <div className="flex items-center justify-between gap-4">
             <label
               htmlFor="fundsNow"
@@ -191,7 +191,7 @@ export default function ExtraDataPage() {
         </div>
 
         {/* Sick leaves */}
-        <div className="bg-gray-50 p-4 rounded-md space-y-3">
+        <div className="bg-zus-bg p-4 rounded-md space-y-3">
   <div className="flex items-center justify-between gap-4">
     <label htmlFor="sickDays12m" className="block text-[14px] font-bold text-neutral-800">
       Zwolnienia lekarskie (dni, ostatnie 12 mies.)

@@ -152,7 +152,7 @@ function ZusInput(param) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                 htmlFor: id,
-                className: "block text-[14px] font-medium text-neutral-800",
+                className: "block text-[14px] font-medium text-neutral-700",
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
@@ -175,7 +175,7 @@ function ZusInput(param) {
                     }, this),
                     hintAction ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                         href: (_hintAction_href = hintAction.href) !== null && _hintAction_href !== void 0 ? _hintAction_href : "#",
-                        className: "absolute -right-1 -bottom-6 text-[13px] font-medium",
+                        className: "absolute -right-1 -bottom-6 text-[13px] font-medium text-neutral-600",
                         style: {
                             color: "rgb(var(--zus-blue))"
                         },
@@ -373,7 +373,7 @@ function ZusActionTile(param) {
     let { title, desc, icon, className, ...props } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         type: "button",
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("w-full rounded-lg bg-[#F3F6FA] hover:bg-[#EBF2F9] transition-colors text-left px-4 py-4 flex items-center gap-4 border border-transparent", className),
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("w-full rounded-lg bg-zus-bg hover:bg-zus-card transition-colors text-left px-4 py-4 flex items-center gap-4 border border-transparent", className),
         ...props,
         children: [
             icon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -388,7 +388,7 @@ function ZusActionTile(param) {
                 className: "flex-1",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-[15px] font-semibold text-neutral-900",
+                        className: "text-[15px] font-semibold text-neutral-700",
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-action-tile.tsx",
@@ -537,7 +537,7 @@ function ZusSelect(param) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                 htmlFor: id,
-                className: "block text-[14px] font-medium text-neutral-800",
+                className: "block text-[14px] font-medium text-neutral-700",
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-select.tsx",
@@ -747,7 +747,7 @@ function CertIcon() {
 _c2 = CertIcon;
 function PueLoginPanel() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusCard"], {
-        className: "p-6 md:p-8 bg-white",
+        className: "p-6 md:p-8 bg-zus-card",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusCardHeader"], {
                 children: [
@@ -1013,7 +1013,7 @@ function SignUpFormPage() {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
             onSubmit: onSubmit,
             noValidate: true,
-            className: "bg-white rounded-2xl",
+            className: "bg-zus-card rounded-2xl",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid grid-cols-1 md:grid-cols-17",
                 children: [
@@ -1032,7 +1032,7 @@ function SignUpFormPage() {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$text$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
-                                        className: "mt-2 text-neutral-700",
+                                        className: "mt-2 text-neutral-600",
                                         children: "Wypełnij podstawowe informacje demograficzne. Te dane pomogą nam lepiej dopasować prognozę i porównania kontekstowe."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
