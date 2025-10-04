@@ -9,7 +9,6 @@ export {
   ZusAlert,
   ZusInput,
   ZusSelect,
-  ZusTextarea,
   ZusHeading,
   ZusText,
   type ZusCardProps,
@@ -21,13 +20,15 @@ export {
   type ZusAlertProps,
   type ZusInputProps,
   type ZusSelectProps,
-  type ZusTextareaProps,
   type ZusHeadingProps,
   type ZusTextProps,
 } from './zus-ui';
 
 // Demo component
 export { default as ZusDesignSystemDemo } from './ZusDesignSystemDemo';
+
+// Chat component
+export { EmaChat } from './chat/ema-chat';
 
 // Colors and utilities
 export * from '../styles/colors';

@@ -59,7 +59,7 @@ export default function WelcomeStart() {
   const maxForScale = Math.max(minVal, avgVal, yourVal) || 1;
 
   return (
-    <div className="min-h-screen max-w-3xl mx-auto py-12 px-4">
+    <div className="min-h-screen max-w-6xl mx-auto py-12 px-4">
     <div className="bg-zus-card rounded-2xl">
         <div className="p-8 md:p-12 space-y-8">
           {/* Headline */}

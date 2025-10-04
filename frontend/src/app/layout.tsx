@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ContrastToggle from "@/components/constrast-toggle";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { EmaChat } from "@/components/chat/ema-chat";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -46,11 +36,15 @@ function PreloadContrast() {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
+      <head>
+        <PreloadContrast />
+      </head>
       <body className="antialiased">
         <ContrastToggle />
         <div className="min-h-screen bg-zus-bg text-zus-text transition-colors duration-300">
           {children}
         </div>
+        <EmaChat />
       </body>
     </html>
   );
