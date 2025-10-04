@@ -90,11 +90,11 @@ export default function ExtraDataPage() {
   }
 
   return (
-    <div className="min-h-screen max-w-3xl mx-auto py-12 px-4">
+    <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
     <div className="bg-zus-card rounded-2xl">
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <div>
-          <h2 className="mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]">
+          <h2 className="mt-2 text-xl leading-7 font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.375rem * var(--font-scale))` }}>
             Dane uzupełniające
           </h2>
           <ZusText variant="body" className="mt-2">
@@ -109,7 +109,8 @@ export default function ExtraDataPage() {
           <div className="flex items-center justify-between gap-4">
             <label
               htmlFor="fundsNow"
-              className="block text-[14px] font-bold text-neutral-800"
+              className="block text-sm font-bold text-neutral-800"
+              style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}
             >
               Zgromadzone środki (PLN)
             </label>
@@ -144,7 +145,7 @@ export default function ExtraDataPage() {
 
           {useEstimatedFunds ? (
             <div id="funds-estimate" className="space-y-2">
-              <p className="text-[15px] leading-6 text-neutral-800">
+              <p className="text-base leading-6 text-neutral-800" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>
                 Szacowana kwota:{" "}
                 <span className="font-semibold">
                   {new Intl.NumberFormat("pl-PL", {
@@ -155,7 +156,7 @@ export default function ExtraDataPage() {
                 </span>
               </p>
 
-              <details className="text-[13px] text-neutral-700">
+              <details className="text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>
                 <summary className="cursor-pointer select-none">
                   Jak to policzyliśmy?
                 </summary>
@@ -193,7 +194,7 @@ export default function ExtraDataPage() {
         {/* Sick leaves */}
         <div className="bg-zus-bg p-4 rounded-md space-y-3">
   <div className="flex items-center justify-between gap-4">
-    <label htmlFor="sickDays12m" className="block text-[14px] font-bold text-neutral-800">
+    <label htmlFor="sickDays12m" className="block text-sm font-bold text-neutral-800" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>
       Zwolnienia lekarskie (dni, ostatnie 12 mies.)
     </label>
 
@@ -224,8 +225,8 @@ export default function ExtraDataPage() {
 
   {sickDays12m === "" ? (
     <div id="sickdays-view" className="space-y-2">
-      <p className="text-[15px] leading-6 text-neutral-800">Nie podano</p>
-      <details className="text-[13px] text-neutral-700">
+      <p className="text-base leading-6 text-neutral-800" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>Nie podano</p>
+      <details className="text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>
         <summary className="cursor-pointer select-none">Do czego tego użyjemy?</summary>
         <div className="mt-1">
           Liczba dni L4 pomaga dokładniej odwzorować historię składek i świadczeń.

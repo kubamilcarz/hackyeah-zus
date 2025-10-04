@@ -1,4 +1,5 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/addSources/page": "app/addSources/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/missingData/page": "app/missingData/page.js",

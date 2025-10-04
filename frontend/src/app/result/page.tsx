@@ -2,7 +2,8 @@
 
 import React from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { ZusText, ZusButton } from "@/components/zus-ui";
+import { ZusButton } from "@/components/zus-ui";
+import { ZusText } from "@/components/ui/zus-text";
 
 function fmtPLN(n: number) {
   return new Intl.NumberFormat("pl-PL", {
@@ -24,12 +25,12 @@ export default function ResultPage() {
   const projectedWithSavings = zusPension + monthlySavings * 0.3; // simplified illustrative model
 
   return (
-    <div className="min-h-screen max-w-6xl mx-auto py-12 px-4">
+    <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
     <div className="bg-zus-card rounded-2xl">
         <div className="p-8 md:p-10 space-y-10">
           {/* Header */}
           <header className="space-y-2 text-center">
-            <h1 className="text-[26px] md:text-[30px] font-semibold text-[rgb(var(--zus-black))]">
+            <h1 className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}>
               Twoja prognoza emerytalna
             </h1>
             <ZusText className="text-neutral-700">
@@ -61,7 +62,7 @@ export default function ResultPage() {
 
           {/* Conclusions / Wnioski */}
           <section className="bg-zus-bg rounded-xl p-6 space-y-4">
-            <h2 className="text-[18px] md:text-[20px] font-semibold text-neutral-700">
+            <h2 className="text-lg md:text-xl font-semibold text-neutral-700" style={{ fontSize: `calc(1.125rem * var(--font-scale))` }}>
               Wnioski
             </h2>
 
@@ -83,10 +84,7 @@ export default function ResultPage() {
           </section>
 
           {/* CTA */}
-          <div className="flex flex-col md:flex-row gap-3 justify-center pt-4">
-            <ZusButton variant="primary" type="button" className="px-8">
-              Pobierz raport PDF
-            </ZusButton>
+          <div className="flex flex-col md:flex-row gap-3 justify-between pt-4">
             <ZusButton 
               variant="ghost" 
               type="button" 
@@ -95,6 +93,16 @@ export default function ResultPage() {
             >
               Zacznij od nowa
             </ZusButton>
+
+            <div className="flex flex-col md:flex-row gap-3 justify-center pt-4">
+              <ZusButton variant="outline" type="button" className="px-8">
+                Pobierz raport PDF
+              </ZusButton>
+
+            <ZusButton variant="primary" type="button" className="px-8">
+              Sprawdź inne prognozy
+            </ZusButton>
+            </div>
           </div>
         </div>
       </div>
@@ -120,12 +128,11 @@ function Tile({
       : tone === "neutral"
       ? "bg-card/20"
       : "bg-zus-bg";
-  const titleColor =
-    tone === "success"
-      ? "text-[var(--zus-green)]"
-      : tone === "neutral"
-      ? "text-neutral-700"
-      : "text-[#2E6AA2]";
+  const getTitleStyle = () => {
+    if (tone === "success") return { color: "rgb(var(--zus-green))" };
+    if (tone === "neutral") return { color: "rgb(var(--color-text) / 0.7)" };
+    return { color: "rgb(var(--color-accent))" };
+  };
   const circleColor =
     tone === "success"
       ? "fill-[var(--zus-green)]/10"
@@ -149,11 +156,33 @@ function Tile({
       </svg>
 
       <div className="relative z-10">
-        <div className={`text-[13px] font-semibold ${titleColor}`}>{title}</div>
-        <div className="mt-1 text-3xl md:text-4xl font-extrabold text-[rgb(var(--zus-black))] transition-transform duration-300 group-hover:scale-[1.02]">
+        <div 
+          className="text-sm font-semibold" 
+          style={{ 
+            fontSize: `calc(0.8125rem * var(--font-scale))`,
+            ...getTitleStyle()
+          }}
+        >
+          {title}
+        </div>
+        <div 
+          className="mt-1 text-3xl md:text-4xl font-extrabold transition-transform duration-300 group-hover:scale-[1.02]" 
+          style={{ 
+            fontSize: `calc(1.875rem * var(--font-scale))`,
+            color: `rgb(var(--color-text))`
+          }}
+        >
           {value}
         </div>
-        <div className="mt-1 text-[13px] text-neutral-700">{subtitle}</div>
+        <div 
+          className="mt-1 text-sm" 
+          style={{ 
+            fontSize: `calc(0.8125rem * var(--font-scale))`,
+            color: `rgb(var(--color-text) / 0.7)`
+          }}
+        >
+          {subtitle}
+        </div>
       </div>
     </div>
   );

@@ -4,9 +4,10 @@ import React, { useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   ZusButton,
-  ZusCardBody,
   ZusText,
   ZusInput,
+  ZusHeading,
+  ZusAlert,
 } from "@/components/zus-ui";
 
 function fmtPLN(n: number) {
@@ -55,111 +56,273 @@ export default function WelcomeStart() {
   }, [value]);
 
   const isValid = (value || 0) > 0;
-
   const maxForScale = Math.max(minVal, avgVal, yourVal) || 1;
 
   return (
-    <div className="min-h-screen max-w-3xl mx-auto py-12 px-4">
-    <div className="bg-zus-card rounded-2xl">
-        <div className="p-8 md:p-12 space-y-8">
-          {/* Headline */}
-          <div className="text-center space-y-3">
-            <h1 className="text-[28px] md:text-[32px] leading-tight font-semibold text-[rgb(var(--zus-black))]">
-              Zbuduj spokojny obraz swojej emerytury
-            </h1>
-            <ZusText className="text-zus-secondary">
-              Zaczniemy od Twoich oczekiwań — później dopasujemy plan i pokażemy, jak do nich dojść.
-            </ZusText>
-          </div>
+    <div 
+      className="min-h-screen" 
+      style={{ 
+        backgroundColor: 'rgb(var(--color-bg))',
+        color: 'rgb(var(--color-text))'
+      }}
+    >
+      <div className="max-w-6xl mx-auto py-8 px-4">
 
-          {/* Input */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-full max-w-md">
-            <ZusInput
-              id="kwota"
-              label="Oczekiwana kwota emerytury (miesięcznie, brutto)"
-              type="number"
-              min={0}
-              max={1_000_000}
-              step={500}
-              value={Number.isFinite(value) ? value.toString() : "0"}
-              onChange={onNumberChange}
-              onKeyDown={onNumberKeyDown}
-              required
-              hintAction={{
-                label: "Użyj strzałek ↑/↓, aby zmieniać co 500 zł.",
-                onClick: (e: { preventDefault: () => never; }) => e.preventDefault(),
-              }}
-            />
-            <p className="zus-text-small mt-2 text-neutral-600">
-              Użyj strzałek ↑/↓, aby zmieniać co 500 zł.
-            </p>
+        {/* Main Content - Calculator Focus */}
+        <div className="max-w-4xl mx-auto">
+          {/* Primary Calculator Section */}
+          <div className="mb-8">
+                <div 
+                  className="p-8 space-y-8 rounded-2xl"
+                  style={{
+                    backgroundColor: 'rgb(var(--color-card))',
+                    border: '1px solid rgb(var(--color-accent) / 0.2)',
+                    color: 'rgb(var(--color-text))'
+                  }}
+                >
+                  {/* Input Section */}
+                  <div className="text-center space-y-6">
+                    <div>
+                      <ZusHeading level={2} className="mb-4 text-zus-navy">
+                        Zacznij od swojego celu
+                      </ZusHeading>
+                      <ZusText variant="body-large">
+                        Podaj kwotę emerytury, o której marzysz. Sprawdzimy, jak ją osiągnąć.
+                      </ZusText>
+                    </div>
+
+                    <div className="max-w-md mx-auto">
+                      <ZusInput
+                        id="kwota"
+                        label="Oczekiwana kwota emerytury (miesięcznie, brutto)"
+                        type="number"
+                        min={0}
+                        max={1_000_000}
+                        step={500}
+                        value={Number.isFinite(value) ? value.toString() : "0"}
+                        onChange={onNumberChange}
+                        onKeyDown={onNumberKeyDown}
+                        required
+                        className="text-center"
+                        hintAction={{
+                          label: "Użyj strzałek ↑/↓, aby zmieniać co 500 zł.",
+                          onClick: (e) => e.preventDefault(),
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Comparison */}
+                  <div 
+                    className="rounded-xl p-6 space-y-6"
+                    style={{
+                      backgroundColor: 'rgb(var(--color-bg))',
+                      border: '1px solid rgb(var(--color-text) / 0.1)',
+                      color: 'rgb(var(--color-text))'
+                    }}
+                  >
+                    <div className="flex items-center justify-between flex-wrap gap-3">
+                      <ZusHeading level={4}>Jak to wygląda w porównaniu?</ZusHeading>
+                      <div className="flex items-center gap-2">
+                        <span 
+                          style={{ 
+                            fontSize: `calc(0.875rem * var(--font-scale))`,
+                            color: 'rgb(var(--color-text) / 0.7)'
+                          }}
+                        >
+                          Widok:
+                        </span>
+                        <div 
+                          className="flex items-center gap-1 border rounded-md p-1"
+                          style={{
+                            backgroundColor: 'rgb(var(--color-card))',
+                            borderColor: 'rgb(var(--color-text) / 0.2)'
+                          }}
+                        >
+                          <button
+                            type="button"
+                            className={`px-3 py-1.5 rounded transition-colors ${!netto ? "shadow-sm" : ""}`}
+                            style={{
+                              fontSize: `calc(0.875rem * var(--font-scale))`,
+                              backgroundColor: !netto ? 'rgb(0, 65, 110)' : 'transparent',
+                              color: !netto ? 'white' : 'rgb(var(--color-text))',
+                              border: !netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
+                            }}
+                            onClick={() => setNetto(false)}
+                          >
+                            Brutto
+                          </button>
+                          <button
+                            type="button"
+                            className={`px-3 py-1.5 rounded transition-colors ${netto ? "shadow-sm" : ""}`}
+                            style={{
+                              fontSize: `calc(0.875rem * var(--font-scale))`,
+                              backgroundColor: netto ? 'rgb(0, 65, 110)' : 'transparent',
+                              color: netto ? 'white' : 'rgb(var(--color-text))',
+                              border: netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
+                            }}
+                            onClick={() => setNetto(true)}
+                          >
+                            Netto
+                          </button>
+                        </div>
                       </div>
+                    </div>
 
-            {/* Chips */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
-              <InfoChip label="Twoja oczekiwana" value={fmtPLN(value || 0)} tone="primary" />
-              <InfoChip label="Średnia w Polsce" value={fmtPLN(SREDNIA)} />
-              <InfoChip label="Minimalna" value={fmtPLN(MINIMALNA)} tone="soft" />
-            </div>
-          </div>
+                    <div className="space-y-4">
+                      <ComparisonBar label="Minimalna emerytura" value={minVal} max={maxForScale} tone="soft" />
+                      <ComparisonBar label="Średnia w Polsce" value={avgVal} max={maxForScale} tone="neutral" />
+                      <ComparisonBar label="Twoja oczekiwana" value={yourVal} max={maxForScale} tone="primary" emphasis />
+                    </div>
 
-          {/* Interactive comparison (replaces chart) */}
-          <ZusCardBody>
-            <div className="bg-zus rounded-xl p-6 md:p-7 space-y-5">
-              <div className="flex items-center justify-between flex-wrap gap-3">
-                <h3 className="text-[16px] font-semibold text-neutral-700">Jak to wygląda w porównaniu?</h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-zus-secondary">Widok:</span>
-                  <div className="flex items-center gap-1 bg-zus-bg border rounded-md p-1">
-                    <button
+                    {/* Insight */}
+                    <ZusAlert variant="info" title="💡 Wskazówka eksperta">
+                      {ciekawostkaText}
+                    </ZusAlert>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="text-center">
+                    <ZusButton
+                      variant="primary"
+                      size="large"
                       type="button"
-                      className={`px-3 py-1.5 rounded ${!netto ? "bg-zus-card text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-600"}`}
-                      onClick={() => setNetto(false)}
+                      className="w-full max-w-md font-semibold"
+                      disabled={!isValid}
+                      aria-disabled={!isValid}
+                      onClick={() => router.push("/signup")}
                     >
-                      Brutto
-                    </button>
-                    <button
-                      type="button"
-                      className={`px-3 py-1.5 rounded ${netto ? "bg-zus-card text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-600"}`}
-                      onClick={() => setNetto(true)}
+                      Rozpocznij szczegółową symulację
+                    </ZusButton>
+                    <p 
+                      className="mt-3"
+                      style={{
+                        fontSize: `calc(0.875rem * var(--font-scale))`,
+                        color: 'rgb(var(--color-text) / 0.6)'
+                      }}
                     >
-                      Netto
-                    </button>
+                      Bezpłatne • Zabiera 5 minut • Natychmiastowe wyniki
+                    </p>
                   </div>
                 </div>
-              </div>
+          </div>
 
-              <div className="space-y-4">
-                <ComparisonBar label="Minimalna" value={minVal} max={maxForScale} tone="soft" />
-                <ComparisonBar label="Średnia" value={avgVal} max={maxForScale} tone="neutral" />
-                <ComparisonBar label="Twoja oczekiwana" value={yourVal} max={maxForScale} tone="primary" emphasis />
+          {/* Subtle Benefits Section - Less Overwhelming */}
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            <div 
+              className="text-center p-3 rounded-lg" 
+              style={{ 
+                backgroundColor: 'rgb(var(--color-success) / 0.1)', 
+                borderLeft: '3px solid rgb(var(--color-success))',
+                color: 'rgb(var(--color-text))'
+              }}
+            >
+              <div 
+                className="mb-2" 
+                style={{ 
+                  fontSize: `calc(1.25rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-success))' 
+                }}
+              >
+                ✓
               </div>
-
-              {/* Friendly tip */}
-              <div className="mt-2 flex items-start gap-3 bg-white border rounded-md p-3">
-                <span aria-hidden className="text-[18px]">💡</span>
-                <div>
-                  <div className="text-[13px] font-semibold text-neutral-800">Mała wskazówka</div>
-                  <ZusText className="mt-1">{ciekawostkaText}</ZusText>
-                </div>
+              <div 
+                className="font-medium mb-1" 
+                style={{ 
+                  fontSize: `calc(0.875rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-text))'
+                }}
+              >
+                Precyzyjne obliczenia
+              </div>
+              <div 
+                style={{ 
+                  fontSize: `calc(0.75rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-text) / 0.7)'
+                }}
+              >
+                Oparte na przepisach ZUS
               </div>
             </div>
-          </ZusCardBody>
-
-          {/* CTA */}
-          <div className="pt-2 flex flex-col items-center gap-3">
-            <ZusButton
-              variant="primary"
-              type="button"
-              className="w-full max-w-md"
-              disabled={!isValid}
-              aria-disabled={!isValid}
-              onClick={() => router.push("/signup")}
+            <div 
+              className="text-center p-3 rounded-lg" 
+              style={{ 
+                backgroundColor: 'rgb(var(--color-accent) / 0.1)', 
+                borderLeft: '3px solid rgb(var(--color-accent))',
+                color: 'rgb(var(--color-text))'
+              }}
             >
-              Rozpocznij symulację
-            </ZusButton>
+              <div 
+                className="mb-2" 
+                style={{ 
+                  fontSize: `calc(1.25rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-accent))' 
+                }}
+              >
+                📊
+              </div>
+              <div 
+                className="font-medium mb-1" 
+                style={{ 
+                  fontSize: `calc(0.875rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-text))'
+                }}
+              >
+                Różne scenariusze
+              </div>
+              <div 
+                style={{ 
+                  fontSize: `calc(0.75rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-text) / 0.7)'
+                }}
+              >
+                Sprawdź różne opcje
+              </div>
+            </div>
+            <div 
+              className="text-center p-3 rounded-lg" 
+              style={{ 
+                backgroundColor: 'rgb(var(--color-warning) / 0.1)', 
+                borderLeft: '3px solid rgb(var(--color-warning))',
+                color: 'rgb(var(--color-text))'
+              }}
+            >
+              <div 
+                className="mb-2" 
+                style={{ 
+                  fontSize: `calc(1.25rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-warning))' 
+                }}
+              >
+                💡
+              </div>
+              <div 
+                className="font-medium mb-1" 
+                style={{ 
+                  fontSize: `calc(0.875rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-text))'
+                }}
+              >
+                Praktyczne porady
+              </div>
+              <div 
+                style={{ 
+                  fontSize: `calc(0.75rem * var(--font-scale))`,
+                  color: 'rgb(var(--color-text) / 0.7)'
+                }}
+              >
+                Jak zwiększyć emeryturę
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Bottom Info */}
+        <div className="text-center">
+          <ZusText variant="small">
+            Symulator wykorzystuje aktualne przepisy emerytalne obowiązujące w Polsce. 
+            Wyniki mają charakter orientacyjny i nie stanowią decyzji administracyjnej ZUS.
+          </ZusText>
         </div>
       </div>
     </div>
@@ -167,30 +330,6 @@ export default function WelcomeStart() {
 }
 
 /* --- UI bits --- */
-
-function InfoChip({
-  label,
-  value,
-  tone = "neutral",
-}: {
-  label: string;
-  value: string;
-  tone?: "neutral" | "primary" | "soft";
-}) {
-  const base = "rounded-lg p-4 text-center";
-  const styles =
-    tone === "primary"
-      ? "bg-zus-green-bg text-[rgb(var(--zus-black))]"
-      : tone === "soft"
-      ? "bg-zus-bg text-neutral-700"
-      : "bg-zus-bg text-neutral-700";
-  return (
-    <div className={`${base} ${styles}`}>
-      <div className="text-[13px] font-medium text-zus-secondary">{label}</div>
-      <div className="mt-1 text-xl font-semibold">{value}</div>
-    </div>
-  );
-}
 
 function ComparisonBar({
   label,
@@ -207,27 +346,73 @@ function ComparisonBar({
 }) {
   const pct = Math.max(0.05, Math.min(1, value / max)); // keep tiny visible sliver
   const barBase = "h-4 rounded-lg transition-all duration-500";
-  const toneBg =
-    tone === "primary"
-      ? "bg-[#2E6AA2]" // brand
-      : tone === "soft"
-      ? "bg-[#DDE4EE]"
-      : "bg-[#CBD5E1]";
+  
+  // Bar classes for CSS control
+  const getBarClass = () => {
+    if (tone === "primary") {
+      return "comparison-bar-primary";
+    } else if (tone === "soft") {
+      return "comparison-bar-soft";
+    } else {
+      return "comparison-bar-neutral";
+    }
+  };
+
+  // Styles using CSS variables for contrast support
+  const getBarStyle = () => {
+    if (tone === "primary") {
+      return {
+        backgroundColor: `rgb(0, 65, 110)`, // ZUS Navy
+      };
+    } else if (tone === "soft") {
+      return {
+        backgroundColor: `rgba(146, 150, 158, 0.6)`, // ZUS Gray with opacity
+      };
+    } else {
+      return {
+        backgroundColor: `rgba(146, 150, 158, 0.8)`, // ZUS Gray with opacity
+      };
+    }
+  };
+
+  // Container style using CSS variables
+  const containerStyle = {
+    backgroundColor: `rgba(146, 150, 158, 0.1)`, // ZUS Gray with opacity
+    borderColor: `rgba(146, 150, 158, 0.3)`, // ZUS Gray with opacity
+  };
 
   return (
     <div className="w-full">
       <div className="flex items-baseline justify-between mb-1.5">
-        <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-neutral-800"}`}>
+        <span 
+          className={`${emphasis ? "font-semibold" : ""}`} 
+          style={{ 
+            fontSize: `calc(0.875rem * var(--font-scale))`,
+            color: emphasis ? 'rgb(var(--color-text))' : 'rgb(var(--color-text) / 0.8)'
+          }}
+        >
           {label}
         </span>
-        <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-zus-secondary"}`}>
+        <span 
+          className={`${emphasis ? "font-semibold" : ""}`} 
+          style={{ 
+            fontSize: `calc(0.875rem * var(--font-scale))`,
+            color: emphasis ? 'rgb(var(--color-text))' : 'rgb(var(--color-text) / 0.7)'
+          }}
+        >
           {fmtPLN(value)}
         </span>
       </div>
-      <div className="w-full bg-white border rounded-lg p-1">
+      <div 
+        className="w-full border rounded-lg p-1 comparison-bar-container"
+        style={containerStyle}
+      >
         <div
-          className={`${barBase} ${toneBg}`}
-          style={{ width: `${pct * 100}%` }}
+          className={`${barBase} ${getBarClass()}`}
+          style={{ 
+            width: `${pct * 100}%`,
+            ...getBarStyle()
+          }}
           title={`${label}: ${fmtPLN(value)}`}
           role="progressbar"
           aria-valuemin={0}

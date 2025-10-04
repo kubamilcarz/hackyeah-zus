@@ -71,7 +71,7 @@ export default function SignUpFormPage() {
           {/* LEFT: Demographics */}
           <div className="p-6 md:p-8 flex flex-col gap-8 md:col-span-8">
             <div className="flex flex-col">
-              <h2 className="mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]">
+              <h2 className="mt-2 text-xl leading-7 font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.375rem * var(--font-scale))` }}>
                 Twoje dane
               </h2>
 
@@ -135,7 +135,8 @@ export default function SignUpFormPage() {
             <div>
               <label
                 htmlFor="startYear"
-                className="block text-[14px] font-medium text-neutral-800"
+                className="block text-sm font-medium text-neutral-800"
+                style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}
               >
                 Rok rozpoczęcia pracy
               </label>
@@ -154,7 +155,8 @@ export default function SignUpFormPage() {
             <div>
               <label
                 htmlFor="retireYear"
-                className="block text-[14px] font-medium text-neutral-800"
+                className="block text-sm font-medium text-neutral-800"
+                style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}
               >
                 Planowany rok przejścia na emeryturę
               </label>
@@ -178,7 +180,7 @@ export default function SignUpFormPage() {
           {/* Divider with "LUB" */}
           <div className="flex flex-col items-center justify-center my-6 md:col-span-1">
             <div className="w-px h-20 bg-gray-300"></div>
-            <span className="py-4 text-sm text-gray-500 font-medium">LUB</span>
+            <span className="py-4 text-sm text-gray-500 font-medium" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>LUB</span>
             <div className="w-px h-20 bg-gray-300"></div>
           </div>
 

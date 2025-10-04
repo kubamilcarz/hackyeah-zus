@@ -14,19 +14,26 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist
 function ZusButton(param) {
     let { variant = "primary", size = "md", className, ...props } = param;
     const base = "inline-flex items-center justify-center rounded-md font-semibold transition-colors focus:outline-none focus-visible:ring-2";
-    const sizeCls = size === "sm" ? "h-9 px-3 text-[14px]" : "h-11 px-5 text-[15px]";
+    // Scale-aware sizing
+    const sizeCls = size === "sm" ? "h-9 px-3" : "h-11 px-5";
+    // Contrast-aware variants
     const variantCls = {
-        primary: "text-white bg-[#2E6AA2] hover:bg-[#295F90] focus-visible:ring-[#2E6AA2]",
-        secondary: "text-neutral-900 bg-neutral-100 hover:bg-neutral-200 focus-visible:ring-neutral-400",
-        ghost: "text-[#2E6AA2] hover:bg-[#EBF2F9] focus-visible:ring-[#2E6AA2]"
+        primary: "zus-btn-primary text-white bg-[#2E6AA2] hover:bg-[#295F90] focus-visible:ring-[#2E6AA2]",
+        secondary: "zus-btn-secondary text-[rgb(var(--color-text))] bg-[rgb(var(--color-bg))] hover:bg-[rgb(var(--color-text)/0.1)] focus-visible:ring-[rgb(var(--color-accent))]",
+        ghost: "zus-btn-ghost text-[rgb(var(--color-accent))] hover:bg-[rgb(var(--color-accent)/0.1)] focus-visible:ring-[rgb(var(--color-accent))]"
     }[variant];
+    // Font size styling with scale support
+    const fontSizeStyle = {
+        fontSize: "calc(".concat(size === "sm" ? "0.875rem" : "0.9375rem", " * var(--font-scale))")
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(base, sizeCls, variantCls, className),
+        style: fontSizeStyle,
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/zus-button.tsx",
-        lineNumber: 20,
-        columnNumber: 10
+        lineNumber: 32,
+        columnNumber: 5
     }, this);
 }
 _c = ZusButton;
@@ -53,38 +60,54 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist
 ;
 ;
 function ZusCard(param) {
-    let { className, ...props } = param;
+    let { className, style, ...props } = param;
+    const cardStyle = {
+        backgroundColor: "rgb(var(--color-card))",
+        color: "rgb(var(--color-text))",
+        ...style
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("bg-white rounded-lg", className),
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("rounded-lg", className),
+        style: cardStyle,
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/zus-card.tsx",
-        lineNumber: 7,
-        columnNumber: 10
+        lineNumber: 14,
+        columnNumber: 5
     }, this);
 }
 _c = ZusCard;
 function ZusCardHeader(param) {
-    let { className, ...props } = param;
+    let { className, style, ...props } = param;
+    const headerStyle = {
+        color: "rgb(var(--color-text))",
+        ...style
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("p-0", className),
+        style: headerStyle,
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/zus-card.tsx",
-        lineNumber: 11,
-        columnNumber: 10
+        lineNumber: 29,
+        columnNumber: 5
     }, this);
 }
 _c1 = ZusCardHeader;
 function ZusCardBody(param) {
-    let { className, ...props } = param;
+    let { className, style, ...props } = param;
+    const bodyStyle = {
+        color: "rgb(var(--color-text))",
+        ...style
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("p-0", className),
+        style: bodyStyle,
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/zus-card.tsx",
-        lineNumber: 15,
-        columnNumber: 10
+        lineNumber: 44,
+        columnNumber: 5
     }, this);
 }
 _c2 = ZusCardBody;
@@ -109,14 +132,20 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist
 ;
 ;
 function ZusText(param) {
-    let { as: Comp = "p", className, ...props } = param;
+    let { as: Comp = "p", className, style, ...props } = param;
+    const scaleStyle = {
+        fontSize: "calc(0.9375rem * var(--font-scale))",
+        color: "rgb(var(--color-text))",
+        ...style
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Comp, {
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("text-[15px] leading-6 text-neutral-700", className),
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("leading-6", className),
+        style: scaleStyle,
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/zus-text.tsx",
-        lineNumber: 13,
-        columnNumber: 10
+        lineNumber: 21,
+        columnNumber: 5
     }, this);
 }
 _c = ZusText;
@@ -152,7 +181,11 @@ function ZusInput(param) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                 htmlFor: id,
-                className: "block text-[14px] font-medium text-neutral-700",
+                className: "block text-sm font-medium",
+                style: {
+                    fontSize: "calc(0.875rem * var(--font-scale))",
+                    color: "rgb(var(--color-text))"
+                },
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
@@ -166,18 +199,25 @@ function ZusInput(param) {
                         id: id,
                         value: value,
                         onChange: onChange,
-                        className: "w-full h-11 rounded-md border border-[#2E6AA2] focus:ring-2 focus:ring-[#2E6AA2] focus:outline-none px-3 text-[15px]",
+                        className: "w-full h-11 rounded-md border focus:ring-2 focus:outline-none px-3",
+                        style: {
+                            fontSize: "calc(0.9375rem * var(--font-scale))",
+                            borderColor: "rgb(var(--color-accent))",
+                            backgroundColor: "rgb(var(--color-card))",
+                            color: "rgb(var(--color-text))"
+                        },
                         ...props
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-input.tsx",
-                        lineNumber: 29,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this),
                     hintAction ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                         href: (_hintAction_href = hintAction.href) !== null && _hintAction_href !== void 0 ? _hintAction_href : "#",
-                        className: "absolute -right-1 -bottom-6 text-[13px] font-medium text-neutral-600",
+                        className: "absolute -right-1 -bottom-6 text-sm font-medium text-neutral-600",
                         style: {
-                            color: "rgb(var(--zus-blue))"
+                            color: "rgb(var(--zus-blue))",
+                            fontSize: "calc(0.8125rem * var(--font-scale))"
                         },
                         onClick: (e)=>{
                             var _hintAction_onClick;
@@ -187,13 +227,13 @@ function ZusInput(param) {
                         children: hintAction.label
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-input.tsx",
-                        lineNumber: 37,
+                        lineNumber: 50,
                         columnNumber: 11
                     }, this) : null
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 28,
+                lineNumber: 35,
                 columnNumber: 7
             }, this)
         ]
@@ -213,11 +253,15 @@ function ZusPasswordInput(param) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                 htmlFor: id,
-                className: "block text-[14px] font-medium text-neutral-800",
+                className: "block text-sm font-medium",
+                style: {
+                    fontSize: "calc(0.875rem * var(--font-scale))",
+                    color: "rgb(var(--color-text))"
+                },
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 64,
+                lineNumber: 80,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -226,35 +270,45 @@ function ZusPasswordInput(param) {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         id: id,
                         type: show ? "text" : "password",
-                        className: "w-full h-11 rounded-md border border-[#2E6AA2] focus:ring-2 focus:ring-[#2E6AA2] focus:outline-none px-3 pr-10 text-[15px]",
+                        className: "w-full h-11 rounded-md border focus:ring-2 focus:outline-none px-3 pr-10",
+                        style: {
+                            fontSize: "calc(0.9375rem * var(--font-scale))",
+                            borderColor: "rgb(var(--color-accent))",
+                            backgroundColor: "rgb(var(--color-card))",
+                            color: "rgb(var(--color-text))"
+                        },
                         ...props
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-input.tsx",
-                        lineNumber: 68,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
-                        className: "absolute inset-y-0 right-0 px-3 text-[#2E6AA2]",
+                        className: "absolute inset-y-0 right-0 px-3",
+                        style: {
+                            color: "rgb(var(--color-accent))"
+                        },
                         "aria-label": show ? "Ukryj hasło" : "Pokaż hasło",
                         onClick: ()=>setShow((v)=>!v),
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(EyeIcon, {
                             open: show
                         }, void 0, false, {
                             fileName: "[project]/src/components/ui/zus-input.tsx",
-                            lineNumber: 80,
+                            lineNumber: 110,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-input.tsx",
-                        lineNumber: 74,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, this),
                     hintAction ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                         href: (_hintAction_href = hintAction.href) !== null && _hintAction_href !== void 0 ? _hintAction_href : "#",
-                        className: "absolute -right-1 -bottom-6 text-[13px] font-medium",
+                        className: "absolute -right-1 -bottom-6 text-sm font-medium",
                         style: {
-                            color: "rgb(var(--zus-blue))"
+                            color: "rgb(var(--zus-blue))",
+                            fontSize: "calc(0.8125rem * var(--font-scale))"
                         },
                         onClick: (e)=>{
                             var _hintAction_onClick;
@@ -264,19 +318,19 @@ function ZusPasswordInput(param) {
                         children: hintAction.label
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-input.tsx",
-                        lineNumber: 84,
+                        lineNumber: 114,
                         columnNumber: 11
                     }, this) : null
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 67,
+                lineNumber: 90,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ui/zus-input.tsx",
-        lineNumber: 63,
+        lineNumber: 79,
         columnNumber: 5
     }, this);
 }
@@ -297,7 +351,7 @@ _c1 = ZusPasswordInput;
                 strokeWidth: "2"
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 105,
+                lineNumber: 138,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -308,13 +362,13 @@ _c1 = ZusPasswordInput;
                 strokeWidth: "2"
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 106,
+                lineNumber: 139,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ui/zus-input.tsx",
-        lineNumber: 104,
+        lineNumber: 137,
         columnNumber: 5
     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         width: "22",
@@ -329,7 +383,7 @@ _c1 = ZusPasswordInput;
                 strokeWidth: "2"
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 110,
+                lineNumber: 143,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -338,13 +392,13 @@ _c1 = ZusPasswordInput;
                 strokeWidth: "2"
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-input.tsx",
-                lineNumber: 111,
+                lineNumber: 144,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ui/zus-input.tsx",
-        lineNumber: 109,
+        lineNumber: 142,
         columnNumber: 5
     }, this);
 }
@@ -373,52 +427,69 @@ function ZusActionTile(param) {
     let { title, desc, icon, className, ...props } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         type: "button",
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("w-full rounded-lg bg-zus-bg hover:bg-zus-card transition-colors text-left px-4 py-4 flex items-center gap-4 border border-transparent", className),
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("w-full rounded-lg transition-colors text-left px-4 py-4 flex items-center gap-4 border border-transparent", className),
+        style: {
+            backgroundColor: "rgb(var(--color-bg))",
+            color: "rgb(var(--color-text))"
+        },
         ...props,
         children: [
             icon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "shrink-0 text-[#2E6AA2]",
+                className: "shrink-0",
+                style: {
+                    color: "rgb(var(--color-accent))"
+                },
                 children: icon
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-                lineNumber: 22,
-                columnNumber: 15
+                lineNumber: 27,
+                columnNumber: 9
             }, this) : null,
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                 className: "flex-1",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-[15px] font-semibold text-neutral-700",
+                        className: "font-semibold",
+                        style: {
+                            fontSize: "calc(0.9375rem * var(--font-scale))",
+                            color: "rgb(var(--color-text))"
+                        },
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-                        lineNumber: 24,
+                        lineNumber: 35,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-[14px] text-neutral-700",
+                        style: {
+                            fontSize: "calc(0.875rem * var(--font-scale))",
+                            color: "rgb(var(--color-text) / 0.8)"
+                        },
                         children: desc
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-                        lineNumber: 25,
+                        lineNumber: 44,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-                lineNumber: 23,
+                lineNumber: 34,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "shrink-0 text-[#2E6AA2]",
+                className: "shrink-0",
+                style: {
+                    color: "rgb(var(--color-accent))"
+                },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ChevronRightIcon, {}, void 0, false, {
                     fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-                    lineNumber: 28,
+                    lineNumber: 57,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-                lineNumber: 27,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         ]
@@ -444,12 +515,12 @@ function ChevronRightIcon() {
             strokeLinejoin: "round"
         }, void 0, false, {
             fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-            lineNumber: 37,
+            lineNumber: 66,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ui/zus-action-tile.tsx",
-        lineNumber: 36,
+        lineNumber: 65,
         columnNumber: 5
     }, this);
 }
@@ -535,14 +606,18 @@ function ZusSelect(param) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(className),
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+            label && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                 htmlFor: id,
-                className: "block text-[14px] font-medium text-neutral-700",
+                className: "block font-medium",
+                style: {
+                    fontSize: "calc(0.875rem * var(--font-scale))",
+                    color: "rgb(var(--color-text))"
+                },
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-select.tsx",
-                lineNumber: 21,
-                columnNumber: 13
+                lineNumber: 22,
+                columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "mt-2 relative",
@@ -550,31 +625,41 @@ function ZusSelect(param) {
                     id: id,
                     value: value,
                     onChange: (e)=>onChange(e.target.value),
-                    className: "w-full h-11 rounded-md border border-[#2E6AA2] focus:ring-2 focus:ring-[#2E6AA2] focus:outline-none px-3 pr-2 text-[15px]",
+                    className: "w-full h-11 rounded-md border focus:ring-2 focus:outline-none px-3 pr-2",
+                    style: {
+                        fontSize: "calc(0.9375rem * var(--font-scale))",
+                        borderColor: "rgb(var(--color-accent))",
+                        backgroundColor: "rgb(var(--color-card))",
+                        color: "rgb(var(--color-text))"
+                    },
                     children: options.map((opt)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                             value: opt.value,
                             children: opt.label
                         }, opt.value, false, {
                             fileName: "[project]/src/components/ui/zus-select.tsx",
-                            lineNumber: 32,
+                            lineNumber: 47,
                             columnNumber: 25
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/zus-select.tsx",
-                    lineNumber: 25,
+                    lineNumber: 34,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-select.tsx",
-                lineNumber: 24,
+                lineNumber: 33,
                 columnNumber: 13
             }, this),
             hintText && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "mt-1 text-[13px] font-medium text-neutral-600 text-right",
+                className: "mt-1 font-medium text-right",
+                style: {
+                    fontSize: "calc(0.8125rem * var(--font-scale))",
+                    color: "rgb(var(--color-text) / 0.7)"
+                },
                 children: hintText
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/zus-select.tsx",
-                lineNumber: 39,
+                lineNumber: 54,
                 columnNumber: 17
             }, this)
         ]
@@ -1024,7 +1109,10 @@ function SignUpFormPage() {
                                 className: "flex flex-col",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]",
+                                        className: "mt-2 text-xl leading-7 font-semibold text-[rgb(var(--zus-black))]",
+                                        style: {
+                                            fontSize: "calc(1.375rem * var(--font-scale))"
+                                        },
                                         children: "Twoje dane"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
@@ -1124,7 +1212,10 @@ function SignUpFormPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                         htmlFor: "startYear",
-                                        className: "block text-[14px] font-medium text-neutral-800",
+                                        className: "block text-sm font-medium text-neutral-800",
+                                        style: {
+                                            fontSize: "calc(0.875rem * var(--font-scale))"
+                                        },
                                         children: "Rok rozpoczęcia pracy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
@@ -1141,7 +1232,7 @@ function SignUpFormPage() {
                                         onChange: (value)=>setStartYear(parseInt(value, 10))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 142,
+                                        lineNumber: 143,
                                         columnNumber: 15
                                     }, this)
                                 ]
@@ -1154,11 +1245,14 @@ function SignUpFormPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                         htmlFor: "retireYear",
-                                        className: "block text-[14px] font-medium text-neutral-800",
+                                        className: "block text-sm font-medium text-neutral-800",
+                                        style: {
+                                            fontSize: "calc(0.875rem * var(--font-scale))"
+                                        },
                                         children: "Planowany rok przejścia na emeryturę"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 155,
+                                        lineNumber: 156,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
@@ -1172,13 +1266,13 @@ function SignUpFormPage() {
                                         hintText: "Musi być później niż rok rozpoczęcia pracy."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 161,
+                                        lineNumber: 163,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 154,
+                                lineNumber: 155,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
@@ -1187,7 +1281,7 @@ function SignUpFormPage() {
                                 children: "Kontynuuj"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 173,
+                                lineNumber: 175,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -1203,40 +1297,43 @@ function SignUpFormPage() {
                                 className: "w-px h-20 bg-gray-300"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 180,
+                                lineNumber: 182,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "py-4 text-sm text-gray-500 font-medium",
+                                style: {
+                                    fontSize: "calc(0.875rem * var(--font-scale))"
+                                },
                                 children: "LUB"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 181,
+                                lineNumber: 183,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-px h-20 bg-gray-300"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 182,
+                                lineNumber: 184,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/signup/page.tsx",
-                        lineNumber: 179,
+                        lineNumber: 181,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "md:col-span-8",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$pue$2f$pue$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PueLoginPanel"], {}, void 0, false, {
                             fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 186,
+                            lineNumber: 188,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/signup/page.tsx",
-                        lineNumber: 185,
+                        lineNumber: 187,
                         columnNumber: 11
                     }, this)
                 ]
