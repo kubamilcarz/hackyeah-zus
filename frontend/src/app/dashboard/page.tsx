@@ -64,7 +64,7 @@ export default function DashboardPage() {
     >
       {/* Sticky Top Bar */}
       {isSticky && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-lg transition-all duration-300">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-zus-card/95 backdrop-blur-md border-b border-neutral shadow-lg transition-all duration-300">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="grid grid-cols-3 gap-4">
               <StickyTile
@@ -145,17 +145,17 @@ export default function DashboardPage() {
       `}</style>
 
       <div className={`max-w-7xl mx-auto py-8 px-4 flex flex-col gap-8 ${isSticky ? 'pt-24' : ''}`}>
-        <div className="bg-zus-card rounded-2xl">
+        <div className="bg-zus-card rounded-2xl border border-neutral">
           <div className="p-6 md:p-8 flex flex-col gap-6">
             {/* Header */}
             <header className="space-y-3 mb-8">
               <h1
-                className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+                className="text-2xl md:text-3xl font-semibold text-primary"
                 style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
               >
                 Twój panel emerytalny
               </h1>
-              <ZusText variant="body" className="text-neutral-600 max-w-2xl">
+              <ZusText variant="body" className="text-neutral max-w-2xl">
                 Przegląd Twojej prognozy i narzędzia do planowania przyszłości.
                 Sprawdź aktualny stan swoich oszczędności emerytalnych i poznaj
                 opcje ich zwiększenia.
@@ -307,41 +307,41 @@ function AdditionalRetirementSavingsSection({
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <header className="space-y-3">
           <h1
-            className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+            className="text-2xl md:text-3xl font-semibold text-primary"
             style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
           >
             Dodatkowe oszczędności emerytalne
           </h1>
-          <ZusText variant="body" className="text-neutral-600 max-w-2xl">
+          <ZusText variant="body" className="text-secondary max-w-2xl">
             Zwiększ swoją przyszłą emeryturę dzięki dodatkowym produktom emerytalnym. 
             Te składki będą bezpośrednio wpływać na Twoją prognozę emerytalną w pierwszym rzędzie.
           </ZusText>
         </header>
 
         {/* Impact Summary */}
-        <div className="p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
+        <div className="p-4 bg-info-light/20 rounded-lg border border-info-light">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-              <span className="text-purple-600 font-bold">💰</span>
+            <div className="w-8 h-8 bg-info-light rounded-lg flex items-center justify-center">
+              <span className="text-info font-bold">💰</span>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-neutral-800">
+              <h4 className="font-semibold text-primary">
                 Wpływ na prognozę emerytalną
               </h4>
-              <ZusText variant="small" className="text-neutral-600">
+              <ZusText variant="small" className="text-secondary">
                 Dodatkowe produkty emerytalne zwiększą Twoją miesięczną emeryturę o około{" "}
-                <span className="font-semibold text-purple-600">
+                <span className="font-semibold text-info">
                   {totalImpact.toLocaleString()} zł
                 </span>{" "}
                 miesięcznie przy obecnych ustawieniach.
               </ZusText>
               <div className="flex gap-4 text-sm">
                 <div className="flex items-center gap-1">
-                  <span className="text-purple-600">💵</span>
+                  <span className="text-info">💵</span>
                   <span>Łączne składki: {totalContributions.toLocaleString()} zł/mies.</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="text-green-600">📈</span>
+                  <span className="text-success">📈</span>
                   <span>Szacowany zwrot: {(totalImpact / Math.max(totalContributions, 1) * 100).toFixed(0)}%</span>
                 </div>
               </div>
@@ -351,26 +351,26 @@ function AdditionalRetirementSavingsSection({
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* PPK Section */}
-          <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="space-y-4 p-4 bg-info-light/20 rounded-lg border border-info-light">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                <span className="text-blue-600 font-bold">🏢</span>
+              <div className="w-8 h-8 bg-info-light rounded-lg flex items-center justify-center">
+                <span className="text-info font-bold">🏢</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-blue-800">PPK</h3>
-                <ZusText variant="small" className="text-blue-600">
+                <h3 className="text-lg font-semibold text-info">PPK</h3>
+                <ZusText variant="small" className="text-info">
                   Pracownicze Plany Kapitałowe
                 </ZusText>
               </div>
             </div>
             
             <div className="space-y-3">
-              <ZusText variant="small" className="text-neutral-600">
+              <ZusText variant="small" className="text-secondary">
                 Automatyczne składki od pracodawcy + Twoje składki
               </ZusText>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium text-neutral-700">
+                <label className="text-sm font-medium text-primary">
                   Miesięczna składka PPK: {ppkContribution} zł
                 </label>
                 <input
@@ -380,41 +380,41 @@ function AdditionalRetirementSavingsSection({
                   step="50"
                   value={ppkContribution}
                   onChange={(e) => setPpkContribution(Number(e.target.value))}
-                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-blue-200"
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-info-light"
                 />
-                <div className="flex justify-between text-xs text-blue-600">
+                <div className="flex justify-between text-xs text-secondary">
                   <span>0 zł</span>
                   <span>1000 zł</span>
                 </div>
               </div>
               
-              <div className="p-2 bg-blue-100 rounded text-xs text-blue-800">
+              <div className="p-2 bg-info-light/30 rounded text-xs text-info">
                 💡 Pracodawca dokłada minimalnie 1.5% Twojego wynagrodzenia
               </div>
             </div>
           </div>
 
           {/* IKZE Section */}
-          <div className="space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
+          <div className="space-y-4 p-4 bg-success-light/20 rounded-lg border border-success-light">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                <span className="text-green-600 font-bold">🎯</span>
+              <div className="w-8 h-8 bg-success-light rounded-lg flex items-center justify-center">
+                <span className="text-success font-bold">🎯</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-green-800">IKZE</h3>
-                <ZusText variant="small" className="text-green-600">
+                <h3 className="text-lg font-semibold text-success">IKZE</h3>
+                <ZusText variant="small" className="text-success">
                   Indywidualne Konto Zabezpieczenia Emerytalnego
                 </ZusText>
               </div>
             </div>
             
             <div className="space-y-3">
-              <ZusText variant="small" className="text-neutral-600">
+              <ZusText variant="small" className="text-secondary">
                 Ulga podatkowa do 19% od wpłat
               </ZusText>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium text-neutral-700">
+                <label className="text-sm font-medium text-primary">
                   Miesięczna wpłata IKZE: {ikzeContribution} zł
                 </label>
                 <input
@@ -424,41 +424,41 @@ function AdditionalRetirementSavingsSection({
                   step="50"
                   value={ikzeContribution}
                   onChange={(e) => setIkzeContribution(Number(e.target.value))}
-                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-green-200"
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-success-light"
                 />
-                <div className="flex justify-between text-xs text-green-600">
+                <div className="flex justify-between text-xs text-success">
                   <span>0 zł</span>
                   <span>1000 zł</span>
                 </div>
               </div>
               
-              <div className="p-2 bg-green-100 rounded text-xs text-green-800">
+              <div className="p-2 bg-success-light/30 rounded text-xs text-success">
                 💰 Limit roczny: 6760 zł (2024)
               </div>
             </div>
           </div>
 
           {/* PPE Section */}
-          <div className="space-y-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+          <div className="space-y-4 p-4 bg-warning-light/20 rounded-lg border border-warning-light">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                <span className="text-orange-600 font-bold">🛡️</span>
+              <div className="w-8 h-8 bg-warning-light rounded-lg flex items-center justify-center">
+                <span className="text-warning font-bold">🛡️</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-orange-800">PPE</h3>
-                <ZusText variant="small" className="text-orange-600">
+                <h3 className="text-lg font-semibold text-warning">PPE</h3>
+                <ZusText variant="small" className="text-warning">
                   Pracownicze Programy Emerytalne
                 </ZusText>
               </div>
             </div>
             
             <div className="space-y-3">
-              <ZusText variant="small" className="text-neutral-600">
+              <ZusText variant="small" className="text-secondary">
                 Dodatkowe korzyści od pracodawcy
               </ZusText>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium text-neutral-700">
+                <label className="text-sm font-medium text-primary">
                   Miesięczna składka PPE: {ppeContribution} zł
                 </label>
                 <input
@@ -468,15 +468,15 @@ function AdditionalRetirementSavingsSection({
                   step="50"
                   value={ppeContribution}
                   onChange={(e) => setPpeContribution(Number(e.target.value))}
-                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-orange-200"
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-warning-light"
                 />
-                <div className="flex justify-between text-xs text-orange-600">
+                <div className="flex justify-between text-xs text-secondary">
                   <span>0 zł</span>
                   <span>800 zł</span>
                 </div>
               </div>
               
-              <div className="p-2 bg-orange-100 rounded text-xs text-orange-800">
+              <div className="p-2 bg-warning-light/30 rounded text-xs text-secondary">
                 🏢 Sprawdź dostępność w swoim zakładzie pracy
               </div>
             </div>
@@ -485,39 +485,39 @@ function AdditionalRetirementSavingsSection({
 
         {/* Action Summary */}
         {totalContributions > 0 && (
-          <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
+          <div className="p-4 bg-success-light/20 rounded-lg border border-success-light">
             <div className="flex items-center gap-3">
               <span className="text-2xl">🚀</span>
               <div className="space-y-1">
-                <h4 className="font-semibold text-neutral-800">
+                <h4 className="font-semibold text-primary">
                   Świetny wybór! Twoje dodatkowe oszczędności emerytalne:
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                   <div>
-                    <span className="text-neutral-600">Miesięczne składki:</span>
+                    <span className="text-secondary">Miesięczne składki:</span>
                     <br />
-                    <span className="font-semibold text-green-600">
+                    <span className="font-semibold text-success">
                       {totalContributions.toLocaleString()} zł
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-600">Roczne oszczędności:</span>
+                    <span className="text-secondary">Roczne oszczędności:</span>
                     <br />
-                    <span className="font-semibold text-blue-600">
+                    <span className="font-semibold text-info">
                       {(totalContributions * 12).toLocaleString()} zł
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-600">Dodatkowa emerytura:</span>
+                    <span className="text-secondary">Dodatkowa emerytura:</span>
                     <br />
-                    <span className="font-semibold text-purple-600">
+                    <span className="font-semibold text-success">
                       +{totalImpact.toLocaleString()} zł/mies.
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-600">Łączny czas:</span>
+                    <span className="text-secondary">Łączny czas:</span>
                     <br />
-                    <span className="font-semibold text-orange-600">
+                    <span className="font-semibold text-warning">
                       {pensionData.yearsToRetirement} lat
                     </span>
                   </div>
@@ -574,33 +574,33 @@ function OverviewTile({
   const getBgColor = () => {
     switch (tone) {
       case "success":
-        return "bg-green-50";
+        return "bg-success-light border-success";
       case "accent":
-        return "bg-orange-50";
+        return "bg-warning-light border-warning";
       default:
-        return "bg-blue-50";
+        return "bg-primary-light border-primary";
     }
   };
 
   const getValueColor = () => {
     switch (tone) {
       case "success":
-        return "text-green-600";
+        return "text-success";
       case "accent":
-        return "text-orange-600";
+        return "text-warning";
       default:
-        return "text-blue-600";
+        return "text-primary";
     }
   };
 
-  const getCircleColor = () => {
+  const getIconBg = () => {
     switch (tone) {
       case "success":
-        return "fill-green-500/10";
+        return "bg-success text-white";
       case "accent":
-        return "fill-orange-500/10";
+        return "bg-warning text-white";
       default:
-        return "fill-blue-500/10";
+        return "bg-primary text-white";
     }
   };
 
@@ -608,43 +608,34 @@ function OverviewTile({
     if (!insight) return "";
     switch (insight.type) {
       case "warning":
-        return "bg-yellow-50 border-yellow-200 text-yellow-800";
+        return "bg-warning-light border-warning text-primary";
       case "success":
-        return "bg-green-50 border-green-200 text-green-800";
+        return "bg-success-light border-success text-primary";
       default:
-        return "bg-blue-50 border-blue-200 text-blue-800";
+        return "bg-accent-light border-accent text-primary";
     }
   };
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-xl p-6 transition-all duration-300 ${getBgColor()} h-full`}
+      className={`group relative overflow-hidden rounded-xl p-6 transition-all duration-300 border-2 ${getBgColor()} h-full`}
     >
-      {/* Decorative background circles */}
-      <svg
-        aria-hidden
-        className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
-        viewBox="0 0 200 200"
-        preserveAspectRatio="none"
-      >
-        <circle cx="170" cy="-10" r="90" className={getCircleColor()} />
-        <circle cx="30" cy="180" r="50" className={getCircleColor()} />
-      </svg>
-
       {/* Content */}
       <div className="relative z-10 space-y-4">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-2xl">{icon}</span>
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${getIconBg()}`}>
+              <span className="text-lg">{icon}</span>
+            </div>
             <div>
               <div
-                className="text-lg font-semibold text-neutral-700"
+                className="text-lg font-semibold text-primary"
                 style={{ fontSize: `calc(1rem * var(--font-scale))` }}
               >
                 {title}
               </div>
-              <ZusText variant="small" className="text-neutral-600">
+              <ZusText variant="small" className="text-neutral">
                 {subtitle}
               </ZusText>
             </div>
@@ -659,7 +650,7 @@ function OverviewTile({
           >
             {value}
           </div>
-          <ZusText variant="small" className="text-neutral-600">
+          <ZusText variant="small" className="text-neutral">
             {description}
           </ZusText>
         </div>
@@ -668,12 +659,12 @@ function OverviewTile({
         {progress !== undefined && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-neutral-600">Postęp celu</span>
-              <span className={getValueColor()}>{progress}%</span>
+              <span className="text-neutral">Postęp celu</span>
+              <span className={`font-semibold ${getValueColor()}`}>{progress}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-neutral-light rounded-full h-2">
               <div
-                className={`bg-current h-2 rounded-full transition-all duration-500 ${getValueColor()}`}
+                className={`h-2 rounded-full transition-all duration-500 ${getValueColor().replace('text-', 'bg-')}`}
                 style={{ width: `${Math.min(progress, 100)}%` }}
               />
             </div>
@@ -684,15 +675,15 @@ function OverviewTile({
         {interactive && interactive.type === "slider" && (
           <div className="space-y-3 pt-2">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-neutral-700">
+              <label className="text-sm font-medium text-primary">
                 {interactive.label}
               </label>
               <button
                 onMouseEnter={() => setShowHelp(true)}
                 onMouseLeave={() => setShowHelp(false)}
-                className="text-neutral-400 hover:text-neutral-600 transition-colors"
+                className="text-neutral hover:text-primary transition-colors w-5 h-5 flex items-center justify-center"
               >
-                ❓
+                <span className="text-xs">❓</span>
               </button>
             </div>
 
@@ -704,20 +695,20 @@ function OverviewTile({
                 step={interactive.step}
                 value={interactive.value}
                 onChange={(e) => interactive.onChange?.(Number(e.target.value))}
-                className={`slider w-full h-2 rounded-lg appearance-none cursor-pointer ${getValueColor()}`}
+                className={`slider w-full h-2 rounded-lg appearance-none cursor-pointer ${getValueColor().replace('text-', 'bg-')}`}
                 style={{
-                  background: `linear-gradient(to right, currentColor 0%, currentColor ${
+                  background: `linear-gradient(to right, var(--color-${tone === 'success' ? 'success' : tone === 'accent' ? 'warning' : 'primary'}) 0%, var(--color-${tone === 'success' ? 'success' : tone === 'accent' ? 'warning' : 'primary'}) ${
                     ((interactive.value! - interactive.min!) /
                       (interactive.max! - interactive.min!)) *
                     100
-                  }%, rgba(0,0,0,0.1) ${
+                  }%, var(--color-neutral-light) ${
                     ((interactive.value! - interactive.min!) /
                       (interactive.max! - interactive.min!)) *
                     100
-                  }%, rgba(0,0,0,0.1) 100%)`,
+                  }%, var(--color-neutral-light) 100%)`,
                 }}
               />
-              <div className="flex justify-between text-xs text-neutral-500 mt-1">
+              <div className="flex justify-between text-xs text-neutral mt-1">
                 <span>
                   {interactive.min}
                   {interactive.suffix}
@@ -735,7 +726,7 @@ function OverviewTile({
 
             {/* Help Text */}
             {showHelp && interactive.helpText && (
-              <div className="absolute z-20 bottom-full mb-2 left-0 right-0 bg-gray-900 text-white text-xs p-2 rounded shadow-lg">
+              <div className="absolute z-20 bottom-full mb-2 left-0 right-0 bg-primary text-white text-xs p-3 rounded shadow-lg">
                 {interactive.helpText}
               </div>
             )}
@@ -766,39 +757,52 @@ function StickyTile({ icon, title, value, tone, progress }: StickyTileProps) {
   const getValueColor = () => {
     switch (tone) {
       case "success":
-        return "text-green-600";
+        return "text-success";
       case "accent":
-        return "text-orange-600";
+        return "text-warning";
       default:
-        return "text-blue-600";
+        return "text-primary";
     }
   };
 
   const getBgColor = () => {
     switch (tone) {
       case "success":
-        return "hover:bg-green-50";
+        return "hover:bg-success-light";
       case "accent":
-        return "hover:bg-orange-50";
+        return "hover:bg-warning-light";
       default:
-        return "hover:bg-blue-50";
+        return "hover:bg-primary-light";
+    }
+  };
+
+  const getIconBg = () => {
+    switch (tone) {
+      case "success":
+        return "bg-success";
+      case "accent":
+        return "bg-warning";
+      default:
+        return "bg-primary";
     }
   };
 
   return (
-    <div className={`flex items-center gap-3 p-4 bg-white/80 backdrop-blur rounded-xl border border-gray-200 ${getBgColor()} hover:shadow-md transition-all duration-200 cursor-pointer`}>
-      <span className="text-2xl">{icon}</span>
+    <div className={`flex items-center gap-3 p-4 bg-zus-card backdrop-blur rounded-xl border border-neutral ${getBgColor()} hover:shadow-md transition-all duration-200 cursor-pointer`}>
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${getIconBg()}`}>
+        <span className="text-white text-lg">{icon}</span>
+      </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-neutral-700 truncate">
+        <div className="text-sm font-medium text-primary truncate">
           {title}
         </div>
         <div className={`text-xl font-bold ${getValueColor()} truncate`}>
           {value}
         </div>
         {progress !== undefined && (
-          <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+          <div className="w-full bg-neutral-light rounded-full h-1.5 mt-2">
             <div
-              className={`bg-current h-1.5 rounded-full transition-all duration-500 ${getValueColor()}`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${getValueColor().replace('text-', 'bg-')}`}
               style={{ width: `${Math.min(progress, 100)}%` }}
             />
           </div>
@@ -832,12 +836,12 @@ function DetailedRetirementAnalysisSection({
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <header className="space-y-3">
           <h1
-            className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+            className="text-2xl md:text-3xl font-semibold text-primary"
             style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
           >
             Szczegółowa analiza emerytalna
           </h1>
-          <ZusText variant="body" className="text-neutral-600 max-w-2xl">
+          <ZusText variant="body" className="text-secondary max-w-2xl">
             Poznaj szczegóły swojej przyszłej emerytury, wpływ chorobowego oraz scenariusze 
             opóźnienia przejścia na emeryturę.
           </ZusText>
@@ -845,47 +849,47 @@ function DetailedRetirementAnalysisSection({
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Current Projections Card */}
-          <div className="space-y-4 p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+          <div className="space-y-4 p-6 bg-info-light/20 rounded-xl border border-info-light">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-info rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">📊</span>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-blue-800">Aktualne prognozy</h3>
-                <ZusText variant="small" className="text-blue-600">
+                <h3 className="text-xl font-semibold text-info">Aktualne prognozy</h3>
+                <ZusText variant="small" className="text-info">
                   Stan na {retirementYear} rok
                 </ZusText>
               </div>
             </div>
 
             <div className="space-y-4">
-              <div className="bg-white/60 p-4 rounded-lg">
+              <div className="bg-zus-card/60 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-neutral-600">Średnie świadczenie w roku przejścia</span>
-                  <span className="font-bold text-lg text-blue-700">
+                  <span className="text-sm text-secondary">Średnie świadczenie w roku przejścia</span>
+                  <span className="font-bold text-lg text-info">
                     {averageBenefitAtRetirement.toLocaleString()} zł
                   </span>
                 </div>
-                <ZusText variant="small" className="text-neutral-500 mt-1">
+                <ZusText variant="small" className="text-neutral mt-1">
                   Średnia emerytura w {retirementYear} roku
                 </ZusText>
               </div>
 
-              <div className="bg-white/60 p-4 rounded-lg">
+              <div className="bg-zus-card/60 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-neutral-600">Twoja prognoza ZUS</span>
-                  <span className="font-bold text-lg text-blue-700">
+                  <span className="text-sm text-secondary">Twoja prognoza ZUS</span>
+                  <span className="font-bold text-lg text-info">
                     {projectedPension.toLocaleString()} zł
                   </span>
                 </div>
                 <div className="mt-2 text-xs">
                   {projectedPension > averageBenefitAtRetirement ? (
-                    <span className="text-green-600 flex items-center gap-1">
+                    <span className="text-success flex items-center gap-1">
                       <span>✓</span>
                       <span>O {(projectedPension - averageBenefitAtRetirement).toLocaleString()} zł wyższa od średniej</span>
                     </span>
                   ) : (
-                    <span className="text-orange-600 flex items-center gap-1">
+                    <span className="text-warning flex items-center gap-1">
                       <span>⚠️</span>
                       <span>O {(averageBenefitAtRetirement - projectedPension).toLocaleString()} zł niższa od średniej</span>
                     </span>
@@ -896,46 +900,46 @@ function DetailedRetirementAnalysisSection({
           </div>
 
           {/* Sick Leave Impact Card */}
-          <div className="space-y-4 p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200">
+          <div className="space-y-4 p-6 bg-success-light/20 rounded-xl border border-success-light">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-success rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">🏥</span>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-green-800">Wpływ chorobowego</h3>
-                <ZusText variant="small" className="text-green-600">
+                <h3 className="text-xl font-semibold text-success">Wpływ chorobowego</h3>
+                <ZusText variant="small" className="text-success">
                   Analiza nieobecności chorobowych
                 </ZusText>
               </div>
             </div>
 
             <div className="space-y-4">
-              <div className="bg-white/60 p-4 rounded-lg">
+              <div className="bg-zus-card/60 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-neutral-600">Wynagrodzenie bez chorobowego</span>
-                  <span className="font-bold text-lg text-green-700">
+                  <span className="text-sm text-secondary">Wynagrodzenie bez chorobowego</span>
+                  <span className="font-bold text-lg text-success">
                     {salaryWithoutSickLeave.toLocaleString()} zł
                   </span>
                 </div>
-                <ZusText variant="small" className="text-neutral-500 mt-1">
+                <ZusText variant="small" className="text-neutral mt-1">
                   Potencjalne wynagrodzenie bez okresów choroby
                 </ZusText>
               </div>
 
-              <div className="bg-white/60 p-4 rounded-lg">
+              <div className="bg-zus-card/60 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-neutral-600">Wpływ na emeryturę</span>
-                  <span className="font-bold text-lg text-green-700">
+                  <span className="text-sm text-secondary">Wpływ na emeryturę</span>
+                  <span className="font-bold text-lg text-success">
                     +{Math.round(sickLeaveImpact * 0.25).toLocaleString()} zł
                   </span>
                 </div>
-                <ZusText variant="small" className="text-neutral-500 mt-1">
+                <ZusText variant="small" className="text-neutral mt-1">
                   Szacowany wzrost emerytury bez chorobowego
                 </ZusText>
               </div>
 
-              <div className="p-3 bg-green-100 rounded-lg border border-green-300">
-                <ZusText variant="small" className="text-green-800">
+              <div className="p-3 bg-success-light/30 rounded-lg border border-success-light">
+                <ZusText variant="small" className="text-success">
                   💡 Każdy dzień chorobowy może wpłynąć na wysokość przyszłej emerytury. 
                   Dbaj o zdrowie i minimalizuj nieobecności.
                 </ZusText>
@@ -1051,17 +1055,17 @@ function InteractiveRetirementChart({
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <header className="space-y-3">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-info rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">📈</span>
             </div>
             <div>
               <h1
-                className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
+                className="text-2xl md:text-3xl font-semibold text-primary"
                 style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
               >
-                Interaktywne scenariusze emerytalne
+                Scenariusze emerytalne
               </h1>
-              <ZusText variant="body" className="text-neutral-600">
+              <ZusText variant="body" className="text-secondary">
                 Przesuń suwak aby zobaczyć jak opóźnienie emerytury wpłynie na wysokość świadczenia
               </ZusText>
             </div>
@@ -1071,7 +1075,7 @@ function InteractiveRetirementChart({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Interactive Chart */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl border border-purple-200">
+            <div className="p-6 bg-info-light/20 rounded-xl border border-info-light">
               {/* Chart SVG */}
               <div className="relative">
                 <svg
@@ -1083,7 +1087,7 @@ function InteractiveRetirementChart({
                   {/* Grid lines */}
                   <defs>
                     <pattern id="grid" width="80" height="30" patternUnits="userSpaceOnUse">
-                      <path d="M 80 0 L 0 0 0 30" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                      <path d="M 80 0 L 0 0 0 30" fill="none" stroke="rgb(var(--color-neutral))" strokeWidth="1" opacity="0.3"/>
                     </pattern>
                   </defs>
                   <rect width="800" height="300" fill="url(#grid)" />
@@ -1092,7 +1096,7 @@ function InteractiveRetirementChart({
                   <path
                     d={generatePath()}
                     fill="none"
-                    stroke="url(#gradient)"
+                    stroke="url(#zusGradient)"
                     strokeWidth="4"
                     strokeLinecap="round"
                     className="transition-all duration-300"
@@ -1101,21 +1105,21 @@ function InteractiveRetirementChart({
                   {/* Chart area fill */}
                   <path
                     d={`${generatePath()} L 760,260 L 40,260 Z`}
-                    fill="url(#areaGradient)"
-                    opacity="0.1"
+                    fill="url(#zusAreaGradient)"
+                    opacity="0.15"
                     className="transition-all duration-300"
                   />
                   
-                  {/* Gradient definition */}
+                  {/* ZUS Gradient definition */}
                   <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#8b5cf6" />
-                      <stop offset="50%" stopColor="#06b6d4" />
-                      <stop offset="100%" stopColor="#10b981" />
+                    <linearGradient id="zusGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="rgb(var(--color-primary))" />
+                      <stop offset="50%" stopColor="rgb(var(--color-info))" />
+                      <stop offset="100%" stopColor="rgb(var(--color-success))" />
                     </linearGradient>
-                    <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+                    <linearGradient id="zusAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="rgb(var(--color-info))" />
+                      <stop offset="100%" stopColor="rgb(var(--color-info))" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                   
@@ -1132,8 +1136,8 @@ function InteractiveRetirementChart({
                           cx={x}
                           cy={y}
                           r={isSelected ? 8 : isHovered ? 6 : 4}
-                          fill={isSelected ? "#8b5cf6" : isHovered ? "#06b6d4" : "#ffffff"}
-                          stroke={isSelected ? "#ffffff" : "#8b5cf6"}
+                          fill={isSelected ? "rgb(var(--color-primary))" : isHovered ? "rgb(var(--color-info))" : "#ffffff"}
+                          stroke={isSelected ? "#ffffff" : "rgb(var(--color-primary))"}
                           strokeWidth="2"
                           className="cursor-pointer transition-all duration-200"
                           onClick={() => setSelectedYear(d.year)}
@@ -1145,7 +1149,8 @@ function InteractiveRetirementChart({
                             x={x}
                             y={y - 15}
                             textAnchor="middle"
-                            className="text-xs font-semibold fill-purple-700"
+                            className="text-xs font-semibold"
+                            fill="rgb(var(--color-primary))"
                           >
                             {d.pension.toLocaleString()} zł
                           </text>
@@ -1161,21 +1166,21 @@ function InteractiveRetirementChart({
                       y1={260 - ((targetPension - minPension) / pensionRange) * 220}
                       x2="760"
                       y2={260 - ((targetPension - minPension) / pensionRange) * 220}
-                      stroke="#f59e0b"
+                      stroke="rgb(var(--color-warning))"
                       strokeWidth="2"
                       strokeDasharray="5,5"
                     />
                   )}
                   
                   {/* Axis labels */}
-                  <text x="40" y="295" className="text-xs fill-gray-600">{baseRetirementYear}</text>
-                  <text x="760" y="295" className="text-xs fill-gray-600" textAnchor="end">
+                  <text x="40" y="295" className="text-xs" fill="rgb(var(--color-secondary))">{baseRetirementYear}</text>
+                  <text x="760" y="295" className="text-xs" fill="rgb(var(--color-secondary))" textAnchor="end">
                     {baseRetirementYear + 25}
                   </text>
-                  <text x="15" y="260" className="text-xs fill-gray-600" textAnchor="end">
+                  <text x="15" y="260" className="text-xs" fill="rgb(var(--color-secondary))" textAnchor="end">
                     {minPension.toLocaleString()}
                   </text>
-                  <text x="15" y="50" className="text-xs fill-gray-600" textAnchor="end">
+                  <text x="15" y="50" className="text-xs" fill="rgb(var(--color-secondary))" textAnchor="end">
                     {maxPension.toLocaleString()}
                   </text>
                 </svg>
@@ -1183,7 +1188,7 @@ function InteractiveRetirementChart({
               
               {/* Year Slider */}
               <div className="mt-6 space-y-3">
-                <label className="text-sm font-medium text-purple-700">
+                <label className="text-sm font-medium text-primary">
                   Rok przejścia na emeryturę: {selectedYear}
                 </label>
                 <input
@@ -1193,9 +1198,9 @@ function InteractiveRetirementChart({
                   step="1"
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(Number(e.target.value))}
-                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-purple-200"
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-info-light"
                 />
-                <div className="flex justify-between text-xs text-purple-600">
+                <div className="flex justify-between text-xs text-info">
                   <span>{baseRetirementYear}</span>
                   <span className="font-medium">Wybrany: {selectedYear}</span>
                   <span>{baseRetirementYear + 25}</span>
@@ -1206,37 +1211,37 @@ function InteractiveRetirementChart({
 
           {/* Selected Year Details */}
           <div className="space-y-4">
-            <div className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200">
+            <div className="p-6 bg-primary-light/20 rounded-xl border border-primary-light">
               <div className="space-y-4">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-700">
+                  <div className="text-3xl font-bold text-primary">
                     {selectedYear}
                   </div>
-                  <div className="text-sm text-neutral-600">
+                  <div className="text-sm text-secondary">
                     {selectedData.yearsDelay === 0 ? 'Planowany rok emerytury' : `+${selectedData.yearsDelay} lat pracy`}
                   </div>
                 </div>
                 
                 <div className="space-y-3">
-                  <div className="bg-white/60 p-3 rounded-lg">
-                    <div className="text-xs text-neutral-600">Miesięczna emerytura</div>
-                    <div className="text-xl font-bold text-purple-700">
+                  <div className="bg-zus-card/60 p-3 rounded-lg">
+                    <div className="text-xs text-secondary">Miesięczna emerytura</div>
+                    <div className="text-xl font-bold text-primary">
                       {selectedData.pension.toLocaleString()} zł
                     </div>
                   </div>
                   
                   {selectedData.yearsDelay > 0 && (
-                    <div className="bg-white/60 p-3 rounded-lg">
-                      <div className="text-xs text-neutral-600">Wzrost emerytury</div>
-                      <div className="text-lg font-semibold text-green-600">
+                    <div className="bg-zus-card/60 p-3 rounded-lg">
+                      <div className="text-xs text-secondary">Wzrost emerytury</div>
+                      <div className="text-lg font-semibold text-success">
                         +{selectedData.pensionIncrease.toLocaleString()} zł
                       </div>
                     </div>
                   )}
                   
-                  <div className="bg-white/60 p-3 rounded-lg">
-                    <div className="text-xs text-neutral-600">Wzrost roczny</div>
-                    <div className="text-sm font-medium text-blue-600">
+                  <div className="bg-zus-card/60 p-3 rounded-lg">
+                    <div className="text-xs text-secondary">Wzrost roczny</div>
+                    <div className="text-sm font-medium text-info">
                       ~{selectedData.yearsDelay > 0 ? Math.round(selectedData.pensionIncrease / selectedData.yearsDelay) : 68} zł/rok
                     </div>
                   </div>
@@ -1247,8 +1252,8 @@ function InteractiveRetirementChart({
             {/* Target Achievement Card - INTEGRATED HERE */}
             <div className={`p-6 rounded-xl border-2 ${
               selectedData.pension >= targetPension 
-                ? 'bg-gradient-to-br from-green-50 to-green-100 border-green-300' 
-                : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300'
+                ? 'bg-success-light/20 border-success-light' 
+                : 'bg-warning-light/20 border-warning-light'
             }`}>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -1256,7 +1261,7 @@ function InteractiveRetirementChart({
                     {selectedData.pension >= targetPension ? '🎯' : '⏳'}
                   </span>
                   <h4 className={`font-semibold ${
-                    selectedData.pension >= targetPension ? 'text-green-800' : 'text-orange-800'
+                    selectedData.pension >= targetPension ? 'text-success' : 'text-secondary'
                   }`}>
                     {selectedData.pension >= targetPension ? 'Cel osiągnięty!' : 'Ile dłużej pracować aby osiągnąć cel?'}
                   </h4>
@@ -1264,20 +1269,20 @@ function InteractiveRetirementChart({
                 
                 {selectedData.pension >= targetPension ? (
                   <div className="space-y-2">
-                    <div className="text-sm text-green-700">
+                    <div className="text-sm text-success">
                       Przekroczysz swój cel o {(selectedData.pension - targetPension).toLocaleString()} zł miesięcznie!
                     </div>
-                    <div className="text-xs text-green-600">
+                    <div className="text-xs text-success">
                       💡 Możesz rozważyć wcześniejszą emeryturę lub zwiększenie celów oszczędnościowych.
                     </div>
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <div className="text-sm text-orange-700">
+                    <div className="text-sm text-secondary">
                       Brakuje: {(targetPension - selectedData.pension).toLocaleString()} zł miesięcznie
                     </div>
                     {targetAchievable && (
-                      <div className="text-xs text-orange-600">
+                      <div className="text-xs text-secondary">
                         💡 Pracuj do {targetRetirementYear} roku aby osiągnąć cel {targetPension.toLocaleString()} zł/mies.
                       </div>
                     )}
@@ -1289,18 +1294,20 @@ function InteractiveRetirementChart({
         </div>
         
         {/* Interactive Legend */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-neutral">
           <div className="flex items-center gap-3">
-            <div className="w-4 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded"></div>
-            <span className="text-sm text-neutral-600">Prognoza emerytalna</span>
+            <div className="w-4 h-1 rounded" style={{
+              background: 'linear-gradient(to right, rgb(var(--color-primary)), rgb(var(--color-info)), rgb(var(--color-success)))'
+            }}></div>
+            <span className="text-sm text-secondary">Prognoza emerytalna</span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-4 h-1 bg-amber-500 rounded border-dashed border-2 border-amber-500"></div>
-            <span className="text-sm text-neutral-600">Cel emerytalny ({targetPension.toLocaleString()} zł)</span>
+            <div className="w-4 h-1 bg-warning rounded border-dashed border-2 border-warning"></div>
+            <span className="text-sm text-secondary">Cel emerytalny ({targetPension.toLocaleString()} zł)</span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-purple-500 rounded-full border-2 border-white"></div>
-            <span className="text-sm text-neutral-600">Wybrana opcja</span>
+            <div className="w-3 h-3 bg-primary rounded-full border-2 border-white"></div>
+            <span className="text-sm text-secondary">Wybrana opcja</span>
           </div>
         </div>
       </div>

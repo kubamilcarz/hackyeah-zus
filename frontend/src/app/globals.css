@@ -17,7 +17,7 @@
   
   /* Semantic color mappings */
   --color-primary: var(--zus-navy);
-  --color-secondary: var(--zus-yellow);
+  --color-secondary: var(--zus-gray);
   --color-accent: var(--zus-blue);
   --color-success: var(--zus-green);
   --color-warning: var(--zus-yellow);
