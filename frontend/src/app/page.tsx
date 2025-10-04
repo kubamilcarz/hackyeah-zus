@@ -64,7 +64,7 @@ export default function WelcomeStart() {
         <div className="p-8 md:p-12 space-y-8">
           {/* Headline */}
           <div className="text-center space-y-3">
-            <h1 className="text-[28px] md:text-[32px] leading-tight font-semibold text-[rgb(var(--zus-black))]">
+            <h1 className="text-2xl md:text-3xl leading-tight font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.75rem * var(--font-scale))` }}>
               Zbuduj spokojny obraz swojej emerytury
             </h1>
             <ZusText className="text-zus-secondary">
@@ -74,7 +74,6 @@ export default function WelcomeStart() {
 
           {/* Input */}
           <div className="flex flex-col items-center gap-4">
-            <div className="w-full max-w-md">
             <ZusInput
               id="kwota"
               label="Oczekiwana kwota emerytury (miesięcznie, brutto)"
@@ -88,13 +87,9 @@ export default function WelcomeStart() {
               required
               hintAction={{
                 label: "Użyj strzałek ↑/↓, aby zmieniać co 500 zł.",
-                onClick: (e: { preventDefault: () => never; }) => e.preventDefault(),
+                onClick: (e) => e.preventDefault(),
               }}
             />
-            <p className="zus-text-small mt-2 text-neutral-600">
-              Użyj strzałek ↑/↓, aby zmieniać co 500 zł.
-            </p>
-                      </div>
 
             {/* Chips */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
@@ -108,9 +103,9 @@ export default function WelcomeStart() {
           <ZusCardBody>
             <div className="bg-zus rounded-xl p-6 md:p-7 space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-3">
-                <h3 className="text-[16px] font-semibold text-neutral-700">Jak to wygląda w porównaniu?</h3>
+                <h3 className="text-base font-semibold text-neutral-700" style={{ fontSize: `calc(1rem * var(--font-scale))` }}>Jak to wygląda w porównaniu?</h3>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-zus-secondary">Widok:</span>
+                  <span className="text-sm text-zus-secondary" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>Widok:</span>
                   <div className="flex items-center gap-1 bg-zus-bg border rounded-md p-1">
                     <button
                       type="button"
@@ -137,10 +132,24 @@ export default function WelcomeStart() {
               </div>
 
               {/* Friendly tip */}
-              <div className="mt-2 flex items-start gap-3 bg-white border rounded-md p-3">
-                <span aria-hidden className="text-[18px]">💡</span>
+              <div 
+                className="mt-2 flex items-start gap-3 border rounded-md p-3"
+                style={{
+                  backgroundColor: `rgb(var(--color-bg))`,
+                  borderColor: `rgb(var(--color-text) / 0.2)`,
+                }}
+              >
+                <span aria-hidden className="text-lg" style={{ fontSize: `calc(1.125rem * var(--font-scale))` }}>💡</span>
                 <div>
-                  <div className="text-[13px] font-semibold text-neutral-800">Mała wskazówka</div>
+                  <div 
+                    className="text-sm font-semibold" 
+                    style={{ 
+                      fontSize: `calc(0.8125rem * var(--font-scale))`,
+                      color: `rgb(var(--color-text))`
+                    }}
+                  >
+                    Mała wskazówka
+                  </div>
                   <ZusText className="mt-1">{ciekawostkaText}</ZusText>
                 </div>
               </div>
@@ -186,8 +195,8 @@ function InfoChip({
       : "bg-zus-bg text-neutral-700";
   return (
     <div className={`${base} ${styles}`}>
-      <div className="text-[13px] font-medium text-zus-secondary">{label}</div>
-      <div className="mt-1 text-xl font-semibold">{value}</div>
+      <div className="text-sm font-medium text-zus-secondary" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>{label}</div>
+      <div className="mt-1 text-xl font-semibold" style={{ fontSize: `calc(1.25rem * var(--font-scale))` }}>{value}</div>
     </div>
   );
 }
@@ -207,27 +216,73 @@ function ComparisonBar({
 }) {
   const pct = Math.max(0.05, Math.min(1, value / max)); // keep tiny visible sliver
   const barBase = "h-4 rounded-lg transition-all duration-500";
-  const toneBg =
-    tone === "primary"
-      ? "bg-[#2E6AA2]" // brand
-      : tone === "soft"
-      ? "bg-[#DDE4EE]"
-      : "bg-[#CBD5E1]";
+  
+  // Bar classes for CSS control
+  const getBarClass = () => {
+    if (tone === "primary") {
+      return "comparison-bar-primary";
+    } else if (tone === "soft") {
+      return "comparison-bar-soft";
+    } else {
+      return "comparison-bar-neutral";
+    }
+  };
+
+  // Fallback inline styles for regular mode
+  const getBarStyle = () => {
+    if (tone === "primary") {
+      return {
+        backgroundColor: `#2E6AA2`, // ZUS blue
+      };
+    } else if (tone === "soft") {
+      return {
+        backgroundColor: `rgba(100, 116, 139, 0.8)`, // Slate with good opacity
+      };
+    } else {
+      return {
+        backgroundColor: `rgba(71, 85, 105, 0.9)`, // Darker slate with high opacity
+      };
+    }
+  };
+
+  // Container style for contrast support - this will be overridden by CSS in high contrast modes
+  const containerStyle = {
+    backgroundColor: `rgba(148, 163, 184, 0.15)`, // Light slate background for regular mode
+    borderColor: `rgba(100, 116, 139, 0.4)`, // Visible border for regular mode
+  };
 
   return (
     <div className="w-full">
       <div className="flex items-baseline justify-between mb-1.5">
-        <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-neutral-800"}`}>
+        <span 
+          className={`text-sm ${emphasis ? "font-semibold" : ""}`} 
+          style={{ 
+            fontSize: `calc(0.875rem * var(--font-scale))`,
+            color: emphasis ? `rgb(var(--color-text))` : `rgb(var(--color-text) / 0.8)`
+          }}
+        >
           {label}
         </span>
-        <span className={`text-[14px] ${emphasis ? "font-semibold text-neutral-900" : "text-zus-secondary"}`}>
+        <span 
+          className={`text-sm ${emphasis ? "font-semibold" : ""}`} 
+          style={{ 
+            fontSize: `calc(0.875rem * var(--font-scale))`,
+            color: emphasis ? `rgb(var(--color-text))` : `rgb(var(--color-text) / 0.7)`
+          }}
+        >
           {fmtPLN(value)}
         </span>
       </div>
-      <div className="w-full bg-white border rounded-lg p-1">
+      <div 
+        className="w-full border rounded-lg p-1 comparison-bar-container"
+        style={containerStyle}
+      >
         <div
-          className={`${barBase} ${toneBg}`}
-          style={{ width: `${pct * 100}%` }}
+          className={`${barBase} ${getBarClass()}`}
+          style={{ 
+            width: `${pct * 100}%`,
+            ...getBarStyle()
+          }}
           title={`${label}: ${fmtPLN(value)}`}
           role="progressbar"
           aria-valuemin={0}

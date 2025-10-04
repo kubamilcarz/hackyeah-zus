@@ -83,7 +83,7 @@ export default function SavingsScreen() {
     <div className="bg-zus-card rounded-2xl">
         <div className="p-6 md:p-8 lg:p-10 space-y-8">
           <header className="space-y-2 text-center">
-            <h1 className="text-[24px] md:text-[28px] font-semibold text-[rgb(var(--zus-black))]">
+            <h1 className="text-xl md:text-2xl font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.5rem * var(--font-scale))` }}>
               Twoja prognoza emerytalna
             </h1>
             <ZusText className="text-neutral-700">
@@ -100,7 +100,7 @@ export default function SavingsScreen() {
 
           {/* Savings section */}
           <section className="mt-2 bg-zus-bg p-6 rounded-xl">
-            <h2 className="text-center text-[18px] md:text-[20px] font-semibold text-neutral-900">
+            <h2 className="text-center text-lg md:text-xl font-semibold text-neutral-900" style={{ fontSize: `calc(1.125rem * var(--font-scale))` }}>
               Czy oszczędzasz dodatkowo na emeryturę?
             </h2>
             <ZusText className="text-center mt-1">Zaznacz formy oszczędzania i podaj miesięczne kwoty.</ZusText>
@@ -170,7 +170,7 @@ export default function SavingsScreen() {
 
             {/* Monthly total preview */}
             <div className="mt-4 flex items-center justify-end">
-              <div className="text-[14px] text-neutral-700">
+              <div className="text-sm text-neutral-700" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>
                 Suma miesięcznych wpłat: <span className="font-semibold">{fmtPLN(monthlyTotal)}</span>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function SavingsScreen() {
             <ZusButton
               variant="primary"
               type="button"
-              className="w-full h-12 text-[15px]"
+              className="w-full h-12 text-base"
               disabled={!canContinue}
               aria-disabled={!canContinue}
               onClick={goNext}
@@ -229,11 +229,11 @@ function Tile({
 
       {/* Content */}
       <div className="relative z-10">
-        <div className={`text-[13px] font-semibold ${titleColor}`}>{title}</div>
-        <div className="mt-1 text-3xl md:text-4xl font-extrabold text-[rgb(var(--zus-black))] transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className={`text-sm font-semibold ${titleColor}`} style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>{title}</div>
+        <div className="mt-1 text-3xl md:text-4xl font-extrabold text-[rgb(var(--zus-black))] transition-transform duration-300 group-hover:scale-[1.02]" style={{ fontSize: `calc(1.875rem * var(--font-scale))` }}>
           {value}
         </div>
-        <div className="mt-1 text-[13px] text-neutral-700">{subtitle}</div>
+        <div className="mt-1 text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>{subtitle}</div>
       </div>
     </div>
   );
@@ -265,11 +265,11 @@ function SavingsCard({
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <div className="text-[15px] font-semibold text-neutral-700">{title}</div>
+          <div className="text-base font-semibold text-neutral-700" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>{title}</div>
           <p className="zus-text-small mt-1 text-neutral-700">{description}</p>
         </div>
 
-        <label className="inline-flex items-center gap-2 text-sm text-neutral-700 select-none pointer-events-none">
+        <label className="inline-flex items-center gap-2 text-sm text-neutral-700 select-none pointer-events-none" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>
           <input
             type="checkbox"
             className="h-4 w-4 rounded border border-[#2E6AA2] accent-[#2E6AA2]"
