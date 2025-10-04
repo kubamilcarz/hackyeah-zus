@@ -1,8 +1,30 @@
 @import "tailwindcss";
+@import "../styles/zus-colors.css";
+@import "../styles/zus-design-system.css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* ZUS Brand Colors */
+  --zus-yellow: rgb(255, 179, 79);         /* Primary accent color */
+  --zus-green: rgb(0, 153, 63);           /* Success, positive actions */
+  --zus-gray: rgb(190, 195, 206);         /* Neutral, secondary text */
+  --zus-blue: rgb(63, 132, 210);          /* Information, links */
+  --zus-navy: rgb(0, 65, 110);            /* Primary brand color */
+  --zus-red: rgb(240, 94, 94);            /* Errors, warnings */
+  --zus-black: rgb(0, 0, 0);              /* Text, high contrast */
+  
+  /* Semantic color mappings */
+  --color-primary: var(--zus-navy);
+  --color-secondary: var(--zus-yellow);
+  --color-accent: var(--zus-blue);
+  --color-success: var(--zus-green);
+  --color-warning: var(--zus-yellow);
+  --color-error: var(--zus-red);
+  --color-neutral: var(--zus-gray);
+  --color-text: var(--zus-black);
+  --color-text-secondary: var(--zus-gray);
 }
 
 @theme inline {
@@ -10,12 +32,34 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* ZUS Brand Colors for Tailwind */
+  --color-zus-yellow: var(--zus-yellow);
+  --color-zus-green: var(--zus-green);
+  --color-zus-gray: var(--zus-gray);
+  --color-zus-blue: var(--zus-blue);
+  --color-zus-navy: var(--zus-navy);
+  --color-zus-red: var(--zus-red);
+  --color-zus-black: var(--zus-black);
+  
+  /* Semantic colors for Tailwind */
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-neutral: var(--color-neutral);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Adjust ZUS colors for dark mode if needed */
+    --color-text: #ededed;
+    --color-text-secondary: var(--zus-gray);
   }
 }
 
