@@ -1,0 +1,8 @@
+beautifulsoup4==4.12.3
+requests==2.32.3
+faiss-cpu==1.8.0.post1
+numpy==1.26.4
+openai==1.50.2
+dspy-ai==2.5.41
+asyncer
+asyncer
