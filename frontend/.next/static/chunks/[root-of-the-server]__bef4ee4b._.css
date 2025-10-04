@@ -1,0 +1,1017 @@
+/* [next]/internal/font/google/geist_a71539c9.module.css [app-client] (css) */
+@font-face {
+  font-family: Geist;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../media/8a480f0b521d4e75-s.8e0177b5.woff2") format("woff2");
+  unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+
+@font-face {
+  font-family: Geist;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../media/7178b3e590c64307-s.b97b3418.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Geist;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../media/caa3a2e1cccd8315-s.p.853070df.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Geist Fallback;
+  src: local(Arial);
+  ascent-override: 95.94%;
+  descent-override: 28.16%;
+  line-gap-override: 0.0%;
+  size-adjust: 104.76%;
+}
+
+.geist_a71539c9-module__T19VSG__className {
+  font-family: Geist, Geist Fallback;
+  font-style: normal;
+}
+
+.geist_a71539c9-module__T19VSG__variable {
+  --font-geist-sans: "Geist", "Geist Fallback";
+}
+
+/* [next]/internal/font/google/geist_mono_8d43a2aa.module.css [app-client] (css) */
+@font-face {
+  font-family: Geist Mono;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../media/4fa387ec64143e14-s.c1fdd6c2.woff2") format("woff2");
+  unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+
+@font-face {
+  font-family: Geist Mono;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../media/bbc41e54d2fcbd21-s.799d8ef8.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Geist Mono;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../media/797e433ab948586e-s.p.dbea232f.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Geist Mono Fallback;
+  src: local(Arial);
+  ascent-override: 74.67%;
+  descent-override: 21.92%;
+  line-gap-override: 0.0%;
+  size-adjust: 134.59%;
+}
+
+.geist_mono_8d43a2aa-module__8Li5zG__className {
+  font-family: Geist Mono, Geist Mono Fallback;
+  font-style: normal;
+}
+
+.geist_mono_8d43a2aa-module__8Li5zG__variable {
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";
+}
+
+/* [project]/src/styles/zus-colors.css [app-client] (css) */
+:root {
+  --zus-yellow: #ffb34f;
+  --zus-green: #00993f;
+  --zus-gray: #bec3ce;
+  --zus-blue: #3f84d2;
+  --zus-navy: #00416e;
+  --zus-red: #f05e5e;
+  --zus-black: #000;
+  --zus-yellow-light: rgba(255, 179, 79, .1);
+  --zus-yellow-medium: rgba(255, 179, 79, .5);
+  --zus-green-light: rgba(0, 153, 63, .1);
+  --zus-green-medium: rgba(0, 153, 63, .5);
+  --zus-gray-light: rgba(190, 195, 206, .1);
+  --zus-gray-medium: rgba(190, 195, 206, .5);
+  --zus-blue-light: rgba(63, 132, 210, .1);
+  --zus-blue-medium: rgba(63, 132, 210, .5);
+  --zus-navy-light: rgba(0, 65, 110, .1);
+  --zus-navy-medium: rgba(0, 65, 110, .5);
+  --zus-red-light: rgba(240, 94, 94, .1);
+  --zus-red-medium: rgba(240, 94, 94, .5);
+  --color-primary: var(--zus-navy);
+  --color-primary-light: var(--zus-navy-light);
+  --color-primary-medium: var(--zus-navy-medium);
+  --color-secondary: var(--zus-yellow);
+  --color-secondary-light: var(--zus-yellow-light);
+  --color-secondary-medium: var(--zus-yellow-medium);
+  --color-accent: var(--zus-blue);
+  --color-accent-light: var(--zus-blue-light);
+  --color-accent-medium: var(--zus-blue-medium);
+  --color-success: var(--zus-green);
+  --color-success-light: var(--zus-green-light);
+  --color-success-medium: var(--zus-green-medium);
+  --color-warning: var(--zus-yellow);
+  --color-warning-light: var(--zus-yellow-light);
+  --color-warning-medium: var(--zus-yellow-medium);
+  --color-error: var(--zus-red);
+  --color-error-light: var(--zus-red-light);
+  --color-error-medium: var(--zus-red-medium);
+  --color-neutral: var(--zus-gray);
+  --color-neutral-light: var(--zus-gray-light);
+  --color-neutral-medium: var(--zus-gray-medium);
+  --color-text: var(--zus-black);
+  --color-text-secondary: var(--zus-gray);
+}
+
+.zus-bg-yellow {
+  background-color: var(--zus-yellow);
+}
+
+.zus-bg-green {
+  background-color: var(--zus-green);
+}
+
+.zus-bg-gray {
+  background-color: var(--zus-gray);
+}
+
+.zus-bg-blue {
+  background-color: var(--zus-blue);
+}
+
+.zus-bg-navy {
+  background-color: var(--zus-navy);
+}
+
+.zus-bg-red {
+  background-color: var(--zus-red);
+}
+
+.zus-bg-black {
+  background-color: var(--zus-black);
+}
+
+.zus-text-yellow {
+  color: var(--zus-yellow);
+}
+
+.zus-text-green {
+  color: var(--zus-green);
+}
+
+.zus-text-gray {
+  color: var(--zus-gray);
+}
+
+.zus-text-blue {
+  color: var(--zus-blue);
+}
+
+.zus-text-navy {
+  color: var(--zus-navy);
+}
+
+.zus-text-red {
+  color: var(--zus-red);
+}
+
+.zus-text-black {
+  color: var(--zus-black);
+}
+
+.zus-border-yellow {
+  border-color: var(--zus-yellow);
+}
+
+.zus-border-green {
+  border-color: var(--zus-green);
+}
+
+.zus-border-gray {
+  border-color: var(--zus-gray);
+}
+
+.zus-border-blue {
+  border-color: var(--zus-blue);
+}
+
+.zus-border-navy {
+  border-color: var(--zus-navy);
+}
+
+.zus-border-red {
+  border-color: var(--zus-red);
+}
+
+.zus-border-black {
+  border-color: var(--zus-black);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.bg-success {
+  background-color: var(--color-success);
+}
+
+.bg-warning {
+  background-color: var(--color-warning);
+}
+
+.bg-error {
+  background-color: var(--color-error);
+}
+
+.bg-neutral {
+  background-color: var(--color-neutral);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-neutral {
+  color: var(--color-neutral);
+}
+
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.border-secondary {
+  border-color: var(--color-secondary);
+}
+
+.border-accent {
+  border-color: var(--color-accent);
+}
+
+.border-success {
+  border-color: var(--color-success);
+}
+
+.border-warning {
+  border-color: var(--color-warning);
+}
+
+.border-error {
+  border-color: var(--color-error);
+}
+
+.border-neutral {
+  border-color: var(--color-neutral);
+}
+
+.bg-primary-light {
+  background-color: var(--color-primary-light);
+}
+
+.bg-secondary-light {
+  background-color: var(--color-secondary-light);
+}
+
+.bg-accent-light {
+  background-color: var(--color-accent-light);
+}
+
+.bg-success-light {
+  background-color: var(--color-success-light);
+}
+
+.bg-warning-light {
+  background-color: var(--color-warning-light);
+}
+
+.bg-error-light {
+  background-color: var(--color-error-light);
+}
+
+.bg-neutral-light {
+  background-color: var(--color-neutral-light);
+}
+
+.bg-primary-medium {
+  background-color: var(--color-primary-medium);
+}
+
+.bg-secondary-medium {
+  background-color: var(--color-secondary-medium);
+}
+
+.bg-accent-medium {
+  background-color: var(--color-accent-medium);
+}
+
+.bg-success-medium {
+  background-color: var(--color-success-medium);
+}
+
+.bg-warning-medium {
+  background-color: var(--color-warning-medium);
+}
+
+.bg-error-medium {
+  background-color: var(--color-error-medium);
+}
+
+.bg-neutral-medium {
+  background-color: var(--color-neutral-medium);
+}
+
+.hover-bg-primary:hover {
+  background-color: var(--color-primary);
+}
+
+.hover-bg-secondary:hover {
+  background-color: var(--color-secondary);
+}
+
+.hover-bg-accent:hover {
+  background-color: var(--color-accent);
+}
+
+.hover-bg-success:hover {
+  background-color: var(--color-success);
+}
+
+.hover-bg-warning:hover {
+  background-color: var(--color-warning);
+}
+
+.hover-bg-error:hover {
+  background-color: var(--color-error);
+}
+
+.hover-bg-neutral:hover {
+  background-color: var(--color-neutral);
+}
+
+.hover-text-primary:hover {
+  color: var(--color-primary);
+}
+
+.hover-text-secondary:hover {
+  color: var(--color-secondary);
+}
+
+.hover-text-accent:hover {
+  color: var(--color-accent);
+}
+
+.hover-text-success:hover {
+  color: var(--color-success);
+}
+
+.hover-text-warning:hover {
+  color: var(--color-warning);
+}
+
+.hover-text-error:hover {
+  color: var(--color-error);
+}
+
+.hover-text-neutral:hover {
+  color: var(--color-neutral);
+}
+
+/* [project]/src/styles/zus-design-system.css [app-client] (css) */
+.zus-text-display {
+  color: var(--color-primary);
+  letter-spacing: -.02em;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.zus-text-h1 {
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.zus-text-h2 {
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.zus-text-h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.zus-text-h4 {
+  color: var(--color-text);
+  margin-bottom: .75rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.zus-text-body {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.zus-text-body-large {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.zus-text-small {
+  color: var(--color-text-secondary);
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.zus-text-caption {
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: .75rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.zus-text-lead {
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.zus-card {
+  background: #fff;
+  border: 1px solid rgba(190, 195, 206, .3);
+  border-radius: 12px;
+  transition: all .3s;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+}
+
+.zus-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 65, 110, .15);
+}
+
+.zus-card-header {
+  background: linear-gradient(135deg, rgba(0, 65, 110, .02) 0%, rgba(255, 179, 79, .02) 100%);
+  border-bottom: 1px solid rgba(190, 195, 206, .2);
+  padding: 1.5rem;
+}
+
+.zus-card-body {
+  padding: 1.5rem;
+}
+
+.zus-card-footer {
+  background: rgba(248, 249, 250, .8);
+  border-top: 1px solid rgba(190, 195, 206, .2);
+  padding: 1rem 1.5rem;
+}
+
+.zus-card-primary {
+  border-left: 4px solid var(--color-primary);
+}
+
+.zus-card-secondary {
+  border-left: 4px solid var(--color-secondary);
+}
+
+.zus-card-accent {
+  border-left: 4px solid var(--color-accent);
+}
+
+.zus-card-success {
+  border-left: 4px solid var(--color-success);
+}
+
+.zus-card-warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.zus-card-error {
+  border-left: 4px solid var(--color-error);
+}
+
+.zus-card-featured {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  color: #fff;
+  border: none;
+}
+
+.zus-card-featured .zus-card-header, .zus-card-featured .zus-card-footer {
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .2);
+}
+
+.zus-btn {
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.5rem;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: all .2s;
+  display: inline-flex;
+}
+
+.zus-btn:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.zus-btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.zus-btn-primary:hover {
+  background: rgba(0, 65, 110, .9);
+  transform: translateY(-1px);
+}
+
+.zus-btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.zus-btn-secondary:hover {
+  background: rgba(255, 179, 79, .9);
+  transform: translateY(-1px);
+}
+
+.zus-btn-outline {
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  background: none;
+}
+
+.zus-btn-outline:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.zus-btn-ghost {
+  color: var(--color-primary);
+  background: none;
+}
+
+.zus-btn-ghost:hover {
+  background: rgba(0, 65, 110, .1);
+}
+
+.zus-btn-success {
+  background: var(--color-success);
+  color: #fff;
+}
+
+.zus-btn-success:hover {
+  background: rgba(0, 153, 63, .9);
+}
+
+.zus-btn-error {
+  background: var(--color-error);
+  color: #fff;
+}
+
+.zus-btn-error:hover {
+  background: rgba(240, 94, 94, .9);
+}
+
+.zus-btn-small {
+  padding: .5rem 1rem;
+  font-size: .75rem;
+}
+
+.zus-btn-large {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.zus-badge {
+  border-radius: 9999px;
+  align-items: center;
+  padding: .25rem .75rem;
+  font-size: .75rem;
+  font-weight: 500;
+  line-height: 1;
+  display: inline-flex;
+}
+
+.zus-badge-primary {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.zus-badge-secondary {
+  background: var(--color-secondary-light);
+  color: var(--color-primary);
+}
+
+.zus-badge-success {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.zus-badge-warning {
+  background: var(--color-warning-light);
+  color: var(--color-primary);
+}
+
+.zus-badge-error {
+  background: var(--color-error-light);
+  color: var(--color-error);
+}
+
+.zus-badge-neutral {
+  background: var(--color-neutral-light);
+  color: var(--color-neutral);
+}
+
+.zus-alert {
+  border-left: 4px solid;
+  border-radius: 8px;
+  margin: 1rem 0;
+  padding: 1rem 1.5rem;
+}
+
+.zus-alert-info {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.zus-alert-success {
+  background: var(--color-success-light);
+  border-color: var(--color-success);
+  color: var(--color-text);
+}
+
+.zus-alert-warning {
+  background: var(--color-warning-light);
+  border-color: var(--color-warning);
+  color: var(--color-text);
+}
+
+.zus-alert-error {
+  background: var(--color-error-light);
+  border-color: var(--color-error);
+  color: var(--color-text);
+}
+
+.zus-alert-title {
+  color: var(--color-primary);
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+
+.zus-input {
+  border: 2px solid var(--color-neutral);
+  background: #fff;
+  border-radius: 8px;
+  width: 100%;
+  padding: .75rem 1rem;
+  font-size: 1rem;
+  transition: border-color .2s;
+}
+
+.zus-input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(63, 132, 210, .1);
+}
+
+.zus-input:invalid {
+  border-color: var(--color-error);
+}
+
+.zus-label {
+  color: var(--color-text);
+  margin-bottom: .5rem;
+  font-weight: 500;
+  display: block;
+}
+
+.zus-select {
+  border: 2px solid var(--color-neutral);
+  cursor: pointer;
+  background: #fff;
+  border-radius: 8px;
+  width: 100%;
+  padding: .75rem 1rem;
+  font-size: 1rem;
+}
+
+.zus-select:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(63, 132, 210, .1);
+}
+
+.zus-textarea {
+  border: 2px solid var(--color-neutral);
+  resize: vertical;
+  background: #fff;
+  border-radius: 8px;
+  width: 100%;
+  min-height: 100px;
+  padding: .75rem 1rem;
+  font-size: 1rem;
+}
+
+.zus-textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(63, 132, 210, .1);
+}
+
+.zus-nav {
+  border-bottom: 1px solid var(--color-neutral);
+  background: #fff;
+  padding: 1rem 0;
+}
+
+.zus-nav-brand {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.zus-nav-link {
+  color: var(--color-text);
+  border-radius: 6px;
+  padding: .5rem 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.zus-nav-link:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.zus-nav-link.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.zus-table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+}
+
+.zus-table th {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.zus-table td {
+  border-bottom: 1px solid var(--color-neutral-light);
+  padding: 1rem;
+}
+
+.zus-table tr:nth-child(2n) {
+  background: rgba(190, 195, 206, .05);
+}
+
+.zus-table tr:hover {
+  background: var(--color-primary-light);
+}
+
+.zus-shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+.zus-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+}
+
+.zus-shadow-lg {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+}
+
+.zus-shadow-xl {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .2);
+}
+
+.zus-rounded-sm {
+  border-radius: 4px;
+}
+
+.zus-rounded {
+  border-radius: 8px;
+}
+
+.zus-rounded-lg {
+  border-radius: 12px;
+}
+
+.zus-rounded-xl {
+  border-radius: 16px;
+}
+
+.zus-rounded-full {
+  border-radius: 9999px;
+}
+
+.zus-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+}
+
+.zus-gradient-secondary {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-warning) 100%);
+}
+
+.zus-gradient-brand {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
+}
+
+.zus-p-1 {
+  padding: .25rem;
+}
+
+.zus-p-2 {
+  padding: .5rem;
+}
+
+.zus-p-3 {
+  padding: .75rem;
+}
+
+.zus-p-4 {
+  padding: 1rem;
+}
+
+.zus-p-6 {
+  padding: 1.5rem;
+}
+
+.zus-p-8 {
+  padding: 2rem;
+}
+
+.zus-m-1 {
+  margin: .25rem;
+}
+
+.zus-m-2 {
+  margin: .5rem;
+}
+
+.zus-m-3 {
+  margin: .75rem;
+}
+
+.zus-m-4 {
+  margin: 1rem;
+}
+
+.zus-m-6 {
+  margin: 1.5rem;
+}
+
+.zus-m-8 {
+  margin: 2rem;
+}
+
+@media (max-width: 768px) {
+  .zus-text-display {
+    font-size: 2rem;
+  }
+
+  .zus-text-h1 {
+    font-size: 1.875rem;
+  }
+
+  .zus-text-h2 {
+    font-size: 1.5rem;
+  }
+
+  .zus-card {
+    margin: .5rem;
+  }
+
+  .zus-card-header, .zus-card-body {
+    padding: 1rem;
+  }
+
+  .zus-btn {
+    padding: .625rem 1.25rem;
+  }
+
+  .zus-btn-large {
+    padding: .875rem 1.75rem;
+  }
+}
+
+/* [project]/src/app/globals.css [app-client] (css) */
+:root {
+  --background: #fff;
+  --foreground: #171717;
+  --zus-yellow: #ffb34f;
+  --zus-green: #00993f;
+  --zus-gray: #bec3ce;
+  --zus-blue: #3f84d2;
+  --zus-navy: #00416e;
+  --zus-red: #f05e5e;
+  --zus-black: #000;
+  --color-primary: var(--zus-navy);
+  --color-secondary: var(--zus-yellow);
+  --color-accent: var(--zus-blue);
+  --color-success: var(--zus-green);
+  --color-warning: var(--zus-yellow);
+  --color-error: var(--zus-red);
+  --color-neutral: var(--zus-gray);
+  --color-text: var(--zus-black);
+  --color-text-secondary: var(--zus-gray);
+}
+
+@theme inline {
+  --color-background: var(--background) ; --color-foreground: var(--foreground) ; --font-sans: var(--font-geist-sans) ; --font-mono: var(--font-geist-mono) ;   --color-zus-yellow: var(--zus-yellow) ; --color-zus-green: var(--zus-green) ; --color-zus-gray: var(--zus-gray) ; --color-zus-blue: var(--zus-blue) ; --color-zus-navy: var(--zus-navy) ; --color-zus-red: var(--zus-red) ; --color-zus-black: var(--zus-black) ;   --color-primary: var(--color-primary) ; --color-secondary: var(--color-secondary) ; --color-accent: var(--color-accent) ; --color-success: var(--color-success) ; --color-warning: var(--color-warning) ; --color-error: var(--color-error) ; --color-neutral: var(--color-neutral) ;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --color-text: #ededed;
+    --color-text-secondary: var(--zus-gray);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*# sourceMappingURL=%5Broot-of-the-server%5D__bef4ee4b._.css.map*/

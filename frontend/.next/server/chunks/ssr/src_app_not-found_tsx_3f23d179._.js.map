@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kubamilcarz/Developer/HackYeah/zus-sim/src/app/not-found.tsx"],"sourcesContent":["export default function NotFound() {\n  return (\n    <div className=\"max-w-prose\">\n      <h1 className=\"text-2xl font-semibold\">Page not found</h1>\n      <p className=\"mt-2 text-neutral-600\">\n        Try the simulator or go back home.\n      </p>\n      <a\n        className=\"mt-4 inline-block px-4 py-2 rounded bg-black text-white\"\n        href=\"/\"\n      >\n        Home\n      </a>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;gBAAG,WAAU;0BAAyB;;;;;;0BACvC,8OAAC;gBAAE,WAAU;0BAAwB;;;;;;0BAGrC,8OAAC;gBACC,WAAU;gBACV,MAAK;0BACN;;;;;;;;;;;;AAKP","debugId":null}}]
+}

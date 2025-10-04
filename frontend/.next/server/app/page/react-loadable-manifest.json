@@ -1,0 +1,9 @@
+{
+  "[project]/node_modules/react-chartjs-2/dist/index.js [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/node_modules/react-chartjs-2/dist/index.js [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_react-chartjs-2_dist_index_759e39fd.js",
+      "static/chunks/node_modules_react-chartjs-2_dist_index_d281daaa.js"
+    ]
+  }
+}
