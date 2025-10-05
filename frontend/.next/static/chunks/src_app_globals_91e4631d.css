@@ -1548,28 +1548,8 @@
     border-color: var(--color-white);
   }
 
-  .border-zus-gray\/20 {
-    border-color: var(--zus-gray);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .border-zus-gray\/20 {
-      border-color: color-mix(in oklab, var(--zus-gray) 20%, transparent);
-    }
-  }
-
   .border-zus-green {
     border-color: var(--zus-green);
-  }
-
-  .border-zus-green\/20 {
-    border-color: var(--zus-green);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .border-zus-green\/20 {
-      border-color: color-mix(in oklab, var(--zus-green) 20%, transparent);
-    }
   }
 
   .border-r-transparent {
@@ -1662,16 +1642,6 @@
 
   .bg-white {
     background-color: var(--color-white);
-  }
-
-  .bg-zus-green\/10 {
-    background-color: var(--zus-green);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-zus-green\/10 {
-      background-color: color-mix(in oklab, var(--zus-green) 10%, transparent);
-    }
   }
 
   .bg-gradient-to-r {
@@ -2082,10 +2052,6 @@
 
   .text-white {
     color: var(--color-white);
-  }
-
-  .text-zus-green {
-    color: var(--zus-green);
   }
 
   .text-zus-navy {
@@ -3617,6 +3583,65 @@ html.hc-white .comparison-bar-neutral, html.hc-yellow .comparison-bar-neutral {
 
 html.hc-white .comparison-bar-primary, html.hc-yellow .comparison-bar-primary {
   background-color: rgb(var(--color-accent)) !important;
+}
+
+.ema-tip-card {
+  background-color: rgb(var(--color-card));
+  color: rgb(var(--color-text));
+  border-color: rgb(var(--color-text) / .2);
+  transition: all .2s;
+}
+
+.ema-tip-card:hover {
+  border-color: rgb(var(--color-accent) / .4);
+  box-shadow: 0 4px 12px rgb(var(--color-text) / .1);
+  transform: translateY(-1px);
+}
+
+.ema-tip-notice {
+  background-color: rgb(var(--color-accent) / .1);
+  border: 1px solid rgb(var(--color-accent) / .3);
+  color: rgb(var(--color-text));
+}
+
+html:not(.hc-white):not(.hc-yellow) .ema-tip-notice {
+  color: #00993f;
+  background-color: rgba(0, 153, 63, .1);
+  border-color: rgba(0, 153, 63, .3);
+}
+
+html.hc-white .ema-tip-card {
+  color: #fff;
+  background-color: #000;
+  border-color: rgba(255, 255, 255, .3);
+}
+
+html.hc-white .ema-tip-card:hover {
+  border-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, .2);
+}
+
+html.hc-white .ema-tip-notice {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .3);
+}
+
+html.hc-yellow .ema-tip-card {
+  color: #ffd800;
+  background-color: #000;
+  border-color: rgba(255, 216, 0, .3);
+}
+
+html.hc-yellow .ema-tip-card:hover {
+  border-color: rgba(255, 216, 0, .6);
+  box-shadow: 0 4px 12px rgba(255, 216, 0, .2);
+}
+
+html.hc-yellow .ema-tip-notice {
+  color: #ffd800;
+  background-color: rgba(255, 216, 0, .1);
+  border-color: rgba(255, 216, 0, .3);
 }
 
 @property --tw-translate-x {

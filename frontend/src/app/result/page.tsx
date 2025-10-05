@@ -229,14 +229,14 @@ export default function ResultPage() {
             ) : conclusions.length > 0 ? (
               <div className="space-y-4">
                 {conclusions.map((conclusion, index) => (
-                  <div key={index} className="p-4 rounded-lg bg-white border border-zus-gray/20">
-                    <ZusText className="text-neutral-800 leading-relaxed">
+                  <div key={index} className="ema-tip-card p-4 rounded-lg bg-zus-card border border-zus">
+                    <ZusText className="text-zus-text leading-relaxed">
                       {conclusion}
                     </ZusText>
                   </div>
                 ))}
-                <div className="mt-4 p-3 rounded-lg bg-zus-green/10 border border-zus-green/20">
-                  <ZusText className="text-sm text-zus-green">
+                <div className="ema-tip-notice mt-4 p-3 rounded-lg">
+                  <ZusText className="text-sm leading-relaxed">
                     💡 Te wnioski zostały wygenerowane przez Emę na podstawie Twoich danych. 
                     Pamiętaj, że to tylko szacunki - zawsze warto skonsultować się z doradcą finansowym.
                   </ZusText>
