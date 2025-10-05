@@ -59,6 +59,10 @@ export default function CustomDataEntrySection() {
       reason: "Planowana operacja",
     },
   ]);
+  const [futureSalaries, setFutureSalaries] = useState([
+    { year: 2025, amount: 5500 },
+    { year: 2026, amount: 5800 },
+  ]);
 
   const addHistoricalSalary = () => {
     const currentYear = new Date().getFullYear();
@@ -80,6 +84,28 @@ export default function CustomDataEntrySection() {
 
   const removeHistoricalSalary = (index: number) => {
     setHistoricalSalaries(historicalSalaries.filter((_, i) => i !== index));
+  };
+
+  const addFutureSalary = () => {
+    const currentYear = new Date().getFullYear();
+    setFutureSalaries([
+      ...futureSalaries,
+      { year: currentYear + 1, amount: 5500 },
+    ]);
+  };
+
+  const updateFutureSalary = (
+    index: number,
+    field: "year" | "amount",
+    value: number
+  ) => {
+    const updated = [...futureSalaries];
+    updated[index][field] = value;
+    setFutureSalaries(updated);
+  };
+
+  const removeFutureSalary = (index: number) => {
+    setFutureSalaries(futureSalaries.filter((_, i) => i !== index));
   };
 
   const addSickLeavePeriod = (type: "past" | "future") => {
@@ -154,7 +180,7 @@ export default function CustomDataEntrySection() {
               <div className="flex gap-4 text-sm">
                 <div className="flex items-center gap-1">
                   <span className="text-success">Wynagrodzenia:</span>
-                  <span>{historicalSalaries.length}</span>
+                  <span>{historicalSalaries.length + futureSalaries.length}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <span className="text-warning">Okresy choroby:</span>
@@ -165,8 +191,8 @@ export default function CustomDataEntrySection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Historical Salaries Section */}
+        <div className="flex flex-col gap-8">
+          {/* Salaries Section */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-success-light rounded-lg flex items-center justify-center">
@@ -174,64 +200,152 @@ export default function CustomDataEntrySection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-primary">
-                  Historyczne wynagrodzenia
+                  Wynagrodzenia
                 </h3>
                 <ZusText variant="small" className="text-secondary">
-                  Wprowadź swoje wynagrodzenia z poprzednich lat
+                  Wprowadź swoje wynagrodzenia z poprzednich i przyszłych lat
                 </ZusText>
               </div>
             </div>
 
-            <div className="space-y-3">
-              {historicalSalaries.map((salary, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 p-3 bg-zus-card border border-neutral rounded-lg"
-                >
-                  <input
-                    type="number"
-                    value={salary.year}
-                    onChange={(e) =>
-                      updateHistoricalSalary(
-                        index,
-                        "year",
-                        parseInt(e.target.value)
-                      )
-                    }
-                    className="w-20 px-2 py-1 border border-neutral rounded text-sm bg-white"
-                    min="1990"
-                    max="2024"
-                  />
-                  <span className="text-sm text-secondary">rok:</span>
-                  <input
-                    type="number"
-                    value={salary.amount}
-                    onChange={(e) =>
-                      updateHistoricalSalary(
-                        index,
-                        "amount",
-                        parseInt(e.target.value)
-                      )
-                    }
-                    className="flex-1 px-3 py-1 border border-neutral rounded text-sm bg-white"
-                    placeholder="Wynagrodzenie brutto"
-                  />
-                  <span className="text-sm text-secondary">zł</span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Historical Salaries */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-success-light rounded flex items-center justify-center">
+                    <span className="text-success font-bold text-xs">H</span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-semibold text-primary">
+                      Historyczne wynagrodzenia
+                    </h4>
+                    <ZusText variant="small" className="text-secondary">
+                      Wprowadź swoje wynagrodzenia z poprzednich lat
+                    </ZusText>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {historicalSalaries.map((salary, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 p-3 bg-zus-card border border-neutral rounded-lg"
+                    >
+                      <input
+                        type="number"
+                        value={salary.year}
+                        onChange={(e) =>
+                          updateHistoricalSalary(
+                            index,
+                            "year",
+                            parseInt(e.target.value)
+                          )
+                        }
+                        className="w-20 px-2 py-1 border border-neutral rounded text-sm bg-white"
+                        min="1990"
+                        max="2024"
+                      />
+                      <span className="text-sm text-secondary">rok:</span>
+                      <input
+                        type="number"
+                        value={salary.amount}
+                        onChange={(e) =>
+                          updateHistoricalSalary(
+                            index,
+                            "amount",
+                            parseInt(e.target.value)
+                          )
+                        }
+                        className="flex-1 px-3 py-1 border border-neutral rounded text-sm bg-white"
+                        placeholder="Wynagrodzenie brutto"
+                      />
+                      <span className="text-sm text-secondary">zł</span>
+                      <button
+                        onClick={() => removeHistoricalSalary(index)}
+                        className="text-warning hover:text-warning px-2 py-1 text-sm font-bold"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+
                   <button
-                    onClick={() => removeHistoricalSalary(index)}
-                    className="text-warning hover:text-warning px-2 py-1 text-sm font-bold"
+                    onClick={addHistoricalSalary}
+                    className="w-full p-3 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors"
                   >
-                    ×
+                    + Dodaj wynagrodzenie
                   </button>
                 </div>
-              ))}
+              </div>
 
-              <button
-                onClick={addHistoricalSalary}
-                className="w-full p-3 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors"
-              >
-                + Dodaj wynagrodzenie
-              </button>
+              {/* Future Salaries */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-info-light rounded flex items-center justify-center">
+                    <span className="text-info font-bold text-xs">F</span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-semibold text-primary">
+                      Planowane wynagrodzenia
+                    </h4>
+                    <ZusText variant="small" className="text-secondary">
+                      Wprowadź planowane wynagrodzenia na przyszłe lata
+                    </ZusText>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {futureSalaries.map((salary, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50/50 to-transparent border border-neutral rounded-lg"
+                    >
+                      <input
+                        type="number"
+                        value={salary.year}
+                        onChange={(e) =>
+                          updateFutureSalary(
+                            index,
+                            "year",
+                            parseInt(e.target.value)
+                          )
+                        }
+                        className="w-20 px-2 py-1 border border-neutral rounded text-sm bg-white"
+                        min="2025"
+                        max="2050"
+                      />
+                      <span className="text-sm text-secondary">rok:</span>
+                      <input
+                        type="number"
+                        value={salary.amount}
+                        onChange={(e) =>
+                          updateFutureSalary(
+                            index,
+                            "amount",
+                            parseInt(e.target.value)
+                          )
+                        }
+                        className="flex-1 px-3 py-1 border border-neutral rounded text-sm bg-white"
+                        placeholder="Planowane wynagrodzenie brutto"
+                      />
+                      <span className="text-sm text-secondary">zł</span>
+                      <button
+                        onClick={() => removeFutureSalary(index)}
+                        className="text-info hover:text-info px-2 py-1 text-sm font-bold"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+
+                  <button
+                    onClick={addFutureSalary}
+                    className="w-full p-3 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors"
+                  >
+                    + Dodaj planowane wynagrodzenie
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -251,155 +365,157 @@ export default function CustomDataEntrySection() {
               </div>
             </div>
 
-            {/* Past Sick Leave */}
-            <div className="space-y-4">
-              <h4 className="font-medium text-primary flex items-center gap-2">
-                <div className="w-4 h-4 bg-warning-light rounded flex items-center justify-center">
-                  <span className="text-warning font-bold text-xs">P</span>
-                </div>
-                Przeszłe okresy choroby
-              </h4>
-
-              <div className="space-y-3">
-                {sickLeavePeriods.map((period, index) => (
-                  <div
-                    key={index}
-                    className="p-3 bg-zus-card border border-neutral rounded-lg space-y-2"
-                  >
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="date"
-                        value={period.startDate}
-                        onChange={(e) =>
-                          updateSickLeavePeriod(
-                            "past",
-                            index,
-                            "startDate",
-                            e.target.value
-                          )
-                        }
-                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
-                      />
-                      <span className="text-xs text-secondary">do</span>
-                      <input
-                        type="date"
-                        value={period.endDate}
-                        onChange={(e) =>
-                          updateSickLeavePeriod(
-                            "past",
-                            index,
-                            "endDate",
-                            e.target.value
-                          )
-                        }
-                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
-                      />
-                      <button
-                        onClick={() => removeSickLeavePeriod("past", index)}
-                        className="text-warning hover:text-warning px-2 py-1 text-sm font-bold"
-                      >
-                        ×
-                      </button>
-                    </div>
-                    <input
-                      type="text"
-                      value={period.reason}
-                      onChange={(e) =>
-                        updateSickLeavePeriod(
-                          "past",
-                          index,
-                          "reason",
-                          e.target.value
-                        )
-                      }
-                      placeholder="Powód nieobecności"
-                      className="w-full px-2 py-1 border border-neutral rounded text-xs bg-white"
-                    />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Past Sick Leave */}
+              <div className="space-y-4">
+                <h4 className="font-medium text-primary flex items-center gap-2">
+                  <div className="w-4 h-4 bg-warning-light rounded flex items-center justify-center">
+                    <span className="text-warning font-bold text-xs">P</span>
                   </div>
-                ))}
+                  Przeszłe okresy choroby
+                </h4>
 
-                <button
-                  onClick={() => addSickLeavePeriod("past")}
-                  className="w-full p-2 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors text-sm"
-                >
-                  + Dodaj okres choroby z przeszłości
-                </button>
+                <div className="space-y-3">
+                  {sickLeavePeriods.map((period, index) => (
+                    <div
+                      key={index}
+                      className="p-3 bg-zus-card border border-neutral rounded-lg space-y-2"
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="date"
+                          value={period.startDate}
+                          onChange={(e) =>
+                            updateSickLeavePeriod(
+                              "past",
+                              index,
+                              "startDate",
+                              e.target.value
+                            )
+                          }
+                          className="px-2 py-1 border border-neutral rounded text-xs bg-white"
+                        />
+                        <span className="text-xs text-secondary">do</span>
+                        <input
+                          type="date"
+                          value={period.endDate}
+                          onChange={(e) =>
+                            updateSickLeavePeriod(
+                              "past",
+                              index,
+                              "endDate",
+                              e.target.value
+                            )
+                          }
+                          className="px-2 py-1 border border-neutral rounded text-xs bg-white"
+                        />
+                        <button
+                          onClick={() => removeSickLeavePeriod("past", index)}
+                          className="text-warning hover:text-warning px-2 py-1 text-sm font-bold"
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        value={period.reason}
+                        onChange={(e) =>
+                          updateSickLeavePeriod(
+                            "past",
+                            index,
+                            "reason",
+                            e.target.value
+                          )
+                        }
+                        placeholder="Powód nieobecności"
+                        className="w-full px-2 py-1 border border-neutral rounded text-xs bg-white"
+                      />
+                    </div>
+                  ))}
+
+                  <button
+                    onClick={() => addSickLeavePeriod("past")}
+                    className="w-full p-2 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors text-sm"
+                  >
+                    + Dodaj okres choroby z przeszłości
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Future Sick Leave */}
-            <div className="space-y-4">
-              <h4 className="font-medium text-primary flex items-center gap-2">
-                <div className="w-4 h-4 bg-info-light rounded flex items-center justify-center">
-                  <span className="text-info font-bold text-xs">F</span>
-                </div>
-                Planowane okresy choroby
-              </h4>
-
-              <div className="space-y-3">
-                {futureSickLeave.map((period, index) => (
-                  <div
-                    key={index}
-                    className="p-3 bg-gradient-to-r from-blue-50/50 to-transparent border border-neutral rounded-lg space-y-2"
-                  >
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="date"
-                        value={period.startDate}
-                        onChange={(e) =>
-                          updateSickLeavePeriod(
-                            "future",
-                            index,
-                            "startDate",
-                            e.target.value
-                          )
-                        }
-                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
-                      />
-                      <span className="text-xs text-secondary">do</span>
-                      <input
-                        type="date"
-                        value={period.endDate}
-                        onChange={(e) =>
-                          updateSickLeavePeriod(
-                            "future",
-                            index,
-                            "endDate",
-                            e.target.value
-                          )
-                        }
-                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
-                      />
-                      <button
-                        onClick={() => removeSickLeavePeriod("future", index)}
-                        className="text-info hover:text-info px-2 py-1 text-sm font-bold"
-                      >
-                        ×
-                      </button>
-                    </div>
-                    <input
-                      type="text"
-                      value={period.reason}
-                      onChange={(e) =>
-                        updateSickLeavePeriod(
-                          "future",
-                          index,
-                          "reason",
-                          e.target.value
-                        )
-                      }
-                      placeholder="Planowany powód nieobecności"
-                      className="w-full px-2 py-1 border border-neutral rounded text-xs bg-white"
-                    />
+              {/* Future Sick Leave */}
+              <div className="space-y-4">
+                <h4 className="font-medium text-primary flex items-center gap-2">
+                  <div className="w-4 h-4 bg-info-light rounded flex items-center justify-center">
+                    <span className="text-info font-bold text-xs">F</span>
                   </div>
-                ))}
+                  Planowane okresy choroby
+                </h4>
 
-                <button
-                  onClick={() => addSickLeavePeriod("future")}
-                  className="w-full p-2 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors text-sm"
-                >
-                  + Dodaj planowany okres choroby
-                </button>
+                <div className="space-y-3">
+                  {futureSickLeave.map((period, index) => (
+                    <div
+                      key={index}
+                      className="p-3 bg-gradient-to-r from-blue-50/50 to-transparent border border-neutral rounded-lg space-y-2"
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="date"
+                          value={period.startDate}
+                          onChange={(e) =>
+                            updateSickLeavePeriod(
+                              "future",
+                              index,
+                              "startDate",
+                              e.target.value
+                            )
+                          }
+                          className="px-2 py-1 border border-neutral rounded text-xs bg-white"
+                        />
+                        <span className="text-xs text-secondary">do</span>
+                        <input
+                          type="date"
+                          value={period.endDate}
+                          onChange={(e) =>
+                            updateSickLeavePeriod(
+                              "future",
+                              index,
+                              "endDate",
+                              e.target.value
+                            )
+                          }
+                          className="px-2 py-1 border border-neutral rounded text-xs bg-white"
+                        />
+                        <button
+                          onClick={() => removeSickLeavePeriod("future", index)}
+                          className="text-info hover:text-info px-2 py-1 text-sm font-bold"
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        value={period.reason}
+                        onChange={(e) =>
+                          updateSickLeavePeriod(
+                            "future",
+                            index,
+                            "reason",
+                            e.target.value
+                          )
+                        }
+                        placeholder="Planowany powód nieobecności"
+                        className="w-full px-2 py-1 border border-neutral rounded text-xs bg-white"
+                      />
+                    </div>
+                  ))}
+
+                  <button
+                    onClick={() => addSickLeavePeriod("future")}
+                    className="w-full p-2 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors text-sm"
+                  >
+                    + Dodaj planowany okres choroby
+                  </button>
+                </div>
               </div>
             </div>
           </div>
