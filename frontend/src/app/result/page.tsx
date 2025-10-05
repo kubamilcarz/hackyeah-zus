@@ -108,6 +108,24 @@ export default function ResultPage() {
             />
           </div>
 
+          {/* Additional Information Section */}
+          <section className="bg-zus-bg rounded-xl p-6 space-y-4">
+            <h3 className="text-lg font-semibold text-neutral-700" style={{ fontSize: `calc(1.125rem * var(--font-scale))` }}>
+              Dodatkowe informacje
+            </h3>
+            
+            <ZusText className="text-neutral-800 leading-relaxed">
+              Twoje zaprognozowane świadczenie emerytalne w wysokości <strong>{fmtPLN(projectedWithSavings)}</strong> {" "}
+              odnosi się do prognozowanego średniego świadczenia w roku przejścia na emeryturę. Stopa zastąpienia 
+              (stosunek prognozowanego świadczenia do Twojego obecnego wynagrodzenia zindeksowanego) wynosi {" "}
+              <strong>
+                {userData.signup?.grossSalary 
+                  ? `${Math.round((projectedWithSavings / userData.signup.grossSalary) * 100)}%`
+                  : "nieokreślona"}
+              </strong>.
+            </ZusText>
+          </section>
+
           {/* Postal Code Input */}
           <div className="max-w-sm">
             <ZusInput
