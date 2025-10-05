@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "jotai": "^2.15.0",
     "next": "15.5.4",
     "next-auth": "^4.24.11",
     "next-sitemap": "^4.2.3",

@@ -7,6 +7,7 @@ import {
   ZusInput,
   ZusButton,
 } from "@/components/zus-ui";
+import { useStepProgression, useRetirementSourcesForm } from "@/lib/store";
 
 function fmtPLN(n: number) {
   return new Intl.NumberFormat("pl-PL", {
@@ -50,9 +51,11 @@ function InfoPopover({ children, content }: { children: React.ReactNode; content
   );
 }
 
-export default function SavingsScreen() {
+export default function AddSourcesPage() {
   const router = useRouter();
   const params = useSearchParams();
+  const { completeCurrentStep, nextStep } = useStepProgression();
+  const { updateSource } = useRetirementSourcesForm();
 
   // Base from previous step(s) or backend
   const zusNominal = Number(params.get("zusPension") ?? "2964"); // fallback like in screenshot
@@ -90,6 +93,16 @@ export default function SavingsScreen() {
   const canContinue = true; // everything optional on this step
 
   function goNext() {
+    // Save retirement sources to state
+    updateSource('ike', ikeOn ? Number(ike || 0) : 0);
+    updateSource('ikze', ikzeOn ? Number(ikze || 0) : 0);
+    updateSource('ppk', ppkOn ? Number(ppk || 0) : 0);
+    updateSource('ppe', ppeOn ? Number(ppe || 0) : 0);
+    // Add other sources if needed
+    
+    completeCurrentStep();
+    nextStep();
+    
     const q = new URLSearchParams({
       zusPension: String(zusNominal),
       realPowerToday: String(realToday),

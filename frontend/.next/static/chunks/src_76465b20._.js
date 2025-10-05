@@ -24,9 +24,7 @@ __turbopack_context__.s([
     "ZusSelect",
     ()=>ZusSelect,
     "ZusText",
-    ()=>ZusText,
-    "ZusTextarea",
-    ()=>ZusTextarea
+    ()=>ZusText
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 ;
@@ -36,6 +34,10 @@ const ZusCard = (param)=>{
     const variantClasses = variant !== 'default' ? "zus-card-".concat(variant) : '';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "".concat(baseClasses, " ").concat(variantClasses, " ").concat(className),
+        style: {
+            backgroundColor: "rgb(var(--color-card))",
+            color: "rgb(var(--color-text))"
+        },
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/zus-ui.tsx",
@@ -48,10 +50,13 @@ const ZusCardHeader = (param)=>{
     let { children, className = '' } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "zus-card-header ".concat(className),
+        style: {
+            color: "rgb(var(--color-text))"
+        },
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 33,
+        lineNumber: 39,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -60,10 +65,13 @@ const ZusCardBody = (param)=>{
     let { children, className = '' } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "zus-card-body ".concat(className),
+        style: {
+            color: "rgb(var(--color-text))"
+        },
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 46,
+        lineNumber: 57,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -72,10 +80,13 @@ const ZusCardFooter = (param)=>{
     let { children, className = '' } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "zus-card-footer ".concat(className),
+        style: {
+            color: "rgb(var(--color-text))"
+        },
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 59,
+        lineNumber: 75,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -86,6 +97,8 @@ const ZusButton = (param)=>{
     const variantClasses = "zus-btn-".concat(variant);
     const sizeClasses = size !== 'default' ? "zus-btn-".concat(size) : '';
     const disabledClasses = disabled || loading ? 'opacity-50 cursor-not-allowed' : '';
+    // Scale-aware icon size
+    const iconSize = size === 'small' ? '0.875rem' : '1rem';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         type: type,
         onClick: onClick,
@@ -93,9 +106,13 @@ const ZusButton = (param)=>{
         className: "".concat(baseClasses, " ").concat(variantClasses, " ").concat(sizeClasses, " ").concat(disabledClasses, " ").concat(className),
         children: [
             loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                className: "animate-spin h-4 w-4",
+                className: "animate-spin",
                 fill: "none",
                 viewBox: "0 0 24 24",
+                style: {
+                    width: "calc(".concat(iconSize, " * var(--font-scale))"),
+                    height: "calc(".concat(iconSize, " * var(--font-scale))")
+                },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
                         className: "opacity-25",
@@ -106,7 +123,7 @@ const ZusButton = (param)=>{
                         strokeWidth: "4"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zus-ui.tsx",
-                        lineNumber: 100,
+                        lineNumber: 132,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -115,20 +132,20 @@ const ZusButton = (param)=>{
                         d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zus-ui.tsx",
-                        lineNumber: 101,
+                        lineNumber: 133,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 99,
+                lineNumber: 123,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             children
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 92,
+        lineNumber: 116,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -142,7 +159,7 @@ const ZusBadge = (param)=>{
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 120,
+        lineNumber: 152,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -153,78 +170,128 @@ const ZusAlert = (param)=>{
     const variantClasses = "zus-alert-".concat(variant);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "".concat(baseClasses, " ").concat(variantClasses, " ").concat(className),
+        style: {
+            backgroundColor: "rgb(var(--color-card))",
+            color: "rgb(var(--color-text))",
+            borderColor: "rgb(var(--color-accent))"
+        },
         children: [
             title && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "zus-alert-title",
+                style: {
+                    color: "rgb(var(--color-text))"
+                },
                 children: title
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 139,
-                columnNumber: 17
+                lineNumber: 179,
+                columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    color: "rgb(var(--color-text))"
+                },
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 140,
+                lineNumber: 188,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 138,
+        lineNumber: 170,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
 _c6 = ZusAlert;
 const ZusInput = (param)=>{
-    let { label, placeholder, value, onChange, type = 'text', required = false, disabled = false, error, className = '' } = param;
+    let { id, label, placeholder, value, min, max, step, onChange, onKeyDown, type = 'text', required = false, disabled = false, error, className = '', hintAction } = param;
+    var _hintAction_href;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "".concat(className),
         children: [
             label && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                htmlFor: id,
                 className: "zus-label",
+                style: {
+                    color: "rgb(var(--color-text))"
+                },
                 children: [
                     label,
                     required && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-error ml-1",
+                        className: "ml-1",
+                        style: {
+                            color: "rgb(var(--color-error, 240 94 94))"
+                        },
                         children: "*"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zus-ui.tsx",
-                        lineNumber: 173,
-                        columnNumber: 24
+                        lineNumber: 242,
+                        columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 171,
+                lineNumber: 233,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                id: id,
                 type: type,
                 placeholder: placeholder,
                 value: value,
+                min: min,
+                max: max,
+                step: step,
                 onChange: (e)=>onChange === null || onChange === void 0 ? void 0 : onChange(e.target.value),
+                onKeyDown: onKeyDown,
                 required: required,
                 disabled: disabled,
-                className: "zus-input ".concat(error ? 'border-error' : '')
+                className: "zus-input ".concat(error ? 'border-error' : ''),
+                style: {
+                    backgroundColor: "rgb(var(--color-card))",
+                    color: "rgb(var(--color-text))",
+                    borderColor: error ? "rgb(var(--color-error, 240 94 94))" : "rgb(var(--color-accent))"
+                }
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 176,
+                lineNumber: 251,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
+            hintAction && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                href: (_hintAction_href = hintAction.href) !== null && _hintAction_href !== void 0 ? _hintAction_href : "#",
+                className: "block mt-1 text-sm",
+                style: {
+                    color: "rgb(var(--color-accent))",
+                    fontSize: "calc(0.8125rem * var(--font-scale))"
+                },
+                onClick: (e)=>{
+                    var _hintAction_onClick;
+                    if (!hintAction.href) e.preventDefault();
+                    (_hintAction_onClick = hintAction.onClick) === null || _hintAction_onClick === void 0 ? void 0 : _hintAction_onClick.call(hintAction, e);
+                },
+                children: hintAction.label
+            }, void 0, false, {
+                fileName: "[project]/src/components/zus-ui.tsx",
+                lineNumber: 271,
+                columnNumber: 9
+            }, ("TURBOPACK compile-time value", void 0)),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-error zus-text-small mt-1",
+                className: "zus-text-small mt-1",
+                style: {
+                    color: "rgb(var(--color-error, 240 94 94))"
+                },
                 children: error
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 186,
+                lineNumber: 287,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 169,
+        lineNumber: 231,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -236,20 +303,26 @@ const ZusSelect = (param)=>{
         children: [
             label && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                 className: "zus-label",
+                style: {
+                    color: "rgb(var(--color-text))"
+                },
                 children: [
                     label,
                     required && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-error ml-1",
+                        className: "ml-1",
+                        style: {
+                            color: "rgb(var(--color-error, 240 94 94))"
+                        },
                         children: "*"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zus-ui.tsx",
-                        lineNumber: 220,
-                        columnNumber: 24
+                        lineNumber: 334,
+                        columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 218,
+                lineNumber: 326,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -258,13 +331,18 @@ const ZusSelect = (param)=>{
                 required: required,
                 disabled: disabled,
                 className: "zus-select ".concat(error ? 'border-error' : ''),
+                style: {
+                    backgroundColor: "rgb(var(--color-card))",
+                    color: "rgb(var(--color-text))",
+                    borderColor: error ? "rgb(var(--color-error, 240 94 94))" : "rgb(var(--color-accent))"
+                },
                 children: [
                     placeholder && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                         value: "",
                         children: placeholder
                     }, void 0, false, {
                         fileName: "[project]/src/components/zus-ui.tsx",
-                        lineNumber: 230,
+                        lineNumber: 355,
                         columnNumber: 25
                     }, ("TURBOPACK compile-time value", void 0)),
                     options.map((option)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -272,149 +350,112 @@ const ZusSelect = (param)=>{
                             children: option.label
                         }, option.value, false, {
                             fileName: "[project]/src/components/zus-ui.tsx",
-                            lineNumber: 232,
+                            lineNumber: 357,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)))
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 223,
+                lineNumber: 343,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-error zus-text-small mt-1",
+                className: "zus-text-small mt-1",
+                style: {
+                    color: "rgb(var(--color-error, 240 94 94))"
+                },
                 children: error
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 238,
+                lineNumber: 363,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 216,
+        lineNumber: 324,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
 _c8 = ZusSelect;
-const ZusTextarea = (param)=>{
-    let { label, placeholder, value, onChange, rows = 4, required = false, disabled = false, error, className = '' } = param;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "".concat(className),
-        children: [
-            label && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                className: "zus-label",
-                children: [
-                    label,
-                    required && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-error ml-1",
-                        children: "*"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/zus-ui.tsx",
-                        lineNumber: 272,
-                        columnNumber: 24
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 270,
-                columnNumber: 9
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                placeholder: placeholder,
-                value: value,
-                onChange: (e)=>onChange === null || onChange === void 0 ? void 0 : onChange(e.target.value),
-                rows: rows,
-                required: required,
-                disabled: disabled,
-                className: "zus-textarea ".concat(error ? 'border-error' : '')
-            }, void 0, false, {
-                fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 275,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-error zus-text-small mt-1",
-                children: error
-            }, void 0, false, {
-                fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 285,
-                columnNumber: 9
-            }, ("TURBOPACK compile-time value", void 0))
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 268,
-        columnNumber: 5
-    }, ("TURBOPACK compile-time value", void 0));
-};
-_c9 = ZusTextarea;
 const ZusHeading = (param)=>{
     let { children, level = 1, className = '' } = param;
     const classes = "zus-text-h".concat(level, " ").concat(className);
+    const headingStyle = {
+        color: "rgb(var(--color-text))"
+    };
     switch(level){
         case 1:
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: classes,
+                style: headingStyle,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 303,
+                lineNumber: 392,
                 columnNumber: 14
             }, ("TURBOPACK compile-time value", void 0));
         case 2:
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                 className: classes,
+                style: headingStyle,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 305,
+                lineNumber: 394,
                 columnNumber: 14
             }, ("TURBOPACK compile-time value", void 0));
         case 3:
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                 className: classes,
+                style: headingStyle,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 307,
+                lineNumber: 396,
                 columnNumber: 14
             }, ("TURBOPACK compile-time value", void 0));
         case 4:
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                 className: classes,
+                style: headingStyle,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 309,
+                lineNumber: 398,
                 columnNumber: 14
             }, ("TURBOPACK compile-time value", void 0));
         default:
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: classes,
+                style: headingStyle,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/zus-ui.tsx",
-                lineNumber: 311,
+                lineNumber: 400,
                 columnNumber: 14
             }, ("TURBOPACK compile-time value", void 0));
     }
 };
-_c10 = ZusHeading;
+_c9 = ZusHeading;
 const ZusText = (param)=>{
     let { children, variant = 'body', className = '' } = param;
     const classes = "zus-text-".concat(variant, " ").concat(className);
+    const textStyle = {
+        color: "rgb(var(--color-text))"
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
         className: classes,
+        style: textStyle,
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/zus-ui.tsx",
-        lineNumber: 324,
+        lineNumber: 416,
         columnNumber: 10
     }, ("TURBOPACK compile-time value", void 0));
 };
-_c11 = ZusText;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11;
+_c10 = ZusText;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10;
 __turbopack_context__.k.register(_c, "ZusCard");
 __turbopack_context__.k.register(_c1, "ZusCardHeader");
 __turbopack_context__.k.register(_c2, "ZusCardBody");
@@ -424,9 +465,8 @@ __turbopack_context__.k.register(_c5, "ZusBadge");
 __turbopack_context__.k.register(_c6, "ZusAlert");
 __turbopack_context__.k.register(_c7, "ZusInput");
 __turbopack_context__.k.register(_c8, "ZusSelect");
-__turbopack_context__.k.register(_c9, "ZusTextarea");
-__turbopack_context__.k.register(_c10, "ZusHeading");
-__turbopack_context__.k.register(_c11, "ZusText");
+__turbopack_context__.k.register(_c9, "ZusHeading");
+__turbopack_context__.k.register(_c10, "ZusText");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -441,10 +481,13 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$index$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/src/lib/store/index.ts [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/store/hooks.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zus-ui.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -462,26 +505,54 @@ const NET_RATE = 0.85; // illustrative for UI only
 function WelcomeStart() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
-    const [value, setValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(4000);
+    const { data: welcomeData, updateExpectedRetirement } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWelcomeForm"])();
+    const { completeCurrentStep, nextStep, currentStep } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStepProgression"])();
+    // Local UI state for netto/brutto toggle
     const [netto, setNetto] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Use state value or default to 4000
+    const value = welcomeData.expectedRetirement || 4000;
+    // Ensure we're on the correct step when this page loads
+    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useEffect({
+        "WelcomeStart.useEffect": ()=>{
+            if (currentStep !== 1) {
+            // This page should be step 1
+            // The RouteStepSynchronizer will handle this
+            }
+        }
+    }["WelcomeStart.useEffect"], [
+        currentStep
+    ]);
     const onNumberKeyDown = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "WelcomeStart.useCallback[onNumberKeyDown]": (e)=>{
             if (e.key === "ArrowUp" || e.key === "ArrowDown") {
                 e.preventDefault();
                 const delta = e.key === "ArrowUp" ? 500 : -500;
-                setValue({
-                    "WelcomeStart.useCallback[onNumberKeyDown]": (v)=>Math.max(0, Math.round(((v || 0) + delta) / 500) * 500)
-                }["WelcomeStart.useCallback[onNumberKeyDown]"]);
+                const newValue = Math.max(0, Math.round(((value || 0) + delta) / 500) * 500);
+                updateExpectedRetirement(newValue);
             }
         }
-    }["WelcomeStart.useCallback[onNumberKeyDown]"], []);
+    }["WelcomeStart.useCallback[onNumberKeyDown]"], [
+        value,
+        updateExpectedRetirement
+    ]);
     const onNumberChange = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "WelcomeStart.useCallback[onNumberChange]": (e)=>{
-            const raw = e.target.value.replace(/\s/g, "").replace(",", ".");
+        "WelcomeStart.useCallback[onNumberChange]": (valueStr)=>{
+            const raw = valueStr.replace(/\s/g, "").replace(",", ".");
             const num = Number(raw);
-            setValue(Number.isFinite(num) ? num : 0);
+            updateExpectedRetirement(Number.isFinite(num) ? num : 0);
         }
-    }["WelcomeStart.useCallback[onNumberChange]"], []);
+    }["WelcomeStart.useCallback[onNumberChange]"], [
+        updateExpectedRetirement
+    ]);
+    const handleProceedToSignup = ()=>{
+        if (isValid && value > 0) {
+            // Ensure the data is saved to state
+            updateExpectedRetirement(value);
+            completeCurrentStep();
+            nextStep();
+            router.push("/signup");
+        }
+    };
     const [minVal, avgVal, yourVal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "WelcomeStart.useMemo": ()=>{
             const f = netto ? NET_RATE : 1;
@@ -507,354 +578,512 @@ function WelcomeStart() {
     const isValid = (value || 0) > 0;
     const maxForScale = Math.max(minVal, avgVal, yourVal) || 1;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen max-w-5xl mx-auto py-14 px-5",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusCard"], {
-            className: "rounded-2xl overflow-hidden",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "p-8 md:p-12 space-y-8",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-center space-y-3",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: "text-[28px] md:text-[32px] leading-tight font-semibold text-[rgb(var(--zus-black))]",
-                                children: "Zbuduj spokojny obraz swojej emerytury"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 68,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
-                                className: "text-neutral-700",
-                                children: "Zaczniemy od Twoich oczekiwań — później dopasujemy plan i pokażemy, jak do nich dojść."
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 71,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 67,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-4",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-full max-w-md",
+        className: "min-h-screen",
+        style: {
+            backgroundColor: 'rgb(var(--color-bg))',
+            color: 'rgb(var(--color-text))'
+        },
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "max-w-6xl mx-auto py-8 px-4",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "max-w-4xl mx-auto",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mb-8",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "p-8 space-y-8 rounded-2xl",
+                                style: {
+                                    backgroundColor: 'rgb(var(--color-card))',
+                                    border: '1px solid rgb(var(--color-accent) / 0.2)',
+                                    color: 'rgb(var(--color-text))'
+                                },
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
-                                        id: "kwota",
-                                        label: "Oczekiwana kwota emerytury (miesięcznie, brutto)",
-                                        type: "number",
-                                        inputMode: "numeric",
-                                        min: 0,
-                                        step: 500,
-                                        value: Number.isFinite(value) ? value : 0,
-                                        onChange: onNumberChange,
-                                        onKeyDown: onNumberKeyDown,
-                                        className: "w-full"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 79,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "zus-text-small mt-2 text-neutral-600",
-                                        children: "Użyj strzałek ↑/↓, aby zmieniać co 500 zł."
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 91,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 78,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(InfoChip, {
-                                        label: "Twoja oczekiwana",
-                                        value: fmtPLN(value || 0),
-                                        tone: "primary"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 98,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(InfoChip, {
-                                        label: "Średnia w Polsce",
-                                        value: fmtPLN(SREDNIA)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 99,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(InfoChip, {
-                                        label: "Minimalna",
-                                        value: fmtPLN(MINIMALNA),
-                                        tone: "soft"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 100,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 97,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 77,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusCardBody"], {
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-gray-50 rounded-xl p-6 md:p-7 space-y-5",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center justify-between flex-wrap gap-3",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "text-[16px] font-semibold text-neutral-900",
-                                            children: "Jak to wygląda w porównaniu?"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 108,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-center gap-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-sm text-neutral-700",
-                                                    children: "Widok:"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center space-y-6",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusHeading"], {
+                                                        level: 2,
+                                                        className: "mb-4 text-zus-navy",
+                                                        children: "Zacznij od swojego celu"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 112,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
+                                                        variant: "body-large",
+                                                        children: "Podaj kwotę emerytury, o której marzysz. Sprawdzimy, jak ją osiągnąć."
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 115,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 111,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "max-w-md mx-auto",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
+                                                    id: "kwota",
+                                                    label: "Oczekiwana kwota emerytury (miesięcznie, brutto)",
+                                                    type: "number",
+                                                    min: 0,
+                                                    max: 1_000_000,
+                                                    step: 500,
+                                                    value: Number.isFinite(value) ? value.toString() : "0",
+                                                    onChange: onNumberChange,
+                                                    onKeyDown: onNumberKeyDown,
+                                                    required: true,
+                                                    className: "text-center",
+                                                    hintAction: {
+                                                        label: "Użyj strzałek ↑/↓, aby zmieniać co 500 zł.",
+                                                        onClick: (e)=>e.preventDefault()
+                                                    }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/page.tsx",
-                                                    lineNumber: 110,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-1 bg-white border rounded-md p-1",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            type: "button",
-                                                            className: "px-3 py-1.5 rounded ".concat(!netto ? "bg-[#EBF2F9] text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-100"),
-                                                            onClick: ()=>setNetto(false),
-                                                            children: "Brutto"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/page.tsx",
-                                                            lineNumber: 112,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            type: "button",
-                                                            className: "px-3 py-1.5 rounded ".concat(netto ? "bg-[#EBF2F9] text-[#2E6AA2]" : "text-neutral-800 hover:bg-neutral-100"),
-                                                            onClick: ()=>setNetto(true),
-                                                            children: "Netto"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/page.tsx",
-                                                            lineNumber: 119,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/page.tsx",
-                                                    lineNumber: 111,
-                                                    columnNumber: 19
+                                                    lineNumber: 121,
+                                                    columnNumber: 23
                                                 }, this)
-                                            ]
-                                        }, void 0, true, {
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 120,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 110,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "rounded-xl p-6 space-y-6",
+                                        style: {
+                                            backgroundColor: 'rgb(var(--color-bg))',
+                                            border: '1px solid rgb(var(--color-text) / 0.1)',
+                                            color: 'rgb(var(--color-text))'
+                                        },
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-between flex-wrap gap-3",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusHeading"], {
+                                                        level: 4,
+                                                        children: "Jak to wygląda w porównaniu?"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 151,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                style: {
+                                                                    fontSize: "calc(0.875rem * var(--font-scale))",
+                                                                    color: 'rgb(var(--color-text) / 0.7)'
+                                                                },
+                                                                children: "Widok:"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 153,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-1 border rounded-md p-1",
+                                                                style: {
+                                                                    backgroundColor: 'rgb(var(--color-card))',
+                                                                    borderColor: 'rgb(var(--color-text) / 0.2)'
+                                                                },
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                        type: "button",
+                                                                        className: "px-3 py-1.5 rounded transition-colors ".concat(!netto ? "shadow-sm" : ""),
+                                                                        style: {
+                                                                            fontSize: "calc(0.875rem * var(--font-scale))",
+                                                                            backgroundColor: !netto ? 'rgb(0, 65, 110)' : 'transparent',
+                                                                            color: !netto ? 'white' : 'rgb(var(--color-text))',
+                                                                            border: !netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
+                                                                        },
+                                                                        onClick: ()=>setNetto(false),
+                                                                        children: "Brutto"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/page.tsx",
+                                                                        lineNumber: 168,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                        type: "button",
+                                                                        className: "px-3 py-1.5 rounded transition-colors ".concat(netto ? "shadow-sm" : ""),
+                                                                        style: {
+                                                                            fontSize: "calc(0.875rem * var(--font-scale))",
+                                                                            backgroundColor: netto ? 'rgb(0, 65, 110)' : 'transparent',
+                                                                            color: netto ? 'white' : 'rgb(var(--color-text))',
+                                                                            border: netto ? '1px solid rgb(0, 65, 110)' : '1px solid transparent'
+                                                                        },
+                                                                        onClick: ()=>setNetto(true),
+                                                                        children: "Netto"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/page.tsx",
+                                                                        lineNumber: 181,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 161,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 152,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 150,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "space-y-4",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
+                                                        label: "Minimalna emerytura",
+                                                        value: minVal,
+                                                        max: maxForScale,
+                                                        tone: "soft"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 199,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
+                                                        label: "Średnia w Polsce",
+                                                        value: avgVal,
+                                                        max: maxForScale,
+                                                        tone: "neutral"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 200,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
+                                                        label: "Twoja oczekiwana",
+                                                        value: yourVal,
+                                                        max: maxForScale,
+                                                        tone: "primary",
+                                                        emphasis: true
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 201,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 198,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusAlert"], {
+                                                variant: "info",
+                                                title: "💡 Wskazówka eksperta",
+                                                children: ciekawostkaText
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 205,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 142,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
+                                                variant: "primary",
+                                                size: "large",
+                                                type: "button",
+                                                className: "w-full max-w-md font-semibold",
+                                                disabled: !isValid,
+                                                "aria-disabled": !isValid,
+                                                onClick: handleProceedToSignup,
+                                                children: "Rozpocznij szczegółową symulację"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 212,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "mt-3",
+                                                style: {
+                                                    fontSize: "calc(0.875rem * var(--font-scale))",
+                                                    color: 'rgb(var(--color-text) / 0.6)'
+                                                },
+                                                children: "Bezpłatne • Zabiera 5 minut • Natychmiastowe wyniki"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 223,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 211,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 101,
+                                columnNumber: 17
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 100,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "grid md:grid-cols-3 gap-4 mb-8",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-center p-3 rounded-lg",
+                                    style: {
+                                        backgroundColor: 'rgb(var(--color-success) / 0.1)',
+                                        borderLeft: '3px solid rgb(var(--color-success))',
+                                        color: 'rgb(var(--color-text))'
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mb-2",
+                                            style: {
+                                                fontSize: "calc(1.25rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-success))'
+                                            },
+                                            children: "✓"
+                                        }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 109,
-                                            columnNumber: 17
+                                            lineNumber: 246,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "font-medium mb-1",
+                                            style: {
+                                                fontSize: "calc(0.875rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-text))'
+                                            },
+                                            children: "Precyzyjne obliczenia"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/page.tsx",
+                                            lineNumber: 255,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                fontSize: "calc(0.75rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-text) / 0.7)'
+                                            },
+                                            children: "Oparte na przepisach ZUS"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/page.tsx",
+                                            lineNumber: 264,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 107,
-                                    columnNumber: 15
+                                    lineNumber: 238,
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "space-y-4",
+                                    className: "text-center p-3 rounded-lg",
+                                    style: {
+                                        backgroundColor: 'rgb(var(--color-accent) / 0.1)',
+                                        borderLeft: '3px solid rgb(var(--color-accent))',
+                                        color: 'rgb(var(--color-text))'
+                                    },
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
-                                            label: "Minimalna",
-                                            value: minVal,
-                                            max: maxForScale,
-                                            tone: "soft"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mb-2",
+                                            style: {
+                                                fontSize: "calc(1.25rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-accent))'
+                                            },
+                                            children: "📊"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 131,
-                                            columnNumber: 17
+                                            lineNumber: 281,
+                                            columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
-                                            label: "Średnia",
-                                            value: avgVal,
-                                            max: maxForScale,
-                                            tone: "neutral"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "font-medium mb-1",
+                                            style: {
+                                                fontSize: "calc(0.875rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-text))'
+                                            },
+                                            children: "Różne scenariusze"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 132,
-                                            columnNumber: 17
+                                            lineNumber: 290,
+                                            columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
-                                            label: "Twoja oczekiwana",
-                                            value: yourVal,
-                                            max: maxForScale,
-                                            tone: "primary",
-                                            emphasis: true
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                fontSize: "calc(0.75rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-text) / 0.7)'
+                                            },
+                                            children: "Sprawdź różne opcje"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 133,
-                                            columnNumber: 17
+                                            lineNumber: 299,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 130,
-                                    columnNumber: 15
+                                    lineNumber: 273,
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mt-2 flex items-start gap-3 bg-white border rounded-md p-3",
+                                    className: "text-center p-3 rounded-lg",
+                                    style: {
+                                        backgroundColor: 'rgb(var(--color-warning) / 0.1)',
+                                        borderLeft: '3px solid rgb(var(--color-warning))',
+                                        color: 'rgb(var(--color-text))'
+                                    },
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            "aria-hidden": true,
-                                            className: "text-[18px]",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mb-2",
+                                            style: {
+                                                fontSize: "calc(1.25rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-warning))'
+                                            },
                                             children: "💡"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 138,
-                                            columnNumber: 17
+                                            lineNumber: 316,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "text-[13px] font-semibold text-neutral-800",
-                                                    children: "Mała wskazówka"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/page.tsx",
-                                                    lineNumber: 140,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
-                                                    className: "mt-1",
-                                                    children: ciekawostkaText
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/page.tsx",
-                                                    lineNumber: 141,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
+                                            className: "font-medium mb-1",
+                                            style: {
+                                                fontSize: "calc(0.875rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-text))'
+                                            },
+                                            children: "Praktyczne porady"
+                                        }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 139,
-                                            columnNumber: 17
+                                            lineNumber: 325,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                fontSize: "calc(0.75rem * var(--font-scale))",
+                                                color: 'rgb(var(--color-text) / 0.7)'
+                                            },
+                                            children: "Jak zwiększyć emeryturę"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/page.tsx",
+                                            lineNumber: 334,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 137,
-                                    columnNumber: 15
+                                    lineNumber: 308,
+                                    columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 106,
-                            columnNumber: 13
+                            lineNumber: 237,
+                            columnNumber: 11
                         }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 98,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
+                        variant: "small",
+                        children: "Symulator wykorzystuje aktualne przepisy emerytalne obowiązujące w Polsce. Wyniki mają charakter orientacyjny i nie stanowią decyzji administracyjnej ZUS."
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 105,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "pt-2 flex flex-col items-center gap-3",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
-                            variant: "primary",
-                            type: "button",
-                            className: "w-full max-w-md",
-                            disabled: !isValid,
-                            "aria-disabled": !isValid,
-                            onClick: ()=>router.push("/signup"),
-                            children: "Rozpocznij symulację"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 149,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 148,
+                        lineNumber: 348,
                         columnNumber: 11
                     }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/app/page.tsx",
-                lineNumber: 65,
-                columnNumber: 9
-            }, this)
-        }, void 0, false, {
+                }, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 347,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/src/app/page.tsx",
-            lineNumber: 64,
+            lineNumber: 95,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 63,
+        lineNumber: 88,
         columnNumber: 5
     }, this);
 }
-_s(WelcomeStart, "eVr9qZXcOflbYAg4RhJSMNjzxFs=", false, function() {
+_s(WelcomeStart, "5IxvTZC/4HDeYk+9flrdhy2HTxY=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWelcomeForm"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStepProgression"]
     ];
 });
 _c = WelcomeStart;
-/* --- UI bits --- */ function InfoChip(param) {
-    let { label, value, tone = "neutral" } = param;
-    const base = "rounded-lg p-4 text-center";
-    const styles = tone === "primary" ? "bg-[#F3F6FA] text-[rgb(var(--zus-black))]" : tone === "soft" ? "bg-[#EBF7EE] text-neutral-800" : "bg-neutral-100 text-neutral-800";
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "".concat(base, " ").concat(styles),
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-[13px] font-medium text-neutral-700",
-                children: label
-            }, void 0, false, {
-                fileName: "[project]/src/app/page.tsx",
-                lineNumber: 186,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "mt-1 text-xl font-semibold",
-                children: value
-            }, void 0, false, {
-                fileName: "[project]/src/app/page.tsx",
-                lineNumber: 187,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/app/page.tsx",
-        lineNumber: 185,
-        columnNumber: 5
-    }, this);
-}
-_c1 = InfoChip;
-function ComparisonBar(param) {
+/* --- UI bits --- */ function ComparisonBar(param) {
     let { label, value, max, tone = "neutral", emphasis = false } = param;
     const pct = Math.max(0.05, Math.min(1, value / max)); // keep tiny visible sliver
     const barBase = "h-4 rounded-lg transition-all duration-500";
-    const toneBg = tone === "primary" ? "bg-[#2E6AA2]" // brand
-     : tone === "soft" ? "bg-[#DDE4EE]" : "bg-[#CBD5E1]";
+    // Bar classes for CSS control
+    const getBarClass = ()=>{
+        if (tone === "primary") {
+            return "comparison-bar-primary";
+        } else if (tone === "soft") {
+            return "comparison-bar-soft";
+        } else {
+            return "comparison-bar-neutral";
+        }
+    };
+    // Styles using CSS variables for contrast support
+    const getBarStyle = ()=>{
+        if (tone === "primary") {
+            return {
+                backgroundColor: "rgb(0, 65, 110)"
+            };
+        } else if (tone === "soft") {
+            return {
+                backgroundColor: "rgba(146, 150, 158, 0.6)"
+            };
+        } else {
+            return {
+                backgroundColor: "rgba(146, 150, 158, 0.8)"
+            };
+        }
+    };
+    // Container style using CSS variables
+    const containerStyle = {
+        backgroundColor: "rgba(146, 150, 158, 0.1)",
+        borderColor: "rgba(146, 150, 158, 0.3)"
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "w-full",
         children: [
@@ -862,33 +1091,43 @@ function ComparisonBar(param) {
                 className: "flex items-baseline justify-between mb-1.5",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-[14px] ".concat(emphasis ? "font-semibold text-neutral-900" : "text-neutral-800"),
+                        className: "".concat(emphasis ? "font-semibold" : ""),
+                        style: {
+                            fontSize: "calc(0.875rem * var(--font-scale))",
+                            color: emphasis ? 'rgb(var(--color-text))' : 'rgb(var(--color-text) / 0.8)'
+                        },
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 217,
+                        lineNumber: 413,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-[14px] ".concat(emphasis ? "font-semibold text-neutral-900" : "text-neutral-700"),
+                        className: "".concat(emphasis ? "font-semibold" : ""),
+                        style: {
+                            fontSize: "calc(0.875rem * var(--font-scale))",
+                            color: emphasis ? 'rgb(var(--color-text))' : 'rgb(var(--color-text) / 0.7)'
+                        },
                         children: fmtPLN(value)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 220,
+                        lineNumber: 422,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 216,
+                lineNumber: 412,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "w-full bg-white border rounded-lg p-1",
+                className: "w-full border rounded-lg p-1 comparison-bar-container",
+                style: containerStyle,
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "".concat(barBase, " ").concat(toneBg),
+                    className: "".concat(barBase, " ").concat(getBarClass()),
                     style: {
-                        width: "".concat(pct * 100, "%")
+                        width: "".concat(pct * 100, "%"),
+                        ...getBarStyle()
                     },
                     title: "".concat(label, ": ").concat(fmtPLN(value)),
                     role: "progressbar",
@@ -898,26 +1137,25 @@ function ComparisonBar(param) {
                     "aria-label": label
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 225,
+                    lineNumber: 436,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 224,
+                lineNumber: 432,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 215,
+        lineNumber: 411,
         columnNumber: 5
     }, this);
 }
-_c2 = ComparisonBar;
-var _c, _c1, _c2;
+_c1 = ComparisonBar;
+var _c, _c1;
 __turbopack_context__.k.register(_c, "WelcomeStart");
-__turbopack_context__.k.register(_c1, "InfoChip");
-__turbopack_context__.k.register(_c2, "ComparisonBar");
+__turbopack_context__.k.register(_c1, "ComparisonBar");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

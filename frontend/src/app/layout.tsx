@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ContrastToggle from "@/components/constrast-toggle";
 import { EmaChat } from "@/components/chat/ema-chat";
+import { JotaiProvider } from "@/lib/store";
+import { DataFlowDemo } from "@/components/debug/data-flow-demo";
+import { LayoutBackButton } from "@/components/flow/layout-back-button";
+import { RouteStepSynchronizer } from "@/components/flow/route-step-synchronizer";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -59,43 +63,52 @@ export default function RootLayout({
           fontSize: `calc(1rem * var(--font-scale, 1))`
         }}
       >
-        <div 
-          className="min-h-screen transition-colors duration-300"
-          style={{
-            backgroundColor: 'rgb(var(--color-bg))',
-            color: 'rgb(var(--color-text))'
-          }}
-        >
+        <JotaiProvider>
+          <RouteStepSynchronizer />
           <div 
-            className="transition-colors duration-300"
+            className="min-h-screen transition-colors duration-300"
             style={{
-              backgroundColor: 'rgb(var(--color-card))'
+              backgroundColor: 'rgb(var(--color-bg))',
+              color: 'rgb(var(--color-text))'
             }}
           >
             <div 
-              className="max-w-6xl flex justify-between items-center px-4"
+              className="transition-colors duration-300"
               style={{
-                padding: `0 1rem`
+                backgroundColor: 'rgb(var(--color-card))'
               }}
             >
-                <Link href="/" className="flex items-center">
-                  <Image
-                    src="/horizontal.svg"
-                    alt="Logo Symulatora Emerytury ZUS"
-                    width={200}
-                    height={100}
-                    className="w-auto h-18 overflow-clip py-2"
-                    priority
-                  />
-                </Link>
+              <div 
+                className="max-w-6xl flex justify-between items-center px-4"
+                style={{
+                  padding: `0 1rem`
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <Link href="/" className="flex items-center">
+                    <Image
+                      src="/horizontal.svg"
+                      alt="Logo Symulatora Emerytury ZUS"
+                      width={200}
+                      height={100}
+                      className="w-auto h-18 overflow-clip py-2"
+                      priority
+                    />
+                  </Link>
+                  <LayoutBackButton />
+                </div>
 
-              <ContrastToggle />
+                <div className="flex items-center gap-2">
+                  <ContrastToggle />
+                </div>
+              </div>
             </div>
-          </div>
 
-          {children}
-        </div>
-        <EmaChat />
+            {children}
+          </div>
+          <EmaChat />
+          <DataFlowDemo />
+        </JotaiProvider>
       </body>
     </html>
   );

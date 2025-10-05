@@ -1,13 +1,20 @@
 "use client";
 import React from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ZusButton } from "@/components/zus-ui";
 import { ZusText } from "@/components/ui/zus-text";
 import { KnowledgeQuizTile } from "@/components/dashboard/knowledge-quiz";
+import { useStepProgression } from "@/lib/store";
 
 export default function FirstSurvey() {
-  const params = useSearchParams();
   const router = useRouter();
+  const { completeCurrentStep, nextStep } = useStepProgression();
+
+  const handleNext = () => {
+    completeCurrentStep();
+    nextStep();
+    router.push('/missingData');
+  };
 
   return (
     <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
@@ -29,7 +36,7 @@ export default function FirstSurvey() {
           <div className="flex flex-col md:flex-row gap-3 justify-end pt-4">
 
             <div className="flex flex-col md:flex-row gap-3 justify-center pt-4">
-              <ZusButton variant="outline" type="button" className="px-8" onClick={() => router.push('/missingData')}>
+              <ZusButton variant="outline" type="button" className="px-8" onClick={handleNext}>
                 Pomiń na teraz
               </ZusButton>
             </div>

@@ -8,8 +8,8 @@ import AdditionalRetirementSavingsSection from "@/components/dashboard/additiona
 import OverviewTile from "@/components/dashboard/overview-tile";
 import StickyNavigation from "@/components/dashboard/sticky-navigation";
 import { ZusButton } from "@/components/zus-ui";
+import { ResetButton } from "@/components/flow/reset-button";
 import { useReactToPrint } from "react-to-print";
-import { useRouter } from "next/navigation";
 
 // Mock data
 const pensionData = {
@@ -34,7 +34,6 @@ export default function DashboardPage() {
   const [isSticky, setIsSticky] = useState(false);
   const tilesRef = useRef<HTMLDivElement>(null);
   const componentRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   // React-to-print hook
   const handlePrint = useReactToPrint({
@@ -275,15 +274,10 @@ export default function DashboardPage() {
             Eksportuj raport
           </ZusButton>
           
-          <ZusButton 
-            variant="outline" 
-            onClick={() => {
-              router.push("/");
-            }}
+          <ResetButton 
+            variant="secondary" 
             className="w-full sm:w-auto min-w-[200px]"
-          >
-            Rozpocznij od nowa
-          </ZusButton>
+          />
         </div>
       </div>
     </div>
