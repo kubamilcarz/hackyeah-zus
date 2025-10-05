@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ContrastToggle from "@/components/constrast-toggle";
 import { EmaChat } from "@/components/chat/ema-chat";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Symulator Emerytury ZUS",
@@ -71,11 +73,22 @@ export default function RootLayout({
             }}
           >
             <div 
-              className="max-w-6xl ml-auto px-4"
+              className="max-w-6xl flex justify-between items-center px-4"
               style={{
-                padding: `calc(2.25rem * var(--font-scale, 1)) 1rem`
+                padding: `0 1rem`
               }}
             >
+                <Link href="/" className="flex items-center">
+                  <Image
+                    src="/horizontal.svg"
+                    alt="Logo Symulatora Emerytury ZUS"
+                    width={200}
+                    height={100}
+                    className="w-auto h-18 overflow-clip py-2"
+                    priority
+                  />
+                </Link>
+
               <ContrastToggle />
             </div>
           </div>

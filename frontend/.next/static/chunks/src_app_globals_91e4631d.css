@@ -884,8 +884,16 @@
     height: calc(var(--spacing) * 16);
   }
 
+  .h-18 {
+    height: calc(var(--spacing) * 18);
+  }
+
   .h-20 {
     height: calc(var(--spacing) * 20);
+  }
+
+  .h-24 {
+    height: calc(var(--spacing) * 24);
   }
 
   .h-32 {
@@ -974,6 +982,10 @@
 
   .w-90 {
     width: calc(var(--spacing) * 90);
+  }
+
+  .w-auto {
+    width: auto;
   }
 
   .w-full {
@@ -1263,6 +1275,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  .overflow-clip {
+    overflow: clip;
   }
 
   .overflow-hidden {
