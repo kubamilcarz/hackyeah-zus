@@ -138,9 +138,19 @@ def calculate_expected_dead(age: int):
     return average_life.get(2025 - age + 60) // 12 + 60
 
 
+def get_l4(is_male: bool, age: int):
+    return male_l4.get(age, 20) if is_male else female_l4.get(age, 20)
+
+
 def calculate_expected_wyplata_emerytury(age: int, is_male: bool, salary_yearly: float, work_start_year: int, retirement_year: int = 0):
     if retirement_year == 0:
         retirement_age = 65 if is_male else 60
         retirement_year = 2025 + retirement_age - age
 
     return calculate_basic_retirement_sum(age, is_male, salary_yearly, work_start_year, retirement_year) / (calculate_expected_dead(age) - retirement_year) / 12
+
+
+def calculate_sila_nabywcza(retirement_year: int, money: float):
+    for year in range(2025, retirement_year):
+        money /= inflation_rate.get(year + 1, 1)
+    return money

@@ -123,7 +123,7 @@ export const useSignupForm = () => {
     data.email
   )
 
-  fetch('http://localhost:8000/api/calc/signup', {
+  fetch('http://20.86.144.2:8000/api/calc/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -135,7 +135,7 @@ export const useSignupForm = () => {
     } return res.json();
   }).then(data => {   
     console.log('Received retirement sum:', data.retirementSum);
-    setMissingData({ mainAccountAmount: data.retirementSum * 0.8, subAccountAmount: data.retirementSum * 0.2 });
+    setMissingData({ mainAccountAmount: data.retirementSum * 0.8, subAccountAmount: data.retirementSum * 0.2, medicalLeaveDays: data.l4 });
   }).catch(err => {
     console.error('Error sending tracking data:', err)
   })

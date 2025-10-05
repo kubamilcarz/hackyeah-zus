@@ -29,7 +29,7 @@ def signup(request: HttpRequest):
     planned_retirement_year = data.get('plannedRetirementYear') or 0
     email = data.get('email')
     retirement = calc.calculate_basic_retirement_sum(age, is_male, gross_salary * 12, work_start_year, planned_retirement_year)
-    return JsonResponse({'retirementSum': retirement, 'l4': ave})
+    return JsonResponse({'retirementSum': retirement, 'l4': calc.get_l4(is_male, age)})
 
 
 @csrf_exempt

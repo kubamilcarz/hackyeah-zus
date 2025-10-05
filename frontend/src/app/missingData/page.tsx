@@ -52,7 +52,7 @@ export default function ExtraDataPage() {
 
   // Calculate average sick days for this user's demographics
   const averageSickDays = useMemo(() => {
-    return getAverageSickDays(userAge, userGender);
+    return missingData.medicalLeaveDays || getAverageSickDays(userAge, userGender);
   }, [userAge, userGender]);
 
   // --- local state
