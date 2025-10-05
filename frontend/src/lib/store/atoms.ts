@@ -40,6 +40,7 @@ export interface ResultData {
     totalContributions?: number
     workingYears?: number
   }
+  postalCode?: string
 }
 
 export interface DashboardData {
