@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ZusButton } from "@/components/zus-ui";
 import { ZusText } from "@/components/ui/zus-text";
 import { ZusInput } from "@/components/ui/zus-input";
 import { ResetButton } from "@/components/flow/reset-button";
-import { useStepProgression, useRetirementCalculation, useUserData, useResultData } from "@/lib/store";
+import { useStepProgression, useRetirementCalculation, useUserData, useResultData, useWelcomeData, useSignupData } from "@/lib/store";
 import { useReactToPrint } from "react-to-print";
 
 // PDF-friendly component that contains the content to print
@@ -32,6 +32,27 @@ export default function ResultPage() {
   const params = useSearchParams();
   const router = useRouter();
   const printRef = useRef<HTMLDivElement>(null);
+    const [data, setData] = useSignupData()
+    const [welcomeData, _] = useWelcomeData()
+    const [dataToShow, setDataToShow] = useState<any>(null);
+    
+    useEffect(() => {
+      fetch('http://20.86.144.2:8000/api/calc/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...data, expectedRetirement: welcomeData.expectedRetirement })
+      }).then(res => {
+        if (!res.ok) {
+          console.error('Tracking API responded with status:', res.status);
+        } return res.json();
+      }).then(data => {   
+        setDataToShow(data);
+      }).catch(err => {
+        console.error('Error sending tracking data:', err)
+      })
+    }, []);
   
   // State management hooks
   const { completeCurrentStep, nextStep } = useStepProgression();
@@ -64,12 +85,14 @@ export default function ResultPage() {
   };
 
   // Use calculation from state if available, otherwise fall back to URL params
-  const zusPension = calculation?.estimatedMonthlyPension || Number(params.get("zusPension") ?? 2964);
-  const realToday = Number(params.get("realPowerToday") ?? 2075);
-  const monthlySavings = Number(params.get("monthlyTotal") ?? 0);
+  const zusPension = Number(fmtPLN(dataToShow?.retirementSum)) || Number(params.get("zusPension") ?? 2964);
+  const realToday = zusPension * 0.7;
+  const monthlySavings = (Number(localStorage.getItem('monthlyTotal')) ?? 0) * 0.6;
+
+  // const monthlySavings = Number(fmtPLN(dataToShow?.retirementSum) ?? 0);
 
   // Simulated total for now — replace with backend calc later
-  const projectedWithSavings = zusPension + monthlySavings * 0.3; // simplified illustrative model
+  const projectedWithSavings = zusPension + monthlySavings; // simplified illustrative model
 
   return (
     <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">

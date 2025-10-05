@@ -113,6 +113,7 @@ export default function AddSourcesPage() {
       (ppkOn ? Number(ppk || 0) : 0) +
       (ppeOn ? Number(ppe || 0) : 0) +
       (otherOn ? Number(other || 0) : 0);
+      localStorage.setItem('monthlyTotal', sum.toString());
     return Math.max(0, Math.round(sum));
   }, [ikeOn, ikzeOn, ppkOn, ppeOn, otherOn, ike, ikze, ppk, ppe, other]);
 
