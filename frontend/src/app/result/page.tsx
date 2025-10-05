@@ -103,7 +103,7 @@ export default function ResultPage() {
               variant="primary" 
               type="button" 
               className="px-8"
-              onClick={() => router.push("/dashboard")}
+              onClick={() => router.push("/secondSurvey")}
             >
               Sprawdź inne prognozy
             </ZusButton>

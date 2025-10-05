@@ -2157,6 +2157,16 @@
     color: var(--color-primary);
   }
 
+  .text-primary\/80 {
+    color: var(--color-primary);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-primary\/80 {
+      color: color-mix(in oklab, var(--color-primary) 80%, transparent);
+    }
+  }
+
   .text-purple-600 {
     color: var(--color-purple-600);
   }

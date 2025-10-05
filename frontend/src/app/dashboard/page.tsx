@@ -1,13 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { ZusText } from "@/components/ui/zus-text";
 import CustomDataEntrySection from "@/components/dashboard/custom-data-entry-section";
 
 import React from "react";
-import { KnowledgeQuizTile } from "@/components/dashboard/knowledge-quiz";
 import DetailedRetirementAnalysisSection from "@/components/dashboard/detailed-retirement-analysis";
 import AdditionalRetirementSavingsSection from "@/components/dashboard/additional-savings";
-import StickyTile from "@/components/dashboard/sticky-tiles";
 import OverviewTile from "@/components/dashboard/overview-tile";
 import StickyNavigation from "@/components/dashboard/sticky-navigation";
 
@@ -199,8 +196,6 @@ export default function DashboardPage() {
             }}
           />
         </div>
-
-        <KnowledgeQuizTile />
 
         <CustomDataEntrySection />
 

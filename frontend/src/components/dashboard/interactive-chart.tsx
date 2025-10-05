@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ZusText } from "../zus-ui";
 
 
 interface InteractiveRetirementChartProps {
@@ -125,19 +124,33 @@ export default function InteractiveRetirementChart({
 
   return (
     <div className="bg-zus-card rounded-2xl">
-      <div className="p-6 md:p-8 flex flex-col gap-6">
+      <div className="p-6 md:p-8 flex flex-col gap-6"
+        style={{
+          backgroundColor: `rgb(var(--color-card))`,
+          borderColor: `rgb(var(--color-text) / 0.2)`
+        }}
+      >
         <header className="space-y-3">
           <div className="flex items-center gap-3">
             <div>
               <h1
-                className="text-2xl md:text-3xl font-semibold text-primary"
-                style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
+                className="font-semibold"
+                style={{ 
+                  fontSize: `calc(1.625rem * var(--font-scale))`,
+                  color: `rgb(var(--color-text))`
+                }}
               >
                 Scenariusze emerytalne
               </h1>
-              <ZusText variant="body" className="text-secondary">
+              <div 
+                style={{ 
+                  fontSize: `calc(1rem * var(--font-scale))`,
+                  color: `rgb(var(--color-text) / 0.7)`,
+                  lineHeight: 1.6
+                }}
+              >
                 Przesuń suwak aby zobaczyć jak opóźnienie emerytury wpłynie na wysokość świadczenia
-              </ZusText>
+              </div>
             </div>
           </div>
         </header>
@@ -145,7 +158,17 @@ export default function InteractiveRetirementChart({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Interactive Chart */}
           <div className="lg:col-span-2">
-            <div className="p-6 bg-info-light/20 rounded-lg border border-info-light h-full flex flex-col">
+            <div 
+              className="p-6 rounded-lg border h-full flex flex-col"
+              style={{
+                backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text) / 0.05)`
+                  : 'rgba(59, 130, 246, 0.05)', // blue-500/5 for light mode
+                borderColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text) / 0.2)`
+                  : 'rgba(59, 130, 246, 0.2)' // blue-500/20 for light mode
+              }}
+            >
               {/* Chart SVG */}
               <div className="relative flex-1 min-h-[400px]">
                 <svg
@@ -259,7 +282,13 @@ export default function InteractiveRetirementChart({
               
               {/* Year Slider */}
               <div className="mt-6 space-y-3">
-                <label className="text-sm font-medium text-primary">
+                <label 
+                  className="font-medium"
+                  style={{ 
+                    fontSize: `calc(0.875rem * var(--font-scale))`,
+                    color: `rgb(var(--color-text))`
+                  }}
+                >
                   Rok przejścia na emeryturę: {selectedYear}
                 </label>
                 <input
@@ -269,12 +298,41 @@ export default function InteractiveRetirementChart({
                   step="1"
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(Number(e.target.value))}
-                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer bg-info-light"
+                  className="slider w-full h-2 rounded-lg appearance-none cursor-pointer"
+                  style={{
+                    background: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                      ? `linear-gradient(to right, rgb(var(--color-accent)) 0%, rgb(var(--color-accent)) ${((selectedYear - baseRetirementYear) / 25) * 100}%, rgb(var(--color-text) / 0.3) ${((selectedYear - baseRetirementYear) / 25) * 100}%, rgb(var(--color-text) / 0.3) 100%)`
+                      : `linear-gradient(to right, rgb(37, 99, 235) 0%, rgb(37, 99, 235) ${((selectedYear - baseRetirementYear) / 25) * 100}%, rgb(203, 213, 225) ${((selectedYear - baseRetirementYear) / 25) * 100}%, rgb(203, 213, 225) 100%)` // blue-600 and slate-300
+                  }}
                 />
-                <div className="flex justify-between text-xs text-info">
-                  <span>{baseRetirementYear}</span>
-                  <span className="font-medium">Wybrany: {selectedYear}</span>
-                  <span>{baseRetirementYear + 25}</span>
+                <div className="flex justify-between">
+                  <span 
+                    style={{ 
+                      fontSize: `calc(0.75rem * var(--font-scale))`,
+                      color: `rgb(var(--color-text) / 0.7)`
+                    }}
+                  >
+                    {baseRetirementYear}
+                  </span>
+                  <span 
+                    className="font-medium"
+                    style={{ 
+                      fontSize: `calc(0.75rem * var(--font-scale))`,
+                      color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                        ? `rgb(var(--color-accent))`
+                        : 'rgb(37, 99, 235)' // blue-600
+                    }}
+                  >
+                    Wybrany: {selectedYear}
+                  </span>
+                  <span 
+                    style={{ 
+                      fontSize: `calc(0.75rem * var(--font-scale))`,
+                      color: `rgb(var(--color-text) / 0.7)`
+                    }}
+                  >
+                    {baseRetirementYear + 25}
+                  </span>
                 </div>
               </div>
             </div>
@@ -282,37 +340,114 @@ export default function InteractiveRetirementChart({
 
           {/* Selected Year Details */}
           <div className="space-y-4">
-            <div className="p-6 bg-primary-light/20 rounded-xl border border-primary-light">
+            <div 
+              className="p-6 rounded-xl border"
+              style={{
+                backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text) / 0.05)`
+                  : 'rgba(0, 65, 110, 0.05)', // navy/5 for light mode
+                borderColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text) / 0.2)`
+                  : 'rgba(0, 65, 110, 0.2)' // navy/20 for light mode
+              }}
+            >
               <div className="space-y-4">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">
+                  <div 
+                    className="font-bold"
+                    style={{ 
+                      fontSize: `calc(1.875rem * var(--font-scale))`,
+                      color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                        ? `rgb(var(--color-text))`
+                        : 'rgb(0, 65, 110)' // navy for light mode
+                    }}
+                  >
                     {selectedYear}
                   </div>
-                  <div className="text-sm text-secondary">
+                  <div 
+                    style={{ 
+                      fontSize: `calc(0.875rem * var(--font-scale))`,
+                      color: `rgb(var(--color-text) / 0.7)`
+                    }}
+                  >
                     {selectedData.yearsDelay === 0 ? 'Planowany rok emerytury' : `+${selectedData.yearsDelay} lat pracy`}
                   </div>
                 </div>
                 
                 <div className="space-y-3">
-                  <div className="bg-zus-card/60 p-3 rounded-lg">
-                    <div className="text-xs text-secondary">Miesięczna emerytura</div>
-                    <div className="text-xl font-bold text-primary">
+                  <div 
+                    className="p-3 rounded-lg"
+                    style={{ backgroundColor: `rgb(var(--color-card) / 0.6)` }}
+                  >
+                    <div 
+                      style={{ 
+                        fontSize: `calc(0.75rem * var(--font-scale))`,
+                        color: `rgb(var(--color-text) / 0.7)`
+                      }}
+                    >
+                      Miesięczna emerytura
+                    </div>
+                    <div 
+                      className="font-bold"
+                      style={{ 
+                        fontSize: `calc(1.25rem * var(--font-scale))`,
+                        color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                          ? `rgb(var(--color-text))`
+                          : 'rgb(0, 65, 110)' // navy for light mode
+                      }}
+                    >
                       {selectedData.pension.toLocaleString()} zł
                     </div>
                   </div>
                   
                   {selectedData.yearsDelay > 0 && (
-                    <div className="bg-zus-card/60 p-3 rounded-lg">
-                      <div className="text-xs text-secondary">Wzrost emerytury</div>
-                      <div className="text-lg font-semibold text-success">
+                    <div 
+                      className="p-3 rounded-lg"
+                      style={{ backgroundColor: `rgb(var(--color-card) / 0.6)` }}
+                    >
+                      <div 
+                        style={{ 
+                          fontSize: `calc(0.75rem * var(--font-scale))`,
+                          color: `rgb(var(--color-text) / 0.7)`
+                        }}
+                      >
+                        Wzrost emerytury
+                      </div>
+                      <div 
+                        className="font-semibold"
+                        style={{ 
+                          fontSize: `calc(1.125rem * var(--font-scale))`,
+                          color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                            ? `rgb(var(--color-text))`
+                            : 'rgb(0, 153, 63)' // success color for light mode
+                        }}
+                      >
                         +{selectedData.pensionIncrease.toLocaleString()} zł
                       </div>
                     </div>
                   )}
                   
-                  <div className="bg-zus-card/60 p-3 rounded-lg">
-                    <div className="text-xs text-secondary">Wzrost roczny</div>
-                    <div className="text-sm font-medium text-info">
+                  <div 
+                    className="p-3 rounded-lg"
+                    style={{ backgroundColor: `rgb(var(--color-card) / 0.6)` }}
+                  >
+                    <div 
+                      style={{ 
+                        fontSize: `calc(0.75rem * var(--font-scale))`,
+                        color: `rgb(var(--color-text) / 0.7)`
+                      }}
+                    >
+                      Wzrost roczny
+                    </div>
+                    <div 
+                      className="font-medium"
+                      style={{ 
+                        fontSize: `calc(0.875rem * var(--font-scale))`,
+                        color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                          ? `rgb(var(--color-text))`
+                          : 'rgb(63, 132, 210)' // info/blue color for light mode
+                      }}
+                    >
                       ~{selectedData.yearsDelay > 0 ? Math.round(selectedData.pensionIncrease / selectedData.yearsDelay) : 68} zł/rok
                     </div>
                   </div>
@@ -321,39 +456,88 @@ export default function InteractiveRetirementChart({
             </div>
             
             {/* Target Achievement Card - INTEGRATED HERE */}
-            <div className={`p-6 rounded-xl border-2 ${
-              selectedData.pension >= targetPension 
-                ? 'bg-success-light/20 border-success-light' 
-                : 'bg-warning-light/20 border-warning-light'
-            }`}>
+            <div 
+              className="p-6 rounded-xl border"
+              style={{
+                backgroundColor: selectedData.pension >= targetPension 
+                  ? (document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.05)`
+                    : 'rgba(0, 153, 63, 0.05)') // success/5 for light mode
+                  : (document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.05)`
+                    : 'rgba(255, 179, 79, 0.05)'), // warning/5 for light mode
+                borderColor: selectedData.pension >= targetPension 
+                  ? (document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.2)`
+                    : 'rgba(0, 153, 63, 0.2)') // success/20 for light mode
+                  : (document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.2)`
+                    : 'rgba(255, 179, 79, 0.2)') // warning/20 for light mode
+              }}
+            >
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">
-                    {selectedData.pension >= targetPension ? '🎯' : '⏳'}
-                  </span>
-                  <h4 className={`font-semibold ${
-                    selectedData.pension >= targetPension ? 'text-success' : 'text-secondary'
-                  }`}>
-                    {selectedData.pension >= targetPension ? 'Cel osiągnięty!' : 'Ile dłużej pracować aby osiągnąć cel?'}
-                  </h4>
-                </div>
+                <h4 
+                  className="font-semibold"
+                  style={{ 
+                    fontSize: `calc(1rem * var(--font-scale))`,
+                    color: selectedData.pension >= targetPension 
+                      ? (document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                        ? `rgb(var(--color-text))`
+                        : 'rgb(0, 153, 63)') // success for light mode
+                      : `rgb(var(--color-text) / 0.8)`
+                  }}
+                >
+                  {selectedData.pension >= targetPension ? 'Cel osiągnięty!' : 'Ile dłużej pracować aby osiągnąć cel?'}
+                </h4>
                 
                 {selectedData.pension >= targetPension ? (
                   <div className="space-y-2">
-                    <div className="text-sm text-success">
+                    <div 
+                      style={{ 
+                        fontSize: `calc(0.875rem * var(--font-scale))`,
+                        color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                          ? `rgb(var(--color-text))`
+                          : 'rgb(0, 153, 63)' // success for light mode
+                      }}
+                    >
                       Przekroczysz swój cel o {(selectedData.pension - targetPension).toLocaleString()} zł miesięcznie!
                     </div>
-                    <div className="text-xs p-2 bg-gradient-to-r from-blue-50/50 to-transparent rounded border border-neutral text-secondary">
+                    <div 
+                      className="p-2 rounded border"
+                      style={{
+                        backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                          ? `rgb(var(--color-text) / 0.05)`
+                          : 'rgba(59, 130, 246, 0.05)', // blue-500/5 for light mode
+                        borderColor: `rgb(var(--color-text) / 0.2)`,
+                        fontSize: `calc(0.75rem * var(--font-scale))`,
+                        color: `rgb(var(--color-text) / 0.7)`
+                      }}
+                    >
                       Możesz rozważyć wcześniejszą emeryturę lub zwiększenie celów oszczędnościowych.
                     </div>
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <div className="text-sm text-warning">
+                    <div 
+                      style={{ 
+                        fontSize: `calc(0.875rem * var(--font-scale))`,
+                        color: `rgb(var(--color-text) / 0.7)`
+                      }}
+                    >
                       Brakuje: {(targetPension - selectedData.pension).toLocaleString()} zł miesięcznie
                     </div>
                     {targetAchievable && (
-                      <div className="text-xs p-2 bg-gradient-to-r from-blue-50/50 to-transparent rounded border border-neutral text-secondary">
+                      <div 
+                        className="p-2 rounded border"
+                        style={{
+                          backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                            ? `rgb(var(--color-text) / 0.05)`
+                            : 'rgba(59, 130, 246, 0.05)', // blue-500/5 for light mode
+                          borderColor: `rgb(var(--color-text) / 0.2)`,
+                          fontSize: `calc(0.75rem * var(--font-scale))`,
+                          color: `rgb(var(--color-text) / 0.7)`
+                        }}
+                      >
                         Pracuj do {targetRetirementYear} roku aby osiągnąć cel {targetPension.toLocaleString()} zł/mies.
                       </div>
                     )}
@@ -365,20 +549,62 @@ export default function InteractiveRetirementChart({
         </div>
         
         {/* Interactive Legend */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-neutral">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t"
+          style={{ borderColor: `rgb(var(--color-text) / 0.2)` }}
+        >
           <div className="flex items-center gap-3">
             <div className="w-4 h-1 rounded" style={{
               background: 'linear-gradient(to right, rgb(var(--color-primary)), rgb(var(--color-info)), rgb(var(--color-success)))'
             }}></div>
-            <span className="text-sm text-secondary">Prognoza emerytalna</span>
+            <span 
+              style={{ 
+                fontSize: `calc(0.875rem * var(--font-scale))`,
+                color: `rgb(var(--color-text) / 0.7)`
+              }}
+            >
+              Prognoza emerytalna
+            </span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-4 h-1 bg-warning rounded border-dashed border-2 border-warning"></div>
-            <span className="text-sm text-secondary">Cel emerytalny ({targetPension.toLocaleString()} zł)</span>
+            <div 
+              className="w-4 h-1 rounded border-dashed border-2"
+              style={{ 
+                backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text))`
+                  : 'rgb(255, 179, 79)', // warning color for light mode
+                borderColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text))`
+                  : 'rgb(255, 179, 79)' // warning color for light mode
+              }}
+            ></div>
+            <span 
+              style={{ 
+                fontSize: `calc(0.875rem * var(--font-scale))`,
+                color: `rgb(var(--color-text) / 0.7)`
+              }}
+            >
+              Cel emerytalny ({targetPension.toLocaleString()} zł)
+            </span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-primary rounded-full border-2 border-white"></div>
-            <span className="text-sm text-secondary">Wybrana opcja</span>
+            <div 
+              className="w-3 h-3 rounded-full border-2"
+              style={{ 
+                backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                  ? `rgb(var(--color-text))`
+                  : 'rgb(0, 65, 110)', // primary color for light mode
+                borderColor: `rgb(var(--color-card))`
+              }}
+            ></div>
+            <span 
+              style={{ 
+                fontSize: `calc(0.875rem * var(--font-scale))`,
+                color: `rgb(var(--color-text) / 0.7)`
+              }}
+            >
+              Wybrana opcja
+            </span>
           </div>
         </div>
       </div>

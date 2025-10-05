@@ -24,7 +24,7 @@ export default function StickyNavigation({
 }: StickyNavigationProps) {
   return (
     <div 
-      className="fixed top-0 left-0 right-0 z-10 border-b shadow-sm transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-30 border-b shadow-sm transition-all duration-300"
       style={{
         backgroundColor: `rgb(var(--color-card))`,
         borderColor: `rgb(var(--color-text) / 0.2)`

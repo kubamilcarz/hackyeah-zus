@@ -682,7 +682,7 @@ function ResultPage() {
                                         variant: "primary",
                                         type: "button",
                                         className: "px-8",
-                                        onClick: ()=>router.push("/dashboard"),
+                                        onClick: ()=>router.push("/secondSurvey"),
                                         children: "Sprawdź inne prognozy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/result/page.tsx",
