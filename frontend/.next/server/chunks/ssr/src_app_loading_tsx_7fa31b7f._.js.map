@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kubamilcarz/Developer/HackYeah/zus-sim/frontend/src/app/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return <div role=\"status\" aria-live=\"polite\" className=\"animate-pulse\">\n    <div className=\"h-6 w-40 bg-neutral-200 rounded\" />\n    <div className=\"mt-4 h-32 bg-neutral-100 rounded\" />\n  </div>;\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBAAO,8OAAC;QAAI,MAAK;QAAS,aAAU;QAAS,WAAU;;0BACrD,8OAAC;gBAAI,WAAU;;;;;;0BACf,8OAAC;gBAAI,WAAU;;;;;;;;;;;;AAEnB","debugId":null}}]
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/azureuser/zus/hackyeah-zus/frontend/src/app/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return <div role=\"status\" aria-live=\"polite\" className=\"animate-pulse\">\n    <div className=\"h-6 w-40 bg-neutral-200 rounded\" />\n    <div className=\"mt-4 h-32 bg-neutral-100 rounded\" />\n  </div>;\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBAAO,8OAAC;QAAI,MAAK;QAAS,aAAU;QAAS,WAAU;;0BACrD,8OAAC;gBAAI,WAAU;;;;;;0BACf,8OAAC;gBAAI,WAAU;;;;;;;;;;;;AAEnB","debugId":null}}]
 }

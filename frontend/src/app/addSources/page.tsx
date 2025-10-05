@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   ZusText,
   ZusInput,
   ZusButton,
 } from "@/components/zus-ui";
-import { useStepProgression, useRetirementSourcesForm } from "@/lib/store";
+import { useStepProgression, useRetirementSourcesForm, useSignupData, useWelcomeData } from "@/lib/store";
 
 function fmtPLN(n: number) {
   return new Intl.NumberFormat("pl-PL", {
@@ -62,6 +62,27 @@ export default function AddSourcesPage() {
   const params = useSearchParams();
   const { completeCurrentStep, nextStep } = useStepProgression();
   const { updateSource } = useRetirementSourcesForm();
+  const [data, setData] = useSignupData()
+  const [welcomeData, _] = useWelcomeData()
+  const [dataToShow, setDataToShow] = useState<any>(null);
+  
+  useEffect(() => {
+    fetch('http://20.86.144.2:8000/api/calc/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...data, expectedRetirement: welcomeData.expectedRetirement })
+    }).then(res => {
+      if (!res.ok) {
+        console.error('Tracking API responded with status:', res.status);
+      } return res.json();
+    }).then(data => {   
+      setDataToShow(data);
+    }).catch(err => {
+      console.error('Error sending tracking data:', err)
+    })
+  }, []);
 
   // Base from previous step(s) or backend
   const zusNominal = Number(params.get("zusPension") ?? "2964"); // fallback like in screenshot
@@ -131,15 +152,15 @@ export default function AddSourcesPage() {
             <Tile 
               tone="primary" 
               title="Emerytura z ZUS" 
-              subtitle={`${fmtPLN(monthlyPensionNominal)}/miesiąc przez ~${PENSION_YEARS} lat`}
-              value={fmtPLN(zusNominal)}
+              subtitle={`${fmtPLN(dataToShow?.monthlyPension || monthlyPensionNominal)}/miesiąc przez ~${PENSION_YEARS} lat`}
+              value={fmtPLN(dataToShow?.retirementSum || zusNominal)}
               infoText={`To jest łączna kwota emerytury z ZUS w wartościach nominalnych (${fmtPLN(zusNominal)}), którą otrzymasz przez około ${PENSION_YEARS} lat emerytury. Oznacza to miesięczne świadczenie w wysokości ${fmtPLN(monthlyPensionNominal)}, ale jego siła nabywcza będzie mniejsza niż dzisiaj ze względu na inflację.`}
             />
             <Tile 
               tone="success" 
               title="Siła nabywcza dziś" 
-              subtitle={`${fmtPLN(monthlyPensionReal)}/miesiąc w dzisiejszych cenach`}
-              value={fmtPLN(realToday)}
+              subtitle={`${fmtPLN(dataToShow?.realMonthlyPension || monthlyPensionReal)}/miesiąc w dzisiejszych cenach`}
+              value={fmtPLN(dataToShow?.retirementSum * dataToShow?.realMonthlyPension / dataToShow?.monthlyPension ||realToday)}
               infoText={`To jest wartość Twojej przyszłej emerytury przeliczona na dzisiejszą siłę nabywczą (łącznie ${fmtPLN(realToday)}). Pokazuje, ile będziesz mógł faktycznie kupić za swoją emeryturę w porównaniu do obecnych cen - około ${fmtPLN(monthlyPensionReal)} miesięcznie przez ${PENSION_YEARS} lat.`}
             />
           </div>
