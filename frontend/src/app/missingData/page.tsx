@@ -44,7 +44,6 @@ export default function ExtraDataPage() {
   const { data: signupData } = useSignupForm();
   const { data: missingData, updateField } = useMissingDataForm();
   const { completeCurrentStep, nextStep } = useStepProgression();
-
   // Get data from signup step
   const salary = signupData.grossSalary || 9000;
   const startYear = signupData.workStartYear || new Date().getFullYear() - 6;
@@ -64,6 +63,9 @@ export default function ExtraDataPage() {
   const [useAverageSickDays, setUseAverageSickDays] = useState<boolean>(true);
 
   const estimatedFunds = useMemo(() => {
+    if (missingData.mainAccountAmount !== undefined && missingData.subAccountAmount !== undefined) {
+      return (missingData.mainAccountAmount || 0) + (missingData.subAccountAmount || 0);
+    }
     if (!Number.isFinite(salary) || !Number.isFinite(startYear)) return 0;
     const months = monthsSinceStartYear(startYear);
     // extremely rough: gross * months * 19.52%
@@ -172,8 +174,8 @@ export default function ExtraDataPage() {
                 onClick={() => {
                   setUseEstimatedFunds(false);
                   // Pre-fill with estimated split
-                  const mainEstimate = Math.round(estimatedFunds * 0.8);
-                  const subEstimate = Math.round(estimatedFunds * 0.2);
+                  const mainEstimate =  Math.round(missingData.mainAccountAmount || estimatedFunds * 0.8);
+                  const subEstimate = Math.round(missingData.subAccountAmount || estimatedFunds * 0.2);
                   setMainAccountFunds(mainEstimate);
                   setSubAccountFunds(subEstimate);
                 }}

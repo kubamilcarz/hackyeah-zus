@@ -104,7 +104,8 @@ export const useWelcomeForm = () => {
 export const useSignupForm = () => {
   const [data, setData] = useSignupData()
   const [welcomeData, _] = useWelcomeData()
-  
+  const [__, setMissingData] = useMissingData(); 
+
   const updateField = (field: keyof SignupData, value: SignupData[keyof SignupData]) => {
     setData({ ...data, [field]: value })
   }
@@ -133,8 +134,8 @@ export const useSignupForm = () => {
       console.error('Tracking API responded with status:', res.status)
     } return res.json();
   }).then(data => {   
-    const [_, setMissingData] = useMissingData(); 
-    setMissingData(data.retirementSum);
+    console.log('Received retirement sum:', data.retirementSum);
+    setMissingData({ mainAccountAmount: data.retirementSum * 0.8, subAccountAmount: data.retirementSum * 0.2 });
   }).catch(err => {
     console.error('Error sending tracking data:', err)
   })
