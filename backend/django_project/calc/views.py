@@ -10,13 +10,14 @@ BACKEND_ROOT = Path(__file__).resolve().parents[2]  # /home/.../backend
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.append(str(BACKEND_ROOT))
 
-try:
-    import calc2 as calc # from backend/calc.py
-except Exception as e:
-    calc = None
-    _import_error = str(e)
-else:
-    _import_error = None
+import calc2 as calc # from backend/calc.py
+
+# try:
+# except Exception as e:
+#     calc = None
+#     _import_error = str(e)
+# else:
+#     _import_error = None
 
 
 @csrf_exempt
@@ -28,8 +29,12 @@ def signup(request: HttpRequest):
     work_start_year = data.get('workStartYear')
     planned_retirement_year = data.get('plannedRetirementYear') or 0
     email = data.get('email')
-    retirement = calc.calculate_basic_retirement_sum(age, is_male, gross_salary * 12, work_start_year, planned_retirement_year)
-    return JsonResponse({'retirementSum': retirement, 'l4': calc.get_l4(is_male, age)})
+    l4 = data.get('l4', calc.get_l4(is_male, age))
+    retirement = calc.calculate_basic_retirement_sum(age, is_male, gross_salary * 12, work_start_year, planned_retirement_year, l4)
+    monthlyPension = calc.calculate_expected_wyplata_emerytury(age, is_male, gross_salary * 12, work_start_year, planned_retirement_year, l4)
+    realMonthlyPension = calc.calculate_sila_nabywcza(planned_retirement_year, monthlyPension)
+    return JsonResponse({'retirementSum': retirement, 'l4': l4, 'monthlyPension': monthlyPension, 'realMonthlyPension': realMonthlyPension })
+
 
 
 @csrf_exempt

@@ -19,6 +19,7 @@ import {
   type MissingData,
   type RetirementSources
 } from './atoms'
+import { useEffect } from 'react';
 
 // Step navigation hooks
 export const useCurrentStep = () => useAtom(currentStepAtom)
@@ -122,23 +123,24 @@ export const useSignupForm = () => {
     data.plannedRetirementYear &&
     data.email
   )
-
-  fetch('http://20.86.144.2:8000/api/calc/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ...data, expectedRetirement: welcomeData.expectedRetirement })
-  }).then(res => {
-    if (!res.ok) {
-      console.error('Tracking API responded with status:', res.status)
-    } return res.json();
-  }).then(data => {   
-    console.log('Received retirement sum:', data.retirementSum);
-    setMissingData({ mainAccountAmount: data.retirementSum * 0.8, subAccountAmount: data.retirementSum * 0.2, medicalLeaveDays: data.l4 });
-  }).catch(err => {
-    console.error('Error sending tracking data:', err)
-  })
+  useEffect(() => {
+    fetch('http://20.86.144.2:8000/api/calc/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...data, expectedRetirement: welcomeData.expectedRetirement })
+    }).then(res => {
+      if (!res.ok) {
+        console.error('Tracking API responded with status:', res.status)
+      } return res.json();
+    }).then(data => {   
+      console.log('Received retirement sum:', data.retirementSum);
+      setMissingData({ mainAccountAmount: data.retirementSum * 0.8, subAccountAmount: data.retirementSum * 0.2, medicalLeaveDays: data.l4 });
+    }).catch(err => {
+      console.error('Error sending tracking data:', err)
+    })
+  }, []);
 
   return {
     data,

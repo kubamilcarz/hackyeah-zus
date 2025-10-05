@@ -31,6 +31,7 @@
       "static/chunks/node_modules_next_dist_client_components_builtin_global-error_e5bef307.js",
       "static/chunks/src_21c7631c._.js",
       "static/chunks/src_app_addSources_page_tsx_e5bef307._.js",
+<<<<<<< HEAD
       "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_57d40746._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js",
       "static/chunks/node_modules_next_dist_compiled_next-devtools_index_a9cb0712.js",
@@ -54,6 +55,8 @@
       "static/chunks/src_96d9f4b6._.js",
       "static/chunks/node_modules_914eef70._.js",
       "static/chunks/src_app_dashboard_page_tsx_e5bef307._.js",
+=======
+>>>>>>> main
       "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_57d40746._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js",
       "static/chunks/node_modules_next_dist_compiled_next-devtools_index_a9cb0712.js",
@@ -130,6 +133,7 @@
       "static/chunks/_a0ff3932._.js",
       "static/chunks/turbopack-_cdba956c._.js"
     ],
+<<<<<<< HEAD
     "/result/page": [
       "static/chunks/node_modules_next_dist_8db7fb1f._.js",
       "static/chunks/src_app_favicon_ico_mjs_243aa161._.js",
@@ -174,6 +178,8 @@
       "static/chunks/_a0ff3932._.js",
       "static/chunks/turbopack-_cdba956c._.js"
     ],
+=======
+>>>>>>> main
     "/signup/page": [
       "static/chunks/node_modules_next_dist_8db7fb1f._.js",
       "static/chunks/src_app_favicon_ico_mjs_243aa161._.js",
