@@ -107,7 +107,6 @@ export default function RootLayout({
             {children}
           </div>
           <ConditionalEmaChat />
-          <DataFlowDemo />
         </JotaiProvider>
       </body>
     </html>
