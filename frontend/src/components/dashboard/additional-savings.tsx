@@ -1,3 +1,6 @@
+import { useAtom } from "jotai";
+import { retirementSourcesAtom } from "@/lib/store/atoms";
+
 const pensionData = {
   nominalPension: 2300,
   realValue: 1800,
@@ -6,24 +9,30 @@ const pensionData = {
 };
 
 interface AdditionalRetirementSavingsSectionProps {
-  ppkContribution: number;
-  setPpkContribution: (value: number) => void;
-  ikzeContribution: number;
-  setIkzeContribution: (value: number) => void;
-  ppeContribution: number;
-  setPpeContribution: (value: number) => void;
   totalImpact: number;
 }
 
 export default function AdditionalRetirementSavingsSection({
-  ppkContribution,
-  setPpkContribution,
-  ikzeContribution,
-  setIkzeContribution,
-  ppeContribution,
-  setPpeContribution,
   totalImpact,
 }: AdditionalRetirementSavingsSectionProps) {
+  const [retirementSources, setRetirementSources] = useAtom(retirementSourcesAtom);
+  
+  const ppkContribution = retirementSources.ppk || 0;
+  const ikzeContribution = retirementSources.ikze || 0;
+  const ppeContribution = retirementSources.ppe || 0;
+  
+  const setPpkContribution = (value: number) => {
+    setRetirementSources(prev => ({ ...prev, ppk: value }));
+  };
+  
+  const setIkzeContribution = (value: number) => {
+    setRetirementSources(prev => ({ ...prev, ikze: value }));
+  };
+  
+  const setPpeContribution = (value: number) => {
+    setRetirementSources(prev => ({ ...prev, ppe: value }));
+  };
+
   const totalContributions = ppkContribution + ikzeContribution + ppeContribution;
 
   return (
@@ -46,6 +55,19 @@ export default function AdditionalRetirementSavingsSection({
           >
             Dodatkowe oszczędności emerytalne
           </h1>
+          
+          {/* Debug info - remove this once working */}
+          <div style={{ 
+            fontSize: '12px', 
+            color: 'gray', 
+            fontFamily: 'monospace',
+            background: '#f0f0f0',
+            padding: '8px',
+            borderRadius: '4px'
+          }}>
+            Debug: PPK={ppkContribution} | IKZE={ikzeContribution} | PPE={ppeContribution} | Total={totalContributions}
+          </div>
+          
           <div 
             className="max-w-2xl"
             style={{ 

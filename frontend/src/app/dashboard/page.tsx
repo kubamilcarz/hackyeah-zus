@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { useAtom } from "jotai";
+import { retirementSourcesAtom } from "@/lib/store/atoms";
 import CustomDataEntrySection from "@/components/dashboard/custom-data-entry-section";
 
 import React from "react";
@@ -25,10 +27,12 @@ export default function DashboardPage() {
   const [salaryAdjustment, setSalaryAdjustment] = useState(0);
   const [inflationSlider, setInflationSlider] = useState(3.0);
   const additionalSavings = 0; // Currently not used but kept for future functionality
-  // PPK + IKZE, PPE additional savings states
-  const [ppkContribution, setPpkContribution] = useState(0);
-  const [ikzeContribution, setIkzeContribution] = useState(0);
-  const [ppeContribution, setPpeContribution] = useState(0);
+  
+  // Use atom for retirement sources to read values for calculations
+  const [retirementSources] = useAtom(retirementSourcesAtom);
+  const ppkContribution = retirementSources.ppk || 0;
+  const ikzeContribution = retirementSources.ikze || 0;
+  const ppeContribution = retirementSources.ppe || 0;
   
   // Sticky bar state
   const [isSticky, setIsSticky] = useState(false);
@@ -255,12 +259,6 @@ export default function DashboardPage() {
 
         {/* Additional Retirement Savings Section - PPK + IKZE + PPE */}
         <AdditionalRetirementSavingsSection 
-          ppkContribution={ppkContribution}
-          setPpkContribution={setPpkContribution}
-          ikzeContribution={ikzeContribution}
-          setIkzeContribution={setIkzeContribution}
-          ppeContribution={ppeContribution}
-          setPpeContribution={setPpeContribution}
           totalImpact={additionalRetirementImpact}
         />
 
