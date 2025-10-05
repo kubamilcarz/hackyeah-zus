@@ -1,6 +1,7 @@
 globalThis.__BUILD_MANIFEST = {
   "pages": {
     "/_app": [
+<<<<<<< HEAD
       "static/chunks/9e883_next_dist_compiled_next-devtools_index_25348d06.js",
       "static/chunks/9e883_next_dist_compiled_64f003e3._.js",
       "static/chunks/9e883_next_dist_shared_lib_a351fd64._.js",
@@ -27,6 +28,16 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/[root-of-the-server]__2b803f7d._.js",
       "static/chunks/frontend_pages__error_2da965e7._.js",
       "static/chunks/turbopack-frontend_pages__error_c1f18498._.js"
+=======
+      "static/chunks/e60ef129113f6e24.js",
+      "static/chunks/09bee92c493b43a7.js",
+      "static/chunks/turbopack-b2116f4882adfbd1.js"
+    ],
+    "/_error": [
+      "static/chunks/17722e3ac4e00587.js",
+      "static/chunks/09bee92c493b43a7.js",
+      "static/chunks/turbopack-b65eb445c68ad66a.js"
+>>>>>>> fix/i
     ]
   },
   "devFiles": [],
