@@ -55,36 +55,51 @@ export function EmaChat() {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = inputValue;
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate AI response (replace with actual API call)
-    setTimeout(() => {
-      const responses = [
-        "Cześć! Jestem Ema i chętnie pomogę Ci z kwestiami emerytalnymi. Sprawdźmy Twoje składki ZUS?",
-        "Świetne pytanie! Jako Twój asystent emerytalny mogę pomóc obliczyć przyszłą emeryturę. O co konkretnie chciałbyś zapytać?",
-        "Rozumiem Twoje wątpliwości dotyczące emerytury. ZUS ma różne świadczenia - emerytalne, rentowe, chorobowe. Które Cię interesuje?",
-        "Pamiętaj, że wiek emerytalny to 60 lat dla kobiet i 65 dla mężczyzn. Masz pytania o swoją sytuację emerytalną?",
-        "Jestem tutaj, żeby ułatwić Ci zrozumienie systemu emerytalnego. W czym mogę pomóc?",
-        "Każda złotówka składek to inwestycja w Twoją przyszłość! Sprawdźmy razem Twoje konto ZUS?",
-        "Emerytura to nie tylko pieniądze, to spokój na przyszłość. Jak mogę Ci w tym pomóc?"
-      ];
-      
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    try {
+      // Call our API endpoint
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: currentInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response from server');
+      }
+
+      const data = await response.json();
       
       const emaResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        text: randomResponse,
+        text: data.message || "Przepraszam, wystąpił błąd. Spróbuj ponownie.",
         isUser: false,
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, emaResponse]);
-      setIsTyping(false);
       
       // Increment unread count if chat is closed
       setUnreadCount(prev => isOpen ? 0 : prev + 1);
-    }, 1000 + Math.random() * 2000);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      
+      const errorResponse: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "Przepraszam, wystąpił błąd podczas połączenia. Sprawdź połączenie internetowe i spróbuj ponownie.",
+        isUser: false,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
