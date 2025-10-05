@@ -14,17 +14,46 @@ export function ZusActionTile({ title, desc, icon, className, ...props }: Props)
     <button
       type="button"
       className={clsx(
-        "w-full rounded-lg bg-zus-bg hover:bg-zus-card transition-colors text-left px-4 py-4 flex items-center gap-4 border border-transparent",
+        "w-full rounded-lg transition-colors text-left px-4 py-4 flex items-center gap-4 border border-transparent",
         className
       )}
+      style={{
+        backgroundColor: `rgb(var(--color-bg))`,
+        color: `rgb(var(--color-text))`
+      }}
       {...props}
     >
-      {icon ? <span className="shrink-0 text-[#2E6AA2]">{icon}</span> : null}
+      {icon ? (
+        <span 
+          className="shrink-0" 
+          style={{ color: `rgb(var(--color-accent))` }}
+        >
+          {icon}
+        </span>
+      ) : null}
       <span className="flex-1">
-        <div className="text-[15px] font-semibold text-neutral-700">{title}</div>
-        <div className="text-[14px] text-neutral-700">{desc}</div>
+        <div 
+          className="font-semibold"
+          style={{ 
+            fontSize: `calc(0.9375rem * var(--font-scale))`,
+            color: `rgb(var(--color-text))`
+          }}
+        >
+          {title}
+        </div>
+        <div 
+          style={{ 
+            fontSize: `calc(0.875rem * var(--font-scale))`,
+            color: `rgb(var(--color-text) / 0.8)`
+          }}
+        >
+          {desc}
+        </div>
       </span>
-      <span className="shrink-0 text-[#2E6AA2]">
+      <span 
+        className="shrink-0" 
+        style={{ color: `rgb(var(--color-accent))` }}
+      >
         <ChevronRightIcon />
       </span>
     </button>

@@ -18,15 +18,30 @@ type Props = {
 export function ZusSelect({ id, label, value, onChange, options, className, hintText }: Props) {
     return (
         <div className={clsx(className)}>
-            <label htmlFor={id} className="block text-[14px] font-medium text-neutral-700">
-                {label}
-            </label>
+            {label && (
+                <label 
+                    htmlFor={id} 
+                    className="block font-medium"
+                    style={{ 
+                        fontSize: `calc(0.875rem * var(--font-scale))`,
+                        color: `rgb(var(--color-text))`
+                    }}
+                >
+                    {label}
+                </label>
+            )}
             <div className="mt-2 relative">
                 <select
                     id={id}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    className="w-full h-11 rounded-md border border-[#2E6AA2] focus:ring-2 focus:ring-[#2E6AA2] focus:outline-none px-3 pr-2 text-[15px]"
+                    className="w-full h-11 rounded-md border focus:ring-2 focus:outline-none px-3 pr-2"
+                    style={{
+                        fontSize: `calc(0.9375rem * var(--font-scale))`,
+                        borderColor: `rgb(var(--color-accent))`,
+                        backgroundColor: `rgb(var(--color-card))`,
+                        color: `rgb(var(--color-text))`
+                    }}
                 >
                     {options.map((opt) => (
                         <option key={opt.value} value={opt.value}>
@@ -36,7 +51,13 @@ export function ZusSelect({ id, label, value, onChange, options, className, hint
                 </select>
             </div>
             {hintText && (
-                <p className="mt-1 text-[13px] font-medium text-neutral-600 text-right">
+                <p 
+                    className="mt-1 font-medium text-right"
+                    style={{ 
+                        fontSize: `calc(0.8125rem * var(--font-scale))`,
+                        color: `rgb(var(--color-text) / 0.7)`
+                    }}
+                >
                     {hintText}
                 </p>
             )}

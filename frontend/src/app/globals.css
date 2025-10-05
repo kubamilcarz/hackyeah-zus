@@ -17,7 +17,7 @@
   
   /* Semantic color mappings */
   --color-primary: var(--zus-navy);
-  --color-secondary: var(--zus-yellow);
+  --color-secondary: var(--zus-gray);
   --color-accent: var(--zus-blue);
   --color-success: var(--zus-green);
   --color-warning: var(--zus-yellow);
@@ -101,6 +101,41 @@ html.hc-yellow {
   --color-accent: 255 216 0;
   --color-card: 0 0 0;
 }
+
+/* High contrast button variants */
+html.hc-white .zus-btn-primary,
+html.hc-yellow .zus-btn-primary {
+  background-color: rgb(var(--color-text)) !important;
+  color: rgb(var(--color-bg)) !important;
+  border: 2px solid rgb(var(--color-text)) !important;
+}
+
+html.hc-white .zus-btn-secondary,
+html.hc-yellow .zus-btn-secondary {
+  background-color: transparent !important;
+  color: rgb(var(--color-text)) !important;
+  border: 2px solid rgb(var(--color-text)) !important;
+}
+
+html.hc-white .zus-btn-ghost,
+html.hc-yellow .zus-btn-ghost {
+  background-color: transparent !important;
+  color: rgb(var(--color-text)) !important;
+  border: 1px solid rgb(var(--color-text)) !important;
+}
+
+html.hc-white .zus-btn-primary:hover,
+html.hc-yellow .zus-btn-primary:hover {
+  background-color: rgb(var(--color-bg)) !important;
+  color: rgb(var(--color-text)) !important;
+}
+
+html.hc-white .zus-btn-secondary:hover,
+html.hc-yellow .zus-btn-secondary:hover,
+html.hc-white .zus-btn-ghost:hover,
+html.hc-yellow .zus-btn-ghost:hover {
+  background-color: rgb(var(--color-text) / 0.2) !important;
+}
 /* Apply background + text */
 body {
   background-color: rgb(var(--color-bg));
@@ -125,6 +160,32 @@ a {
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;
   }
+}
+
+/* Comparison bar high contrast overrides */
+html.hc-white .comparison-bar-container {
+  background-color: rgb(var(--color-bg)) !important;
+  border-color: rgb(var(--color-text) / 0.3) !important;
+}
+
+html.hc-yellow .comparison-bar-container {
+  background-color: rgb(var(--color-bg)) !important;
+  border-color: rgb(var(--color-text) / 0.3) !important;
+}
+
+html.hc-white .comparison-bar-soft,
+html.hc-yellow .comparison-bar-soft {
+  background-color: rgb(var(--color-text) / 0.6) !important;
+}
+
+html.hc-white .comparison-bar-neutral,
+html.hc-yellow .comparison-bar-neutral {
+  background-color: rgb(var(--color-text) / 0.8) !important;
+}
+
+html.hc-white .comparison-bar-primary,
+html.hc-yellow .comparison-bar-primary {
+  background-color: rgb(var(--color-accent)) !important;
 }
 
 @layer utilities {

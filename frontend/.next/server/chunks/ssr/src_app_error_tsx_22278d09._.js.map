@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kubamilcarz/Developer/HackYeah/zus-sim/frontend/src/app/error.tsx"],"sourcesContent":["\"use client\";\nexport default function Error({ error, reset }: { error: Error; reset: () => void }) {\n  return <div role=\"alert\" className=\"max-w-prose\">\n    <h2 className=\"text-xl font-semibold\">Something went wrong</h2>\n    <pre className=\"mt-2 text-sm whitespace-pre-wrap text-red-700\">{error.message}</pre>\n    <button className=\"mt-4 px-4 py-2 rounded bg-black text-white\" onClick={reset}>Try again</button>\n  </div>;\n}"],"names":[],"mappings":";;;;;AAAA;;AACe,SAAS,MAAM,EAAE,KAAK,EAAE,KAAK,EAAuC;IACjF,qBAAO,8OAAC;QAAI,MAAK;QAAQ,WAAU;;0BACjC,8OAAC;gBAAG,WAAU;0BAAwB;;;;;;0BACtC,8OAAC;gBAAI,WAAU;0BAAiD,MAAM,OAAO;;;;;;0BAC7E,8OAAC;gBAAO,WAAU;gBAA6C,SAAS;0BAAO;;;;;;;;;;;;AAEnF","debugId":null}}]
+}

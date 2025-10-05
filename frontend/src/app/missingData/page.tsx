@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { useMemo, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ZusText, ZusButton } from "@/components/zus-ui";
 import { ZusInput } from "@/components/ui/zus-input";
+import { useMissingDataForm, useSignupForm, useStepProgression } from "@/lib/store";
 
 // Rough % for emerytalna składka (employee+employer); purely indicative for the UI hint.
 const PENSION_RATE = 0.1952;
@@ -19,23 +20,18 @@ function monthsSinceStartYear(startYear: number) {
 
 export default function ExtraDataPage() {
   const router = useRouter();
-  const params = useSearchParams();
+  const { data: signupData } = useSignupForm();
+  const { data: missingData, updateField } = useMissingDataForm();
+  const { completeCurrentStep, nextStep } = useStepProgression();
 
-  // read prior screen (best-effort)
-  const age = Number(params.get("age") ?? "30");
-  const sex = params.get("sex") ?? "M";
-  const salary = Number(params.get("grossSalary") ?? "9000");
-  const startYear = Number(
-    params.get("workStartYear") ?? `${new Date().getFullYear() - 6}`
-  );
-  const retireYear = Number(
-    params.get("retireYear") ?? `${new Date().getFullYear() + 35}`
-  );
+  // Get data from signup step
+  const salary = signupData.grossSalary || 9000;
+  const startYear = signupData.workStartYear || new Date().getFullYear() - 6;
 
   // --- local state
   const [useEstimatedFunds, setUseEstimatedFunds] = useState<boolean>(true);
   const [fundsNow, setFundsNow] = useState<number | "">("");
-  const [sickDays12m, setSickDays12m] = useState<number | "">("");
+  const [sickDays12m, setSickDays12m] = useState<number | "">(missingData.medicalLeaveDays || "");
 
   const estimatedFunds = useMemo(() => {
     if (!Number.isFinite(salary) || !Number.isFinite(startYear)) return 0;
@@ -58,43 +54,33 @@ export default function ExtraDataPage() {
   }, [useEstimatedFunds, fundsNow]);
 
   function goPredict() {
-    const q = new URLSearchParams({
-      age: String(age),
-      sex,
-      grossSalary: String(Math.round(Number(salary))),
-      workStartYear: String(startYear),
-      retireYear: String(retireYear),
-      // extras
-      fundsNow: String(
-        useEstimatedFunds ? estimatedFunds : Math.round(Number(fundsNow || 0))
-      ),
-      fundsSource: useEstimatedFunds ? "estimated" : "user",
-      sickDays12m: String(Number(sickDays12m || 0)),
-    });
-    router.push(`/addSources?${q.toString()}`);
+    // Save data to state
+    updateField('estimatedAmount', useEstimatedFunds ? estimatedFunds : Number(fundsNow || 0));
+    updateField('medicalLeaveDays', Number(sickDays12m || 0));
+    
+    // Complete step and navigate
+    completeCurrentStep();
+    nextStep();
+    router.push('/addSources');
   }
 
   function skipAndUseEstimates() {
-    // Force estimates + zero sick days if user wants to skip
-    const q = new URLSearchParams({
-      age: String(age),
-      sex,
-      grossSalary: String(Math.round(Number(salary))),
-      workStartYear: String(startYear),
-      retireYear: String(retireYear),
-      fundsNow: String(estimatedFunds),
-      fundsSource: "estimated",
-      sickDays12m: "0",
-    });
-    router.push(`/addSources?${q.toString()}`);
+    // Save estimated data to state
+    updateField('estimatedAmount', estimatedFunds);
+    updateField('medicalLeaveDays', 0);
+    
+    // Complete step and navigate
+    completeCurrentStep();
+    nextStep();
+    router.push('/addSources');
   }
 
   return (
-    <div className="min-h-screen max-w-3xl mx-auto py-12 px-4">
+    <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
     <div className="bg-zus-card rounded-2xl">
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <div>
-          <h2 className="mt-2 text-[22px] leading-7 font-semibold text-[rgb(var(--zus-black))]">
+          <h2 className="mt-2 text-xl leading-7 font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.375rem * var(--font-scale))` }}>
             Dane uzupełniające
           </h2>
           <ZusText variant="body" className="mt-2">
@@ -109,7 +95,8 @@ export default function ExtraDataPage() {
           <div className="flex items-center justify-between gap-4">
             <label
               htmlFor="fundsNow"
-              className="block text-[14px] font-bold text-neutral-800"
+              className="block text-sm font-bold text-neutral-800"
+              style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}
             >
               Zgromadzone środki (PLN)
             </label>
@@ -144,7 +131,7 @@ export default function ExtraDataPage() {
 
           {useEstimatedFunds ? (
             <div id="funds-estimate" className="space-y-2">
-              <p className="text-[15px] leading-6 text-neutral-800">
+              <p className="text-base leading-6 text-neutral-800" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>
                 Szacowana kwota:{" "}
                 <span className="font-semibold">
                   {new Intl.NumberFormat("pl-PL", {
@@ -155,7 +142,7 @@ export default function ExtraDataPage() {
                 </span>
               </p>
 
-              <details className="text-[13px] text-neutral-700">
+              <details className="text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>
                 <summary className="cursor-pointer select-none">
                   Jak to policzyliśmy?
                 </summary>
@@ -193,7 +180,7 @@ export default function ExtraDataPage() {
         {/* Sick leaves */}
         <div className="bg-zus-bg p-4 rounded-md space-y-3">
   <div className="flex items-center justify-between gap-4">
-    <label htmlFor="sickDays12m" className="block text-[14px] font-bold text-neutral-800">
+    <label htmlFor="sickDays12m" className="block text-sm font-bold text-neutral-800" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>
       Zwolnienia lekarskie (dni, ostatnie 12 mies.)
     </label>
 
@@ -224,8 +211,8 @@ export default function ExtraDataPage() {
 
   {sickDays12m === "" ? (
     <div id="sickdays-view" className="space-y-2">
-      <p className="text-[15px] leading-6 text-neutral-800">Nie podano</p>
-      <details className="text-[13px] text-neutral-700">
+      <p className="text-base leading-6 text-neutral-800" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>Nie podano</p>
+      <details className="text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>
         <summary className="cursor-pointer select-none">Do czego tego użyjemy?</summary>
         <div className="mt-1">
           Liczba dni L4 pomaga dokładniej odwzorować historię składek i świadczeń.
