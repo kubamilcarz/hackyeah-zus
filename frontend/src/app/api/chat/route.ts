@@ -29,8 +29,6 @@ export async function POST(request: NextRequest) {
       ],
     });
 
-    console.log('OpenAI response:', JSON.stringify(completion, null, 2));
-
     const assistantMessage = completion.choices[0]?.message?.content || "Przepraszam, wystąpił błąd. Spróbuj ponownie.";
 
     console.log('Assistant message:', assistantMessage);

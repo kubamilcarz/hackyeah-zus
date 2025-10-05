@@ -121,13 +121,25 @@ export default function WelcomeStart() {
     return [...groups, userExpected];
   }, [value, netto]);
 
-  const ciekawostkaText = useMemo(() => {
-    if ((value || 0) >= 6000)
-      return "Wyższe świadczenia zwykle wynikają z dłuższej pracy i dłuższych okresów składkowych.";
-    if ((value || 0) >= 4000)
-      return "Przesunięcie przejścia o 5 lat potrafi istotnie podnieść świadczenie.";
-    return "Okresy L4 również wpływają na podstawę — w symulatorze możesz je uwzględnić.";
-  }, [value]);
+    // Random ciekawostka selected on page load
+  const [randomCiekawostka] = useState(() => {
+    const ciekawostki = [
+      "Zakład Ubezpieczeń Społecznych powstał w 1934 roku, a jego celem było połączenie kilku różnych instytucji ubezpieczeniowych w jedną całość.",
+      "Choć nie widzimy go na co dzień, każdy ubezpieczony ma indywidualne konto w ZUS, na którym zapisywane są składki przekazywane przez pracodawcę lub samego siebie (np. przy działalności gospodarczej).",
+      "Pieniądze wpłacane dziś do ZUS idą na bieżące wypłaty obecnych emerytów. Nasze przyszłe emerytury będą finansowane przez składki młodszych pokoleń.",
+      "Według GUS średnie dalsze trwanie życia po 65 roku życia to ponad 18 lat dla mężczyzn i ponad 23 lata dla kobiet — czyli nawet ¼ życia może przypaść na czas po pracy.",
+      "Żeby ją dostać, trzeba mieć co najmniej 20 lat stażu (kobiety) lub 25 lat (mężczyźni) pracy ze składkami. Inaczej emerytura może być niższa niż minimalna krajowa.",
+      "Każdy może sprawdzić swoje składki i prognozę emerytury na platformie PUE ZUS, gdzie znajdują się też dokumenty, decyzje i historia ubezpieczeń.",
+      "Podobne systemy repartycyjne działają w większości krajów Europy — np. w Niemczech, Francji czy Czechach — choć różnią się wiekiem emerytalnym i sposobem liczenia świadczeń.",
+      "Od kilku lat działa program 'Lekcje z ZUS' dla uczniów szkół średnich, który uczy, jak działa system emerytalny i dlaczego warto być ubezpieczonym.",
+      "Jeśli pracowałeś przed 1999 rokiem, to ZUS obliczył Twój kapitał początkowy, który również co roku rośnie o wskaźnik waloryzacji — dzięki temu Twoje wcześniejsze lata pracy też 'zarabiają'",
+      "Poza emeryturami ZUS zajmuje się też rentami, zasiłkami chorobowymi, macierzyńskimi i wypadkowymi — każdego miesiąca obsługuje ponad 7 milionów świadczeń!"
+    ];
+    
+    // Random selection on component initialization
+    const randomIndex = Math.floor(Math.random() * ciekawostki.length);
+    return ciekawostki[randomIndex];
+  });
 
   const isValid = (value || 0) > 0;
   const maxForScale = useMemo(() => {
@@ -262,7 +274,7 @@ export default function WelcomeStart() {
 
                     {/* Insight */}
                     <ZusAlert variant="info" title="💡 Wskazówka eksperta">
-                      {ciekawostkaText}
+                      {randomCiekawostka}
                     </ZusAlert>
                   </div>
 
