@@ -485,7 +485,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$index
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/store/hooks.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zus-ui.tsx [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
@@ -499,9 +499,41 @@ function fmtPLN(n) {
     }).format(isFinite(n) ? n : 0);
 }
 // placeholders; swap with real data later
-const SREDNIA = 3200;
 const MINIMALNA = 1588;
+const SREDNIA = 3200;
+const WYZSZA = 5000;
 const NET_RATE = 0.85; // illustrative for UI only
+// Retirement groups data
+const RETIREMENT_GROUPS = [
+    {
+        id: 'below-minimum',
+        label: 'Poniżej minimalnej',
+        value: 1200,
+        description: 'Osoby, które nie przepracowały wymaganych 25 lat (kobiety) / 20 lat (mężczyźni). Świadczenie może być niższe od emerytury minimalnej.',
+        tone: 'warning'
+    },
+    {
+        id: 'minimum',
+        label: 'Minimalna emerytura',
+        value: MINIMALNA,
+        description: 'Gwarantowana minimalna emerytura dla osób spełniających wymagania dotyczące okresu składkowego.',
+        tone: 'soft'
+    },
+    {
+        id: 'average',
+        label: 'Średnia w Polsce',
+        value: SREDNIA,
+        description: 'Średnia wysokość emerytury wypłacanej przez ZUS w Polsce. Dotyczy większości emerytów.',
+        tone: 'neutral'
+    },
+    {
+        id: 'higher',
+        label: 'Wyższa emerytura',
+        value: WYZSZA,
+        description: 'Wyższe świadczenia emerytalne osiągane przez osoby z długim stażem pracy i wyższymi zarobkami.',
+        tone: 'success'
+    }
+];
 function WelcomeStart() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -553,16 +585,30 @@ function WelcomeStart() {
             router.push("/signup");
         }
     };
-    const [minVal, avgVal, yourVal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
-        "WelcomeStart.useMemo": ()=>{
+    const comparisonData = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "WelcomeStart.useMemo[comparisonData]": ()=>{
             const f = netto ? NET_RATE : 1;
+            const groups = RETIREMENT_GROUPS.map({
+                "WelcomeStart.useMemo[comparisonData].groups": (group)=>({
+                        ...group,
+                        displayValue: Math.round(group.value * f)
+                    })
+            }["WelcomeStart.useMemo[comparisonData].groups"]);
+            const userExpected = {
+                id: 'user-expected',
+                label: 'Twoja oczekiwana',
+                value: value || 0,
+                displayValue: Math.round((value || 0) * f),
+                description: 'Kwota emerytury, którą chciałbyś osiągnąć. Sprawdzimy, jak ją zrealizować.',
+                tone: 'primary',
+                isUserTarget: true
+            };
             return [
-                Math.round(MINIMALNA * f),
-                Math.round(SREDNIA * f),
-                Math.round((value || 0) * f)
+                ...groups,
+                userExpected
             ];
         }
-    }["WelcomeStart.useMemo"], [
+    }["WelcomeStart.useMemo[comparisonData]"], [
         value,
         netto
     ]);
@@ -576,7 +622,16 @@ function WelcomeStart() {
         value
     ]);
     const isValid = (value || 0) > 0;
-    const maxForScale = Math.max(minVal, avgVal, yourVal) || 1;
+    const maxForScale = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "WelcomeStart.useMemo[maxForScale]": ()=>{
+            const allValues = comparisonData.map({
+                "WelcomeStart.useMemo[maxForScale].allValues": (item)=>item.displayValue
+            }["WelcomeStart.useMemo[maxForScale].allValues"]);
+            return Math.max(...allValues, 1);
+        }
+    }["WelcomeStart.useMemo[maxForScale]"], [
+        comparisonData
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen",
         style: {
@@ -610,7 +665,7 @@ function WelcomeStart() {
                                                         children: "Zacznij od swojego celu"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 112,
+                                                        lineNumber: 163,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
@@ -618,13 +673,13 @@ function WelcomeStart() {
                                                         children: "Podaj kwotę emerytury, o której marzysz. Sprawdzimy, jak ją osiągnąć."
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 115,
+                                                        lineNumber: 166,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 111,
+                                                lineNumber: 162,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -647,18 +702,18 @@ function WelcomeStart() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/page.tsx",
-                                                    lineNumber: 121,
+                                                    lineNumber: 172,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 120,
+                                                lineNumber: 171,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 161,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -677,7 +732,7 @@ function WelcomeStart() {
                                                         children: "Jak to wygląda w porównaniu?"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 151,
+                                                        lineNumber: 202,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -691,7 +746,7 @@ function WelcomeStart() {
                                                                 children: "Widok:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/page.tsx",
-                                                                lineNumber: 153,
+                                                                lineNumber: 204,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -714,7 +769,7 @@ function WelcomeStart() {
                                                                         children: "Brutto"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/page.tsx",
-                                                                        lineNumber: 168,
+                                                                        lineNumber: 219,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -730,65 +785,44 @@ function WelcomeStart() {
                                                                         children: "Netto"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/page.tsx",
-                                                                        lineNumber: 181,
+                                                                        lineNumber: 232,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/page.tsx",
-                                                                lineNumber: 161,
+                                                                lineNumber: 212,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 152,
+                                                        lineNumber: 203,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 150,
+                                                lineNumber: 201,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "space-y-4",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
-                                                        label: "Minimalna emerytura",
-                                                        value: minVal,
+                                                children: comparisonData.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
+                                                        label: item.label,
+                                                        value: item.displayValue,
                                                         max: maxForScale,
-                                                        tone: "soft"
-                                                    }, void 0, false, {
+                                                        tone: item.tone,
+                                                        emphasis: 'isUserTarget' in item ? item.isUserTarget : false,
+                                                        description: item.description
+                                                    }, item.id, false, {
                                                         fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 199,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
-                                                        label: "Średnia w Polsce",
-                                                        value: avgVal,
-                                                        max: maxForScale,
-                                                        tone: "neutral"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 200,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparisonBar, {
-                                                        label: "Twoja oczekiwana",
-                                                        value: yourVal,
-                                                        max: maxForScale,
-                                                        tone: "primary",
-                                                        emphasis: true
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/page.tsx",
-                                                        lineNumber: 201,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
+                                                        lineNumber: 251,
+                                                        columnNumber: 25
+                                                    }, this))
+                                            }, void 0, false, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 198,
+                                                lineNumber: 249,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusAlert"], {
@@ -797,13 +831,13 @@ function WelcomeStart() {
                                                 children: ciekawostkaText
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 205,
+                                                lineNumber: 264,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 142,
+                                        lineNumber: 193,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -820,7 +854,7 @@ function WelcomeStart() {
                                                 children: "Rozpocznij szczegółową symulację"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 212,
+                                                lineNumber: 271,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -832,24 +866,24 @@ function WelcomeStart() {
                                                 children: "Bezpłatne • Zabiera 5 minut • Natychmiastowe wyniki"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 223,
+                                                lineNumber: 282,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 211,
+                                        lineNumber: 270,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 101,
+                                lineNumber: 152,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 100,
+                            lineNumber: 151,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -872,7 +906,7 @@ function WelcomeStart() {
                                             children: "✓"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 246,
+                                            lineNumber: 305,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -884,7 +918,7 @@ function WelcomeStart() {
                                             children: "Precyzyjne obliczenia"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 255,
+                                            lineNumber: 314,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -895,13 +929,13 @@ function WelcomeStart() {
                                             children: "Oparte na przepisach ZUS"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 264,
+                                            lineNumber: 323,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 297,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -921,7 +955,7 @@ function WelcomeStart() {
                                             children: "📊"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 281,
+                                            lineNumber: 340,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -933,7 +967,7 @@ function WelcomeStart() {
                                             children: "Różne scenariusze"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 290,
+                                            lineNumber: 349,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -944,13 +978,13 @@ function WelcomeStart() {
                                             children: "Sprawdź różne opcje"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 299,
+                                            lineNumber: 358,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 273,
+                                    lineNumber: 332,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -970,7 +1004,7 @@ function WelcomeStart() {
                                             children: "💡"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 316,
+                                            lineNumber: 375,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -982,7 +1016,7 @@ function WelcomeStart() {
                                             children: "Praktyczne porady"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 325,
+                                            lineNumber: 384,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -993,25 +1027,25 @@ function WelcomeStart() {
                                             children: "Jak zwiększyć emeryturę"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 334,
+                                            lineNumber: 393,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 308,
+                                    lineNumber: 367,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 237,
+                            lineNumber: 296,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 98,
+                    lineNumber: 149,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1021,27 +1055,27 @@ function WelcomeStart() {
                         children: "Symulator wykorzystuje aktualne przepisy emerytalne obowiązujące w Polsce. Wyniki mają charakter orientacyjny i nie stanowią decyzji administracyjnej ZUS."
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 348,
+                        lineNumber: 407,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 347,
+                    lineNumber: 406,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/page.tsx",
-            lineNumber: 95,
+            lineNumber: 146,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 88,
+        lineNumber: 139,
         columnNumber: 5
     }, this);
 }
-_s(WelcomeStart, "5IxvTZC/4HDeYk+9flrdhy2HTxY=", false, function() {
+_s(WelcomeStart, "X4ZVJuYLOJBp88VHClzeX2GkPu8=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWelcomeForm"],
@@ -1050,7 +1084,9 @@ _s(WelcomeStart, "5IxvTZC/4HDeYk+9flrdhy2HTxY=", false, function() {
 });
 _c = WelcomeStart;
 /* --- UI bits --- */ function ComparisonBar(param) {
-    let { label, value, max, tone = "neutral", emphasis = false } = param;
+    let { label, value, max, tone = "neutral", emphasis = false, description } = param;
+    _s1();
+    const [showTooltip, setShowTooltip] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const pct = Math.max(0.05, Math.min(1, value / max)); // keep tiny visible sliver
     const barBase = "h-4 rounded-lg transition-all duration-500";
     // Bar classes for CSS control
@@ -1059,6 +1095,10 @@ _c = WelcomeStart;
             return "comparison-bar-primary";
         } else if (tone === "soft") {
             return "comparison-bar-soft";
+        } else if (tone === "warning") {
+            return "comparison-bar-warning";
+        } else if (tone === "success") {
+            return "comparison-bar-success";
         } else {
             return "comparison-bar-neutral";
         }
@@ -1067,11 +1107,20 @@ _c = WelcomeStart;
     const getBarStyle = ()=>{
         if (tone === "primary") {
             return {
-                backgroundColor: "rgb(0, 65, 110)"
+                backgroundColor: "rgb(0, 65, 110)",
+                boxShadow: emphasis ? '0 0 0 2px rgba(0, 65, 110, 0.3), 0 2px 8px rgba(0, 65, 110, 0.2)' : undefined
             };
         } else if (tone === "soft") {
             return {
                 backgroundColor: "rgba(146, 150, 158, 0.6)"
+            };
+        } else if (tone === "warning") {
+            return {
+                backgroundColor: "rgb(234, 179, 8)"
+            };
+        } else if (tone === "success") {
+            return {
+                backgroundColor: "rgb(34, 197, 94)"
             };
         } else {
             return {
@@ -1085,7 +1134,7 @@ _c = WelcomeStart;
         borderColor: "rgba(146, 150, 158, 0.3)"
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "w-full",
+        className: "w-full relative",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex items-baseline justify-between mb-1.5",
@@ -1096,10 +1145,24 @@ _c = WelcomeStart;
                             fontSize: "calc(0.875rem * var(--font-scale))",
                             color: emphasis ? 'rgb(var(--color-text))' : 'rgb(var(--color-text) / 0.8)'
                         },
-                        children: label
-                    }, void 0, false, {
+                        children: [
+                            label,
+                            emphasis && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "ml-2 px-2 py-0.5 rounded-full text-xs font-medium",
+                                style: {
+                                    backgroundColor: 'rgb(0, 65, 110)',
+                                    color: 'white'
+                                },
+                                children: "Twój cel"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 497,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 413,
+                        lineNumber: 488,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1111,47 +1174,100 @@ _c = WelcomeStart;
                         children: fmtPLN(value)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 422,
+                        lineNumber: 508,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 412,
+                lineNumber: 487,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "w-full border rounded-lg p-1 comparison-bar-container",
+                className: "w-full border rounded-lg p-1 comparison-bar-container cursor-pointer relative",
                 style: containerStyle,
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "".concat(barBase, " ").concat(getBarClass()),
-                    style: {
-                        width: "".concat(pct * 100, "%"),
-                        ...getBarStyle()
-                    },
-                    title: "".concat(label, ": ").concat(fmtPLN(value)),
-                    role: "progressbar",
-                    "aria-valuemin": 0,
-                    "aria-valuenow": value,
-                    "aria-valuemax": max,
-                    "aria-label": label
-                }, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 436,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
+                onMouseEnter: ()=>setShowTooltip(true),
+                onMouseLeave: ()=>setShowTooltip(false),
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "".concat(barBase, " ").concat(getBarClass()),
+                        style: {
+                            width: "".concat(pct * 100, "%"),
+                            ...getBarStyle()
+                        },
+                        title: "".concat(label, ": ").concat(fmtPLN(value)),
+                        role: "progressbar",
+                        "aria-valuemin": 0,
+                        "aria-valuenow": value,
+                        "aria-valuemax": max,
+                        "aria-label": label
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/page.tsx",
+                        lineNumber: 524,
+                        columnNumber: 9
+                    }, this),
+                    description && showTooltip && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute z-10 p-3 rounded-lg shadow-lg max-w-xs -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full",
+                        style: {
+                            backgroundColor: 'rgb(var(--color-card))',
+                            border: '1px solid rgb(var(--color-text) / 0.2)',
+                            color: 'rgb(var(--color-text))'
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "font-medium mb-1",
+                                style: {
+                                    fontSize: "calc(0.875rem * var(--font-scale))"
+                                },
+                                children: label
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 548,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    fontSize: "calc(0.75rem * var(--font-scale))",
+                                    color: 'rgb(var(--color-text) / 0.8)'
+                                },
+                                children: description
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 554,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0",
+                                style: {
+                                    borderLeft: '6px solid transparent',
+                                    borderRight: '6px solid transparent',
+                                    borderTop: '6px solid rgb(var(--color-card))'
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 563,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/page.tsx",
+                        lineNumber: 540,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 432,
+                lineNumber: 518,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 411,
+        lineNumber: 486,
         columnNumber: 5
     }, this);
 }
+_s1(ComparisonBar, "MlKqB7CDspaiqeinDL2ipSY+OVU=");
 _c1 = ComparisonBar;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "WelcomeStart");
