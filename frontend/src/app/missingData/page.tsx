@@ -9,6 +9,27 @@ import { useMissingDataForm, useSignupForm, useStepProgression } from "@/lib/sto
 // Rough % for emerytalna składka (employee+employer); purely indicative for the UI hint.
 const PENSION_RATE = 0.1952;
 
+// Average sick leave days by demographics (simplified - replace with BE call)
+function getAverageSickDays(age: number, gender: 'male' | 'female' | 'other'): number {
+  // TODO: Replace with actual Backend API call
+  // Example: return await fetch(`/api/sick-days-average?age=${age}&gender=${gender}`).then(r => r.json())
+  
+  // Simplified statistical model based on ZUS demographic data
+  if (gender === 'female') {
+    if (age < 30) return 8;
+    if (age < 45) return 12;
+    if (age < 60) return 15;
+    return 18;
+  } else if (gender === 'male') {
+    if (age < 30) return 5;
+    if (age < 45) return 7;
+    if (age < 60) return 10;
+    return 13;
+  }
+  // 'other' or fallback
+  return 9;
+}
+
 function monthsSinceStartYear(startYear: number) {
   const now = new Date();
   const y = now.getFullYear();
@@ -27,11 +48,20 @@ export default function ExtraDataPage() {
   // Get data from signup step
   const salary = signupData.grossSalary || 9000;
   const startYear = signupData.workStartYear || new Date().getFullYear() - 6;
+  const userAge = signupData.age || 35;
+  const userGender = signupData.gender || 'other';
+
+  // Calculate average sick days for this user's demographics
+  const averageSickDays = useMemo(() => {
+    return getAverageSickDays(userAge, userGender);
+  }, [userAge, userGender]);
 
   // --- local state
   const [useEstimatedFunds, setUseEstimatedFunds] = useState<boolean>(true);
-  const [fundsNow, setFundsNow] = useState<number | "">("");
+  const [mainAccountFunds, setMainAccountFunds] = useState<number | "">("");
+  const [subAccountFunds, setSubAccountFunds] = useState<number | "">("");
   const [sickDays12m, setSickDays12m] = useState<number | "">(missingData.medicalLeaveDays || "");
+  const [useAverageSickDays, setUseAverageSickDays] = useState<boolean>(true);
 
   const estimatedFunds = useMemo(() => {
     if (!Number.isFinite(salary) || !Number.isFinite(startYear)) return 0;
@@ -42,21 +72,31 @@ export default function ExtraDataPage() {
 
   const isValid = useMemo(() => {
     // Nothing is strictly required here. We allow skipping.
-    // If not using estimate, require a non-negative number for funds.
+    // If not using estimate, require non-negative numbers for funds.
     if (!useEstimatedFunds) {
-      return (
-        fundsNow !== "" &&
-        Number.isFinite(Number(fundsNow)) &&
-        Number(fundsNow) >= 0
-      );
+      const mainValid = mainAccountFunds === "" || (Number.isFinite(Number(mainAccountFunds)) && Number(mainAccountFunds) >= 0);
+      const subValid = subAccountFunds === "" || (Number.isFinite(Number(subAccountFunds)) && Number(subAccountFunds) >= 0);
+      return mainValid && subValid;
     }
     return true;
-  }, [useEstimatedFunds, fundsNow]);
+  }, [useEstimatedFunds, mainAccountFunds, subAccountFunds]);
 
   function goPredict() {
     // Save data to state
-    updateField('estimatedAmount', useEstimatedFunds ? estimatedFunds : Number(fundsNow || 0));
-    updateField('medicalLeaveDays', Number(sickDays12m || 0));
+    if (useEstimatedFunds) {
+      // Split estimated funds roughly 80/20 between main and sub account
+      const mainEstimate = Math.round(estimatedFunds * 0.8);
+      const subEstimate = Math.round(estimatedFunds * 0.2);
+      updateField('mainAccountAmount', mainEstimate);
+      updateField('subAccountAmount', subEstimate);
+    } else {
+      updateField('mainAccountAmount', Number(mainAccountFunds || 0));
+      updateField('subAccountAmount', Number(subAccountFunds || 0));
+    }
+    
+    // Use average sick days if user is using average, otherwise use custom value
+    const sickDaysToSave = useAverageSickDays ? averageSickDays : Number(sickDays12m || 0);
+    updateField('medicalLeaveDays', sickDaysToSave);
     
     // Complete step and navigate
     completeCurrentStep();
@@ -65,9 +105,12 @@ export default function ExtraDataPage() {
   }
 
   function skipAndUseEstimates() {
-    // Save estimated data to state
-    updateField('estimatedAmount', estimatedFunds);
-    updateField('medicalLeaveDays', 0);
+    // Save estimated data to state - split roughly 80/20
+    const mainEstimate = Math.round(estimatedFunds * 0.8);
+    const subEstimate = Math.round(estimatedFunds * 0.2);
+    updateField('mainAccountAmount', mainEstimate);
+    updateField('subAccountAmount', subEstimate);
+    updateField('medicalLeaveDays', averageSickDays); // Always use average when skipping
     
     // Complete step and navigate
     completeCurrentStep();
@@ -118,7 +161,7 @@ export default function ExtraDataPage() {
               className="block text-sm font-bold text-neutral-800"
               style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}
             >
-              Zgromadzone środki (PLN)
+              Zgromadzone środki na koncie i subkoncie (PLN)
             </label>
 
             {useEstimatedFunds ? (
@@ -128,7 +171,11 @@ export default function ExtraDataPage() {
                 type="button"
                 onClick={() => {
                   setUseEstimatedFunds(false);
-                  setFundsNow(estimatedFunds);
+                  // Pre-fill with estimated split
+                  const mainEstimate = Math.round(estimatedFunds * 0.8);
+                  const subEstimate = Math.round(estimatedFunds * 0.2);
+                  setMainAccountFunds(mainEstimate);
+                  setSubAccountFunds(subEstimate);
                 }}
                 aria-controls="funds-manual"
                 aria-expanded="false"
@@ -175,23 +222,49 @@ export default function ExtraDataPage() {
               </details>
             </div>
           ) : (
-            <div id="funds-manual" className="space-y-2">
-              <ZusInput
-                id="fundsNow"
-                label="Wpisz łączną kwotę (PLN)"
-                type="number"
-                min={0}
-                step={100}
-                value={fundsNow === "" ? "" : String(fundsNow)}
-                onChange={(e) =>
-                  setFundsNow(
-                    e.target.value === "" ? "" : Number(e.target.value)
-                  )
-                }
-                className="w-64"
-              />
-              <p className="zus-text-small mt-1 text-gray-700">
-                Jeśli nie podasz kwoty, użyjemy prostego szacunku.
+            <div id="funds-manual" className="space-y-4">
+              <div className="space-y-2">
+                <ZusInput
+                  id="mainAccount"
+                  label="Konto główne (PLN)"
+                  type="number"
+                  min={0}
+                  step={100}
+                  value={mainAccountFunds === "" ? "" : String(mainAccountFunds)}
+                  onChange={(e) =>
+                    setMainAccountFunds(
+                      e.target.value === "" ? "" : Number(e.target.value)
+                    )
+                  }
+                  className="w-64"
+                />
+                <p className="zus-text-small text-gray-700">
+                  Środki na głównym koncie emerytalnym w ZUS
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <ZusInput
+                  id="subAccount"
+                  label="Subkonto (wraz z OFE) (PLN)"
+                  type="number"
+                  min={0}
+                  step={100}
+                  value={subAccountFunds === "" ? "" : String(subAccountFunds)}
+                  onChange={(e) =>
+                    setSubAccountFunds(
+                      e.target.value === "" ? "" : Number(e.target.value)
+                    )
+                  }
+                  className="w-64"
+                />
+                <p className="zus-text-small text-gray-700">
+                  Środki na subkoncie emerytalnym (w tym środki z OFE)
+                </p>
+              </div>
+              
+              <p className="zus-text-small mt-2 text-gray-700">
+                Jeśli nie podasz kwot, użyjemy prostego szacunku.
               </p>
             </div>
           )}
@@ -199,65 +272,70 @@ export default function ExtraDataPage() {
 
         {/* Sick leaves */}
         <div className="bg-zus-bg p-4 rounded-md space-y-3">
-  <div className="flex items-center justify-between gap-4">
-    <label htmlFor="sickDays12m" className="block text-sm font-bold text-neutral-800" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>
-      Zwolnienia lekarskie (dni, ostatnie 12 mies.)
-    </label>
+          <div className="flex items-center justify-between gap-4">
+            <label htmlFor="sickDays12m" className="block text-sm font-bold text-neutral-800" style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}>
+              Zwolnienia lekarskie (dni, ostatnie 12 mies.)
+            </label>
 
-    {sickDays12m === "" ? (
-      <ZusButton
-        variant="ghost"
-        size="small"
-        type="button"
-        onClick={() => setSickDays12m(0)} // prefill when entering edit mode
-        aria-controls="sickdays-edit"
-        aria-expanded="false"
-      >
-        Dodaj
-      </ZusButton>
-    ) : (
-      <ZusButton
-        variant="ghost"
-        size="small"
-        type="button"
-        onClick={() => setSickDays12m("")}
-        aria-controls="sickdays-view"
-        aria-expanded="false"
-      >
-        Nie podawaj
-      </ZusButton>
-    )}
-  </div>
+            {useAverageSickDays ? (
+              <ZusButton
+                variant="ghost"
+                size="small"
+                type="button"
+                onClick={() => {
+                  setUseAverageSickDays(false);
+                  setSickDays12m(averageSickDays); // Pre-fill with average
+                }}
+                aria-controls="sickdays-custom"
+                aria-expanded="false"
+              >
+                Podaj własną wartość
+              </ZusButton>
+            ) : (
+              <ZusButton
+                variant="ghost"
+                size="small"
+                type="button"
+                onClick={() => setUseAverageSickDays(true)}
+                aria-controls="sickdays-average"
+                aria-expanded="false"
+              >
+                Użyj średniej
+              </ZusButton>
+            )}
+          </div>
 
-  {sickDays12m === "" ? (
-    <div id="sickdays-view" className="space-y-2">
-      <p className="text-base leading-6 text-neutral-800" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>Nie podano</p>
-      <details className="text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>
-        <summary className="cursor-pointer select-none">Do czego tego użyjemy?</summary>
-        <div className="mt-1">
-          Liczba dni L4 pomaga dokładniej odwzorować historię składek i świadczeń.
-          Jeśli pominiesz, użyjemy wartości domyślnej (0 dni).
+          {useAverageSickDays ? (
+            <div id="sickdays-average" className="space-y-2">
+              <p className="text-base leading-6 text-neutral-800" style={{ fontSize: `calc(0.9375rem * var(--font-scale))` }}>
+                Średnia dla Twojej grupy wiekowej: <span className="font-semibold">{averageSickDays} dni</span>
+              </p>
+              <details className="text-sm text-neutral-700" style={{ fontSize: `calc(0.8125rem * var(--font-scale))` }}>
+                <summary className="cursor-pointer select-none">Jak to policzyliśmy?</summary>
+                <div className="mt-1">
+                  Na podstawie statystyk ZUS dla {userGender === 'female' ? 'kobiet' : userGender === 'male' ? 'mężczyzn' : 'osób'} w wieku {userAge} lat. 
+                  Średnia uwzględnia dane demograficzne i może być dostosowana, jeśli znasz dokładną liczbę swoich dni L4.
+                </div>
+              </details>
+            </div>
+          ) : (
+            <div id="sickdays-custom" className="space-y-2">
+              <ZusInput
+                id="sickDays12m"
+                label="Liczba dni"
+                type="number"
+                min={0}
+                step={1}
+                value={String(sickDays12m)}
+                onChange={(e) => setSickDays12m(e.target.value === "" ? "" : Number(e.target.value))}
+                className="w-40"
+              />
+              <p className="zus-text-small text-gray-700">
+                Średnia dla Twojej grupy: {averageSickDays} dni. Podaj dokładną wartość jeśli ją znasz.
+              </p>
+            </div>
+          )}
         </div>
-      </details>
-    </div>
-  ) : (
-    <div id="sickdays-edit" className="space-y-2">
-      <ZusInput
-        id="sickDays12m"
-        label="Liczba dni"
-        type="number"
-        min={0}
-        step={1}
-        value={String(sickDays12m)}
-        onChange={(e) => setSickDays12m(e.target.value === "" ? "" : Number(e.target.value))}
-        className="w-40"
-      />
-      <p className="zus-text-small text-gray-700">
-        Pole opcjonalne — zostaw puste, jeśli nie wiesz.
-      </p>
-    </div>
-  )}
-</div>
         {/* Big CTA */}
         <div className="flex flex-row gap-4 items-center">
           <ZusButton

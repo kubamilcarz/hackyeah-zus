@@ -20,6 +20,12 @@ function fmtPLN(n: number) {
 // illustrative factor ONLY for UI preview (replace with real calc later)
 const REAL_POWER_FACTOR = 0.70;
 
+// Average life expectancy data for pension calculation
+const RETIREMENT_AGE = 67; // Current retirement age in Poland
+const AVERAGE_LIFE_EXPECTANCY = 78; // Average life expectancy in Poland
+const PENSION_YEARS = AVERAGE_LIFE_EXPECTANCY - RETIREMENT_AGE; // ~11 years
+const PENSION_MONTHS = PENSION_YEARS * 12; // ~132 months
+
 // Simple Popover Component
 function InfoPopover({ children, content }: { children: React.ReactNode; content: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,10 +65,12 @@ export default function AddSourcesPage() {
 
   // Base from previous step(s) or backend
   const zusNominal = Number(params.get("zusPension") ?? "2964"); // fallback like in screenshot
-  const sickDaysFromPrev = params.get("sickDays12m");
-  const sickDaysInitial = sickDaysFromPrev === null ? "" : sickDaysFromPrev; // keep as text to allow ""
 
   const realToday = Math.round(zusNominal * REAL_POWER_FACTOR);
+  
+  // Calculate monthly pension amount based on life expectancy
+  const monthlyPensionNominal = Math.round(zusNominal / PENSION_MONTHS);
+  const monthlyPensionReal = Math.round(realToday / PENSION_MONTHS);
 
   // Savings toggles + amounts
   const [ikeOn, setIkeOn] = useState(false);
@@ -76,9 +84,6 @@ export default function AddSourcesPage() {
   const [ppk, setPpk] = useState<string>("");
   const [ppe, setPpe] = useState<string>("");
   const [other, setOther] = useState<string>("");
-
-  // Sick leaves (optional – carried from earlier but editable here too)
-  const [sickDays] = useState<string>(String(sickDaysInitial ?? ""));
 
   const monthlyTotal = useMemo(() => {
     const sum =
@@ -126,16 +131,16 @@ export default function AddSourcesPage() {
             <Tile 
               tone="primary" 
               title="Emerytura z ZUS" 
-              subtitle="Kwota nominalna" 
+              subtitle={`${fmtPLN(monthlyPensionNominal)}/miesiąc przez ~${PENSION_YEARS} lat`}
               value={fmtPLN(zusNominal)}
-              infoText="To jest kwota emerytury z ZUS w wartościach nominalnych, czyli bez uwzględnienia wpływu inflacji. Oznacza to, że jest to kwota, którą otrzymasz w przyszłości, ale jej siła nabywcza będzie mniejsza niż dzisiaj."
+              infoText={`To jest łączna kwota emerytury z ZUS w wartościach nominalnych (${fmtPLN(zusNominal)}), którą otrzymasz przez około ${PENSION_YEARS} lat emerytury. Oznacza to miesięczne świadczenie w wysokości ${fmtPLN(monthlyPensionNominal)}, ale jego siła nabywcza będzie mniejsza niż dzisiaj ze względu na inflację.`}
             />
             <Tile 
               tone="success" 
               title="Siła nabywcza dziś" 
-              subtitle="Uwzględnia inflację" 
+              subtitle={`${fmtPLN(monthlyPensionReal)}/miesiąc w dzisiejszych cenach`}
               value={fmtPLN(realToday)}
-              infoText="To jest wartość Twojej przyszłej emerytury przeliczona na dzisiejszą siłę nabywczą. Pokazuje, ile będziesz mógł faktycznie kupić za swoją emeryturę w porównaniu do obecnych cen."
+              infoText={`To jest wartość Twojej przyszłej emerytury przeliczona na dzisiejszą siłę nabywczą (łącznie ${fmtPLN(realToday)}). Pokazuje, ile będziesz mógł faktycznie kupić za swoją emeryturę w porównaniu do obecnych cen - około ${fmtPLN(monthlyPensionReal)} miesięcznie przez ${PENSION_YEARS} lat.`}
             />
           </div>
 
