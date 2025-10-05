@@ -25,7 +25,7 @@ const COLLAPSE_KEY = "a11y-collapsed";
 function ContrastToggle() {
     const [mode, setMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("regular");
     const [scale, setScale] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(1);
-    const [collapsed, setCollapsed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [collapsed, setCollapsed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     /* --- Load user settings --- */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const savedMode = localStorage.getItem(CONTRAST_KEY) || "regular";
         const savedScale = parseFloat(localStorage.getItem(FONT_KEY) || "1");
@@ -758,26 +758,14 @@ function EmaChat() {
                     backgroundColor: "var(--zus-green)",
                     boxShadow: "0 8px 32px rgba(0, 153, 63, 0.3)"
                 },
-                children: isOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                    width: "24",
-                    height: "24",
-                    viewBox: "0 0 24 24",
-                    fill: "none",
-                    className: "text-white",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                        d: "M18 6L6 18M6 6l12 12",
-                        stroke: "currentColor",
-                        strokeWidth: "2",
-                        strokeLinecap: "round"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/chat/ema-chat.tsx",
-                        lineNumber: 241,
-                        columnNumber: 13
-                    }, this)
+                children: isOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                    src: "/ema-wiewior.svg",
+                    alt: "Ema",
+                    className: "w-6 h-6"
                 }, void 0, false, {
                     fileName: "[project]/src/components/chat/ema-chat.tsx",
                     lineNumber: 240,
-                    columnNumber: 11
+                    columnNumber: 9
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex flex-col items-center",
                     children: [
@@ -792,12 +780,12 @@ function EmaChat() {
                                 fill: "currentColor"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/chat/ema-chat.tsx",
-                                lineNumber: 247,
+                                lineNumber: 245,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/chat/ema-chat.tsx",
-                            lineNumber: 246,
+                            lineNumber: 244,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -805,13 +793,13 @@ function EmaChat() {
                             children: "EMA"
                         }, void 0, false, {
                             fileName: "[project]/src/components/chat/ema-chat.tsx",
-                            lineNumber: 249,
+                            lineNumber: 247,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/chat/ema-chat.tsx",
-                    lineNumber: 244,
+                    lineNumber: 242,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
@@ -827,7 +815,7 @@ function EmaChat() {
                 children: unreadCount > 99 ? "99+" : unreadCount
             }, void 0, false, {
                 fileName: "[project]/src/components/chat/ema-chat.tsx",
-                lineNumber: 256,
+                lineNumber: 254,
                 columnNumber: 9
             }, this)
         ]

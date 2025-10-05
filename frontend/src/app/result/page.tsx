@@ -99,7 +99,12 @@ export default function ResultPage() {
                 Pobierz raport PDF
               </ZusButton>
 
-            <ZusButton variant="primary" type="button" className="px-8">
+            <ZusButton 
+              variant="primary" 
+              type="button" 
+              className="px-8"
+              onClick={() => router.push("/secondSurvey")}
+            >
               Sprawdź inne prognozy
             </ZusButton>
             </div>

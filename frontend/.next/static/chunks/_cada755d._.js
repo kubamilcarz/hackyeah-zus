@@ -715,6 +715,7 @@ function ResultPage() {
                                         variant: "primary",
                                         type: "button",
                                         className: "px-8",
+                                        onClick: ()=>router.push("/secondSurvey"),
                                         children: "Sprawdź inne prognozy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/result/page.tsx",
@@ -788,7 +789,7 @@ _c = ResultPage;
                         className: circleColor
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 154,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -798,13 +799,13 @@ _c = ResultPage;
                         className: circleColor
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 155,
+                        lineNumber: 160,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/result/page.tsx",
-                lineNumber: 148,
+                lineNumber: 153,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -819,7 +820,7 @@ _c = ResultPage;
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 159,
+                        lineNumber: 164,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -831,7 +832,7 @@ _c = ResultPage;
                         children: value
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 168,
+                        lineNumber: 173,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -843,19 +844,19 @@ _c = ResultPage;
                         children: subtitle
                     }, void 0, false, {
                         fileName: "[project]/src/app/result/page.tsx",
-                        lineNumber: 177,
+                        lineNumber: 182,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/result/page.tsx",
-                lineNumber: 158,
+                lineNumber: 163,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/result/page.tsx",
-        lineNumber: 144,
+        lineNumber: 149,
         columnNumber: 5
     }, this);
 }

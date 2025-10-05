@@ -11,7 +11,7 @@ const COLLAPSE_KEY = "a11y-collapsed";
 export default function ContrastToggle() {
   const [mode, setMode] = useState<Mode>("regular");
   const [scale, setScale] = useState<number>(1);
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed, setCollapsed] = useState<boolean>(true);
 
   /* --- Load user settings --- */
   useEffect(() => {
@@ -73,7 +73,7 @@ if (next !== "regular") document.documentElement.classList.add(next);
     type="button"
     onClick={toggleCollapse}
     className={clsx(
-      "fixed top-3 right-3 z-50 flex items-center gap-2 border font-semibold transition-all",
+      "fixed top-3 right-3 z-100 flex items-center gap-2 border font-semibold transition-all",
       "rounded-md px-3.5 py-2 text-[15px] focus-visible:ring-2 focus-visible:ring-offset-2",
       "shadow-sm hover:shadow-md active:scale-[0.98]"
     )}

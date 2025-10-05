@@ -61,7 +61,7 @@ export default function SignUpFormPage() {
       workStartYear: String(startYear),
       retireYear: String(retireYear),
     });
-    router.push(`/missingData?${q.toString()}`);
+    router.push(`/firstSurvey?${q.toString()}`);
   }
 
   return (
