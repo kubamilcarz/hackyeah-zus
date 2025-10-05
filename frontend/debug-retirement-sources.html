@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Retirement Sources</title>
+</head>
+<body>
+    <h1>ZUS App - Debug Retirement Sources</h1>
+    <div id="debug-info"></div>
+    
+    <script>
+        function debugRetirementSources() {
+            const debugDiv = document.getElementById('debug-info');
+            let output = '<h2>LocalStorage Debug</h2>';
+            
+            // Check all ZUS-related localStorage keys
+            Object.keys(localStorage).forEach(key => {
+                if (key.startsWith('zus-')) {
+                    const value = localStorage.getItem(key);
+                    output += `<p><strong>${key}:</strong> ${value}</p>`;
+                }
+            });
+            
+            // Specifically check retirement sources
+            const retirementSources = localStorage.getItem('zus-retirement-sources');
+            output += '<h3>Retirement Sources Detail:</h3>';
+            if (retirementSources) {
+                try {
+                    const parsed = JSON.parse(retirementSources);
+                    output += `<pre>${JSON.stringify(parsed, null, 2)}</pre>`;
+                } catch (e) {
+                    output += `<p style="color:red">Error parsing: ${e.message}</p>`;
+                }
+            } else {
+                output += '<p style="color:red">No retirement sources found in localStorage</p>';
+            }
+            
+            debugDiv.innerHTML = output;
+        }
+        
+        // Run on page load
+        debugRetirementSources();
+        
+        // Add button to refresh
+        document.body.innerHTML += '<button onclick="debugRetirementSources()">Refresh Debug Info</button>';
+    </script>
+</body>
+</html>

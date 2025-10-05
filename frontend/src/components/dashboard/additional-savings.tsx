@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import { retirementSourcesAtom } from "@/lib/store/atoms";
+import { useEffect } from "react";
 
 const pensionData = {
   nominalPension: 2300,
@@ -17,20 +18,58 @@ export default function AdditionalRetirementSavingsSection({
 }: AdditionalRetirementSavingsSectionProps) {
   const [retirementSources, setRetirementSources] = useAtom(retirementSourcesAtom);
   
+  // Force load from localStorage if atom is empty
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem('zus-retirement-sources');
+      console.log('localStorage data:', savedData);
+      
+      if (savedData && Object.keys(retirementSources).length === 0) {
+        try {
+          const parsed = JSON.parse(savedData);
+          console.log('Loading from localStorage:', parsed);
+          setRetirementSources(parsed);
+        } catch (e) {
+          console.error('Error parsing retirement sources:', e);
+        }
+      }
+    }
+  }, [retirementSources, setRetirementSources]);
+  
   const ppkContribution = retirementSources.ppk || 0;
   const ikzeContribution = retirementSources.ikze || 0;
   const ppeContribution = retirementSources.ppe || 0;
   
+  console.log('Dashboard retirement sources:', { ppkContribution, ikzeContribution, ppeContribution, retirementSources });
+  
   const setPpkContribution = (value: number) => {
-    setRetirementSources(prev => ({ ...prev, ppk: value }));
+    console.log('Setting PPK to:', value);
+    const newSources = { ...retirementSources, ppk: value };
+    setRetirementSources(newSources);
+    // Also update localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('zus-retirement-sources', JSON.stringify(newSources));
+    }
   };
   
   const setIkzeContribution = (value: number) => {
-    setRetirementSources(prev => ({ ...prev, ikze: value }));
+    console.log('Setting IKZE to:', value);
+    const newSources = { ...retirementSources, ikze: value };
+    setRetirementSources(newSources);
+    // Also update localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('zus-retirement-sources', JSON.stringify(newSources));
+    }
   };
   
   const setPpeContribution = (value: number) => {
-    setRetirementSources(prev => ({ ...prev, ppe: value }));
+    console.log('Setting PPE to:', value);
+    const newSources = { ...retirementSources, ppe: value };
+    setRetirementSources(newSources);
+    // Also update localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('zus-retirement-sources', JSON.stringify(newSources));
+    }
   };
 
   const totalContributions = ppkContribution + ikzeContribution + ppeContribution;
@@ -66,6 +105,10 @@ export default function AdditionalRetirementSavingsSection({
             borderRadius: '4px'
           }}>
             Debug: PPK={ppkContribution} | IKZE={ikzeContribution} | PPE={ppeContribution} | Total={totalContributions}
+            <br/>
+            Raw atom: {JSON.stringify(retirementSources)}
+            <br/>
+            LocalStorage: {typeof window !== 'undefined' ? localStorage.getItem('zus-retirement-sources') || 'null' : 'SSR'}
           </div>
           
           <div 

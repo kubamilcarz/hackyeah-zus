@@ -34,6 +34,8 @@ export default function DashboardPage() {
   const ikzeContribution = retirementSources.ikze || 0;
   const ppeContribution = retirementSources.ppe || 0;
   
+  console.log('Dashboard main - retirement sources:', { ppkContribution, ikzeContribution, ppeContribution });
+  
   // Sticky bar state
   const [isSticky, setIsSticky] = useState(false);
   const tilesRef = useRef<HTMLDivElement>(null);
