@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { ZusButton } from "@/components/zus-ui";
 import { ZusText } from "@/components/ui/zus-text";
 import { ResetButton } from "@/components/flow/reset-button";
 import { useStepProgression, useRetirementCalculation, useUserData } from "@/lib/store";
 import { useReactToPrint } from "react-to-print";
-import router from "next/router";
 
 // PDF-friendly component that contains the content to print
 const PrintableContent = React.forwardRef<HTMLDivElement, { children: React.ReactNode }>(
@@ -30,6 +29,7 @@ function fmtPLN(n: number) {
 
 export default function ResultPage() {
   const params = useSearchParams();
+  const router = useRouter();
   const printRef = useRef<HTMLDivElement>(null);
   
   // State management hooks
@@ -46,10 +46,11 @@ export default function ResultPage() {
     },
   });
 
-  // Navigation to next step using state management only
+  // Navigation to next step using router + state management
   const handleNextToSurvey = () => {
     completeCurrentStep();
-    nextStep(); // This will trigger navigation to secondSurvey via RouteStepSynchronizer
+    nextStep();
+    router.push("/secondSurvey"); // Router navigation + state will be synced by RouteStepSynchronizer
   };
 
   // Use calculation from state if available, otherwise fall back to URL params

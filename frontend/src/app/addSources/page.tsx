@@ -103,23 +103,8 @@ export default function AddSourcesPage() {
     completeCurrentStep();
     nextStep();
     
-    const q = new URLSearchParams({
-      zusPension: String(zusNominal),
-      realPowerToday: String(realToday),
-      sickDays12m: String(sickDays === "" ? 0 : Number(sickDays)),
-      ikeOn: String(ikeOn),
-      ikzeOn: String(ikzeOn),
-      ppkOn: String(ppkOn),
-      ppeOn: String(ppeOn),
-      otherOn: String(otherOn),
-      ike: String(ikeOn ? Number(ike || 0) : 0),
-      ikze: String(ikzeOn ? Number(ikze || 0) : 0),
-      ppk: String(ppkOn ? Number(ppk || 0) : 0),
-      ppe: String(ppeOn ? Number(ppe || 0) : 0),
-      other: String(otherOn ? Number(other || 0) : 0),
-      monthlyTotal: String(monthlyTotal),
-    });
-    router.push(`/result?${q.toString()}`);
+    // Use router.push with simplified URL - state management will handle the data
+    router.push("/result");
   }
 
   return (
