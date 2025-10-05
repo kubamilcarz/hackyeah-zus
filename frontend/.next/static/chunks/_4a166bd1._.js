@@ -483,7 +483,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zus-ui.tsx [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
@@ -497,8 +497,83 @@ function fmtPLN(n) {
 }
 // illustrative factor ONLY for UI preview (replace with real calc later)
 const REAL_POWER_FACTOR = 0.70;
-function SavingsScreen() {
+// Simple Popover Component
+function InfoPopover(param) {
+    let { children, content } = param;
     _s();
+    const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "relative inline-block",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                onMouseEnter: ()=>setIsOpen(true),
+                onMouseLeave: ()=>setIsOpen(false),
+                onClick: ()=>setIsOpen(!isOpen),
+                className: "cursor-help",
+                children: children
+            }, void 0, false, {
+                fileName: "[project]/src/app/addSources/page.tsx",
+                lineNumber: 28,
+                columnNumber: 7
+            }, this),
+            isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute z-[9999] w-64 p-3 mt-2 text-sm bg-white border border-gray-200 rounded-lg shadow-lg -translate-x-1/2 left-1/2",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "relative",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "absolute -top-6 left-1/2 transform -translate-x-1/2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-200"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/addSources/page.tsx",
+                                    lineNumber: 42,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "w-0 h-0 border-l-7 border-r-7 border-b-7 border-l-transparent border-r-transparent border-b-white absolute top-1 left-1/2 transform -translate-x-1/2"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/addSources/page.tsx",
+                                    lineNumber: 43,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/addSources/page.tsx",
+                            lineNumber: 41,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-neutral-700",
+                            children: content
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/addSources/page.tsx",
+                            lineNumber: 45,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/addSources/page.tsx",
+                    lineNumber: 39,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/addSources/page.tsx",
+                lineNumber: 38,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/addSources/page.tsx",
+        lineNumber: 27,
+        columnNumber: 5
+    }, this);
+}
+_s(InfoPopover, "+sus0Lb0ewKHdwiUhiTAJFoFyQ0=");
+_c = InfoPopover;
+function SavingsScreen() {
+    _s1();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
     var _params_get;
@@ -575,7 +650,7 @@ function SavingsScreen() {
                                 children: "Twoja prognoza emerytalna"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 86,
+                                lineNumber: 117,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
@@ -583,13 +658,13 @@ function SavingsScreen() {
                                 children: "Poniżej możesz dodać dobrowolne oszczędzanie i uwzględnić zwolnienia lekarskie. To pomoże doprecyzować ostateczną prognozę."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 89,
+                                lineNumber: 120,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 85,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -599,26 +674,28 @@ function SavingsScreen() {
                                 tone: "primary",
                                 title: "Emerytura z ZUS",
                                 subtitle: "Kwota nominalna",
-                                value: fmtPLN(zusNominal)
+                                value: fmtPLN(zusNominal),
+                                infoText: "To jest kwota emerytury z ZUS w wartościach nominalnych, czyli bez uwzględnienia wpływu inflacji. Oznacza to, że jest to kwota, którą otrzymasz w przyszłości, ale jej siła nabywcza będzie mniejsza niż dzisiaj."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 97,
+                                lineNumber: 128,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Tile, {
                                 tone: "success",
                                 title: "Siła nabywcza dziś",
                                 subtitle: "Uwzględnia inflację",
-                                value: fmtPLN(realToday)
+                                value: fmtPLN(realToday),
+                                infoText: "To jest wartość Twojej przyszłej emerytury przeliczona na dzisiejszą siłę nabywczą. Pokazuje, ile będziesz mógł faktycznie kupić za swoją emeryturę w porównaniu do obecnych cen."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 98,
+                                lineNumber: 135,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 96,
+                        lineNumber: 127,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -632,7 +709,7 @@ function SavingsScreen() {
                                 children: "Czy oszczędzasz dodatkowo na emeryturę?"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 103,
+                                lineNumber: 146,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
@@ -640,7 +717,7 @@ function SavingsScreen() {
                                 children: "Zaznacz formy oszczędzania i podaj miesięczne kwoty."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 106,
+                                lineNumber: 149,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,10 +732,12 @@ function SavingsScreen() {
                                         title: "IKE (Indywidualne Konto Emerytalne)",
                                         description: "Ulga podatkowa do 1 360 zł rocznie. Środki dostępne po 60. roku życia.",
                                         value: ike,
-                                        onValue: setIke
+                                        onValue: setIke,
+                                        calculatorUrl: "https://www.gov.pl/web/rodzina/ike-indywidualne-konto-emerytalne",
+                                        calculatorLabel: "Więcej"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/addSources/page.tsx",
-                                        lineNumber: 109,
+                                        lineNumber: 152,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SavingsCard, {
@@ -670,10 +749,12 @@ function SavingsScreen() {
                                         title: "IKZE (Indywidualne Konto Zabezpieczenia Emerytalnego)",
                                         description: "Ulga podatkowa do 9 440 zł rocznie. Środki dostępne po osiągnięciu wieku emerytalnego.",
                                         value: ikze,
-                                        onValue: setIkze
+                                        onValue: setIkze,
+                                        calculatorUrl: "https://www.gov.pl/web/rodzina/ikze-indywidualne-konto-zabezpieczenia-emerytalnego",
+                                        calculatorLabel: "Więcej"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/addSources/page.tsx",
-                                        lineNumber: 121,
+                                        lineNumber: 166,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SavingsCard, {
@@ -685,10 +766,11 @@ function SavingsScreen() {
                                         title: "PPK (Pracownicze Plany Kapitałowe)",
                                         description: "2% Twojej składki + 1,5% od pracodawcy + dopłaty od państwa. Automatyczne inwestowanie.",
                                         value: ppk,
-                                        onValue: setPpk
+                                        onValue: setPpk,
+                                        calculatorUrl: "https://www.mojeppk.pl/kalkulator"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/addSources/page.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 180,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SavingsCard, {
@@ -700,10 +782,12 @@ function SavingsScreen() {
                                         title: "PPE (Pracowniczy Program Emerytalny)",
                                         description: "Program emerytalny organizowany przez pracodawcę. Często z dopłatą firmy.",
                                         value: ppe,
-                                        onValue: setPpe
+                                        onValue: setPpe,
+                                        calculatorUrl: "https://www.zus.pl/slownik/-/letter/p/pracowniczy-program-emerytalny/22170",
+                                        calculatorLabel: "Więcej"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/addSources/page.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 193,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SavingsCard, {
@@ -719,13 +803,13 @@ function SavingsScreen() {
                                         placeholder: "Miesięczna kwota (zł)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/addSources/page.tsx",
-                                        lineNumber: 157,
+                                        lineNumber: 207,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 108,
+                                lineNumber: 151,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -742,24 +826,24 @@ function SavingsScreen() {
                                             children: fmtPLN(monthlyTotal)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/addSources/page.tsx",
-                                            lineNumber: 174,
+                                            lineNumber: 224,
                                             columnNumber: 42
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/addSources/page.tsx",
-                                    lineNumber: 173,
+                                    lineNumber: 223,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 172,
+                                lineNumber: 222,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 102,
+                        lineNumber: 145,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -774,46 +858,46 @@ function SavingsScreen() {
                             children: "Oblicz ostateczną prognozę"
                         }, void 0, false, {
                             fileName: "[project]/src/app/addSources/page.tsx",
-                            lineNumber: 181,
+                            lineNumber: 231,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 180,
+                        lineNumber: 230,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/addSources/page.tsx",
-                lineNumber: 84,
+                lineNumber: 115,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/addSources/page.tsx",
-            lineNumber: 83,
+            lineNumber: 114,
             columnNumber: 5
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/addSources/page.tsx",
-        lineNumber: 82,
+        lineNumber: 113,
         columnNumber: 5
     }, this);
 }
-_s(SavingsScreen, "rCVUFOQBam8LloKDYK0TY/2yDbs=", false, function() {
+_s1(SavingsScreen, "rCVUFOQBam8LloKDYK0TY/2yDbs=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"]
     ];
 });
-_c = SavingsScreen;
+_c1 = SavingsScreen;
 /* --- Local UI helpers (kept tiny to avoid bloating the kit) --- */ function Tile(param) {
-    let { title, subtitle, value, tone = "primary" } = param;
+    let { title, subtitle, value, tone = "primary", infoText } = param;
     const isSuccess = tone === "success";
     const bgColor = isSuccess ? "bg-[var(--color-zus-green-bg)]" : "bg-zus-bg";
     const titleColor = isSuccess ? "text-[var(--zus-green)]" : "text-[#2E6AA2]";
     const circlesColor = isSuccess ? "fill-[var(--zus-green)]/5" : "fill-[#2E6AA2]/5";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "relative overflow-hidden rounded-xl p-5 md:p-6 transition-transform ".concat(bgColor),
+        className: "relative rounded-xl p-5 md:p-6 transition-transform ".concat(bgColor),
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 "aria-hidden": true,
@@ -828,7 +912,7 @@ _c = SavingsScreen;
                         className: circlesColor
                     }, void 0, false, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 226,
+                        lineNumber: 278,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -838,27 +922,58 @@ _c = SavingsScreen;
                         className: circlesColor
                     }, void 0, false, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 227,
+                        lineNumber: 279,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/addSources/page.tsx",
-                lineNumber: 220,
+                lineNumber: 272,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "relative z-10",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-sm font-semibold ".concat(titleColor),
-                        style: {
-                            fontSize: "calc(0.8125rem * var(--font-scale))"
-                        },
-                        children: title
-                    }, void 0, false, {
+                        className: "flex items-center justify-between",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "text-sm font-semibold ".concat(titleColor),
+                                style: {
+                                    fontSize: "calc(0.8125rem * var(--font-scale))"
+                                },
+                                children: title
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/addSources/page.tsx",
+                                lineNumber: 285,
+                                columnNumber: 11
+                            }, this),
+                            infoText && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(InfoPopover, {
+                                content: infoText,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "w-5 h-5 rounded-full border-2 flex items-center justify-center cursor-help transition-colors hover:bg-opacity-10 hover:bg-current ".concat(titleColor),
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs font-bold",
+                                        children: "i"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/addSources/page.tsx",
+                                        lineNumber: 291,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/addSources/page.tsx",
+                                    lineNumber: 290,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/addSources/page.tsx",
+                                lineNumber: 289,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 232,
+                        lineNumber: 284,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -869,7 +984,7 @@ _c = SavingsScreen;
                         children: value
                     }, void 0, false, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 233,
+                        lineNumber: 296,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -880,25 +995,25 @@ _c = SavingsScreen;
                         children: subtitle
                     }, void 0, false, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 236,
+                        lineNumber: 299,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/addSources/page.tsx",
-                lineNumber: 231,
+                lineNumber: 283,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/addSources/page.tsx",
-        lineNumber: 218,
+        lineNumber: 270,
         columnNumber: 5
     }, this);
 }
-_c1 = Tile;
+_c2 = Tile;
 function SavingsCard(param) {
-    let { checked, onToggle, title, description, value, onValue, placeholder = "Miesięczna wpłata (zł)" } = param;
+    let { checked, onToggle, title, description, value, onValue, placeholder = "Wartość konta (zł)", calculatorUrl, calculatorLabel = "Kalkulator" } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "rounded-xl border border-zus p-5 cursor-pointer transition-colors ".concat(checked ? 'border-[#2E6AA2] bg-blue/100' : 'hover:bg-zus-card bg-zus-bg'),
         onClick: ()=>onToggle(!checked),
@@ -916,7 +1031,7 @@ function SavingsCard(param) {
                                 children: title
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 268,
+                                lineNumber: 335,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -924,13 +1039,13 @@ function SavingsCard(param) {
                                 children: description
                             }, void 0, false, {
                                 fileName: "[project]/src/app/addSources/page.tsx",
-                                lineNumber: 269,
+                                lineNumber: 336,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 267,
+                        lineNumber: 334,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -945,53 +1060,113 @@ function SavingsCard(param) {
                             readOnly: true
                         }, void 0, false, {
                             fileName: "[project]/src/app/addSources/page.tsx",
-                            lineNumber: 273,
+                            lineNumber: 340,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/addSources/page.tsx",
-                        lineNumber: 272,
+                        lineNumber: 339,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/addSources/page.tsx",
-                lineNumber: 266,
+                lineNumber: 333,
                 columnNumber: 7
             }, this),
             checked ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "mt-4 w-64",
+                className: "mt-4",
                 onClick: (e)=>e.stopPropagation(),
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
-                    id: "".concat(title, "-amount"),
-                    label: placeholder,
-                    type: "number",
-                    min: 0,
-                    step: 50,
-                    value: value,
-                    onChange: (e)=>onValue(e)
-                }, void 0, false, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-end gap-3",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex-1",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zus$2d$ui$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
+                                id: "".concat(title, "-amount"),
+                                label: placeholder,
+                                type: "number",
+                                min: 0,
+                                step: 50,
+                                value: value,
+                                onChange: (e)=>onValue(e)
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/addSources/page.tsx",
+                                lineNumber: 354,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/addSources/page.tsx",
+                            lineNumber: 353,
+                            columnNumber: 13
+                        }, this),
+                        calculatorUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "pb-2",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: calculatorUrl,
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                                className: "inline-flex items-center px-3 py-2 text-sm font-medium text-[#2E6AA2] hover:text-[#1f4a7a] transition-colors underline",
+                                style: {
+                                    fontSize: "calc(0.875rem * var(--font-scale))"
+                                },
+                                children: [
+                                    calculatorLabel,
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        className: "ml-1 w-4 h-4",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        viewBox: "0 0 24 24",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            strokeWidth: 2,
+                                            d: "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/addSources/page.tsx",
+                                            lineNumber: 375,
+                                            columnNumber: 21
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/addSources/page.tsx",
+                                        lineNumber: 374,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/addSources/page.tsx",
+                                lineNumber: 366,
+                                columnNumber: 17
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/addSources/page.tsx",
+                            lineNumber: 365,
+                            columnNumber: 15
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "[project]/src/app/addSources/page.tsx",
-                    lineNumber: 285,
+                    lineNumber: 352,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/addSources/page.tsx",
-                lineNumber: 284,
+                lineNumber: 351,
                 columnNumber: 9
             }, this) : null
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/addSources/page.tsx",
-        lineNumber: 260,
+        lineNumber: 327,
         columnNumber: 5
     }, this);
 }
-_c2 = SavingsCard;
-var _c, _c1, _c2;
-__turbopack_context__.k.register(_c, "SavingsScreen");
-__turbopack_context__.k.register(_c1, "Tile");
-__turbopack_context__.k.register(_c2, "SavingsCard");
+_c3 = SavingsCard;
+var _c, _c1, _c2, _c3;
+__turbopack_context__.k.register(_c, "InfoPopover");
+__turbopack_context__.k.register(_c1, "SavingsScreen");
+__turbopack_context__.k.register(_c2, "Tile");
+__turbopack_context__.k.register(_c3, "SavingsCard");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
