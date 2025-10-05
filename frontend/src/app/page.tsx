@@ -20,9 +20,42 @@ function fmtPLN(n: number) {
 }
 
 // placeholders; swap with real data later
-const SREDNIA = 3200;
 const MINIMALNA = 1588;
+const SREDNIA = 3200;
+const WYZSZA = 5000;
 const NET_RATE = 0.85; // illustrative for UI only
+
+// Retirement groups data
+const RETIREMENT_GROUPS = [
+  {
+    id: 'below-minimum',
+    label: 'Poniżej minimalnej',
+    value: 1200,
+    description: 'Osoby, które nie przepracowały wymaganych 25 lat (kobiety) / 20 lat (mężczyźni). Świadczenie może być niższe od emerytury minimalnej.',
+    tone: 'warning' as const
+  },
+  {
+    id: 'minimum',
+    label: 'Minimalna emerytura',
+    value: MINIMALNA,
+    description: 'Gwarantowana minimalna emerytura dla osób spełniających wymagania dotyczące okresu składkowego.',
+    tone: 'soft' as const
+  },
+  {
+    id: 'average',
+    label: 'Średnia w Polsce',
+    value: SREDNIA,
+    description: 'Średnia wysokość emerytury wypłacanej przez ZUS w Polsce. Dotyczy większości emerytów.',
+    tone: 'neutral' as const
+  },
+  {
+    id: 'higher',
+    label: 'Wyższa emerytura',
+    value: WYZSZA,
+    description: 'Wyższe świadczenia emerytalne osiągane przez osoby z długim stażem pracy i wyższymi zarobkami.',
+    tone: 'success' as const
+  }
+];
 
 export default function WelcomeStart() {
   const router = useRouter();
@@ -68,9 +101,24 @@ export default function WelcomeStart() {
     }
   };
 
-  const [minVal, avgVal, yourVal] = useMemo(() => {
+  const comparisonData = useMemo(() => {
     const f = netto ? NET_RATE : 1;
-    return [Math.round(MINIMALNA * f), Math.round(SREDNIA * f), Math.round((value || 0) * f)];
+    const groups = RETIREMENT_GROUPS.map(group => ({
+      ...group,
+      displayValue: Math.round(group.value * f)
+    }));
+    
+    const userExpected = {
+      id: 'user-expected',
+      label: 'Twoja oczekiwana',
+      value: value || 0,
+      displayValue: Math.round((value || 0) * f),
+      description: 'Kwota emerytury, którą chciałbyś osiągnąć. Sprawdzimy, jak ją zrealizować.',
+      tone: 'primary' as const,
+      isUserTarget: true
+    };
+    
+    return [...groups, userExpected];
   }, [value, netto]);
 
   const ciekawostkaText = useMemo(() => {
@@ -82,7 +130,10 @@ export default function WelcomeStart() {
   }, [value]);
 
   const isValid = (value || 0) > 0;
-  const maxForScale = Math.max(minVal, avgVal, yourVal) || 1;
+  const maxForScale = useMemo(() => {
+    const allValues = comparisonData.map(item => item.displayValue);
+    return Math.max(...allValues, 1);
+  }, [comparisonData]);
 
   return (
     <div 
@@ -196,9 +247,17 @@ export default function WelcomeStart() {
                     </div>
 
                     <div className="space-y-4">
-                      <ComparisonBar label="Minimalna emerytura" value={minVal} max={maxForScale} tone="soft" />
-                      <ComparisonBar label="Średnia w Polsce" value={avgVal} max={maxForScale} tone="neutral" />
-                      <ComparisonBar label="Twoja oczekiwana" value={yourVal} max={maxForScale} tone="primary" emphasis />
+                      {comparisonData.map((item) => (
+                        <ComparisonBar 
+                          key={item.id}
+                          label={item.label}
+                          value={item.displayValue}
+                          max={maxForScale}
+                          tone={item.tone}
+                          emphasis={'isUserTarget' in item ? item.isUserTarget : false}
+                          description={item.description}
+                        />
+                      ))}
                     </div>
 
                     {/* Insight */}
@@ -363,13 +422,16 @@ function ComparisonBar({
   max,
   tone = "neutral",
   emphasis = false,
+  description,
 }: {
   label: string;
   value: number;
   max: number;
-  tone?: "neutral" | "primary" | "soft";
+  tone?: "neutral" | "primary" | "soft" | "warning" | "success";
   emphasis?: boolean;
+  description?: string;
 }) {
+  const [showTooltip, setShowTooltip] = useState(false);
   const pct = Math.max(0.05, Math.min(1, value / max)); // keep tiny visible sliver
   const barBase = "h-4 rounded-lg transition-all duration-500";
   
@@ -379,6 +441,10 @@ function ComparisonBar({
       return "comparison-bar-primary";
     } else if (tone === "soft") {
       return "comparison-bar-soft";
+    } else if (tone === "warning") {
+      return "comparison-bar-warning";
+    } else if (tone === "success") {
+      return "comparison-bar-success";
     } else {
       return "comparison-bar-neutral";
     }
@@ -389,10 +455,19 @@ function ComparisonBar({
     if (tone === "primary") {
       return {
         backgroundColor: `rgb(0, 65, 110)`, // ZUS Navy
+        boxShadow: emphasis ? '0 0 0 2px rgba(0, 65, 110, 0.3), 0 2px 8px rgba(0, 65, 110, 0.2)' : undefined,
       };
     } else if (tone === "soft") {
       return {
         backgroundColor: `rgba(146, 150, 158, 0.6)`, // ZUS Gray with opacity
+      };
+    } else if (tone === "warning") {
+      return {
+        backgroundColor: `rgb(234, 179, 8)`, // Warning yellow
+      };
+    } else if (tone === "success") {
+      return {
+        backgroundColor: `rgb(34, 197, 94)`, // Success green
       };
     } else {
       return {
@@ -408,7 +483,7 @@ function ComparisonBar({
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <div className="flex items-baseline justify-between mb-1.5">
         <span 
           className={`${emphasis ? "font-semibold" : ""}`} 
@@ -418,6 +493,17 @@ function ComparisonBar({
           }}
         >
           {label}
+          {emphasis && (
+            <span 
+              className="ml-2 px-2 py-0.5 rounded-full text-xs font-medium"
+              style={{
+                backgroundColor: 'rgb(0, 65, 110)',
+                color: 'white'
+              }}
+            >
+              Twój cel
+            </span>
+          )}
         </span>
         <span 
           className={`${emphasis ? "font-semibold" : ""}`} 
@@ -430,8 +516,10 @@ function ComparisonBar({
         </span>
       </div>
       <div 
-        className="w-full border rounded-lg p-1 comparison-bar-container"
+        className="w-full border rounded-lg p-1 comparison-bar-container cursor-pointer relative"
         style={containerStyle}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
       >
         <div
           className={`${barBase} ${getBarClass()}`}
@@ -446,6 +534,42 @@ function ComparisonBar({
           aria-valuemax={max}
           aria-label={label}
         />
+        
+        {/* Tooltip */}
+        {description && showTooltip && (
+          <div 
+            className="absolute z-10 p-3 rounded-lg shadow-lg max-w-xs -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full"
+            style={{
+              backgroundColor: 'rgb(var(--color-card))',
+              border: '1px solid rgb(var(--color-text) / 0.2)',
+              color: 'rgb(var(--color-text))'
+            }}
+          >
+            <div 
+              className="font-medium mb-1"
+              style={{ fontSize: `calc(0.875rem * var(--font-scale))` }}
+            >
+              {label}
+            </div>
+            <div 
+              style={{ 
+                fontSize: `calc(0.75rem * var(--font-scale))`,
+                color: 'rgb(var(--color-text) / 0.8)'
+              }}
+            >
+              {description}
+            </div>
+            {/* Arrow */}
+            <div 
+              className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0"
+              style={{
+                borderLeft: '6px solid transparent',
+                borderRight: '6px solid transparent',
+                borderTop: '6px solid rgb(var(--color-card))'
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
