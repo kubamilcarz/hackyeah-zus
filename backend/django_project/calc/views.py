@@ -20,6 +20,20 @@ else:
 
 
 @csrf_exempt
+def signup(request: HttpRequest):
+    data = json.loads(request.body.decode('utf-8') or '{}')
+    age = data.get('age')
+    is_male = data.get('gender', '') == 'male'
+    gross_salary = data.get('grossSalary')
+    work_start_year = data.get('workStartYear')
+    planned_retirement_year = data.get('plannedRetirementYear') or 0
+    email = data.get('email')
+    retirement = calc.calculate_basic_retirement_sum(age, is_male, gross_salary * 12, work_start_year, planned_retirement_year)
+    print(data)
+    return JsonResponse({'retirementSum': retirement})
+
+
+@csrf_exempt
 def index(request: HttpRequest):
     age = request.GET.get('age')
     sex = request.GET.get('sex')

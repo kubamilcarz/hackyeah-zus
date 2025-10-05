@@ -103,6 +103,7 @@ export const useWelcomeForm = () => {
 
 export const useSignupForm = () => {
   const [data, setData] = useSignupData()
+  const [welcomeData, _] = useWelcomeData()
   
   const updateField = (field: keyof SignupData, value: SignupData[keyof SignupData]) => {
     setData({ ...data, [field]: value })
@@ -120,6 +121,23 @@ export const useSignupForm = () => {
     data.plannedRetirementYear &&
     data.email
   )
+
+  fetch('http://localhost:8000/api/calc/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ...data, expectedRetirement: welcomeData.expectedRetirement })
+  }).then(res => {
+    if (!res.ok) {
+      console.error('Tracking API responded with status:', res.status)
+    } return res.json();
+  }).then(data => {   
+    const [_, setMissingData] = useMissingData(); 
+    setMissingData(data.retirementSum);
+  }).catch(err => {
+    console.error('Error sending tracking data:', err)
+  })
 
   return {
     data,

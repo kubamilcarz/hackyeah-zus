@@ -27,7 +27,7 @@ def _read_polish_csv(file_path: str):
         raise last_err
 
 
-def read_csv_data(file_paths=("dane.csv", "zwolnienia.csv")):
+def read_csv_data(file_paths=("../dane.csv", "../zwolnienia.csv")):
     """
     Read data from multiple CSV files and return a dict of DataFrames keyed by file stem.
     Note: Previously this function concatenated heterogeneous CSVs which produced NaNs.
@@ -84,7 +84,7 @@ def create_column_dictionaries(data):
         return df_to_dict(data)
 
 
-datasets = read_csv_data(["dane.csv", "zwolnienia.csv"])
+datasets = read_csv_data(["../dane.csv", "../zwolnienia.csv"])
 if datasets is not None:
     print("Successfully read CSV datasets (kept separate to avoid NaNs):")
     for name, df in datasets.items():
@@ -129,7 +129,7 @@ def calculate_basic_retirement_sum(age: int, is_male: bool, salary_yearly: float
     result = 0
     for year in range(work_start_year, retirement_year):
         result += salary_yearly * retirement_rate
-        result *= indexation_rate.get(year + 1)
+        result *= indexation_rate.get(year + 1, 1)
 
     return result
 
