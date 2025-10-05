@@ -64,6 +64,7 @@ export default function AddSourcesPage() {
   const { updateSource } = useRetirementSourcesForm();
   const [data, setData] = useSignupData()
   const [welcomeData, _] = useWelcomeData()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [dataToShow, setDataToShow] = useState<any>(null);
   
   useEffect(() => {
@@ -120,12 +121,27 @@ export default function AddSourcesPage() {
   const canContinue = true; // everything optional on this step
 
   function goNext() {
-    // Save retirement sources to state
-    updateSource('ike', ikeOn ? Number(ike || 0) : 0);
-    updateSource('ikze', ikzeOn ? Number(ikze || 0) : 0);
-    updateSource('ppk', ppkOn ? Number(ppk || 0) : 0);
-    updateSource('ppe', ppeOn ? Number(ppe || 0) : 0);
-    // Add other sources if needed
+    // Save retirement sources to state with explicit localStorage backup
+    const sourcesToSave = {
+      ike: ikeOn ? Number(ike || 0) : 0,
+      ikze: ikzeOn ? Number(ikze || 0) : 0,
+      ppk: ppkOn ? Number(ppk || 0) : 0,
+      ppe: ppeOn ? Number(ppe || 0) : 0
+    };
+    
+    console.log('Saving retirement sources:', sourcesToSave);
+    
+    // Save using the hook
+    updateSource('ike', sourcesToSave.ike);
+    updateSource('ikze', sourcesToSave.ikze);
+    updateSource('ppk', sourcesToSave.ppk);
+    updateSource('ppe', sourcesToSave.ppe);
+    
+    // Also save directly to localStorage as backup
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('zus-retirement-sources', JSON.stringify(sourcesToSave));
+      console.log('Saved to localStorage:', sourcesToSave);
+    }
     
     completeCurrentStep();
     nextStep();

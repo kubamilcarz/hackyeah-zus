@@ -32,6 +32,7 @@ export interface RetirementSources {
   ikze?: number
   ike?: number
   ppk?: number
+  ppe?: number
   [key: string]: number | undefined
 }
 

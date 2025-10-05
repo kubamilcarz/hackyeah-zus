@@ -207,6 +207,90 @@ export default function OverviewTile({
             </div>
 
             <div className="relative">
+              <style dangerouslySetInnerHTML={{
+                __html: `
+                  .zus-slider-${tone} {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 100%;
+                    height: 8px;
+                    border-radius: 8px;
+                    outline: none;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                  }
+                  
+                  .zus-slider-${tone}::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: ${getValueColor()};
+                    border: 3px solid ${isHighContrast() ? 'rgb(var(--color-bg))' : '#ffffff'};
+                    cursor: pointer;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px ${isHighContrast() ? 'rgb(var(--color-text) / 0.3)' : 'rgba(0, 0, 0, 0.1)'};
+                    transition: all 0.2s ease;
+                  }
+                  
+                  .zus-slider-${tone}::-webkit-slider-thumb:hover {
+                    transform: scale(1.15);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 0 2px ${getValueColor()};
+                  }
+                  
+                  .zus-slider-${tone}::-moz-range-thumb {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: ${getValueColor()};
+                    border: 3px solid ${isHighContrast() ? 'rgb(var(--color-bg))' : '#ffffff'};
+                    cursor: pointer;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px ${isHighContrast() ? 'rgb(var(--color-text) / 0.3)' : 'rgba(0, 0, 0, 0.1)'};
+                    transition: all 0.2s ease;
+                    -moz-appearance: none;
+                    border: none;
+                  }
+                  
+                  .zus-slider-${tone}::-moz-range-thumb:hover {
+                    transform: scale(1.15);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 0 2px ${getValueColor()};
+                  }
+                  
+                  .zus-slider-${tone}::-webkit-slider-track {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    height: 8px;
+                    border-radius: 8px;
+                    background: transparent;
+                  }
+                  
+                  .zus-slider-${tone}::-moz-range-track {
+                    height: 8px;
+                    border-radius: 8px;
+                    background: transparent;
+                    border: none;
+                  }
+                  
+                  .zus-slider-${tone}:focus {
+                    outline: 2px solid ${getValueColor()};
+                    outline-offset: 3px;
+                  }
+                  
+                  .zus-slider-${tone}:focus::-webkit-slider-thumb {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 0 3px ${getValueColor()};
+                  }
+                  
+                  .zus-slider-${tone}:focus::-moz-range-thumb {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 0 3px ${getValueColor()};
+                  }
+                  
+                  /* Add track border for better visibility in light mode */
+                  .zus-slider-${tone} {
+                    border: 1px solid ${isHighContrast() ? 'rgb(var(--color-text) / 0.4)' : 'rgba(0, 0, 0, 0.1)'};
+                    box-shadow: inset 0 1px 2px ${isHighContrast() ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'};
+                  }
+                `
+              }} />
               <input
                 type="range"
                 min={interactive.min}
@@ -214,12 +298,17 @@ export default function OverviewTile({
                 step={interactive.step}
                 value={interactive.value}
                 onChange={(e) => interactive.onChange?.(Number(e.target.value))}
-                className="slider w-full h-2 rounded-lg appearance-none cursor-pointer"
+                className={`zus-slider-${tone}`}
                 style={{
-                  background: `linear-gradient(to right, ${getValueColor()} 0%, ${getValueColor()} ${((interactive.value! - interactive.min!) / (interactive.max! - interactive.min!)) * 100}%, rgb(var(--color-text) / 0.2) ${((interactive.value! - interactive.min!) / (interactive.max! - interactive.min!)) * 100}%, rgb(var(--color-text) / 0.2) 100%)`
+                  background: `linear-gradient(to right, ${getValueColor()} 0%, ${getValueColor()} ${((interactive.value! - interactive.min!) / (interactive.max! - interactive.min!)) * 100}%, ${isHighContrast() ? 'rgb(var(--color-text) / 0.3)' : 'rgb(var(--color-text) / 0.15)'} ${((interactive.value! - interactive.min!) / (interactive.max! - interactive.min!)) * 100}%, ${isHighContrast() ? 'rgb(var(--color-text) / 0.3)' : 'rgb(var(--color-text) / 0.15)'} 100%)`
                 }}
+                aria-label={interactive.label}
+                aria-valuemin={interactive.min}
+                aria-valuemax={interactive.max}
+                aria-valuenow={interactive.value}
+                aria-valuetext={`${interactive.value}${interactive.suffix || ''}`}
               />
-              <div className="flex justify-between mt-1">
+              <div className="flex justify-between mt-2">
                 <span
                   style={{ 
                     fontSize: `calc(0.75rem * var(--font-scale))`,
@@ -230,10 +319,13 @@ export default function OverviewTile({
                   {interactive.suffix}
                 </span>
                 <span 
-                  className="font-medium"
+                  className="font-medium px-2 py-1 rounded"
                   style={{ 
                     fontSize: `calc(0.75rem * var(--font-scale))`,
-                    color: getValueColor()
+                    color: getValueColor(),
+                    backgroundColor: isHighContrast() ? 'rgb(var(--color-text) / 0.1)' : `${getValueColor()}15`,
+                    minWidth: '3rem',
+                    textAlign: 'center'
                   }}
                 >
                   {interactive.value}
@@ -249,6 +341,18 @@ export default function OverviewTile({
                   {interactive.suffix}
                 </span>
               </div>
+              {interactive.helpText && (
+                <div 
+                  className="mt-2 p-2 rounded-md text-xs"
+                  style={{
+                    backgroundColor: isHighContrast() ? 'rgb(var(--color-text) / 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                    color: `rgb(var(--color-text) / 0.7)`,
+                    fontSize: `calc(0.75rem * var(--font-scale))`
+                  }}
+                >
+                  {interactive.helpText}
+                </div>
+              )}
             </div>
           </div>
         )}

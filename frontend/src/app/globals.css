@@ -195,3 +195,66 @@ html.hc-yellow .comparison-bar-primary {
   .text-zus-accent { color: rgb(var(--color-accent)); }
   .border-zus { border-color: rgb(var(--color-text) / 0.2); }
 }
+
+/* Ema's Tips styling for all theme variations */
+.ema-tip-card {
+  background-color: rgb(var(--color-card));
+  color: rgb(var(--color-text));
+  border-color: rgb(var(--color-text) / 0.2);
+  transition: all 0.2s ease;
+}
+
+.ema-tip-card:hover {
+  border-color: rgb(var(--color-accent) / 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(var(--color-text) / 0.1);
+}
+
+.ema-tip-notice {
+  background-color: rgb(var(--color-accent) / 0.1);
+  border: 1px solid rgb(var(--color-accent) / 0.3);
+  color: rgb(var(--color-text));
+}
+
+/* Regular light mode specific styles */
+html:not(.hc-white):not(.hc-yellow) .ema-tip-notice {
+  background-color: rgba(0, 153, 63, 0.1);
+  border-color: rgba(0, 153, 63, 0.3);
+  color: rgb(0, 153, 63);
+}
+
+/* High contrast white theme */
+html.hc-white .ema-tip-card {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border-color: rgb(255, 255, 255, 0.3);
+}
+
+html.hc-white .ema-tip-card:hover {
+  border-color: rgb(255, 255, 255, 0.6);
+  box-shadow: 0 4px 12px rgb(255, 255, 255, 0.2);
+}
+
+html.hc-white .ema-tip-notice {
+  background-color: rgb(255, 255, 255, 0.1);
+  border-color: rgb(255, 255, 255, 0.3);
+  color: rgb(255, 255, 255);
+}
+
+/* High contrast yellow theme */
+html.hc-yellow .ema-tip-card {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 216, 0);
+  border-color: rgb(255, 216, 0, 0.3);
+}
+
+html.hc-yellow .ema-tip-card:hover {
+  border-color: rgb(255, 216, 0, 0.6);
+  box-shadow: 0 4px 12px rgb(255, 216, 0, 0.2);
+}
+
+html.hc-yellow .ema-tip-notice {
+  background-color: rgb(255, 216, 0, 0.1);
+  border-color: rgb(255, 216, 0, 0.3);
+  color: rgb(255, 216, 0);
+}

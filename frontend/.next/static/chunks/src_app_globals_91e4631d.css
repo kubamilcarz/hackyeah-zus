@@ -145,7 +145,9 @@
   :root, :host {
     --font-sans: var(--font-geist-sans);
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --color-red-50: #fef2f2;
     --color-red-100: #ffe2e2;
+    --color-red-200: #ffcaca;
     --color-red-500: #fb2c36;
     --color-red-600: #e40014;
     --color-red-700: #bf000f;
@@ -229,7 +231,9 @@
 
   @supports (color: color(display-p3 0 0 0)) {
     :root, :host {
+      --color-red-50: color(display-p3 .988669 .951204 .950419);
       --color-red-100: color(display-p3 .980386 .889727 .887779);
+      --color-red-200: color(display-p3 .969562 .798149 .794299);
       --color-red-500: color(display-p3 .903738 .262579 .253307);
       --color-red-600: color(display-p3 .830323 .140383 .133196);
       --color-red-700: color(display-p3 .692737 .116232 .104679);
@@ -262,7 +266,9 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
+      --color-red-50: lab(96.5005% 4.18508 1.52328);
       --color-red-100: lab(92.243% 10.2865 3.83865);
+      --color-red-200: lab(86.017% 19.8815 7.75869);
       --color-red-500: lab(55.4814% 75.0732 48.8528);
       --color-red-600: lab(48.4493% 77.4328 61.5452);
       --color-red-700: lab(40.4273% 67.2623 53.7441);
@@ -1484,6 +1490,11 @@
     border-bottom-width: 1px;
   }
 
+  .border-b-2 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 2px;
+  }
+
   .border-b-7 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 7px;
@@ -1525,12 +1536,20 @@
     border-color: var(--color-neutral);
   }
 
+  .border-red-200 {
+    border-color: var(--color-red-200);
+  }
+
   .border-transparent {
     border-color: rgba(0, 0, 0, 0);
   }
 
   .border-white {
     border-color: var(--color-white);
+  }
+
+  .border-zus-green {
+    border-color: var(--zus-green);
   }
 
   .border-r-transparent {
@@ -1603,6 +1622,10 @@
 
   .bg-neutral-200 {
     background-color: var(--color-neutral-200);
+  }
+
+  .bg-red-50 {
+    background-color: var(--color-red-50);
   }
 
   .bg-red-100 {
@@ -2398,6 +2421,18 @@
   @media (min-width: 48rem) {
     .md\:col-span-8 {
       grid-column: span 8 / span 8;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:h-10 {
+      height: calc(var(--spacing) * 10);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:w-10 {
+      width: calc(var(--spacing) * 10);
     }
   }
 
@@ -3548,6 +3583,65 @@ html.hc-white .comparison-bar-neutral, html.hc-yellow .comparison-bar-neutral {
 
 html.hc-white .comparison-bar-primary, html.hc-yellow .comparison-bar-primary {
   background-color: rgb(var(--color-accent)) !important;
+}
+
+.ema-tip-card {
+  background-color: rgb(var(--color-card));
+  color: rgb(var(--color-text));
+  border-color: rgb(var(--color-text) / .2);
+  transition: all .2s;
+}
+
+.ema-tip-card:hover {
+  border-color: rgb(var(--color-accent) / .4);
+  box-shadow: 0 4px 12px rgb(var(--color-text) / .1);
+  transform: translateY(-1px);
+}
+
+.ema-tip-notice {
+  background-color: rgb(var(--color-accent) / .1);
+  border: 1px solid rgb(var(--color-accent) / .3);
+  color: rgb(var(--color-text));
+}
+
+html:not(.hc-white):not(.hc-yellow) .ema-tip-notice {
+  color: #00993f;
+  background-color: rgba(0, 153, 63, .1);
+  border-color: rgba(0, 153, 63, .3);
+}
+
+html.hc-white .ema-tip-card {
+  color: #fff;
+  background-color: #000;
+  border-color: rgba(255, 255, 255, .3);
+}
+
+html.hc-white .ema-tip-card:hover {
+  border-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, .2);
+}
+
+html.hc-white .ema-tip-notice {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .3);
+}
+
+html.hc-yellow .ema-tip-card {
+  color: #ffd800;
+  background-color: #000;
+  border-color: rgba(255, 216, 0, .3);
+}
+
+html.hc-yellow .ema-tip-card:hover {
+  border-color: rgba(255, 216, 0, .6);
+  box-shadow: 0 4px 12px rgba(255, 216, 0, .2);
+}
+
+html.hc-yellow .ema-tip-notice {
+  color: #ffd800;
+  background-color: rgba(255, 216, 0, .1);
+  border-color: rgba(255, 216, 0, .3);
 }
 
 @property --tw-translate-x {

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { ZusButton } from "@/components/zus-ui";
 import { ZusText } from "@/components/ui/zus-text";
 import { ZusInput } from "@/components/ui/zus-input";
@@ -59,6 +60,65 @@ export default function ResultPage() {
   const calculation = useRetirementCalculation();
   const userData = useUserData();
   const [resultData, setResultData] = useResultData();
+
+  // State for AI-generated conclusions
+  const [conclusions, setConclusions] = useState<string[]>([]);
+  const [isLoadingConclusions, setIsLoadingConclusions] = useState(true);
+  const [conclusionsError, setConclusionsError] = useState<string | null>(null);
+  const [hasFetchedConclusions, setHasFetchedConclusions] = useState(false);
+
+  // Memoize key user data to prevent unnecessary re-renders
+  const userDataKey = useMemo(() => {
+    return JSON.stringify({
+      age: userData.signup?.age,
+      expectedRetirement: userData.welcome?.expectedRetirement,
+      grossSalary: userData.signup?.grossSalary,
+      estimatedPension: userData.calculation?.estimatedMonthlyPension
+    });
+  }, [
+    userData.signup?.age,
+    userData.welcome?.expectedRetirement, 
+    userData.signup?.grossSalary,
+    userData.calculation?.estimatedMonthlyPension
+  ]);
+
+  // Fetch personalized conclusions on page load
+  useEffect(() => {
+    const fetchConclusions = async () => {
+      try {
+        setIsLoadingConclusions(true);
+        setConclusionsError(null);
+
+        const response = await fetch('/api/retirement-analysis', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch retirement analysis');
+        }
+
+        const data = await response.json();
+        setConclusions(data.conclusions || []);
+        setHasFetchedConclusions(true);
+      } catch (error) {
+        console.error('Error fetching conclusions:', error);
+        setConclusionsError('Nie udało się wygenerować spersonalizowanych wniosków. Spróbuj odświeżyć stronę.');
+      } finally {
+        setIsLoadingConclusions(false);
+      }
+    };
+
+    // Only fetch if we have some user data and haven't fetched conclusions yet
+    if ((userData.signup?.age || userData.welcome?.expectedRetirement) && !hasFetchedConclusions) {
+      fetchConclusions();
+    } else if (!userData.signup?.age && !userData.welcome?.expectedRetirement) {
+      setIsLoadingConclusions(false);
+    }
+  }, [userDataKey, hasFetchedConclusions, userData]);
 
   // Handle postal code change
   const handlePostalCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,35 +223,78 @@ export default function ResultPage() {
 
           {/* Conclusions / Wnioski */}
           <section className="bg-zus-bg rounded-xl p-6 space-y-4">
-            <h2 className="text-lg md:text-xl font-semibold text-neutral-700" style={{ fontSize: `calc(1.125rem * var(--font-scale))` }}>
-              Wnioski
-            </h2>
+            <div className="flex items-center gap-3">
+              <Image 
+                src="/ema-wiewior.svg" 
+                alt="Ema" 
+                width={40}
+                height={40}
+                className="w-8 h-8 md:w-10 md:h-10"
+              />
+              <h2 className="text-lg md:text-xl font-semibold text-neutral-700" style={{ fontSize: `calc(1.125rem * var(--font-scale))` }}>
+                Spersonalizowane wnioski
+              </h2>
+            </div>
 
-            <ZusText className="text-neutral-800 leading-relaxed">
-              Na podstawie wprowadzonych danych Twoja <strong>prognozowana emerytura</strong>{" "}
-              wynosi około <strong>{fmtPLN(projectedWithSavings)}</strong> miesięcznie.
-            </ZusText>
+            {isLoadingConclusions ? (
+              <div className="flex items-center gap-3 p-4">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-zus-green"></div>
+                <ZusText className="text-neutral-600">
+                  Ema analizuje Twoje dane i przygotowuje spersonalizowane wnioski...
+                </ZusText>
+              </div>
+            ) : conclusionsError ? (
+              <div className="p-4 rounded-lg bg-red-50 border border-red-200">
+                <ZusText className="text-red-700">
+                  {conclusionsError}
+                </ZusText>
+              </div>
+            ) : conclusions.length > 0 ? (
+              <div className="space-y-4">
+                {conclusions.map((conclusion, index) => (
+                  <div key={index} className="ema-tip-card p-4 rounded-lg bg-zus-card border border-zus">
+                    <ZusText className="text-zus-text leading-relaxed">
+                      {conclusion}
+                    </ZusText>
+                  </div>
+                ))}
+                <div className="ema-tip-notice mt-4 p-3 rounded-lg">
+                  <ZusText className="text-sm leading-relaxed">
+                    💡 Te wnioski zostały wygenerowane przez Emę na podstawie Twoich danych. 
+                    Pamiętaj, że to tylko szacunki - zawsze warto skonsultować się z doradcą finansowym.
+                  </ZusText>
+                </div>
+              </div>
+            ) : (
+              // Fallback to original content if no conclusions
+              <div className="space-y-4">
+                <ZusText className="text-neutral-800 leading-relaxed">
+                  Na podstawie wprowadzonych danych Twoja <strong>prognozowana emerytura</strong>{" "}
+                  wynosi około <strong>{fmtPLN(projectedWithSavings)}</strong> miesięcznie.
+                </ZusText>
 
-            {userData.welcome.expectedRetirement && (
-              <ZusText className="text-neutral-800 leading-relaxed">
-                Twoja oczekiwana emerytura to <strong>{fmtPLN(userData.welcome.expectedRetirement)}</strong>.{" "}
-                {projectedWithSavings >= userData.welcome.expectedRetirement 
-                  ? "Gratulacje! Prawdopodobnie osiągniesz swój cel."
-                  : "Warto rozważyć zwiększenie oszczędności emerytowych."
-                }
-              </ZusText>
+                {userData.welcome.expectedRetirement && (
+                  <ZusText className="text-neutral-800 leading-relaxed">
+                    Twoja oczekiwana emerytura to <strong>{fmtPLN(userData.welcome.expectedRetirement)}</strong>.{" "}
+                    {projectedWithSavings >= userData.welcome.expectedRetirement 
+                      ? "Gratulacje! Prawdopodobnie osiągniesz swój cel."
+                      : "Warto rozważyć zwiększenie oszczędności emerytowych."
+                    }
+                  </ZusText>
+                )}
+
+                <ZusText className="text-neutral-800 leading-relaxed">
+                  Warto rozważyć regularne oszczędzanie w ramach IKE, IKZE lub PPK — każda z tych
+                  form pozwala zwiększyć świadczenie o kilka–kilkanaście procent, zwłaszcza przy
+                  dłuższym okresie oszczędzania.
+                </ZusText>
+
+                <ZusText className="text-neutral-800 leading-relaxed">
+                  Nawet niewielkie miesięczne wpłaty (np. {fmtPLN(200)}) mogą w dłuższej perspektywie
+                  wygenerować zauważalny dodatek do emerytury.
+                </ZusText>
+              </div>
             )}
-
-            <ZusText className="text-neutral-800 leading-relaxed">
-              Warto rozważyć regularne oszczędzanie w ramach IKE, IKZE lub PPK — każda z tych
-              form pozwala zwiększyć świadczenie o kilka–kilkanaście procent, zwłaszcza przy
-              dłuższym okresie oszczędzania.
-            </ZusText>
-
-            <ZusText className="text-neutral-800 leading-relaxed">
-              Nawet niewielkie miesięczne wpłaty (np. {fmtPLN(200)}) mogą w dłuższej perspektywie
-              wygenerować zauważalny dodatek do emerytury.
-            </ZusText>
           </section>
 
           {/* CTA */}
