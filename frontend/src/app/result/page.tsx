@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { ZusButton } from "@/components/zus-ui";
@@ -44,6 +44,22 @@ export default function ResultPage() {
   const [conclusions, setConclusions] = useState<string[]>([]);
   const [isLoadingConclusions, setIsLoadingConclusions] = useState(true);
   const [conclusionsError, setConclusionsError] = useState<string | null>(null);
+  const [hasFetchedConclusions, setHasFetchedConclusions] = useState(false);
+
+  // Memoize key user data to prevent unnecessary re-renders
+  const userDataKey = useMemo(() => {
+    return JSON.stringify({
+      age: userData.signup?.age,
+      expectedRetirement: userData.welcome?.expectedRetirement,
+      grossSalary: userData.signup?.grossSalary,
+      estimatedPension: userData.calculation?.estimatedMonthlyPension
+    });
+  }, [
+    userData.signup?.age,
+    userData.welcome?.expectedRetirement, 
+    userData.signup?.grossSalary,
+    userData.calculation?.estimatedMonthlyPension
+  ]);
 
   // Fetch personalized conclusions on page load
   useEffect(() => {
@@ -66,6 +82,7 @@ export default function ResultPage() {
 
         const data = await response.json();
         setConclusions(data.conclusions || []);
+        setHasFetchedConclusions(true);
       } catch (error) {
         console.error('Error fetching conclusions:', error);
         setConclusionsError('Nie udało się wygenerować spersonalizowanych wniosków. Spróbuj odświeżyć stronę.');
@@ -74,13 +91,13 @@ export default function ResultPage() {
       }
     };
 
-    // Only fetch if we have some user data
-    if (userData.signup?.age || userData.welcome?.expectedRetirement) {
+    // Only fetch if we have some user data and haven't fetched conclusions yet
+    if ((userData.signup?.age || userData.welcome?.expectedRetirement) && !hasFetchedConclusions) {
       fetchConclusions();
-    } else {
+    } else if (!userData.signup?.age && !userData.welcome?.expectedRetirement) {
       setIsLoadingConclusions(false);
     }
-  }, [userData]);
+  }, [userDataKey, hasFetchedConclusions, userData]);
 
   // Handle postal code change
   const handlePostalCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {

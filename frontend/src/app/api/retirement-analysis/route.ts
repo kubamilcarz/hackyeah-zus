@@ -5,6 +5,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// Simple in-memory cache to prevent duplicate requests
+const requestCache = new Map<string, { conclusions: string[], timestamp: number }>();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export async function POST(request: NextRequest) {
   try {
     const userData = await request.json();
@@ -13,7 +17,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'User data is required' }, { status: 400 });
     }
 
-    console.log('Analyzing retirement data:', userData);
+    // Create a cache key based on user data
+    const cacheKey = JSON.stringify({
+      age: userData.signup?.age,
+      gender: userData.signup?.gender,
+      grossSalary: userData.signup?.grossSalary,
+      expectedRetirement: userData.welcome?.expectedRetirement,
+      estimatedPension: userData.calculation?.estimatedMonthlyPension
+    });
+
+    // Check cache first
+    const cached = requestCache.get(cacheKey);
+    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION) {
+      console.log('Returning cached conclusions for user');
+      return NextResponse.json({ conclusions: cached.conclusions });
+    }
+
+    console.log('Analyzing retirement data:', {
+      age: userData.signup?.age,
+      expectedRetirement: userData.welcome?.expectedRetirement,
+      grossSalary: userData.signup?.grossSalary,
+      estimatedPension: userData.calculation?.estimatedMonthlyPension
+    });
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -81,6 +106,17 @@ Sformułuj 3 spersonalizowane wnioski dla tego użytkownika.`
       .map(line => line.trim());
 
     console.log('Generated conclusions:', conclusions);
+
+    // Cache the result
+    requestCache.set(cacheKey, { conclusions, timestamp: Date.now() });
+
+    // Clean old cache entries (simple cleanup)
+    const now = Date.now();
+    for (const [key, value] of requestCache.entries()) {
+      if (now - value.timestamp > CACHE_DURATION) {
+        requestCache.delete(key);
+      }
+    }
 
     return NextResponse.json({ conclusions });
 
