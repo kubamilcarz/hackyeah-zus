@@ -23,7 +23,8 @@ export interface QuizData {
 }
 
 export interface MissingData {
-  estimatedAmount?: number
+  mainAccountAmount?: number      // Konto główne
+  subAccountAmount?: number       // Subkonto (wraz z OFE)
   medicalLeaveDays?: number
 }
 

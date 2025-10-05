@@ -136,7 +136,10 @@ export const useMissingDataForm = () => {
     setData({ ...data, [field]: value })
   }
 
-  const isComplete = Boolean(data.estimatedAmount !== undefined)
+  const isComplete = Boolean(
+    data.mainAccountAmount !== undefined || 
+    data.subAccountAmount !== undefined
+  )
 
   return {
     data,
