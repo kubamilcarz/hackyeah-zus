@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { useWelcomeForm, useStepProgression } from "@/lib/store";
 import {
   ZusButton,
   ZusText,
@@ -25,22 +26,47 @@ const NET_RATE = 0.85; // illustrative for UI only
 
 export default function WelcomeStart() {
   const router = useRouter();
-  const [value, setValue] = useState<number>(4000);
+  const { data: welcomeData, updateExpectedRetirement } = useWelcomeForm();
+  const { completeCurrentStep, nextStep, currentStep } = useStepProgression();
+  
+  // Local UI state for netto/brutto toggle
   const [netto, setNetto] = useState<boolean>(false);
+  
+  // Use state value or default to 4000
+  const value = welcomeData.expectedRetirement || 4000;
+
+  // Ensure we're on the correct step when this page loads
+  React.useEffect(() => {
+    if (currentStep !== 1) {
+      // This page should be step 1
+      // The RouteStepSynchronizer will handle this
+    }
+  }, [currentStep]);
 
   const onNumberKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
       e.preventDefault();
       const delta = e.key === "ArrowUp" ? 500 : -500;
-      setValue((v) => Math.max(0, Math.round(((v || 0) + delta) / 500) * 500));
+      const newValue = Math.max(0, Math.round(((value || 0) + delta) / 500) * 500);
+      updateExpectedRetirement(newValue);
     }
-  }, []);
+  }, [value, updateExpectedRetirement]);
 
-  const onNumberChange = useCallback((value: string) => {
-    const raw = value.replace(/\s/g, "").replace(",", ".");
+  const onNumberChange = useCallback((valueStr: string) => {
+    const raw = valueStr.replace(/\s/g, "").replace(",", ".");
     const num = Number(raw);
-    setValue(Number.isFinite(num) ? num : 0);
-  }, []);
+    updateExpectedRetirement(Number.isFinite(num) ? num : 0);
+  }, [updateExpectedRetirement]);
+
+  const handleProceedToSignup = () => {
+    if (isValid && value > 0) {
+      // Ensure the data is saved to state
+      updateExpectedRetirement(value);
+      completeCurrentStep();
+      nextStep();
+      router.push("/signup");
+    }
+  };
 
   const [minVal, avgVal, yourVal] = useMemo(() => {
     const f = netto ? NET_RATE : 1;
@@ -190,7 +216,7 @@ export default function WelcomeStart() {
                       className="w-full max-w-md font-semibold"
                       disabled={!isValid}
                       aria-disabled={!isValid}
-                      onClick={() => router.push("/signup")}
+                      onClick={handleProceedToSignup}
                     >
                       Rozpocznij szczegółową symulację
                     </ZusButton>

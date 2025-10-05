@@ -985,9 +985,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$z
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/zus-input.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/zus-select.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$pue$2f$pue$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/pue/pue-panel.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$index$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/src/lib/store/index.ts [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/store/hooks.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -1002,52 +1005,69 @@ const RETIRE_YEARS = Array.from({
 function SignUpFormPage() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
-    // --- form state
-    const [age, setAge] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(30);
-    const [sex, setSex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("M");
-    const [salary, setSalary] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(9000);
-    const [startYear, setStartYear] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(currentYear - 6);
-    const [retireYear, setRetireYear] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(currentYear + 35);
+    const { data: signupData, updateField, updateMultipleFields } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSignupForm"])();
+    const { completeCurrentStep, nextStep, currentStep } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStepProgression"])();
+    // Initialize with default values if not set
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "SignUpFormPage.useEffect": ()=>{
+            if (!signupData.age) {
+                updateMultipleFields({
+                    age: 30,
+                    gender: 'male',
+                    grossSalary: 9000,
+                    workStartYear: currentYear - 6,
+                    plannedRetirementYear: currentYear + 35
+                });
+            }
+        }
+    }["SignUpFormPage.useEffect"], [
+        signupData.age,
+        updateMultipleFields
+    ]);
+    // Ensure we're on the correct step
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "SignUpFormPage.useEffect": ()=>{
+            if (currentStep !== 2) {}
+        }
+    }["SignUpFormPage.useEffect"], [
+        currentStep
+    ]);
     // Salary: keep arrows stepping by 500 (typing freeform still allowed)
     const onSalaryKeyDown = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "SignUpFormPage.useCallback[onSalaryKeyDown]": (e)=>{
             if (e.key === "ArrowUp" || e.key === "ArrowDown") {
                 e.preventDefault();
                 const delta = e.key === "ArrowUp" ? 500 : -500;
-                setSalary({
-                    "SignUpFormPage.useCallback[onSalaryKeyDown]": (v)=>Math.max(0, Math.round((v + delta) / 500) * 500)
-                }["SignUpFormPage.useCallback[onSalaryKeyDown]"]);
+                const currentSalary = signupData.grossSalary || 0;
+                const newSalary = Math.max(0, Math.round((currentSalary + delta) / 500) * 500);
+                updateField('grossSalary', newSalary);
             }
         }
-    }["SignUpFormPage.useCallback[onSalaryKeyDown]"], []);
+    }["SignUpFormPage.useCallback[onSalaryKeyDown]"], [
+        signupData.grossSalary,
+        updateField
+    ]);
     const onSalaryChange = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "SignUpFormPage.useCallback[onSalaryChange]": (e)=>{
-            const raw = Number(e.target.value.replace(/\s/g, "").replace(",", "."));
-            setSalary(Number.isFinite(raw) ? raw : 0);
+        "SignUpFormPage.useCallback[onSalaryChange]": (valueStr)=>{
+            const raw = Number(valueStr.replace(/\s/g, "").replace(",", "."));
+            updateField('grossSalary', Number.isFinite(raw) ? raw : 0);
         }
-    }["SignUpFormPage.useCallback[onSalaryChange]"], []);
+    }["SignUpFormPage.useCallback[onSalaryChange]"], [
+        updateField
+    ]);
     const isValid = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "SignUpFormPage.useMemo[isValid]": ()=>{
-            return Number.isFinite(age) && age >= 16 && (sex === "F" || sex === "M") && Number.isFinite(salary) && salary >= 0 && Number.isFinite(startYear) && Number.isFinite(retireYear) && retireYear > startYear;
+            return Number.isFinite(signupData.age) && signupData.age >= 16 && (signupData.gender === "female" || signupData.gender === "male") && Number.isFinite(signupData.grossSalary) && signupData.grossSalary >= 0 && Number.isFinite(signupData.workStartYear) && Number.isFinite(signupData.plannedRetirementYear) && signupData.plannedRetirementYear > signupData.workStartYear;
         }
     }["SignUpFormPage.useMemo[isValid]"], [
-        age,
-        sex,
-        salary,
-        startYear,
-        retireYear
+        signupData
     ]);
     function onSubmit(e) {
         e.preventDefault();
         if (!isValid) return;
-        const q = new URLSearchParams({
-            age: String(age),
-            sex,
-            grossSalary: String(Math.round(salary)),
-            workStartYear: String(startYear),
-            retireYear: String(retireYear)
-        });
-        router.push("/missingData?".concat(q.toString()));
+        completeCurrentStep();
+        nextStep();
+        router.push('/firstSurvey');
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen max-w-6xl mx-auto py-12 px-4",
@@ -1072,7 +1092,7 @@ function SignUpFormPage() {
                                         children: "Twoje dane"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 88,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$text$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusText"], {
@@ -1080,13 +1100,13 @@ function SignUpFormPage() {
                                         children: "Wypełnij podstawowe informacje demograficzne. Te dane pomogą nam lepiej dopasować prognozę i porównania kontekstowe."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 78,
+                                        lineNumber: 92,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 73,
+                                lineNumber: 87,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1101,8 +1121,8 @@ function SignUpFormPage() {
                                             min: 16,
                                             max: 80,
                                             step: 1,
-                                            value: age,
-                                            onChange: (e)=>setAge(parseInt(e.target.value || "0", 10)),
+                                            value: signupData.age || 30,
+                                            onChange: (e)=>updateField('age', parseInt(e.target.value || "0", 10)),
                                             required: true,
                                             hintAction: {
                                                 label: "Minimalny wiek: 16 lat.",
@@ -1110,38 +1130,38 @@ function SignUpFormPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/signup/page.tsx",
-                                            lineNumber: 87,
+                                            lineNumber: 101,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 85,
+                                        lineNumber: 99,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
                                         options: [
                                             {
-                                                value: "F",
+                                                value: "female",
                                                 label: "Kobieta"
                                             },
                                             {
-                                                value: "M",
+                                                value: "male",
                                                 label: "Mężczyzna"
                                             }
                                         ],
                                         label: "Płeć",
-                                        value: sex,
-                                        onChange: setSex,
+                                        value: signupData.gender || "male",
+                                        onChange: (value)=>updateField('gender', value),
                                         className: "flex-1"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 118,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 84,
+                                lineNumber: 98,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusInput"], {
@@ -1150,8 +1170,8 @@ function SignUpFormPage() {
                                 type: "number",
                                 min: 0,
                                 step: 500,
-                                value: Number.isFinite(salary) ? salary : 0,
-                                onChange: onSalaryChange,
+                                value: Number.isFinite(signupData.grossSalary) ? signupData.grossSalary : 0,
+                                onChange: (e)=>onSalaryChange(e.target.value),
                                 onKeyDown: onSalaryKeyDown,
                                 "aria-describedby": "salary-help",
                                 required: true,
@@ -1161,7 +1181,7 @@ function SignUpFormPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 117,
+                                lineNumber: 131,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1175,7 +1195,7 @@ function SignUpFormPage() {
                                         children: "Rok rozpoczęcia pracy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 150,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
@@ -1184,17 +1204,17 @@ function SignUpFormPage() {
                                                 label: y.toString()
                                             })),
                                         id: "startYear",
-                                        value: startYear,
-                                        onChange: (value)=>setStartYear(parseInt(value, 10))
+                                        value: signupData.workStartYear || currentYear - 6,
+                                        onChange: (value)=>updateField('workStartYear', parseInt(value, 10))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 143,
+                                        lineNumber: 157,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 135,
+                                lineNumber: 149,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1208,7 +1228,7 @@ function SignUpFormPage() {
                                         children: "Planowany rok przejścia na emeryturę"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 156,
+                                        lineNumber: 170,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusSelect"], {
@@ -1217,18 +1237,18 @@ function SignUpFormPage() {
                                                 label: y.toString()
                                             })),
                                         id: "retireYear",
-                                        value: retireYear,
-                                        onChange: (value)=>setRetireYear(parseInt(value, 10)),
+                                        value: signupData.plannedRetirementYear || currentYear + 35,
+                                        onChange: (value)=>updateField('plannedRetirementYear', parseInt(value, 10)),
                                         hintText: "Musi być później niż rok rozpoczęcia pracy."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/signup/page.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 177,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 155,
+                                lineNumber: 169,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$zus$2d$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZusButton"], {
@@ -1237,13 +1257,13 @@ function SignUpFormPage() {
                                 children: "Kontynuuj"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 175,
+                                lineNumber: 189,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/signup/page.tsx",
-                        lineNumber: 72,
+                        lineNumber: 86,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1253,7 +1273,7 @@ function SignUpFormPage() {
                                 className: "w-px h-20 bg-gray-300"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 182,
+                                lineNumber: 196,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1264,54 +1284,56 @@ function SignUpFormPage() {
                                 children: "LUB"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 183,
+                                lineNumber: 197,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-px h-20 bg-gray-300"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/signup/page.tsx",
-                                lineNumber: 184,
+                                lineNumber: 198,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/signup/page.tsx",
-                        lineNumber: 181,
+                        lineNumber: 195,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "md:col-span-8",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$pue$2f$pue$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PueLoginPanel"], {}, void 0, false, {
                             fileName: "[project]/src/app/signup/page.tsx",
-                            lineNumber: 188,
+                            lineNumber: 202,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/signup/page.tsx",
-                        lineNumber: 187,
+                        lineNumber: 201,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/signup/page.tsx",
-                lineNumber: 70,
+                lineNumber: 84,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/signup/page.tsx",
-            lineNumber: 69,
+            lineNumber: 83,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/signup/page.tsx",
-        lineNumber: 68,
+        lineNumber: 82,
         columnNumber: 5
     }, this);
 }
-_s(SignUpFormPage, "7fS+v4umATKyww2GKrvxn/TD08A=", false, function() {
+_s(SignUpFormPage, "cX0rtdbrffWTWZD8euzqcWI6gkQ=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSignupForm"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$store$2f$hooks$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStepProgression"]
     ];
 });
 _c = SignUpFormPage;

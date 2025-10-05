@@ -1,9 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ZusButton } from "@/components/zus-ui";
 import { ZusText } from "@/components/ui/zus-text";
+import { ResetButton } from "@/components/flow/reset-button";
+import { useStepProgression, useRetirementCalculation, useUserData } from "@/lib/store";
+import { useReactToPrint } from "react-to-print";
+
+// PDF-friendly component that contains the content to print
+const PrintableContent = React.forwardRef<HTMLDivElement, { children: React.ReactNode }>(
+  ({ children }, ref) => (
+    <div ref={ref} className="p-8 bg-white text-black">
+      {children}
+    </div>
+  )
+);
+
+PrintableContent.displayName = "PrintableContent";
 
 function fmtPLN(n: number) {
   return new Intl.NumberFormat("pl-PL", {
@@ -16,8 +30,31 @@ function fmtPLN(n: number) {
 export default function ResultPage() {
   const params = useSearchParams();
   const router = useRouter();
+  const printRef = useRef<HTMLDivElement>(null);
+  
+  // State management hooks
+  const { completeCurrentStep, nextStep } = useStepProgression();
+  const calculation = useRetirementCalculation();
+  const userData = useUserData();
 
-  const zusPension = Number(params.get("zusPension") ?? 2964);
+  // PDF export functionality
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: `Raport emerytalny - ${userData.signup?.email || 'użytkownik'}`,
+    onAfterPrint: () => {
+      console.log("PDF generated successfully");
+    },
+  });
+
+  // Navigation to next step using router + state management
+  const handleNextToSurvey = () => {
+    completeCurrentStep();
+    nextStep();
+    router.push("/secondSurvey"); // Router navigation + state will be synced by RouteStepSynchronizer
+  };
+
+  // Use calculation from state if available, otherwise fall back to URL params
+  const zusPension = calculation?.estimatedMonthlyPension || Number(params.get("zusPension") ?? 2964);
   const realToday = Number(params.get("realPowerToday") ?? 2075);
   const monthlySavings = Number(params.get("monthlyTotal") ?? 0);
 
@@ -26,8 +63,9 @@ export default function ResultPage() {
 
   return (
     <div className="min-h-screen max-w-4xl mx-auto py-12 px-4">
-    <div className="bg-zus-card rounded-2xl">
-        <div className="p-8 md:p-10 space-y-10">
+      <PrintableContent ref={printRef}>
+        <div className="bg-zus-card rounded-2xl">
+          <div className="p-8 md:p-10 space-y-10">
           {/* Header */}
           <header className="space-y-2 text-center">
             <h1 className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]" style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}>
@@ -71,6 +109,16 @@ export default function ResultPage() {
               wynosi około <strong>{fmtPLN(projectedWithSavings)}</strong> miesięcznie.
             </ZusText>
 
+            {userData.welcome.expectedRetirement && (
+              <ZusText className="text-neutral-800 leading-relaxed">
+                Twoja oczekiwana emerytura to <strong>{fmtPLN(userData.welcome.expectedRetirement)}</strong>.{" "}
+                {projectedWithSavings >= userData.welcome.expectedRetirement 
+                  ? "Gratulacje! Prawdopodobnie osiągniesz swój cel."
+                  : "Warto rozważyć zwiększenie oszczędności emerytowych."
+                }
+              </ZusText>
+            )}
+
             <ZusText className="text-neutral-800 leading-relaxed">
               Warto rozważyć regularne oszczędzanie w ramach IKE, IKZE lub PPK — każda z tych
               form pozwala zwiększyć świadczenie o kilka–kilkanaście procent, zwłaszcza przy
@@ -84,18 +132,18 @@ export default function ResultPage() {
           </section>
 
           {/* CTA */}
-          <div className="flex flex-col md:flex-row gap-3 justify-between pt-4">
-            <ZusButton 
+          <div className="flex flex-col md:flex-row gap-3 justify-between pt-4 print:hidden">
+            <ResetButton 
               variant="ghost" 
-              type="button" 
-              className="px-8" 
-              onClick={() => router.push("/")}
-            >
-              Zacznij od nowa
-            </ZusButton>
+              size="md"
+            />
 
             <div className="flex flex-col md:flex-row gap-3 justify-center pt-4">
-              <ZusButton variant="outline" type="button" className="px-8">
+              <ZusButton 
+                variant="outline" 
+                type="button"
+                onClick={handlePrint}
+              >
                 Pobierz raport PDF
               </ZusButton>
 
@@ -103,14 +151,15 @@ export default function ResultPage() {
               variant="primary" 
               type="button" 
               className="px-8"
-              onClick={() => router.push("/secondSurvey")}
+              onClick={handleNextToSurvey}
             >
               Sprawdź inne prognozy
             </ZusButton>
             </div>
+            </div>
           </div>
         </div>
-      </div>
+      </PrintableContent>
     </div>
   );
 }

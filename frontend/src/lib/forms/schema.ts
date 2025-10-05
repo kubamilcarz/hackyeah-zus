@@ -85,7 +85,7 @@ export function createMockUserData(): UserData {
 };
 export const simSchema = z.object({
   age: z.number().int().min(16).max(80),
-  sex: z.enum(["F","M"]),
+  sex: z.enum(["F","M", "O"]),
   grossSalary: z.number().min(0),
   workStartYear: z.number().int(),
   retireYear: z.number().int(),
