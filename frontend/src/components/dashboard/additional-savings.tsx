@@ -95,22 +95,6 @@ export default function AdditionalRetirementSavingsSection({
             Dodatkowe oszczędności emerytalne
           </h1>
           
-          {/* Debug info - remove this once working */}
-          <div style={{ 
-            fontSize: '12px', 
-            color: 'gray', 
-            fontFamily: 'monospace',
-            background: '#f0f0f0',
-            padding: '8px',
-            borderRadius: '4px'
-          }}>
-            Debug: PPK={ppkContribution} | IKZE={ikzeContribution} | PPE={ppeContribution} | Total={totalContributions}
-            <br/>
-            Raw atom: {JSON.stringify(retirementSources)}
-            <br/>
-            LocalStorage: {typeof window !== 'undefined' ? localStorage.getItem('zus-retirement-sources') || 'null' : 'SSR'}
-          </div>
-          
           <div 
             className="max-w-2xl"
             style={{ 
