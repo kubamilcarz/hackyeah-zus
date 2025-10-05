@@ -1,6 +1,15 @@
 {
   "pages": {
-    "/_app": []
+    "/_app": [
+      "static/chunks/e60ef129113f6e24.js",
+      "static/chunks/09bee92c493b43a7.js",
+      "static/chunks/turbopack-b2116f4882adfbd1.js"
+    ],
+    "/_error": [
+      "static/chunks/17722e3ac4e00587.js",
+      "static/chunks/09bee92c493b43a7.js",
+      "static/chunks/turbopack-b65eb445c68ad66a.js"
+    ]
   },
   "devFiles": [],
   "ampDevFiles": [],
