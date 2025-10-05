@@ -7,6 +7,9 @@ import DetailedRetirementAnalysisSection from "@/components/dashboard/detailed-r
 import AdditionalRetirementSavingsSection from "@/components/dashboard/additional-savings";
 import OverviewTile from "@/components/dashboard/overview-tile";
 import StickyNavigation from "@/components/dashboard/sticky-navigation";
+import { ZusButton } from "@/components/zus-ui";
+import { useReactToPrint } from "react-to-print";
+import { useRouter } from "next/navigation";
 
 // Mock data
 const pensionData = {
@@ -30,6 +33,14 @@ export default function DashboardPage() {
   // Sticky bar state
   const [isSticky, setIsSticky] = useState(false);
   const tilesRef = useRef<HTMLDivElement>(null);
+  const componentRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  // React-to-print hook
+  const handlePrint = useReactToPrint({
+    contentRef: componentRef,
+    documentTitle: 'Raport Emerytalny ZUS',
+  });
 
   // Scroll detection for sticky bar
   useEffect(() => {
@@ -57,6 +68,8 @@ export default function DashboardPage() {
   const additionalRetirementImpact = totalAdditionalSavings * 0.85; // Higher impact for dedicated retirement products
 
   return (
+    <div ref={componentRef}>
+
     <div
       className="min-h-screen"
       style={{
@@ -66,14 +79,16 @@ export default function DashboardPage() {
     >
       {/* Sticky Top Bar */}
       {isSticky && (
-        <StickyNavigation
-          adjustedSalary={adjustedSalary}
-          adjustedRealValue={adjustedRealValue}
-          savingsImpact={savingsImpact}
-          additionalRetirementImpact={additionalRetirementImpact}
-          pensionData={pensionData}
-          fmtPLN={fmtPLN}
-        />
+        <div className="no-print">
+          <StickyNavigation
+            adjustedSalary={adjustedSalary}
+            adjustedRealValue={adjustedRealValue}
+            savingsImpact={savingsImpact}
+            additionalRetirementImpact={additionalRetirementImpact}
+            pensionData={pensionData}
+            fmtPLN={fmtPLN}
+          />
+        </div>
       )}
       {/* Slider Styles */}
       <style jsx>{`
@@ -114,6 +129,38 @@ export default function DashboardPage() {
           height: 8px;
           border-radius: 4px;
           background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Print styles for better PDF output */
+        @media print {
+          body {
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+            transform: scale(0.8);
+            transform-origin: top left;
+            width: 125%; /* Compensate for the scale */
+          }
+          
+          .no-print {
+            display: none !important;
+          }
+          
+          div {
+            break-inside: avoid;
+          }
+          
+          /* Force single column layout for print */
+          .grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 1rem !important;
+            break-inside: avoid;
+          }
+          
+          .grid > * {
+            width: 100% !important;
+            max-width: none !important;
+          }
         }
       `}</style>
 
@@ -217,7 +264,29 @@ export default function DashboardPage() {
           setPpeContribution={setPpeContribution}
           totalImpact={additionalRetirementImpact}
         />
+
+        {/* Action Buttons Section */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 pb-4 no-print">
+          <ZusButton 
+            variant="primary" 
+            onClick={handlePrint}
+            className="w-full sm:w-auto min-w-[200px]"
+          >
+            Eksportuj raport
+          </ZusButton>
+          
+          <ZusButton 
+            variant="outline" 
+            onClick={() => {
+              router.push("/");
+            }}
+            className="w-full sm:w-auto min-w-[200px]"
+          >
+            Rozpocznij od nowa
+          </ZusButton>
+        </div>
       </div>
+    </div>
     </div>
   );
 }
