@@ -4,8 +4,9 @@ import React, { useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ZusButton } from "@/components/zus-ui";
 import { ZusText } from "@/components/ui/zus-text";
+import { ZusInput } from "@/components/ui/zus-input";
 import { ResetButton } from "@/components/flow/reset-button";
-import { useStepProgression, useRetirementCalculation, useUserData } from "@/lib/store";
+import { useStepProgression, useRetirementCalculation, useUserData, useResultData } from "@/lib/store";
 import { useReactToPrint } from "react-to-print";
 
 // PDF-friendly component that contains the content to print
@@ -36,6 +37,15 @@ export default function ResultPage() {
   const { completeCurrentStep, nextStep } = useStepProgression();
   const calculation = useRetirementCalculation();
   const userData = useUserData();
+  const [resultData, setResultData] = useResultData();
+
+  // Handle postal code change
+  const handlePostalCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setResultData({
+      ...resultData,
+      postalCode: e.target.value
+    });
+  };
 
   // PDF export functionality
   const handlePrint = useReactToPrint({
@@ -95,6 +105,18 @@ export default function ResultPage() {
               title="Z oszczędności"
               subtitle="Prognozowany miesięczny dodatek"
               value={fmtPLN(projectedWithSavings - zusPension)}
+            />
+          </div>
+
+          {/* Postal Code Input */}
+          <div className="max-w-sm">
+            <ZusInput
+              id="postalCode"
+              label="Kod pocztowy (opcjonalnie)"
+              placeholder="np. 00-000"
+              value={resultData.postalCode || ''}
+              onChange={handlePostalCodeChange}
+              maxLength={6}
             />
           </div>
 

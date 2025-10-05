@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ContrastToggle from "@/components/constrast-toggle";
-import { EmaChat } from "@/components/chat/ema-chat";
+import { ConditionalEmaChat } from "@/components/conditional-ema-chat";
 import { JotaiProvider } from "@/lib/store";
 import { DataFlowDemo } from "@/components/debug/data-flow-demo";
 import { LayoutBackButton } from "@/components/flow/layout-back-button";
@@ -106,7 +106,7 @@ export default function RootLayout({
 
             {children}
           </div>
-          <EmaChat />
+          <ConditionalEmaChat />
           <DataFlowDemo />
         </JotaiProvider>
       </body>
