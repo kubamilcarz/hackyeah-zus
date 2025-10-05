@@ -125,13 +125,10 @@ export default function CustomDataEntrySection() {
     <div className="bg-zus-card rounded-2xl">
       <div className="p-6 md:p-8 flex flex-col gap-6">
         <header className="space-y-3">
-          <h1
-            className="text-2xl md:text-3xl font-semibold text-[rgb(var(--zus-black))]"
-            style={{ fontSize: `calc(1.625rem * var(--font-scale))` }}
-          >
+          <h1 className="text-2xl md:text-3xl font-semibold text-primary">
             Dodatkowe dane emerytalne
           </h1>
-          <ZusText variant="body" className="text-neutral-600 max-w-2xl">
+          <ZusText variant="body" className="text-secondary max-w-2xl">
             Wprowadź dodatkowe informacje o swoich historycznych wynagrodzeniach
             oraz okresach choroby, aby otrzymać bardziej precyzyjną prognozę
             emerytalną.
@@ -139,16 +136,16 @@ export default function CustomDataEntrySection() {
         </header>
 
         {/* Summary and Impact */}
-        <div className="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-blue-200">
+        <div className="p-4 bg-gradient-to-r from-blue-50/50 to-transparent rounded-lg border border-neutral">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-              <div className="w-4 h-4 bg-blue-600 rounded"></div>
+            <div className="w-8 h-8 bg-info-light rounded-lg flex items-center justify-center">
+              <span className="text-info font-bold text-xs">DATA</span>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-neutral-800">
+              <h4 className="font-semibold text-primary">
                 Wpływ na prognozę emerytalną
               </h4>
-              <ZusText variant="small" className="text-neutral-600">
+              <ZusText variant="small" className="text-secondary">
                 Na podstawie wprowadzonych danych historycznych i planowanych
                 okresów nieobecności zostanie zaktualizowana Twoja prognoza
                 emerytalna. Okresy choroby mogą wpływać na wysokość przyszłej
@@ -156,17 +153,12 @@ export default function CustomDataEntrySection() {
               </ZusText>
               <div className="flex gap-4 text-sm">
                 <div className="flex items-center gap-1">
-                  <span className="text-green-600">✓</span>
-                  <span>
-                    Historyczne wynagrodzenia: {historicalSalaries.length}
-                  </span>
+                  <span className="text-success">Wynagrodzenia:</span>
+                  <span>{historicalSalaries.length}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="text-orange-600">!</span>
-                  <span>
-                    Okresy choroby:{" "}
-                    {sickLeavePeriods.length + futureSickLeave.length}
-                  </span>
+                  <span className="text-warning">Okresy choroby:</span>
+                  <span>{sickLeavePeriods.length + futureSickLeave.length}</span>
                 </div>
               </div>
             </div>
@@ -177,14 +169,14 @@ export default function CustomDataEntrySection() {
           {/* Historical Salaries Section */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-green-600 rounded-sm"></div>
+              <div className="w-8 h-8 bg-success-light rounded-lg flex items-center justify-center">
+                <span className="text-success font-bold text-xs">PLN</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-neutral-700">
+                <h3 className="text-lg font-semibold text-primary">
                   Historyczne wynagrodzenia
                 </h3>
-                <ZusText variant="small" className="text-neutral-600">
+                <ZusText variant="small" className="text-secondary">
                   Wprowadź swoje wynagrodzenia z poprzednich lat
                 </ZusText>
               </div>
@@ -194,7 +186,7 @@ export default function CustomDataEntrySection() {
               {historicalSalaries.map((salary, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                  className="flex items-center gap-3 p-3 bg-zus-card border border-neutral rounded-lg"
                 >
                   <input
                     type="number"
@@ -206,11 +198,11 @@ export default function CustomDataEntrySection() {
                         parseInt(e.target.value)
                       )
                     }
-                    className="w-20 px-2 py-1 border border-gray-300 rounded text-sm"
+                    className="w-20 px-2 py-1 border border-neutral rounded text-sm bg-white"
                     min="1990"
                     max="2024"
                   />
-                  <span className="text-sm text-gray-600">rok:</span>
+                  <span className="text-sm text-secondary">rok:</span>
                   <input
                     type="number"
                     value={salary.amount}
@@ -221,13 +213,13 @@ export default function CustomDataEntrySection() {
                         parseInt(e.target.value)
                       )
                     }
-                    className="flex-1 px-3 py-1 border border-gray-300 rounded text-sm"
+                    className="flex-1 px-3 py-1 border border-neutral rounded text-sm bg-white"
                     placeholder="Wynagrodzenie brutto"
                   />
-                  <span className="text-sm text-gray-600">zł</span>
+                  <span className="text-sm text-secondary">zł</span>
                   <button
                     onClick={() => removeHistoricalSalary(index)}
-                    className="text-red-500 hover:text-red-700 px-2 py-1 text-sm"
+                    className="text-warning hover:text-warning px-2 py-1 text-sm font-bold"
                   >
                     ×
                   </button>
@@ -236,7 +228,7 @@ export default function CustomDataEntrySection() {
 
               <button
                 onClick={addHistoricalSalary}
-                className="w-full p-3 border-2 border-dashed border-gray-300 hover:border-blue-400 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
+                className="w-full p-3 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors"
               >
                 + Dodaj wynagrodzenie
               </button>
@@ -246,14 +238,14 @@ export default function CustomDataEntrySection() {
           {/* Sick Leave Periods Section */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-red-600 rounded-full"></div>
+              <div className="w-8 h-8 bg-warning-light rounded-lg flex items-center justify-center">
+                <span className="text-warning font-bold text-xs">L4</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-neutral-700">
+                <h3 className="text-lg font-semibold text-primary">
                   Okresy choroby
                 </h3>
-                <ZusText variant="small" className="text-neutral-600">
+                <ZusText variant="small" className="text-secondary">
                   Wprowadź okresy nieobecności z powodu choroby
                 </ZusText>
               </div>
@@ -261,8 +253,10 @@ export default function CustomDataEntrySection() {
 
             {/* Past Sick Leave */}
             <div className="space-y-4">
-              <h4 className="font-medium text-neutral-700 flex items-center gap-2">
-                <div className="w-4 h-4 bg-gray-400 rounded"></div>
+              <h4 className="font-medium text-primary flex items-center gap-2">
+                <div className="w-4 h-4 bg-warning-light rounded flex items-center justify-center">
+                  <span className="text-warning font-bold text-xs">P</span>
+                </div>
                 Przeszłe okresy choroby
               </h4>
 
@@ -270,7 +264,7 @@ export default function CustomDataEntrySection() {
                 {sickLeavePeriods.map((period, index) => (
                   <div
                     key={index}
-                    className="p-3 bg-red-50 rounded-lg space-y-2"
+                    className="p-3 bg-zus-card border border-neutral rounded-lg space-y-2"
                   >
                     <div className="flex items-center gap-2">
                       <input
@@ -284,9 +278,9 @@ export default function CustomDataEntrySection() {
                             e.target.value
                           )
                         }
-                        className="px-2 py-1 border border-gray-300 rounded text-xs"
+                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
                       />
-                      <span className="text-xs text-gray-600">do</span>
+                      <span className="text-xs text-secondary">do</span>
                       <input
                         type="date"
                         value={period.endDate}
@@ -298,11 +292,11 @@ export default function CustomDataEntrySection() {
                             e.target.value
                           )
                         }
-                        className="px-2 py-1 border border-gray-300 rounded text-xs"
+                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
                       />
                       <button
                         onClick={() => removeSickLeavePeriod("past", index)}
-                        className="text-red-500 hover:text-red-700 px-2 py-1 text-sm"
+                        className="text-warning hover:text-warning px-2 py-1 text-sm font-bold"
                       >
                         ×
                       </button>
@@ -319,14 +313,14 @@ export default function CustomDataEntrySection() {
                         )
                       }
                       placeholder="Powód nieobecności"
-                      className="w-full px-2 py-1 border border-gray-300 rounded text-xs"
+                      className="w-full px-2 py-1 border border-neutral rounded text-xs bg-white"
                     />
                   </div>
                 ))}
 
                 <button
                   onClick={() => addSickLeavePeriod("past")}
-                  className="w-full p-2 border-2 border-dashed border-red-300 hover:border-red-400 rounded-lg text-red-600 hover:text-red-700 transition-colors text-sm"
+                  className="w-full p-2 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors text-sm"
                 >
                   + Dodaj okres choroby z przeszłości
                 </button>
@@ -335,8 +329,10 @@ export default function CustomDataEntrySection() {
 
             {/* Future Sick Leave */}
             <div className="space-y-4">
-              <h4 className="font-medium text-neutral-700 flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-400 rounded"></div>
+              <h4 className="font-medium text-primary flex items-center gap-2">
+                <div className="w-4 h-4 bg-info-light rounded flex items-center justify-center">
+                  <span className="text-info font-bold text-xs">F</span>
+                </div>
                 Planowane okresy choroby
               </h4>
 
@@ -344,7 +340,7 @@ export default function CustomDataEntrySection() {
                 {futureSickLeave.map((period, index) => (
                   <div
                     key={index}
-                    className="p-3 bg-blue-50 rounded-lg space-y-2"
+                    className="p-3 bg-gradient-to-r from-blue-50/50 to-transparent border border-neutral rounded-lg space-y-2"
                   >
                     <div className="flex items-center gap-2">
                       <input
@@ -358,9 +354,9 @@ export default function CustomDataEntrySection() {
                             e.target.value
                           )
                         }
-                        className="px-2 py-1 border border-gray-300 rounded text-xs"
+                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
                       />
-                      <span className="text-xs text-gray-600">do</span>
+                      <span className="text-xs text-secondary">do</span>
                       <input
                         type="date"
                         value={period.endDate}
@@ -372,11 +368,11 @@ export default function CustomDataEntrySection() {
                             e.target.value
                           )
                         }
-                        className="px-2 py-1 border border-gray-300 rounded text-xs"
+                        className="px-2 py-1 border border-neutral rounded text-xs bg-white"
                       />
                       <button
                         onClick={() => removeSickLeavePeriod("future", index)}
-                        className="text-blue-500 hover:text-blue-700 px-2 py-1 text-sm"
+                        className="text-info hover:text-info px-2 py-1 text-sm font-bold"
                       >
                         ×
                       </button>
@@ -393,14 +389,14 @@ export default function CustomDataEntrySection() {
                         )
                       }
                       placeholder="Planowany powód nieobecności"
-                      className="w-full px-2 py-1 border border-gray-300 rounded text-xs"
+                      className="w-full px-2 py-1 border border-neutral rounded text-xs bg-white"
                     />
                   </div>
                 ))}
 
                 <button
                   onClick={() => addSickLeavePeriod("future")}
-                  className="w-full p-2 border-2 border-dashed border-blue-300 hover:border-blue-400 rounded-lg text-blue-600 hover:text-blue-700 transition-colors text-sm"
+                  className="w-full p-2 border-2 border-dashed border-neutral hover:border-primary rounded-lg text-secondary hover:text-primary transition-colors text-sm"
                 >
                   + Dodaj planowany okres choroby
                 </button>

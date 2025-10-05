@@ -1,5 +1,4 @@
 import React from "react";
-import { ZusText } from "../zus-ui";
 
 /* --- Types --- */
 type QuizQuestion = {
@@ -399,13 +398,34 @@ export function KnowledgeQuizTile() {
   // Don't render quiz content until questions are shuffled
   if (questions.length === 0) {
     return (
-      <div className="group relative overflow-hidden rounded-xl p-6 transition-all duration-300 bg-blue-50 h-full">
+      <div 
+        className="group relative overflow-hidden rounded-xl p-6 transition-all duration-300 h-full"
+        style={{ 
+          backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow') 
+            ? `rgb(var(--color-card))` 
+            : 'rgb(239, 246, 255)', // blue-50 for light mode
+          borderColor: `rgb(var(--color-text) / 0.1)`,
+          border: '1px solid'
+        }}
+      >
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="text-2xl mb-2">📋</div>
-            <ZusText variant="body" className="text-neutral-600">
+            <div 
+              className="mb-2"
+              style={{ 
+                fontSize: `calc(2rem * var(--font-scale))`
+              }}
+            >
+              📋
+            </div>
+            <div 
+              style={{ 
+                color: `rgb(var(--color-text) / 0.7)`,
+                fontSize: `calc(1rem * var(--font-scale))`
+              }}
+            >
               Przygotowywanie testu wiedzy...
-            </ZusText>
+            </div>
           </div>
         </div>
       </div>
@@ -452,10 +472,10 @@ export function KnowledgeQuizTile() {
   }, 0);
   const scorePercentage = Math.round(((correctAnswersCount ?? 0) / questions.length) * 100);
 
-  const getScoreColor = () => {
-    if (scorePercentage >= 75) return "text-green-700";
-    if (scorePercentage >= 50) return "text-blue-700";
-    return "text-orange-700";
+  const getScoreColorRGB = () => {
+    if (scorePercentage >= 75) return `rgb(var(--color-success, 0 153 63))`;
+    if (scorePercentage >= 50) return `rgb(var(--color-accent))`;
+    return `rgb(var(--color-warning, 255 179 79))`;
   };
 
   const getScoreIcon = () => {
@@ -473,50 +493,95 @@ export function KnowledgeQuizTile() {
   const current = questions[currentQuestion];
   const userPick = selectedAnswers[currentQuestion];
 
-      const choiceClass = (index: number) => {
+  const getChoiceStyle = (index: number) => {
     const picked = userPick === index;
     const isCorrect = index === current.correct;
+    const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
 
     // Before selection: hover hint
     if (!locked[currentQuestion]) {
-      return `border-gray-200 hover:border-blue-300 hover:bg-blue-50`;
+      return {
+        borderColor: isHighContrast ? `rgb(var(--color-text) / 0.2)` : 'rgb(209, 213, 219)', // gray-300
+        backgroundColor: isHighContrast ? `rgb(var(--color-card))` : 'rgb(255, 255, 255)',
+        color: isHighContrast ? `rgb(var(--color-text))` : 'rgb(17, 24, 39)' // gray-900
+      };
     }
 
     // After selection: color feedback
-    if (picked && isCorrect) return "border-green-600 bg-green-50 text-green-900";
-    if (picked && !isCorrect) return "border-red-600 bg-red-50 text-red-900";
-    if (!picked && isCorrect) return "border-green-500 bg-green-50/60 text-green-800"; // reveal correct
-    return "border-gray-200 bg-white text-neutral-800 opacity-75";
+    if (picked && isCorrect) return {
+      borderColor: isHighContrast ? `rgb(var(--color-success, 0 153 63))` : 'rgb(22, 163, 74)', // green-600
+      backgroundColor: isHighContrast ? `rgb(var(--color-success, 0 153 63) / 0.1)` : 'rgb(240, 253, 244)', // green-50
+      color: isHighContrast ? `rgb(var(--color-success, 0 153 63))` : 'rgb(20, 83, 45)' // green-900
+    };
+    if (picked && !isCorrect) return {
+      borderColor: isHighContrast ? `rgb(var(--color-error, 240 94 94))` : 'rgb(220, 38, 38)', // red-600
+      backgroundColor: isHighContrast ? `rgb(var(--color-error, 240 94 94) / 0.1)` : 'rgb(254, 242, 242)', // red-50
+      color: isHighContrast ? `rgb(var(--color-error, 240 94 94))` : 'rgb(153, 27, 27)' // red-900
+    };
+    if (!picked && isCorrect) return {
+      borderColor: isHighContrast ? `rgb(var(--color-success, 0 153 63) / 0.8)` : 'rgb(34, 197, 94)', // green-500
+      backgroundColor: isHighContrast ? `rgb(var(--color-success, 0 153 63) / 0.05)` : 'rgb(240, 253, 244, 0.6)', // green-50/60
+      color: isHighContrast ? `rgb(var(--color-success, 0 153 63) / 0.8)` : 'rgb(22, 101, 52)' // green-800
+    }; // reveal correct
+    return {
+      borderColor: isHighContrast ? `rgb(var(--color-text) / 0.2)` : 'rgb(209, 213, 219)', // gray-300
+      backgroundColor: isHighContrast ? `rgb(var(--color-card))` : 'rgb(255, 255, 255)',
+      color: isHighContrast ? `rgb(var(--color-text) / 0.7)` : 'rgb(107, 114, 128)', // gray-500
+      opacity: 0.75
+    };
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl p-6 transition-all duration-300 bg-blue-50 h-full">
+    <div 
+      className="group relative overflow-hidden rounded-xl p-6 transition-all duration-300 h-full"
+      style={{ 
+        backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow') 
+          ? `rgb(var(--color-card))` 
+          : 'rgb(239, 246, 255)', // blue-50 for light mode
+        borderColor: `rgb(var(--color-text) / 0.1)`,
+        border: '1px solid'
+      }}
+    >
       {/* Decorative background circles */}
       <svg
         aria-hidden
-        className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+        className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-110 opacity-30"
         viewBox="0 0 200 200"
         preserveAspectRatio="none"
       >
-        <circle cx="170" cy="-10" r="90" className="fill-blue-500/5" />
-        <circle cx="30" cy="180" r="50" className="fill-blue-500/5" />
+        <circle cx="170" cy="-10" r="90" style={{ fill: `rgb(var(--color-accent) / 0.05)` }} />
+        <circle cx="30" cy="180" r="50" style={{ fill: `rgb(var(--color-accent) / 0.05)` }} />
       </svg>
 
       {/* Content */}
       <div className="relative z-10 space-y-6">
         {/* Header */}
         <div className="flex items-center gap-3">
-          <span className="text-3xl">📋</span>
+          <span 
+            className="text-3xl"
+            style={{ fontSize: `calc(1.875rem * var(--font-scale))` }}
+          >
+            📋
+          </span>
           <div>
             <div
-              className="text-lg font-semibold text-neutral-700"
-              style={{ fontSize: `calc(1rem * var(--font-scale))` }}
+              className="font-semibold"
+              style={{ 
+                fontSize: `calc(1.125rem * var(--font-scale))`,
+                color: `rgb(var(--color-text))`
+              }}
             >
               Test wiedzy emerytalnej
             </div>
-            <ZusText variant="small" className="text-neutral-600">
+            <div 
+              className="text-sm"
+              style={{ 
+                color: `rgb(var(--color-text) / 0.7)`,
+                fontSize: `calc(0.875rem * var(--font-scale))`
+              }}
+            >
               Sprawdź swoją wiedzę o polskim systemie emerytalnym
-            </ZusText>
+            </div>
           </div>
         </div>
 
@@ -524,18 +589,32 @@ export function KnowledgeQuizTile() {
         {!quizStarted && !quizCompleted && (
           <div className="space-y-4">
             <div
-              className="text-2xl font-bold text-blue-700"
-              style={{ fontSize: `calc(1.5rem * var(--font-scale))` }}
+              className="font-bold"
+              style={{ 
+                fontSize: `calc(1.5rem * var(--font-scale))`,
+                color: `rgb(var(--color-accent))`
+              }}
             >
               Test wiedzy o systemie emerytalnym
             </div>
-            <ZusText variant="body" className="text-neutral-600">
+            <div 
+              style={{ 
+                color: `rgb(var(--color-text) / 0.8)`,
+                fontSize: `calc(1rem * var(--font-scale))`,
+                lineHeight: 1.6
+              }}
+            >
               Sprawdź swoją znajomość polskiego systemu emerytalnego w teście składającym się z 10 losowo wybranych pytań
-            </ZusText>
+            </div>
             
             {/* Show question categories in current set */}
             {shuffledQuestions.length > 0 && (
-              <div className="text-xs text-neutral-500">
+              <div 
+                style={{ 
+                  fontSize: `calc(0.75rem * var(--font-scale))`,
+                  color: `rgb(var(--color-text) / 0.6)`
+                }}
+              >
                 <span className="font-medium">Obszary tematyczne: </span>
                 {Array.from(new Set(shuffledQuestions.map(q => q.section).filter(Boolean))).join(", ")}
               </div>
@@ -544,14 +623,57 @@ export function KnowledgeQuizTile() {
             <div className="flex gap-3 items-stretch">
               <button
                 onClick={() => setQuizStarted(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                className="font-medium py-3 px-6 rounded-lg transition-colors"
+                style={{
+                  backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-accent))`
+                    : 'rgb(37, 99, 235)', // blue-600 for light mode
+                  color: `rgb(var(--color-card))`,
+                  fontSize: `calc(0.875rem * var(--font-scale))`
+                }}
+                onMouseOver={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-accent) / 0.9)` 
+                    : 'rgb(29, 78, 216)'; // blue-700
+                }}
+                onMouseOut={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-accent))` 
+                    : 'rgb(37, 99, 235)'; // blue-600
+                }}
               >
                 Rozpocznij test
               </button>
               
               <button
                 onClick={shuffleQuestions}
-                className="flex-shrink-0 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2"
+                className="flex-shrink-0 font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2"
+                style={{
+                  backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.1)`
+                    : 'rgb(243, 244, 246)', // gray-100 for light mode
+                  color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text))`
+                    : 'rgb(55, 65, 81)', // gray-700 for light mode
+                  fontSize: `calc(0.875rem * var(--font-scale))`,
+                  border: `1px solid ${document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.2)`
+                    : 'rgb(209, 213, 219)'}`  // gray-300 for light mode
+                }}
+                onMouseOver={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-text) / 0.15)` 
+                    : 'rgb(229, 231, 235)'; // gray-200
+                }}
+                onMouseOut={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-text) / 0.1)` 
+                    : 'rgb(243, 244, 246)'; // gray-100
+                }}
               >
                 📋 Nowe pytania
               </button>
@@ -565,31 +687,61 @@ export function KnowledgeQuizTile() {
             {/* Progress and Points */}
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
-                <span className="text-sm text-neutral-600">
+                <span 
+                  style={{ 
+                    fontSize: `calc(0.875rem * var(--font-scale))`,
+                    color: `rgb(var(--color-text) / 0.7)`
+                  }}
+                >
                   Pytanie {currentQuestion + 1} z {questions.length}
                   {current.section ? (
-                    <span className="ml-2 rounded-full bg-blue-100 text-blue-800 px-2 py-0.5 text-[11px] align-middle">
+                    <span 
+                      className="ml-2 rounded-full px-2 py-0.5 align-middle"
+                      style={{
+                        backgroundColor: `rgb(var(--color-accent) / 0.1)`,
+                        color: `rgb(var(--color-accent))`,
+                        fontSize: `calc(0.6875rem * var(--font-scale))`
+                      }}
+                    >
                       {current.section}
                     </span>
                   ) : null}
                 </span>
-                <div className="flex items-center gap-1 text-sm font-medium text-green-700">
+                <div 
+                  className="flex items-center gap-1 font-medium"
+                  style={{ 
+                    fontSize: `calc(0.875rem * var(--font-scale))`,
+                    color: `rgb(var(--color-success, 0 153 63))`
+                  }}
+                >
                   <span>✓</span>
                   <span>{points} pkt</span>
                 </div>
               </div>
-              <div className="w-28 bg-gray-200 rounded-full h-2">
+              <div 
+                className="w-28 rounded-full h-2"
+                style={{ backgroundColor: `rgb(var(--color-text) / 0.2)` }}
+              >
                 <div
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  className="h-2 rounded-full transition-all duration-300"
                   style={{
                     width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                    backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                      ? `rgb(var(--color-accent))`
+                      : 'rgb(37, 99, 235)' // blue-600 for light mode
                   }}
                 />
               </div>
             </div>
 
             {/* Question */}
-            <div className="text-lg font-semibold text-neutral-800">
+            <div 
+              className="font-semibold"
+              style={{ 
+                fontSize: `calc(1.125rem * var(--font-scale))`,
+                color: `rgb(var(--color-text))`
+              }}
+            >
               {current.question}
             </div>
 
@@ -604,7 +756,19 @@ export function KnowledgeQuizTile() {
                     type="button"
                     onClick={() => handleAnswerSelect(index)}
                     disabled={locked[currentQuestion]}
-                    className={`w-full p-3 text-left rounded-lg border transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 ${choiceClass(index)}`}
+                    className="w-full p-3 text-left rounded-lg border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    style={{
+                      ...getChoiceStyle(index),
+                      fontSize: `calc(0.875rem * var(--font-scale))`,
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.outline = `2px solid rgb(var(--color-accent))`;
+                      e.currentTarget.style.outlineOffset = '2px';
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.outline = 'none';
+                    }}
                     aria-pressed={picked}
                     aria-describedby={
                       locked[currentQuestion] && picked ? `explain-${currentQuestion}` : undefined
@@ -613,11 +777,19 @@ export function KnowledgeQuizTile() {
                     <div className="flex items-center gap-2">
                       {/* Icon after lock */}
                       {locked[currentQuestion] ? (
-                        <span className="text-xl" aria-hidden>
+                        <span 
+                          className="text-xl" 
+                          aria-hidden
+                          style={{ fontSize: `calc(1.25rem * var(--font-scale))` }}
+                        >
                           {isCorrect ? "✓" : picked ? "✗" : "○"}
                         </span>
                       ) : (
-                        <span className="text-xl" aria-hidden>○</span>
+                        <span 
+                          className="text-xl" 
+                          aria-hidden
+                          style={{ fontSize: `calc(1.25rem * var(--font-scale))` }}
+                        >○</span>
                       )}
                       <span>{answer}</span>
                     </div>
@@ -630,7 +802,19 @@ export function KnowledgeQuizTile() {
             {locked[currentQuestion] && (
               <div
                 id={`explain-${currentQuestion}`}
-                className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900"
+                className="rounded-lg border p-3"
+                style={{
+                  borderColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-accent) / 0.3)`
+                    : 'rgb(191, 219, 254)', // blue-200
+                  backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-accent) / 0.05)`
+                    : 'rgb(239, 246, 255)', // blue-50
+                  color: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text))`
+                    : 'rgb(30, 64, 175)', // blue-800
+                  fontSize: `calc(0.875rem * var(--font-scale))`
+                }}
               >
                 <span className="font-medium">Uzasadnienie: </span>
                 {current.explanation}
@@ -641,7 +825,26 @@ export function KnowledgeQuizTile() {
             {locked[currentQuestion] && (
               <button
                 onClick={nextQuestion}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                className="w-full font-medium py-3 px-6 rounded-lg transition-colors"
+                style={{
+                  backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-accent))`
+                    : 'rgb(37, 99, 235)', // blue-600 for light mode
+                  color: `rgb(var(--color-card))`,
+                  fontSize: `calc(0.875rem * var(--font-scale))`
+                }}
+                onMouseOver={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-accent) / 0.9)` 
+                    : 'rgb(29, 78, 216)'; // blue-700
+                }}
+                onMouseOut={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-accent))` 
+                    : 'rgb(37, 99, 235)'; // blue-600
+                }}
               >
                 {currentQuestion === questions.length - 1 ? "Zakończ test" : "Następne pytanie"}
               </button>
@@ -653,29 +856,83 @@ export function KnowledgeQuizTile() {
         {quizCompleted && (
           <div className="space-y-4 flex flex-col items-center gap-2">
             <div className="text-center">
-              <div className="text-4xl mb-2">{getScoreIcon()}</div>
+              <div 
+                className="mb-2"
+                style={{ 
+                  fontSize: `calc(2.5rem * var(--font-scale))`
+                }}
+              >
+                {getScoreIcon()}
+              </div>
               <div
-                className={`text-3xl font-bold ${getScoreColor()}`}
-                style={{ fontSize: `calc(1.875rem * var(--font-scale))` }}
+                className="font-bold"
+                style={{ 
+                  fontSize: `calc(1.875rem * var(--font-scale))`,
+                  color: getScoreColorRGB()
+                }}
               >
                 {scorePercentage}%
               </div>
               <div className="flex items-center justify-center gap-2 mb-1">
-                <span className="text-green-700 font-medium">✓ {points} punktów</span>
-                <span className="text-neutral-400">z {questions.length}</span>
+                <span 
+                  className="font-medium"
+                  style={{ 
+                    color: `rgb(var(--color-success, 0 153 63))`,
+                    fontSize: `calc(0.875rem * var(--font-scale))`
+                  }}
+                >
+                  ✓ {points} punktów
+                </span>
+                <span 
+                  style={{ 
+                    color: `rgb(var(--color-text) / 0.4)`,
+                    fontSize: `calc(0.875rem * var(--font-scale))`
+                  }}
+                >
+                  z {questions.length}
+                </span>
               </div>
-              <ZusText variant="small" className="text-neutral-600">
+              <div 
+                style={{ 
+                  color: `rgb(var(--color-text) / 0.7)`,
+                  fontSize: `calc(0.875rem * var(--font-scale))`
+                }}
+              >
                 Wynik: {correctAnswersCount} z {questions.length} poprawnych odpowiedzi
-              </ZusText>
-              <ZusText variant="small" className={getScoreColor()}>
+              </div>
+              <div 
+                style={{ 
+                  color: getScoreColorRGB(),
+                  fontSize: `calc(0.875rem * var(--font-scale))`
+                }}
+              >
                 {getScoreMessage()}
-              </ZusText>
+              </div>
             </div>
 
             <div className="flex gap-3 w-90">
               <button
                 onClick={restartQuiz}
-                className="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                className="flex-1 font-medium py-2 px-4 rounded-lg transition-colors"
+                style={{
+                  backgroundColor: document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow')
+                    ? `rgb(var(--color-text) / 0.6)`
+                    : 'rgb(107, 114, 128)', // gray-500 for light mode
+                  color: `rgb(var(--color-card))`,
+                  fontSize: `calc(0.875rem * var(--font-scale))`
+                }}
+                onMouseOver={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-text) / 0.7)` 
+                    : 'rgb(75, 85, 99)'; // gray-600
+                }}
+                onMouseOut={(e) => {
+                  const isHighContrast = document.documentElement.classList.contains('hc-white') || document.documentElement.classList.contains('hc-yellow');
+                  e.currentTarget.style.backgroundColor = isHighContrast 
+                    ? `rgb(var(--color-text) / 0.6)` 
+                    : 'rgb(107, 114, 128)'; // gray-500
+                }}
               >
                 Powtórz test
               </button>
